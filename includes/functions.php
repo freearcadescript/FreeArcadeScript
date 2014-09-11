@@ -50,4 +50,32 @@ return trim($str).$end_char;
 
    return $count;
 }
+
+
+
+
+
+function sqlcache($name, $expire, $query) {
+ global $db, $domain, $sitename, $domain, $template, $cachepath, $userid;
+
+$file = $cachepath . $name ;
+ 
+if (file_exists($file) && filemtime($file) > (time() - $expire)) {
+    $records = unserialize(file_get_contents($file));
+} else {
+    
+  /* form SQL query */
+    $result = mysql_query($query) or die (mysql_error());
+    while ($record = mysql_fetch_array($result) ) {
+        $records[] = $record;
+    }
+    //Cache the query
+  $OUTPUT = serialize($records);
+    $fp = fopen($file,"w");
+    fputs($fp, $OUTPUT);
+    fclose($fp);
+} // end else
+ 
+return $records;
+}
 ?>

@@ -15,3 +15,5 @@ RewriteRule ^showcomments/([^/]*)/([^/]*)/([^/]*)\.html$ /index.php?action=showc
 RewriteRule ^mostplayed/page([^/]*)\.html$ /index.php?action=newest&page=$2 [L]
 RewriteRule ^browse/([^-]*)-([^-]*)/page([^-]*)\.html$ /index.php?action=browse&ID=$1&name=$2&page=$3 [L]
 RewriteRule ^play/([^/]*)-([^/]*)\.html$ /index.php?action=play&ID=$1&name=$2 [L]
+RewriteRule ^pages/([^/]*)-([^/]*)\.html$ /index.php?action=page&entryid=$1&name=$2 [L]
+RewriteRule ^pages\/$ /index.php?action=pages [L]

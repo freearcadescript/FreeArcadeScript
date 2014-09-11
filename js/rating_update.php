@@ -128,7 +128,7 @@ function rate(rating,id,show5,showPerc,showVotes){
 		}
 	
 	}
-	var url = "<?=$domain?>/includes/rating_process.php";
+	var url = "<?php echo $domain; ?>/includes/rating_process.php";
 	var params = "id="+id+"&rating="+rating;
 	xmlHttp.open("POST",url,true);
 	xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

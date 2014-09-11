@@ -23,11 +23,19 @@ if(isset($_POST['submit'])){
 	
 
 
-mysql_query("CREATE TABLE `dd_categories` (
+mysql_query("CREATE TABLE IF NOT EXISTS `dd_categories` (
   `ID` int(11) NOT NULL auto_increment,
   `name` varchar(250) NOT NULL,
+  `tags` text NOT NULL,
+  `metadescr` text NOT NULL,
+  `active` tinyint(1) NOT NULL default '0',
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;");
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;");
+
+mysql_query("INSERT INTO `dd_categories` (`ID`, `name`, `tags`, `metadescr`, `active`) VALUES
+(1, 'First Category', '', '', 1),
+(2, 'Second Category', '', '', 1);");
+
 
 
 
@@ -37,15 +45,21 @@ mysql_query("CREATE TABLE IF NOT EXISTS `blogcategories` (
   `topcategory` int(11) NOT NULL default '1',
   `categoryname` varchar(50) NOT NULL,
   `activate` tinyint(1) NOT NULL,
+  `metatags` text NOT NULL,
+  `metadescr` text NOT NULL,
   PRIMARY KEY  (`categoryid`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
+
+
+mysql_query("INSERT INTO `blogcategories` (`categoryid`, `topcategory`, `categoryname`, `activate`, `metatags`, `metadescr`) VALUES(1, 1, 'Main', 0, 'Main, general', 'Main blog category');");
+
 
 
 mysql_query("CREATE TABLE IF NOT EXISTS `blogcomments` (
   `commentid` int(11) NOT NULL auto_increment,
   `blogentryid` int(11) NOT NULL,
   `commenttitle` varchar(50) NOT NULL,
-  `commentbody` varchar(300) NOT NULL,
+  `commentbody` longtext NOT NULL,
   `commenter` varchar(50) NOT NULL,
   `commenterid` int(11) NOT NULL,
   `commenterurl` varchar(50) NOT NULL,
@@ -70,12 +84,10 @@ mysql_query("CREATE TABLE IF NOT EXISTS `blogentries` (
 
 
 
+mysql_query("INSERT INTO `blogentries` VALUES(1, 'Blog test', 'This is a test of the emergency blogging system, this is only a test. If this had been an actual blog you would be laughing by now.\r\n\r\n;)', 'admin', '2009-11-21', '1', '1', 'blog test 1');");
 
 
 
-
-
-mysql_query("INSERT INTO `dd_categories` (`ID`, `name`) VALUES (1,'First Category'),(2,'Second Category');");
 
 mysql_query("CREATE TABLE IF NOT EXISTS `dd_links` (
   `ID` int(11) NOT NULL auto_increment,
@@ -89,7 +101,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `dd_links` (
   `linkbackat` varchar(60) NOT NULL,
   `emailaddress` varchar(80) NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;");
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;");
 
 mysql_query("INSERT INTO `dd_links` (`ID`, `title`, `url`, `hits`, `dateadded`, `activate`, `IPaddress`) VALUES(1, 'script-place.com', 'http://script-place.com', 0, '1235433190', 1, '');");
 
@@ -113,6 +125,25 @@ mysql_query("CREATE TABLE IF NOT EXISTS `dd_games` (
   `views` int(11) NOT NULL default '0',
   `active` tinyint(1) NOT NULL default '0',
   `tags` varchar(100) NOT NULL,
+  `highscore` bigint(20) NOT NULL,
+  `highscoreable` tinyint(1) NOT NULL default '0',
+  `highscoreuser` int(11) NOT NULL,
+  `highscoredate` varchar(20) NOT NULL,
+  `highscoreip` text NOT NULL,
+  `gameadder` int(11) NOT NULL,
+  `adderip` text NOT NULL,
+  `sponsor` text NOT NULL,
+  `sponsordate` int(11) NOT NULL,
+  `sponsorexpire` int(11) NOT NULL,
+  `sponsornotes` text NOT NULL,
+  `sponsoractive` tinyint(1) NOT NULL default '0',
+  `ads1` text NOT NULL,
+  `ads2` text NOT NULL,
+  `ads3` text NOT NULL,
+  `headerspace` text NOT NULL,
+  `footerspace` text NOT NULL,
+  `abovegames` text NOT NULL,
+  `belowgames` text NOT NULL,
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
@@ -137,7 +168,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `dd_messages` (
   `status` int(11) NOT NULL default '0',
   `datesent` varchar(250) NOT NULL,
   PRIMARY KEY  (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
 
 
@@ -173,11 +204,13 @@ mysql_query("CREATE TABLE IF NOT EXISTS `dd_settings` (
   `showblog` tinyint(1) NOT NULL default '1',
   `blogentriesshown` int(11) NOT NULL default '5',
   `blogcharactersshown` int(11) NOT NULL default '300',
-  `blogcommentpermissions` tinyint(1) NOT NULL,
+  `blogcommentpermissions` tinyint(1) NOT NULL default '1',
   `blogcommentsshown` int(11) NOT NULL default '10',
   `blogfollowtags` varchar(10) NOT NULL default 'nofollow',
   `blogcharactersrss` int(11) NOT NULL default '500',
   `showforum` tinyint(1) NOT NULL default '1',
+  `metatags` text NOT NULL,
+  `metadescr` text NOT NULL,
   PRIMARY KEY  (`domain`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1; ");
 
@@ -185,28 +218,28 @@ mysql_query("CREATE TABLE IF NOT EXISTS `dd_settings` (
 
 
 
- 		mysql_query('INSERT INTO dd_settings SET 
- 					domain=\''.$sdomain.'\',
- 					directorypath=\''.$directorypath.'\',
- 					template=\''.$stemplate.'\',
- 					gamesfolder=\''.$sgamesfolder.'\',
- 					thumbsfolder=\''.$sgamesthumbs.'\',
- 					limitboxgames=\''.$slimitboxgames.'\',
- 					comments_on=\''.$scomments_on.'\',
- 					autoapprovecomments=\''.$sautoapprovecomments.'\',
- 					seo_on=\''.$sseo_on.'\',
- 					sitename=\''.$ssitename.'\',
- 					gamesonpage=\''.$sgamesonpage.'\',
- 					enabledcode_on=\''.$senabled_code.'\',
- 					bannersleft=\'bannersleft\',
- 					bannersright=\'bannersright\',
- 					ads1=\'ads1\',
- 					ads2=\'ads2\',
- 					ads3=\'ads3\',
- 					headerspace=\'headerspace\',
- 					footerspace=\'footerspace\',
- 					abovegames=\'abovegames\',
- 					belowgames=\'belowgames\' ') or die(mysql_error());
+ 		mysql_query("INSERT INTO dd_settings SET 
+ 					domain='$sdomain',
+ 					directorypath='$directorypath',
+ 					template='$stemplate',
+ 					gamesfolder='$sgamesfolder',
+ 					thumbsfolder='$sgamesthumbs',
+ 					limitboxgames='$slimitboxgames',
+ 					comments_on='$scomments_on',
+ 					autoapprovecomments='$sautoapprovecomments',
+ 					seo_on='$sseo_on',
+ 					sitename='$ssitename',
+ 					gamesonpage='$sgamesonpage',
+ 					enabledcode_on='$senabled_code',
+ 					bannersleft='bannersleft',
+ 					bannersright='bannersright',
+ 					ads1='ads1',
+ 					ads2='ads2',
+ 					ads3='ads3',
+ 					headerspace='headerspace',
+ 					footerspace='footerspace',
+ 					abovegames='abovegames',
+ 					belowgames='belowgames' ") ;
 
 
 
@@ -239,16 +272,20 @@ mysql_query("CREATE TABLE IF NOT EXISTS `dd_users` (
   `ip` text NOT NULL,
   `bloglevel` tinyint(1) NOT NULL default '1',
   `forumlevel` tinyint(1) NOT NULL default '1',
+  `gamelevel` tinyint(1) NOT NULL default '1',
   `signature` varchar(100) NOT NULL,
   `avatar` tinyint(1) NOT NULL default '0',
   `avatarfile` varchar(50) NOT NULL,
   PRIMARY KEY  (`userid`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;");
 
-mysql_query("
-INSERT INTO `dd_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`) VALUES
+mysql_query("INSERT INTO `dd_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `newsletter`, `aim`, `icq`, `msn`, `yim`, `location`, `job`, `website`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `sex`, `interests`, `bio`, `ip`, `bloglevel`, `forumlevel`, `gamelevel`, `signature`, `avatar`, `avatarfile`) VALUES(0, 'Guest', 'hhhhhhhhhhhhhhhhh', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, 1, '', 0, '');");
+
+mysql_query("INSERT INTO `dd_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'demo@email.com', 2, 0)");
+
+mysql_query("UPDATE dd_users SET `userid` = '0' WHERE `username` ='Guest' LIMIT 1 ; ");
 
 
 mysql_query("CREATE TABLE IF NOT EXISTS `dd_user_favorites` (
@@ -264,24 +301,54 @@ mysql_query("CREATE TABLE IF NOT EXISTS `ratings` (
   `rating_num` int(11) NOT NULL,
   `IP` varchar(25) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ; ");
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
 
 
 mysql_query("CREATE TABLE IF NOT EXISTS `newsletter` (
-`pageid` int(11) NOT NULL auto_increment,
-`sent` tinyint(1) NOT NULL default '0',
-`showpage` tinyint(1) NOT NULL default '0',
-`pagetitle` text,
-`pagebody` text,
-`pageauthor` text,
-`datesent` date NOT NULL,
-PRIMARY KEY (`pageid`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;");
+  `pageid` int(11) NOT NULL auto_increment,
+  `sent` tinyint(1) NOT NULL default '0',
+  `showpage` tinyint(1) NOT NULL default '0',
+  `pagetitle` text,
+  `pagebody` text,
+  `pageauthor` text,
+  `datesent` date NOT NULL,
+  PRIMARY KEY  (`pageid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;");
 
 
 mysql_query("INSERT INTO `newsletter` (`pageid`, `sent`, `showpage`, `pagetitle`, `pagebody`, `pageauthor`, `datesent`) VALUES(1, 1, 1, 'We want to hear from you!', 'We want to hear from you.\r\n\r\nWe want to hear what you want added or changed in here. Let us know. We are thinking a blog for starters, or a shoutbox.\r\n\r\n', 'Admin', '2009-04-18');");
 
+
+
+
+mysql_query("CREATE TABLE IF NOT EXISTS `pagecategories` (
+  `categoryid` int(11) NOT NULL auto_increment,
+  `topcategory` int(11) NOT NULL default '1',
+  `categoryname` varchar(50) NOT NULL,
+  `activate` tinyint(1) NOT NULL,
+  `metatags` text NOT NULL,
+  `metadescr` text NOT NULL,
+  PRIMARY KEY  (`categoryid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;");
+
+mysql_query("CREATE TABLE IF NOT EXISTS `pageentries` (
+  `entryid` int(11) NOT NULL auto_increment,
+  `title` varchar(50) NOT NULL,
+  `body` text NOT NULL,
+  `author` varchar(50) NOT NULL,
+  `entrydate` date NOT NULL,
+  `visible` tinytext NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `tags` varchar(100) NOT NULL,
+  `metadescription` varchar(300) NOT NULL,
+  PRIMARY KEY  (`entryid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ; ");
+
+mysql_query("ALTER TABLE `dd_settings` ADD `showpages` TINYINT( 1 ) NOT NULL DEFAULT '0' AFTER `showblog` ;");
+
+mysql_query("INSERT INTO `pagecategories` (`categoryid`, `topcategory`, `categoryname`, `activate`, `metatags`, `metadescr`) VALUES(1, 1, 'Main', 1, '', ''); ");
+mysql_query("INSERT INTO `pageentries` (`entryid`, `title`, `body`, `author`, `entrydate`, `visible`, `category`, `tags`, `metadescription`) VALUES(1, 'Demo Page', 'This is a demo of the pages\r\n\r\nYou may use HTML or JavaScript', '1', '2009-12-06', '1', '1', 'Demo Page', ''); ");
 
 
 

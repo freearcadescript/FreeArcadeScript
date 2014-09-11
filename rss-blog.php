@@ -1,6 +1,6 @@
 <?php
 
-
+include ('includes/functions.php');
 include ('includes/core.php');
 
 

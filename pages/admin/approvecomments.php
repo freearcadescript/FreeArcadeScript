@@ -29,7 +29,7 @@ echo '<div class=\'msg\'>Comment Deleted.<br />
 			<A href="#" onclick="history.go(-1)">Back</a></div>';
 }
 function approve(){
-	global $domain, $db, $autoapprovecomments;
+	global $domain, $db, $autoapprovecomments, $template;
 	if($autoapprovecomments == 1){
 		echo '<div class=\'error\'>You have auto approve comments set to on.</div><br />';
 	}
@@ -43,9 +43,9 @@ function approve(){
 	echo '<tr>
 			<td class=\'content5\'>'.$row['comment'].'</td>
 			<td class=\'content5\'>
-			<a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=do_approve&ID='.$row['ID'].'\'><img src=\''.$domain.'/templates/default/images/approve.png\' border=\'0\'></a>
+			<a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=do_approve&ID='.$row['ID'].'\'><img src=\''.$domain.'/templates/'.$template.'/images/approve.png\' border=\'0\'></a>
 
-<a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the comment?\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' border=\'0\'></a>
+<a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/deletebtn.png\' border=\'0\'></a>
 
 			</td>
 		</tr>';

@@ -3,176 +3,189 @@ session_start();
 include ('includes/functions.php');
 include ('includes/core.php');
 include('includes/rating_functions.php');
+
+
 switch($_GET['action']){
 
 	case 'play':
+	include ('templates/'.$template.'/play.php');
 	include ('includes/arcadesubmenu.php');
+	include ('includes/arcadesubmenu2.php');
 	break;
 	
 	case 'mostplayed':
+	include ('templates/'.$template.'/mostplayed.php');
 	include ('includes/arcadesubmenu.php');
+	include ('includes/arcadesubmenu2.php');
 	break;
 	
 	case 'newest':
+	include ('templates/'.$template.'/newest.php');
 	include ('includes/arcadesubmenu.php');
-	break;
-
-	
-	case 'browse':
-	include ('includes/arcadesubmenu.php');
-	break;
-	
-	
-	case 'myaccount':
-	include ('includes/defaultsubmenu.php');
-	break;
-	
-	
-	break;
-	case 'search':
-	include ('includes/arcadesubmenu.php');
-	break;
-	
-	case 'addtofavorites':
-	include ('includes/arcadesubmenu.php');
-	break;
-
-	case 'blog':
-	include ('includes/blogsubmenu.php');
-	break;
-
-	case 'blogcat':
-	include ('includes/blogsubmenu.php');
-	break;
-
-
-	case 'blogentry':
-	include ('includes/blogsubmenu.php');
-	break;
-
-
-	default: 
-	include ('includes/defaultsubmenu.php');
-	break;
-
-	
-}
-
-include ('templates/'.$template.'/header.php');
-switch($_GET['action']){
-
-	case 'play':
-	include ('pages/play.php');
-	break;
-	
-	case 'mostplayed':
-	include ('pages/mostplayed.php');
-	break;
-	
-	case 'newest':
-	include ('pages/newest.php');
+	include ('includes/arcadesubmenu2.php');
 	break;
 
       case 'messages':
-      include ('pages/messages.php');
+      include ('templates/'.$template.'/messages.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
       break;
 
 	
 	case 'browse':
-	include ('pages/browse.php');
+	include ('templates/'.$template.'/browse.php');
+	include ('includes/arcadesubmenu.php');
+	include ('includes/arcadesubmenu2.php');
 	break;
 	
 	case 'login':
-	include ('pages/login.php');
+	include ('templates/'.$template.'/login.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 	case 'signup':
-	include ('pages/signup.php');
+	include ('templates/'.$template.'/signup.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 	case 'myaccount':
-	include ('pages/myaccount.php');
+	include ('templates/'.$template.'/myaccount.php');
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 	case 'admin':
-	include ('pages/admin/index.php');
+	include ('pages/admin/index.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	case 'blogadmin':
-	include ('pages/blogadmin/index.php');
+	include ('pages/blogadmin/index.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
+	case 'gameadmin':
+	include ('pages/gameadmin/index.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
+	break;
+
 	
 	case 'logout':
-	session_destroy();
-		echo '<div class=\'msg\'>You\'ve successfully logged out.</div>';
+	include ('templates/'.$template.'/logout.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	case 'search':
-	include ('pages/search.php');
+	include ('templates/'.$template.'/search.php');
+	include ('includes/arcadesubmenu.php');
+	include ('includes/arcadesubmenu2.php');
 	break;
 	
 	case 'addtofavorites':
-	include ('pages/addtofavorites.php');
+	include ('templates/'.$template.'/addtofavorites.php');
+	include ('includes/arcadesubmenu.php');
+	include ('includes/arcadesubmenu2.php');
 	break;
 
       case 'memberslist':
-      include ('pages/memberslist.php');
+      include ('templates/'.$template.'/memberslist.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
       break;	
 
 
 	case 'links':
-	include ('pages/links.php');
+	include ('templates/'.$template.'/links.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 	case 'showprofile':
-	include ('pages/showprofile.php');
+	include ('templates/'.$template.'/showprofile.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 	case 'fineprint':
-	include ('pages/fineprint.php');
+	include ('templates/'.$template.'/fineprint.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 
 
 
 	case 'userlist':
-	include ('pages/userlist.php');
+	include ('templates/'.$template.'/userlist.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 
 	case 'contact':
-	include ('pages/contact.php');
+	include ('templates/'.$template.'/contact.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 	case 'taf':
-	include ('pages/taf.php');
+	include ('templates/'.$template.'/taf.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 
 	case 'blog':
-	include ('pages/blog.php');
+	include ('templates/'.$template.'/blog.php');
+	include ('includes/blogsubmenu.php');
+	include ('includes/blogsubmenu2.php');
 	break;
 	
 	case 'blogcat':
-	include ('pages/blogcat.php');
+	include ('templates/'.$template.'/blogcat.php');
+	include ('includes/blogsubmenu.php');
+	include ('includes/blogsubmenu2.php');
 	break;
 	
 
 	case 'blogentry':
-	include ('pages/blogentry.php');
+	include ('templates/'.$template.'/blogentry.php');
+	include ('includes/blogsubmenu.php');
+	include ('includes/blogsubmenu2.php');
 	break;
 
 	case 'showcomments':
-	include ('pages/showcomments.php');
+	include ('templates/'.$template.'/showcomments.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
+	case 'page':
+	include ('templates/'.$template.'/page.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
+	break;
+
+	case 'pages':
+	include ('templates/'.$template.'/pages.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
+	break;
+
 
 
 
 
 	default: 
-	include ('pages/base_home.php');
+	include ('templates/'.$template.'/base_home.php'); 
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
 	break;
 	
 }
-echo '<title>'.$sitename.' - '.$pgname.'</title>';
-include ('templates/'.$template.'/footer.php');
+
+include ('templates/'.$template.'/template.php');
 
 ?>

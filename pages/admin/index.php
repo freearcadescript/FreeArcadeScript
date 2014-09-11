@@ -1,10 +1,18 @@
 <?php
+
+
+function writebody() {
+global $db, $set, $domain, $showpages, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
+
+
+
+
+
 if($usrdata['user_level'] != 2){
 	echo 'You are not admin, therfore you can not access this part of the site.';
-	include ('templates/'.$template.'/footer.php');
-	exit;
+	
 }
-
+else {
 	
 switch($_GET['case']){
 	default: 
@@ -43,6 +51,11 @@ switch($_GET['case']){
 	include ('settings.php');
 	break;
 	
+	case 'ads':
+	include ('ads.php');
+	break;
+	
+
 	case 'managemembers':
 	include ('managemembers.php');
 	break;
@@ -51,7 +64,53 @@ switch($_GET['case']){
 	include ('newsletter.php');
 	break;
 	
+	case 'testgame':
+	include ('testgame.php');
+	break;
 
-}	
-$pgname = 'Admin Panel';	
+
+
+	case 'pageentries':
+	include ('pageentries.php');
+	break;
+
+	case 'managepagecategories':
+	include ('managepagecategories.php');
+	break;
+
+	case 'addpagecategory':
+	include ('addpagecategory.php');
+	break;
+
+	case 'blogentries':
+	include ('blogentries.php');
+	break;
+	
+	case 'addblogcategory':
+	include ('addblogcategory.php');
+	break;
+	
+	case 'manageblogcategories':
+	include ('manageblogcategories.php');
+	break;
+	
+	
+	case 'approveblogcomments':
+	include ('approveblogcomments.php');
+	break;
+
+
+
+
+};	
+};
+
+
+
+
+};
+$pagetitle = 'Admin Panel';
+function writeheaders() { echo '
+
+'; }
 ?>

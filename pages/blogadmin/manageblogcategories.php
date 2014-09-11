@@ -14,7 +14,7 @@ switch($_GET['cmd']){
 	
 }
 function categories(){
-	global $domain, $db;
+	global $domain, $db, $template;
 	echo '
 	<div class=\'pgtitle\'>Manage Categories</div><br />
 	<table width=\'80%\' align=\'center\'>
@@ -27,9 +27,9 @@ function categories(){
 	echo '	<tr>
 			<td>'.$ir['categoryname'].'</td>
 			
-			<td><a href=\''.$domain.'/index.php?action=blogadmin&case=manageblogcategories&cmd=edit&categoryid='.$ir['categoryid'].'\'><img src=\''.$domain.'/templates/default/images/editbtn.png\' border=\'0\'></a>
+			<td><a href=\''.$domain.'/index.php?action=blogadmin&case=manageblogcategories&cmd=edit&categoryid='.$ir['categoryid'].'\'><img src=\''.$domain.'/templates/'.$template.'/images/editbtn.png\' border=\'0\'></a>
 		
-			<a href=\''.$domain.'/index.php?action=blogadmin&case=manageblogcategories&cmd=delete&categoryid='.$ir['categoryid'].'\'  onclick="return confirm(\'Are you sure you want to delete the category '.$ir['categoryname'].'? \n All etries in this category will be deleted from the database too.\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' border=\'0\'></a>
+			<a href=\''.$domain.'/index.php?action=blogadmin&case=manageblogcategories&cmd=delete&categoryid='.$ir['categoryid'].'\'  onclick="return confirm(\'Are you sure you want to delete the category '.$ir['categoryname'].'? \n All etries in this category will be deleted from the database too.\')"><img src=\''.$domain.'/templates/'.$template.'/images/deletebtn.png\' border=\'0\'></a>
 		
 		</td>
 	

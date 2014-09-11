@@ -14,7 +14,20 @@ $db->configure(
 	$dbpre
 	);
 $db->connect();
-$set = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_settings')));
+// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_settings')));
+
+
+
+
+
+
+
+
+$set2 = "SELECT * FROM dd_settings" ;
+$set1 = sqlcache('sitesettings', $cachelife, $set2);
+foreach($set1 as $set){
+
+
 $domain = $set['domain'];
 $directorypath = $set['directorypath'];
 $template = $set['template'];
@@ -40,14 +53,17 @@ $showwebsitelimit = $set['showwebsitelimit'];
 $supportemail = $set['supportemail'];
 
 $showblog = $set['showblog'];
+$showpages = $set['showpages'];
 $blogentriesshown = $set['blogentriesshown'];
 $blogcharactersshown = $set['blogcharactersshown'];
 $blogcommentpermissions = $set['blogcommentpermissions'];
 $blogcommentsshown = $set['blogcommentsshown'];
 $blogfollowtags = $set['blogfollowtags'];
 $blogcharactersrss = $set['blogcharactersrss'];
-	
-
+$metatags = $set['metatags'];
+$metadescription = $set['metadescr'];
+$pagetitle = $sitename ;	
+};
 
 if(isset($_SESSION['userid'])){
 	$suserid = $_SESSION['userid'];

@@ -92,7 +92,11 @@ $userid = abs((int) $_GET['userid']);
 if(!$userid) {echo 'No profile selected'; exit;}
 else {
 	$db->query(sprintf('DELETE FROM dd_users WHERE userid=\'%u\'', $userid));
-	echo '<div class=\'msg\'>Member Deleted.
+	echo '<div class=\'msg\'>Member Deleted.<br>';
+	$db->query(sprintf('DELETE FROM dd_comments WHERE commenter=\'%u\'', $userid));
+	echo 'Member comments Deleted from games.<br>';
+	$db->query(sprintf('DELETE FROM blogcomments WHERE commenterid=\'%u\'', $userid));
+	echo 'Member comments Deleted from blog.<br>
 				</div>';
 }
 
@@ -136,12 +140,13 @@ $interests = clean($_POST['interests']);
 $bio = clean($_POST['bio']);
 $bloglevel = clean($_POST['bloglevel']);
 $forumlevel = clean($_POST['forumlevel']);
+$gamelevel = clean($_POST['gamelevel']);
 $signature = clean($_POST['signature']);
 $avatar = clean($_POST['avatar']);
 $avatarfile = clean($_POST['avatarfile']);
 
 mysql_query("UPDATE dd_users SET user_level='$user_level', newsletter='$newsletter', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location', 
-job='$job', website='$website', link1='$link1', link2='$link2', link3='$link3', link4='$link4', link5='$link5', link6='$link6', link7='$link7', link8='$link8', sex='$sex', interests='$interests', bio='$bio', bloglevel='$bloglevel', forumlevel='$forumlevel', signature='$signature', avatar='$avatar', avatarfile='$avatarfile' WHERE userid='$userid'" ) ;
+job='$job', website='$website', link1='$link1', link2='$link2', link3='$link3', link4='$link4', link5='$link5', link6='$link6', link7='$link7', link8='$link8', sex='$sex', interests='$interests', bio='$bio', bloglevel='$bloglevel', forumlevel='$forumlevel', gamelevel='$gamelevel', signature='$signature', avatar='$avatar', avatarfile='$avatarfile' WHERE userid='$userid'" ) ;
 echo '<div class=\'msg\'>Profile updated</div><p>';
 
 
@@ -193,6 +198,7 @@ $interests = $set['interests'];
 $bio = $set['bio'];
 $bloglevel = $set['bloglevel'];
 $forumlevel = $set['forumlevel'];
+$gamelevel = $set['gamelevel'];
 $signature = $set['signature'];
 $avatar = $set['avatar'];
 $avatarfile = $set['avatarfile'];
@@ -238,7 +244,7 @@ User Level:</td>
 <td class="content"><input name="location" type="text" size="50" value="'.$location.'"></td>
 </tr>
 <tr>
-<td class="content">Link 1:<br></td>
+<td class="content">Link 1:<br>(Leave off the http://)</td>
 <td class="content"><input name="link1" type="text" size="50" value="'.$link1.'"></td>
 </tr>
 <tr>
@@ -321,6 +327,11 @@ User Level:</td>
 <td class="content">Forum Permissions:</td>
 <td class="content"><input name="forumlevel" type="text" size="1" value="'.$forumlevel.'"></td>
 </tr>
+<tr>
+<td class="content">Game Permissions:<br><small>1=user<br>2=game adder: not live<br></small></td>
+<td class="content"><input name="gamelevel" type="text" size="1" value="'.$gamelevel.'"></td>
+</tr>
+
 <tr>
 <td class="content">Signature:</td>
 <td class="content"><input name="signature" type="text" size="50" value="'.$signature.'"></td>

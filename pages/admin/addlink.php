@@ -11,9 +11,9 @@ if(isset($_POST['submit'])){
 
 	if(!$title || !$url){
 		echo '<div class=\'error\'>Title or URL was not filled.</div>';
-		include ('templates/'.$template.'/footer.php');
-		exit;
-	}
+		
+		
+	} else {
 	mysql_query("INSERT INTO dd_links SET 
 					title='$title',
 					url='$url',
@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
                               emailaddress='$emailaddress'; ");
 					
 	echo '<div class=\'msg\'>Link Added. </a><br />
-			<A href="#" onclick="history.go(-1)">Back</a>';				
+			<A href="#" onclick="history.go(-1)">Back</a>';		};		
 }else{
 	echo '
 	<form action=\''.$domain.'/index.php?action=admin&case=addlink\' method=\'POST\'>

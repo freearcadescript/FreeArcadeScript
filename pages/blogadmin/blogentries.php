@@ -1,4 +1,5 @@
 <?php
+
 switch($_GET['cmd']){
 	default:
 	listentries();
@@ -26,27 +27,29 @@ switch($_GET['cmd']){
 
 }
 function listentries(){
-global $domain, $db;
+global $domain, $db, $usrdata ;
 
 
 
+$useridm = $usrdata['username'];
 $max = '50';
 $show = clean($_GET['page']);
 if(empty($show)){
 $show = 1;
 }
 $limits = ($show - 1) * $max; 
-$totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM blogentries'),0); 
+// $totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM blogentries where author=\'%u\' ', $useridm'),0); 
+$totalres = mysql_query("SELECT COUNT(entryid) AS total FROM blogentries where author='$useridm' " ); 
 $totalpages = ceil($totalres / $max);
 
 
 
 
 
-	$r = mysql_query("SELECT * FROM blogentries ORDER BY entryid DESC limit $limits,$max");
+	$r = mysql_query("SELECT * FROM blogentries where author='$useridm' ORDER BY entryid DESC limit $limits,$max");
 	echo '<table width=\'85%\' border=\'0\' align=\'center\'>
 		<tr>
-			<td class=\'header\'>Blog Entries</td>
+			<td class=\'header\'>Blog Entries for '.$usrdata['username'].'</td>
 			
 		</tr>';
 	while($row = $db->fetch_row($r)){
@@ -104,9 +107,10 @@ $pgname = 'Blog entry list';
 
 
 function editentry(){
-global $domain, $db;
+global $domain, $db, $usrdata ;
+$useridm = $usrdata['username'];
 $entryid = abs((int) $_GET['entryid']);
-$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM blogentries WHERE entryid=\'%u\'', $entryid))); 
+$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM blogentries WHERE entryid=\'%u\' and author=\'%s\'', $entryid, $useridm))); 
 	echo '<table width=\'85%\' border=\'0\' align=\'center\'>
 		<tr>
 			<td class=\'header\'> Edit Blog Entry</td>
@@ -137,8 +141,8 @@ Entry Author: '.$author.'<p>
 Entry Title: <input type=\'text\' name=\'title\' size=\'50\' value=\''.$title.'\'><p>
 No HTML is allowed. Please use the following code formats:<br>
 Links: <b>[urlhead]</b>domain.com/path<b>[urlmid]</b>anchor<b>[urlend]</b><br>
-Images: <b>[imghead]</b>domain.com/imgagepath/img.gif<b>[urlend]</b><br>
-Bold: <b>[bstart]</b>text to make bold<b>[bend]</b><br>
+Images: <b>[imghead]</b>domain.com/imgagepath/img.gif<b>[imgend]</b><br>
+Bold: <b>[bhead]</b>text to make bold<b>[bend]</b><br>
 New Line: <b>[br]</b><br>
 New Paragraph: <b>[p]</b><br>
 
@@ -168,7 +172,8 @@ Tags: <input type=\'text\' name=\'tags\' size=\'50\' value=\''.$tags.'\'><br>
 
 
 function saveedits(){
-	global $domain, $db;
+	global $domain, $db, $usrdata ;
+$useridm = $usrdata['username'];
 $entryid = abs((int) $_POST['entryid']);
 $title = clean($_POST['title']);
 $body = clean($_POST['body']);
@@ -176,7 +181,7 @@ $visible = clean($_POST['visible']);
 $category = clean($_POST['category']);
 $tags = clean($_POST['tags']);
 
-mysql_query("UPDATE blogentries SET title='$title', body='$body', visible='$visible', category='$category', tags='$tags'  WHERE entryid='$entryid'" ) ;
+mysql_query("UPDATE blogentries SET title='$title', body='$body', visible='$visible', category='$category', tags='$tags'  WHERE entryid='$entryid' and author='$useridm' " ) ;
 echo '<div class=\'msg\'>Blog Entry '.$entryid.' updated</div><p>';
 
 	
@@ -187,7 +192,8 @@ echo '<div class=\'msg\'>Blog Entry '.$entryid.' updated</div><p>';
 
 
 function newentry(){
-	global $domain, $db;
+	global $domain, $db, $usrdata ;
+$useridm = $usrdata['username'];
 	
 
 echo '
@@ -267,10 +273,11 @@ function savenew(){
 
 
 function deleteentry(){
-	global $domain, $db;
+	global $domain, $db, $usrdata ;
+$useridm = $usrdata['username'];
 	$entryid = abs((int) $_GET['entryid']);
 if(!$entryid){echo 'Invalid entry.'; exit;}
-$db->query(sprintf('DELETE FROM blogentries WHERE entryid=\'%u\'', $entryid));
+$db->query(sprintf('DELETE FROM blogentries WHERE entryid=\'%u\' and author=\'%s\'', $entryid, $useridm));
 echo ' Blog Entry deleted.';
 
 }

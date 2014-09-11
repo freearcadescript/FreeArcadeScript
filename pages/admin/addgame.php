@@ -22,7 +22,7 @@ switch($_GET['type']){
 
 }
 function hosted(){
-global $thumbsfolder, $gamesfolder, $domain, $db;
+global $thumbsfolder, $gamesfolder, $domain, $db, $suserid, $usrdata ;
 if(isset($_POST['submit'])){
 $time = time();
 $thumbspath = ''.$thumbsfolder.'/';
@@ -31,10 +31,14 @@ $thumb = $_FILES['thumb']['name'];
 $game = $_FILES['game']['name'];
 $name = clean($_POST['name']);
 $desc= clean($_POST['desc']);
-$width = $_POST['width'];
-$height = $_POST['height'];
+// $width = $_POST['width'];
+// $height = $_POST['height'];
 $category = $_POST['category'];
-if(!$game || !$thumb || !$name || !$desc || !$width || !$height){
+$tags = $_POST['tags'];
+$highscoreable = $_POST['highscoreable'];
+$gameadder = $usrdata['userid'];
+$adderip = $_SERVER['REMOTE_ADDR'];
+if(!$game || !$thumb || !$name || !$desc){
 	$error = 1;
 	$msg = 'Not all fields where filled.';
 }
@@ -52,6 +56,12 @@ if(!move_uploaded_file($_FILES['game']['tmp_name'],$gamespath . $game)){
 if($error == 1){
 	echo '<div class=\'error\'>'.$msg.'</div>';
 }else{
+      $gamevar1 = $gamespath.$game;
+      
+      $gamesize = getimagesize($gamevar1);
+      $width = $gamesize[0];
+      $height = $gamesize[1];
+      
 	echo '<div class=\'msg\'>Game Successfully added but not activated!</div>';
 	$type= 1;
 	$db->query(sprintf('INSERT INTO dd_games SET
@@ -63,8 +73,13 @@ if($error == 1){
 				category=\'%u\',
 				thumb=\'%s\',
 				dateadded=\'%u\', 
-				type=\'%u\'',
-				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type));
+				type=\'%u\',
+				tags=\'%s\', 
+				highscoreable=\'%s\', 
+				gameadder=\'%u\',
+				adderip=\'%s\'
+',
+				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $tags, $highscoreable, $gameadder, $adderip));
 }
 }
 echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=hosted\' method=\'POST\' enctype=\'multipart/form-data\'>
@@ -76,14 +91,6 @@ echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=hosted
 		<tr>
 			<td>Description:*</td>
 			<td><textarea cols=\'40\' rows=\'5\' name=\'desc\'></textarea></td>
-		</tr>
-		<tr>
-			<td>Width:*</td>
-			<td><input type=\'text\' name=\'width\' value=\'500\'></td>
-		</tr>
-		<tr>
-			<td>Height:*</td>
-			<td><input type=\'text\' name=\'height\' value=\'450\'></td>
 		</tr>
 		<tr>
 			<td>Category:*</td>
@@ -107,13 +114,31 @@ echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=hosted
 			<td><input type=\'file\' name=\'game\' size=\'35\'></td>
 		</tr>
 		<tr>
+			<td>Tags:</td>
+			<td><input type=\'text\' name=\'tags\' size=\'35\'></td>
+		</tr>
+		<tr>
+			<td>High Score Capable:</td>
+			<td>
+			<select type=\'dropdown\' name=\'highscoreable\'>
+		      <option value=\'0\'>No</option>
+			<option value=\'1\'>Yes</option>
+		
+		
+			</select>
+		</td>
+			
+		</tr>
+
+
+		<tr>
 			<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Add Game\'></td>
 		</tr>
 	</table>		
 	</form>';
 }
 function enabled(){
-global $domain, $db;
+global $domain, $db, $suserid, $usrdata ;
 if(isset($_POST['submit'])){
 $time = time();
 
@@ -122,6 +147,9 @@ $desc= clean($_POST['desc']);
 $category = $_POST['category'];
 $thumburl = $_POST['thumburl'];
 $enabledcode = $_POST['enabledcode'];
+$tags = $_POST['tags'];
+$gameadder = $usrdata['userid'];
+$adderip = $_SERVER['REMOTE_ADDR'];
 
 if($error == 1){
 	echo '<div class=\'error\'>'.$msg.'</div>';
@@ -135,8 +163,11 @@ if($error == 1){
 				type=\'%u\',
 				dateadded=\'%u\',
 				thumburl=\'%s\',
-				enabledcode=\'%s\' ',
-				$name, $desc, $category, $type, $time, $thumburl, $enabledcode));
+				enabledcode=\'%s\',
+				tags=\'%s\', 
+				gameadder=\'%u\',
+				adderip=\'%s\' ',
+				$name, $desc, $category, $type, $time, $thumburl, $enabledcode, $tags, $gameadder, $adderip));
 		}
 }
 echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=enabled\' method=\'POST\'>
@@ -170,6 +201,11 @@ echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=enable
 			<td><textarea cols=\'45\' rows=\'5\' name=\'enabledcode\'></textarea></td>
 		</tr>	
 		<tr>
+			<td>Tags:</td>
+			<td><input type=\'text\' name=\'tags\' size=\'35\'></td>
+		</tr>
+
+		<tr>
 			<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Add Game\'></td>
 		</tr>
 	</table>		
@@ -180,7 +216,7 @@ echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=enable
 
 
 function preuploaded(){
-global $thumbsfolder, $gamesfolder, $domain, $db;
+global $thumbsfolder, $gamesfolder, $domain, $db, $suserid, $usrdata ;
 if(isset($_POST['submit'])){
 $time = time();
 $thumbspath = ''.$thumbsfolder.'/';
@@ -189,10 +225,14 @@ $thumb = clean($_POST['thumb']);
 $game = clean($_POST['game']);
 $name = clean($_POST['name']);
 $desc= clean($_POST['desc']);
-$width = $_POST['width'];
-$height = $_POST['height'];
+// $width = $_POST['width'];
+// $height = $_POST['height'];
 $category = $_POST['category'];
-if(!$game || !$thumb || !$name || !$desc || !$width || !$height){
+$tags = $_POST['tags'];
+$highscoreable = $_POST['highscoreable'];
+$gameadder = $usrdata['userid'];
+$adderip = $_SERVER['REMOTE_ADDR'];
+if(!$game || !$thumb || !$name || !$desc){
 	$error = 1;
 	$msg = 'Not all fields where filled.';
 }
@@ -201,6 +241,11 @@ if(!$game || !$thumb || !$name || !$desc || !$width || !$height){
 if($error == 1){
 	echo '<div class=\'error\'>'.$msg.'</div>';
 }else{
+      $gamevar1 = $gamespath.$game;
+      
+      $gamesize = getimagesize($gamevar1);
+      $width = $gamesize[0];
+      $height = $gamesize[1];
 	echo '<div class=\'msg\'>Game Successfully added but not activated!</div>';
 	$type= 1;
 	$db->query(sprintf('INSERT INTO dd_games SET
@@ -212,8 +257,12 @@ if($error == 1){
 				category=\'%u\',
 				thumb=\'%s\',
 				dateadded=\'%u\', 
-				type=\'%u\'',
-				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type));
+				type=\'%u\',
+				tags=\'%s\', 
+				highscoreable=\'%s\', 
+				gameadder=\'%u\',
+				adderip=\'%s\' ',
+				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $tags, $highscoreable, $gameadder, $adderip));
 }
 }
 echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=uploaded\' method=\'POST\' enctype=\'multipart/form-data\'>
@@ -225,14 +274,6 @@ echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=upload
 		<tr>
 			<td>Description:*</td>
 			<td><textarea cols=\'40\' rows=\'5\' name=\'desc\'></textarea></td>
-		</tr>
-		<tr>
-			<td>Width:*</td>
-			<td><input type=\'text\' name=\'width\' value=\'500\'></td>
-		</tr>
-		<tr>
-			<td>Height:*</td>
-			<td><input type=\'text\' name=\'height\' value=\'450\'></td>
 		</tr>
 		<tr>
 			<td>Category:*</td>
@@ -255,6 +296,24 @@ echo '<form action=\''.$domain.'/index.php?action=admin&case=addgame&type=upload
 			<td>SWF Game File:*</td>
 			<td><input type=\'text\' name=\'game\' size=\'40\'></td>
 		</tr>
+		<tr>
+			<td>Tags:</td>
+			<td><input type=\'text\' name=\'tags\' size=\'35\'></td>
+		</tr>
+		<tr>
+			<td>High Score Capable:</td>
+			<td>
+			<select type=\'dropdown\' name=\'highscoreable\'>
+		      <option value=\'0\'>No</option>
+			<option value=\'1\'>Yes</option>
+		
+		
+			</select>
+		</td>
+			
+		</tr>
+
+
 		<tr>
 			<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Add Game\'></td>
 		</tr>
