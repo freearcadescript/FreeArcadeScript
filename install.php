@@ -148,6 +148,15 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_games` (
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
+mysql_query("CREATE TABLE IF NOT EXISTS `fas_game_stats` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `numbers` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3;");
+
+mysql_query("INSERT INTO `fas_game_stats` VALUES('1', 'totalplays', '0'),
+	('2', 'dayplays', '0');");
 
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_comments` (
   `ID` int(11) NOT NULL auto_increment,
