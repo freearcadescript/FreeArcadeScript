@@ -19,7 +19,7 @@ exit;
 		}
 
 $userid = $usrdata['userid'];
-$ir = $db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $userid));
+$ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $email = $r2['email'];
 $new_email_key = $r2['new_email_key'];

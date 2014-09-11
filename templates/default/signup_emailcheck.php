@@ -37,26 +37,27 @@ if(isset($_POST['submit'])){
 		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
-	$ru = $db->query('SELECT username FROM dd_users WHERE username=\''.$user_name.'\'');
+	$ru = $db->query('SELECT username FROM fas_users WHERE username=\''.$user_name.'\'');
 	if($db->num_rows($ru) == 1){
 		echo '<div class=\'error\'>Username is already in use.</div>';
 		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
-	$ru = $db->query('SELECT email FROM dd_users WHERE email=\''.$email.'\'');
+	$ru = $db->query('SELECT email FROM fas_users WHERE email=\''.$email.'\'');
 	if($db->num_rows($ru) == 1){
 		echo '<div class=\'error\'>Email is already in use.</div>';
 		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
 	$pass = md5($pass_word);
-	$db->query(sprintf('INSERT INTO dd_users SET
+	$db->query(sprintf('INSERT INTO fas_users SET
 				username=\'%s\',
 				password=\'%s\',
 				activation_key=\'%s\',
 				email =\'%s\',
 				pass_question =\'%s\',
-				pass_answer =\'%s\'', $user_name, $pass, $activation_number, $email, $question, $answer));
+				pass_answer =\'%s\'', 
+				joindate =\'$date\'', $user_name, $pass, $activation_number, $email, $question, $answer, $joindate));
 				echo '<div class=\'msg\'>Thank you for signing up!<br> <font color=red>Please check your email for an activation key!</font></div>';
 
 $subject = 'Welcome to '.$sitename.'';

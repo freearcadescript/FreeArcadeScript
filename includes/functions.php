@@ -6,6 +6,17 @@ function clean ($str){
     $str = mysql_real_escape_string($str);
     return $str;
 }
+
+function titlelimit($str, $n =30, $end_char = '&#8230;'){
+if (strlen($str) <= $n){
+	return $str;
+}
+
+if(strlen($str)>$n){
+    return substr($str,0,$n).$end_char;
+}
+}
+
 function desclimit($str, $n =10, $end_char = '&#8230;')
 {
 if (strlen($str) < $n){
@@ -37,6 +48,23 @@ for ($i = 0; $i < $n; $i++){
 }
 return trim($str).$end_char;
 }
+
+function namelimit($str, $n =3, $end_char = '&#8230;')
+{
+if (strlen($str) < $n){
+	return $str;
+}
+	$words = explode(' ', preg_replace("/\s+/", ' ', preg_replace("/(\r\n|\r|\n)/", " ", $str)));
+if (count($words) <= $n){
+	return $str;
+}
+$str = '';
+for ($i = 0; $i < $n; $i++){
+	$str .= $words[$i].' ';
+}
+return trim($str).$end_char;
+}
+
  function countusersonline() {
    $count = 0;
 

@@ -2,9 +2,9 @@
 if($_GET['template']){
 	exit('N00B.');
 }
-include ('config.php');
+include ('includes/config.php');
 global $_CONFIG;
-include_once ('db.class.php');
+include_once ('includes/db.class.php');
 $db=new database;
 $db->configure(
 	$dbhost, 
@@ -14,17 +14,11 @@ $db->configure(
 	$dbpre
 	);
 $db->connect();
-// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_settings')));
+// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_settings')));
 
 
-
-
-
-
-
-
-$set2 = "SELECT * FROM dd_settings" ;
-$set1 = sqlcache('sitesettings', $cachelife, $set2);
+$set2 = "SELECT * FROM fas_settings" ;
+$set1 = sqlcache('sitesettings', '1', $set2);
 foreach($set1 as $set){
 
 
@@ -34,7 +28,9 @@ $template = $set['template'];
 $gamesfolder = $set['gamesfolder'];
 $thumbsfolder = $set['thumbsfolder'];
 $limitboxgames = $set['limitboxgames'];
+$email_on = $set['email_on'];
 $comments_on = $set['comments_on'];
+$taf_on = $set['taf_on'];
 $autoapprovecomments = $set['autoapprovecomments'];
 $seo_on = $set['seo_on'];
 $sitename = $set['sitename'];
@@ -67,6 +63,6 @@ $pagetitle = $sitename ;
 
 if(isset($_SESSION['userid'])){
 	$suserid = $_SESSION['userid'];
-	$usrdata = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $suserid)));
+	$usrdata = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $suserid)));
 }
 ?>

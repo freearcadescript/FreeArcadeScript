@@ -1,13 +1,16 @@
 <?php
+if (!isset($_GET['cmd'])){
+	$_GET['cmd'] = NULL;
+}
 switch($_GET['cmd']){
 	default:
 	listentries();
 	break;
-	
+
 	case 'editentry':
 	editentry();
 	break;
-	
+
 	case 'newentry':
 	newentry();
 	break;
@@ -28,29 +31,31 @@ switch($_GET['cmd']){
 function listentries(){
 global $domain, $db;
 
-
-
 $max = '50';
-$show = clean($_GET['page']);
-if(empty($show)){
-$show = 1;
+if(!isset($_GET['page'])){
+	$show = '1';
+}else{
+	$show = clean($_GET['page']);
 }
-$limits = ($show - 1) * $max; 
-$totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM blogentries'),0); 
+$limits = ($show - 1) * $max;
+$totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM fas_blogentries'),0);
 $totalpages = ceil($totalres / $max);
 
-
-
-
-
-	$r = mysql_query("SELECT * FROM blogentries ORDER BY entryid DESC limit $limits,$max");
-	echo '<table width=\'85%\' border=\'0\' align=\'center\'>
-		<tr>
-			<td class=\'header\'>Blog Entries</td>
-			
-		</tr>';
+	$r = mysql_query("SELECT * FROM fas_blogentries ORDER BY entryid DESC limit $limits,$max");
+	echo '<div class="heading">
+		<h2>Blog Entries</h2>
+	</div>
+        <br clear="all">
+	<a href=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=newentry\' class="button">New Entry</a>
+	<table id="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th colspan="2">Name</th>
+			</tr>
+		<thead>
+		<tbody>';
 	while($row = $db->fetch_row($r)){
-
       $entryid = $row['entryid'];
       $title = $row['title'];
       $body = $row['body'];
@@ -58,42 +63,23 @@ $totalpages = ceil($totalres / $max);
       $entrydate = $row['entrydate'];
       $visible = $row['visible'];
       $category = $row['category'];
-	echo '
-<tr><td class=\'content\'>
-Entry ID: '
-.$entryid.' <a href=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=editentry&entryid='.$entryid.'\' >Edit</a><br>
-Title: '.$title.' <br>
-
-Author: '
-.$author.'<br>
-Posted Dated: '
-.$entrydate.'<br>
-Visible?: '
-.$visible.'<br>
-Category: '
-.$category.'<br>
-<a href=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=deleteentry&entryid='.$entryid.'\' >Delete It</a>
-
-</td></tr>'; }
-echo '</table>';
-
-
-
-
-echo '
-<div align="center">Pages: ';
-for($i = 1; $i <= $totalpages; $i++){ 
-if($seo_on == 1){
-	$urlmp = ''.$domain.'/index.php?action=admin&case=blogentries&page='.$i ;
-}else{
-	$urlmp = ''.$domain.'/index.php?action=admin&case=blogentries&page='.$i ;
+			echo '<tr>
+				<td width="50px">'.$entryid.'</td>
+				<td width="780px">'.$title.'</td>
+				<td><a href=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=editentry&entryid='.$entryid.'\' ><img src="pages/admin/img/edit.png" width="24" height="24 alt="edit" title="Edit" /></a>
+					<a href=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=deleteentry&entryid='.$entryid.'\' onclick="return confirm(\'Are you sure you want to delete this blog '.$row['title'].'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" /></a></td>
+			</tr>'; }
+echo '</tbody>
+</table>
+<div class="page-box">'.$totalres.' blog(s) - Page '.$show.' of '.$totalpages.' - ';
+for($i = 1; $i <= $totalpages; $i++){
+	if($show == $i){
+		echo '<a href="'.$domain.'/index.php?action=admin&case=blogentries&page='.$i.'" class="page-select">'.$i.'</a>&nbsp;';
+	}else{
+		echo '<a href="'.$domain.'/index.php?action=admin&case=blogentries&page='.$i.'" class="page">'.$i.'</a>&nbsp;';
+	}
 }
-
-
-echo '<a href="'.$urlmp.'" class="pagenat">'.$i.'</a>&nbsp;';
-
-}
-echo '</div><p>';
+echo '</div>';
 $pgname = 'Blog entry list';
 
 
@@ -106,15 +92,11 @@ $pgname = 'Blog entry list';
 function editentry(){
 global $domain, $db;
 $entryid = abs((int) $_GET['entryid']);
-$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM blogentries WHERE entryid=\'%u\'', $entryid))); 
-	echo '<table width=\'85%\' border=\'0\' align=\'center\'>
-		<tr>
-			<td class=\'header\'> Edit Blog Entry</td>
-			
-		</tr>';
-	
-
-
+$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_blogentries WHERE entryid=\'%u\'', $entryid)));
+	echo '<div class="heading">
+		<h1>Edit Blog Entry: '.$row2['title'].'</h1>
+	</div>
+        <br clear="all">';
       $title = $row2['title'];
       $body = $row2['body'];
       $author = $row2['author'];
@@ -124,41 +106,64 @@ $row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM blogentries WHERE entry
       $tags = $row2['tags'];
 if  ($visible == 0) { $vsel='selected'; } else { $vsel=''; };
 
-
-echo '
-
-<tr><td class=\'content\'>
-<form action=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=saveedits\' method=\'POST\' >
-
-Entry ID: '.$entryid.' 
-<input name=\'entryid\' type=\'hidden\' value=\''.$entryid.'\'><br>
-Post Date: '.$entrydate.' <br>
-Entry Author: '.$author.'<p>
-Entry Title: <input type=\'text\' name=\'title\' size=\'50\' value=\''.$title.'\'><p>
-No HTML is allowed. Please use the following code formats:<br>
-Links: <b>[urlhead]</b>domain.com/path<b>[urlmid]</b>anchor<b>[urlend]</b><br>
-Images: <b>[imghead]</b>domain.com/imgagepath/img.gif<b>[imgend]</b><br>
-Bold: <b>[bhead]</b>text to make bold<b>[bend]</b><br>
-New Line: <b>[br]</b><br>
-New Paragraph: <b>[p]</b><br>
-
-Entry Body:<br>
-<textarea name=\'body\' rows=\'30\' cols=\'50\' >'.$body.'</textarea><p>
-
-Visible?: <select type=\'dropdown\' name=\'visible\'>
-							<option value=\'1\'>Yes</option>
-							<option value=\'0\' '.$vsel.'>No</option>
-						</select>
-
-<br>
-Category: <input type=\'text\' name=\'category\' size=\'50\' value=\''.$category.'\'><br>
-Tags: <input type=\'text\' name=\'tags\' size=\'50\' value=\''.$tags.'\'><br>
-
-
-<input type=\'submit\' value=\'save\'>
-</form>
-</td></tr></table>' ;
-
+echo '<form action=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=saveedits\' method=\'post\' >
+	<table id="table">
+		<thead>
+			<tr>
+				<th colspan="2">Entry Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Entry ID:</td>
+				<td>'.$entryid.'<input name=\'entryid\' type=\'hidden\' value=\''.$entryid.'\'></td>
+			</tr>
+			<tr>
+				<td>Post Date: </td>
+				<td>'.$entrydate.'</td>
+			</tr>
+			<tr>
+				<td>Entry Author: </td>
+				<td>'.$author.'</td>
+			</tr>
+			<tr>
+				<td>Entry Title: </td>
+				<td><input type=\'text\' name=\'title\' size=\'50\' value=\''.$title.'\'></td>
+			</tr>
+			<tr>
+				<td colspan="2">No HTML is allowed. Please use the following code formats:<br />
+				Links: <b>[url]</b>domain.com/path<b>[urlmid]</b>anchor<b>[/url]</b><br />
+				Images: <b>[img]</b>domain.com/imgagepath/img.gif<b>[/img]</b><br />
+				Bold: <b>[b]</b>text to make bold<b>[/b]</b><br />
+				italic: <b>[i]</b>text to make italic<b>[/i]</b><br />
+				underline: <b>[u]</b>text to underline<b>[/u]</b><br />
+				New Line: <b>[br]</b></td>
+			</tr>
+			<tr>
+				<td colspan="2"><textarea name=\'body\' rows=\'30\' cols=\'110\' >'.$body.'</textarea></td>
+			</tr>
+			<tr>
+				<td>Visible?: </td>
+				<td><select type=\'dropdown\' name=\'visible\'>
+					<option value=\'1\'>Yes</option>
+					<option value=\'0\' '.$vsel.'>No</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Category: </td>
+				<td><input type=\'text\' name=\'category\' size=\'50\' value=\''.$category.'\'></td>
+			</tr>
+			<tr>
+				<td>Tags: </td>
+				<td><input type=\'text\' name=\'tags\' size=\'50\' value=\''.$tags.'\'></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type=\'submit\' value=\'save\'></td>
+			</tr>
+		</tbody>
+	</table>
+</form>';
 }
 
 
@@ -176,10 +181,10 @@ $visible = clean($_POST['visible']);
 $category = clean($_POST['category']);
 $tags = clean($_POST['tags']);
 
-mysql_query("UPDATE blogentries SET title='$title', body='$body', visible='$visible', category='$category', tags='$tags'  WHERE entryid='$entryid'" ) ;
-echo '<div class=\'msg\'>Blog Entry '.$entryid.' updated</div><p>';
+mysql_query("UPDATE fas_blogentries SET title='$title', body='$body', visible='$visible', category='$category', tags='$tags'  WHERE entryid='$entryid'" ) ;
+echo '<div class=\'msg\'>Blog Entry '.$entryid.' updated</div>';
 
-	
+
 }
 
 
@@ -188,49 +193,62 @@ echo '<div class=\'msg\'>Blog Entry '.$entryid.' updated</div><p>';
 
 function newentry(){
 	global $domain, $db;
-	
-
-echo '
-<table >
-<tr><td class=\'header\'>New Blog Entry</td></tr>
-<tr><td class=\'content\'>
-<form action=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=savenew\' method=\'POST\' >
 
 
-Entry Title: <input type=\'text\' name=\'title\' size=\'50\' ><p>
-No HTML is allowed. Please use the following code formats:<br>
-Links: <b>[urlhead]</b>domain.com/path<b>[urlmid]</b>anchor<b>[urlend]</b><br>
-Please note that the http:// is not needed, and will cause the save to fail.<br>
-Images: <b>[imghead]</b>domain.com/imgagepath/img.gif<b>[imgend]</b><br>
-Bold: <b>[bhead]</b>text to make bold<b>[bend]</b><br>
-New Line: <b>[br]</b><br>
-New Paragraph: <b>[p]</b><br>
-Entry Body:<small>(No HTML allowed.)</small><br>
-<textarea name=\'body\' rows=\'30\' cols=\'65\' ></textarea><p>
-Visible?: <select type=\'dropdown\' name=\'visible\'>
+echo '<div class="heading">
+	<h2>New Blog Entry</h2>
+</div>
+<br clear="all">
+<form action=\''.$domain.'/index.php?action=admin&case=blogentries&cmd=savenew\' method=\'post\'>
+	<table id="table">
+		<thead>
+			<tr>
+				<th colspan="2">Entry Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Entry Title:</td>
+				<td><input type=\'text\' name=\'title\' size=\'50\' ></td>
+			</tr>
+			<tr>
+				<td colspan="2">No HTML is allowed. Please use the following code formats:<br />
+				Links: <b>[url]</b>domain.com/path<b>[urlmid]</b>anchor<b>[/url]</b><br />
+				Images: <b>[img]</b>domain.com/imgagepath/img.gif<b>[/img]</b><br />
+				Bold: <b>[b]</b>text to make bold<b>[/b]</b><br />
+				italic: <b>[i]</b>text to make italic<b>[/i]</b><br />
+				underline: <b>[u]</b>text to underline<b>[/u]</b><br />
+				New Line: <b>[br]</b></td>
+			</tr>
+			<tr>
+				<td colspan="2"><textarea name=\'body\' rows=\'30\' cols=\'110\' ></textarea></td>
+			</tr>
+			<tr>
+				<td>Visible?: </td>
+				<td><select type=\'dropdown\' name=\'visible\'>
 							<option value=\'1\'>Yes</option>
 							<option value=\'0\' >No</option>
 						</select>
-
-
-<p>
-Category: 
-
-<select type=\'dropdown\' name=\'category\' ><p>
-';
-
-	$cl = $db->query(sprintf('SELECT * FROM blogcategories'));
-	while($cl2 = $db->fetch_row($cl)){
-echo '<option value=\''.$cl2['categoryid'].'\'>'.$cl2['categoryname'].'</option>
-'; };
-
-
-echo '</select>
-<p>
-Tags: <input type=\'text\' name=\'tags\' size=\'50\' ><p>
-<input type=\'submit\' value=\'save\'>
-</form>
-</td></tr></table>'; 
+				</td>
+			</tr>
+			<tr>
+				<td>Category: </td>
+				<td><select type=\'dropdown\' name=\'category\' >';
+					$cl = $db->query(sprintf('SELECT * FROM fas_blogcategories'));
+					while($cl2 = $db->fetch_row($cl)){
+					echo '<option value=\''.$cl2['categoryid'].'\'>'.$cl2['categoryname'].'</option>'; };
+					echo '</select></td>
+			</tr>
+			<tr>
+				<td>Tags: </td>
+				<td><input type=\'text\' name=\'tags\' size=\'50\' ></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type=\'submit\' value=\'save\'></td>
+			</tr>
+		</tbody>
+	</table>
+</form>';
 
 
 
@@ -241,16 +259,16 @@ Tags: <input type=\'text\' name=\'tags\' size=\'50\' ><p>
 
 function savenew(){
 	global $domain, $db, $susername, $usrdata;
-	
+
       $title = clean($_POST['title']);
-      if ($usrdata['bloglevel'] == 3) { $body = $_POST['body']; } else { $body = clean($_POST['body']); };
+      if ($usrdata['bloglevel'] == 3) { $body = clean($_POST['body']); } else { $body = clean($_POST['body']); };
       $author = $_SESSION['username'];
       $entrydate = date("Y-m-d");
       $visible = clean($_POST['visible']);
       $category = clean($_POST['category']);
       $tags = clean($_POST['tags']);
 
-	$r = $db->query("INSERT INTO blogentries SET 
+	$r = $db->query("INSERT INTO fas_blogentries SET
 					title='$title',
 					body='$body',
 					author='$author',
@@ -259,7 +277,7 @@ function savenew(){
 					category='$category',
 					tags='$tags'
 					" );
-	echo 'Entry Saved.';
+	echo '<div class="msg">Entry Saved.</div>';
 
 
 }
@@ -269,15 +287,9 @@ function savenew(){
 function deleteentry(){
 	global $domain, $db;
 	$entryid = abs((int) $_GET['entryid']);
-if(!$entryid){echo 'Invalid entry.'; exit;}
-$db->query(sprintf('DELETE FROM blogentries WHERE entryid=\'%u\'', $entryid));
-echo ' Blog Entry deleted.';
+if(!$entryid){echo 'Invalid entry.'; return;}
+$db->query(sprintf('DELETE FROM fas_blogentries WHERE entryid=\'%u\'', $entryid));
+echo '<div class="msg"> Blog Entry deleted.</div>';
 
 }
-
-
-
-
-
-
 ?>

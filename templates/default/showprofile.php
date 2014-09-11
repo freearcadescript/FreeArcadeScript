@@ -31,7 +31,7 @@ echo 'No profile selected';
 
 }
  else {
-$r = "SELECT * FROM dd_users WHERE userid='$userids' " ;
+$r = "SELECT * FROM fas_users WHERE userid='$userids' " ;
 $sqltitle = "userprofile-".$userids ;
 $r1 = sqlcache($sqltitle, $cachelife, $r);
 foreach ($r1 as $r2 ) {
@@ -57,6 +57,7 @@ $interests = $r2['interests'];
 $bio = $r2['bio'];
 $avatar = $r2['avatar'];
 $avatarfile = $r2['avatarfile'];
+$joindate = $r2['joindate'];
 };
 
 
@@ -165,7 +166,7 @@ echo '
 </tr>
 ';
 
-$gua2 = "SELECT * FROM dd_games WHERE gameadder='$userids' AND active='1' ORDER BY dateadded DESC ";
+$gua2 = "SELECT * FROM fas_games WHERE gameadder='$userids' AND active='1' ORDER BY dateadded DESC ";
 $sqltitle = "gameuseradded-".$userids ;
 
 
@@ -195,7 +196,7 @@ $sqltitle = "gameuseradded-".$userids ;
 
 
 
-$ube2 = "SELECT * FROM blogentries WHERE author='$username' AND visible='1' ORDER BY entrydate DESC LIMIT 5";
+$ube2 = "SELECT * FROM fas_blogentries WHERE author='$username' AND visible='1' ORDER BY entrydate DESC LIMIT 5";
 $sqltitle = "userblogentries-".$userids ;
 
 

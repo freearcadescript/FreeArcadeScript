@@ -1,13 +1,17 @@
 <?php
+if (!isset($_GET['cmd'])){
+	$_GET['cmd'] = NULL;
+}
+
 switch($_GET['cmd']){
 	default:
 	approve();
 	break;
-	
+
 	case 'do_approve':
 	do_approve();
 	break;
-	
+
 	case 'delete':
 	delete();
 	break;
@@ -15,16 +19,16 @@ switch($_GET['cmd']){
 function do_approve(){
 global $domain, $db;
 $ID = abs((int) $_GET['ID']);
-if(!$ID){exit;}
-$db->query(sprintf('UPDATE dd_comments SET approved=\'1\' WHERE ID=\'%u\' ', $ID));
+if(!$ID){return;}
+$db->query(sprintf('UPDATE fas_comments SET approved=\'1\' WHERE ID=\'%u\' ', $ID));
 echo '<div class=\'msg\'>Comment Approved.<br />
 			<A href="#" onclick="history.go(-1)">Back</a></div>';
 }
 function delete(){
 global $domain, $db;
 $ID = abs((int) $_GET['ID']);
-if(!$ID){exit;}
-$db->query(sprintf('DELETE FROM dd_comments WHERE ID=\'%u\'', $ID));
+if(!$ID){return;}
+$db->query(sprintf('DELETE FROM fas_comments WHERE ID=\'%u\'', $ID));
 echo '<div class=\'msg\'>Comment Deleted.<br />
 			<A href="#" onclick="history.go(-1)">Back</a></div>';
 }
@@ -32,24 +36,30 @@ function approve(){
 	global $domain, $db, $autoapprovecomments;
 	if($autoapprovecomments == 1){
 		echo '<div class=\'error\'>You have auto approve comments set to on.</div><br />';
-	}
-	$r = $db->query('SELECT * FROM dd_comments WHERE approved=\'0\'');
-	echo '<table width=\'85%\' border=\'0\' align=\'center\'>
-		<tr>
-			<td class=\'header5\'>Comment</td>
-			<td class=\'header5\'>Action</td>
-		</tr>';
+	}else{
+	$r = $db->query('SELECT * FROM fas_comments WHERE approved=\'0\'');
+	echo '<div class="heading">
+		<h2>Approve Game Comments</h2>
+	</div>
+        <br clear="all">
+        <a href=\''.$domain.'/index.php?action=admin&case=managegamecomments\' class="button">Manage Game Comments</a>
+	<table id="table">
+		<thead>
+			<tr>
+				<th colspan="2">Comment</th>
+			</tr>
+		</thead>
+		<tbody>';
 	while($row = $db->fetch_row($r)){
 	echo '<tr>
-			<td class=\'content5\'>'.$row['comment'].'</td>
-			<td class=\'content5\'>
-			<a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=do_approve&ID='.$row['ID'].'\'><img src=\''.$domain.'/templates/default/images/approve.png\' border=\'0\'></a>
-
-<a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the comment?\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' border=\'0\'></a>
-
+			<td width="850px">'.$row['comment'].'</td>
+			<td><a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=do_approve&ID='.$row['ID'].'\'><img src="pages/admin/img/approve.png" width="24" height="24" alt="approve" title="Approve" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=approvecomments&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the comment?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a>
 			</td>
 		</tr>';
 	}
-	echo '</table>';
+	echo '</tbody>
+	</table>';
+	}
 }
 ?>

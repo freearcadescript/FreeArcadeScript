@@ -5,35 +5,51 @@ if(isset($_POST['submit'])){
 	$activate = clean($_POST['activate']);
 	if(!$categoryname){
 		echo '<div class=\'error\'>No name submitted.</div>';
-		include ('templates/'.$template.'/footer.php');
-		exit;
+		return;
 	};
-	mysql_query("INSERT INTO pagecategories SET topcategory='$topcategory', categoryname='$categoryname', activate='$activate' ");
+	mysql_query("INSERT INTO fas_pagecategories SET topcategory='$topcategory', categoryname='$categoryname', activate='$activate' ");
 	echo '<div class=\'msg\'>Category added.<br />
 		<A href="#" onclick="history.go(-1)">Back</a></div>';
 }else{
 
-echo '<div class=\'pgtitle\'>Add Page Category</div><br />
-<div align=\'center\'>
-<form action=\''.$domain.'/index.php?action=admin&case=addpagecategory\' method=\'POST\'>
+echo'<div class="heading">
+	<h2>Add Page Category</h2>
+</div>
+<br clear="all">
+<form action=\''.$domain.'/index.php?action=admin&case=addpagecategory\' method=\'post\'>
+	<table id="table">
+		<thead>
+			<tr>
+				<th colspan="2">Details</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Top Category:</td>
+				<td><select type=\'dropdown\' name=\'topcategory\' >';
 
-
-Top Category: <select type=\'dropdown\' name=\'topcategory\' >';
-
-	$r = $db->query(sprintf('SELECT * FROM pagecategories'));
-	while($ir = $db->fetch_row($r)){
-echo '<option value=\''.$ir['categoryid'].'\'>'.$ir['categoryname'].'</option>
-'; };
-
-echo '</select>
-<br>
-Category Name: <input type=\'text\' name=\'categoryname\' size=\'50\'><br>
-<select type=\'dropdown\' name=\'activate\'>
+					$r = $db->query(sprintf('SELECT * FROM fas_pagecategories'));
+					while($ir = $db->fetch_row($r)){
+					echo '<option value=\''.$ir['categoryid'].'\'>'.$ir['categoryname'].'</option>'; };
+					echo'</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Category Name:</td>
+				<td><input type=\'text\' name=\'categoryname\' size=\'50\'></td>
+			</tr>
+			<tr>
+				<td>Active:</td>
+				<td><select type=\'dropdown\' name=\'activate\'>
 							<option value=\'1\'>Yes</option>
 							<option value=\'0\' >No</option>
-						</select>
-<input type=\'submit\' name=\'submit\' value=\'Add Category\'>
-</form>
-</div>';
+						</select></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type=\'submit\' name=\'submit\' value=\'Add Category\'></td>
+			</tr>
+		</tbody>
+	</table>
+</form>';
 };
 ?>

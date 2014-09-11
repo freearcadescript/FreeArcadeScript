@@ -1,63 +1,69 @@
 <?php
+if (!isset($_GET['cmd'])){
+	$_GET['cmd'] = NULL;
+}
+
 switch($_GET['cmd']){
 
 	default:
 	cats();
 	break;
-	
+
 	case 'games':
 	games();
 	break;
-	
+
 	case 'edit':
 	edit();
 	break;
-	
+
 	case 'delete':
 	delete();
-	break;	
+	break;
 
 	case 'approve':
 	approve();
-	break;	
+	break;
 }
 function cats(){
 global $domain, $thumbsfolder, $gamesfolder;
-$rr = mysql_query(sprintf('SELECT * FROM dd_categories'));
-$count = 0;
-echo '<div class=\'pgtitle\'>Choose Category to manage</div><table align=\'center\'>';
+$rr = mysql_query(sprintf('SELECT * FROM fas_categories'));
+echo '<div class="heading">
+	<h2>Manage Games</h2>
+</div>
+<br clear="all">
+<a href=\''.$domain.'/index.php?action=admin&case=addgame\' class="button">New Game</a>
+<table id="table">
+	<thead>
+		<tr>
+			<th colspan="2">Choose Game Category</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td width="95%">All Games</td>
+			<td><a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID=all\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" /></a></td>
+		</tr>';
 while($row = mysql_fetch_array($rr)){
-if($count%3==0){
-       echo '<tr>
-	      	<td class=\'content5\' width=\'30%\' valign=\'top\'>
-	      	<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$row['ID'].'\'>'.$row['name'].'</a>
-	      	</td>
-	      	';
-     }
-else if($count%3==1){
-       echo '<td class=\'content5\' width=\'30%\' valign=\'top\'>
-       		<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$row['ID'].'\'>'.$row['name'].'</a>
-       		</td>';
-     }     
-     else{
-       echo '	<td class=\'content5\' width=\'30%\' valign=\'top\'>
-       		<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$row['ID'].'\'>'.$row['name'].'</a>
-       		</td>
-	      </tr>';
-     }
-     $count++;
-   }
+	echo '<tr>
+			<td width="95%">'.$row['name'].'</td>
+			<td><a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$row['ID'].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" /></a></td>
+		</tr>';
+}
+echo'</tbody>
+</table>
 
+<table id="table">
+	<thead>
+		<tr>
+			<th colspan=\'3\'>Inactive Games</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td colspan=\'3\'><table width=\'100%\'>';
 
-echo '<tr><td colspan=\'3\'><hr></td></tr>
-<tr><td colspan=\'3\' class=\'header5\'>Inactive Games</td></tr>
-<tr><td colspan=\'3\'><table width=\'100%\'>
-
-';
-
-
-
-$sql = mysql_query(sprintf('SELECT * FROM dd_games WHERE active=\'0\' ', $CID)) or die(mysql_error());
+$sql = mysql_query(sprintf('SELECT * FROM fas_games WHERE active=\'0\' ')) or die(mysql_error());
 
 
 while($row = mysql_fetch_row($sql)){
@@ -66,56 +72,68 @@ if($row[9] == 1){
 }else{
 	$type = 'Enabled Code';
 }
-$thumbs = '<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row[7].'\' width=\'55\' width=\'55\' border=\'0\'>';
+$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row[7].'" width="55" width="55" border="0" />';
 $descriptions = $row[2];
 
-$urls = '<a href=\''.$domain.'/index.php?action=admin&case=testgame&gameid='.$row[3].'\' target=\'_blank\'>Test</a>';
-if ($row[9] == '1') {$dlurl1='<p><a href=\''.$domain.'/'.$gamesfolder.'/'.$row[3].'\'>Download</a>';}
-echo '<tr>
-		<td class=\'content5\' align=\'center\'>'.$row[1].'<br>'.$thumbs.'<p>'.$descriptions.'<p>'.$urls.'</td>
-		<td class=\'content5\' align=\'center\'>'.$type.'</td>
-		<td class=\'content5\' width=\'79\' align=\'center\'>
-		<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$row[0].'&type='.$row[9].'\'><img src=\''.$domain.'/templates/default/images/editbtn.png\' alt=\'edit game\'  border=\'0\'></a>
-		<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=delete&ID='.$row[0].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row['name'].'?\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' alt=\'delete game\'  border=\'0\'></a>
-		<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=approve&ID='.$row[0].'\'  ><img src=\''.$domain.'/templates/default/images/approve.png\' alt=\'activate game\'  border=\'0\'></a>
-		<a href=\''.$domain.'/index.php?action=admin&case=testgame&gameid='.$row[3].'\' target=\'_blank\'><img src=\''.$domain.'/templates/default/images/test.png\' alt=\'test game\' border=\'0\'></a>
+if ($row[9] == '1') {$dlurl1='<a href=\''.$domain.'/'.$gamesfolder.'/'.$row[3].'\'><img src="pages/admin/img/download.png" width="24" height="24" alt="download" title="Download" border="0" /></a>';}
+	echo '<tr>
+			<td>'.$row[1].'<br>'.$thumbs.'<p>'.$descriptions.'</td>
+			<td align=\'center\'>'.$type.'</td>
+			<td align=\'center\'>
+				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$row[0].'&type='.$row[9].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=delete&ID='.$row[0].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row[1].'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=approve&ID='.$row[0].'\'  ><img src="pages/admin/img/approve.png" width="24" height="24" alt="activate" title="Activate" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=testgame&gameid='.$row[3].'\' target=\'_blank\'><img src="pages/admin/img/test.png" width="24" height="24" alt="test" title="Test" border="0" /></a>
             '.$dlurl1.'
-		</td>
-	</tr>';
+			</td>
+		</tr>';
 };
 
 
 
- echo '</table>  </td></tr>';
-	echo "</table>";
+		echo'</table>
+		</td>
+	</tr>
+</table>';
 
 }
 function games(){
-global $domain, $db;
+global $domain, $db, $gamesfolder, $thumbsfolder, $directorypath;
 $CID = abs((int) $_GET['CID']);
 
-$max = 5;
-$show = $_GET['show'];
-if(empty($show)){
-	$show = 1;
+$max = 10;
+if(!isset($_GET['show'])){
+	$show = '1';
+}else{
+	$show = $_GET['show'];
 }
-$limits = ($show - 1) * $max; 
-$sql = $db->query(sprintf('SELECT * FROM dd_games WHERE category=\'%u\' LIMIT '.$limits.','.$max.' ', $CID)) or die(mysql_error());
-$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM dd_games WHERE category=\'%u\'', $CID)),0);	
-$totalpages = ceil($totalres / $max); 
+$limits = ($show - 1) * $max;
+if($CID == "all"){
+	$sql = $db->query(sprintf('SELECT * FROM fas_games LIMIT '.$limits.','.$max.' ')) or die(mysql_error());
+	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games')),0);
+}else{
+	$sql = $db->query(sprintf('SELECT * FROM fas_games WHERE category=\'%u\' LIMIT '.$limits.','.$max.' ', $CID)) or die(mysql_error());
+	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games WHERE category=\'%u\'', $CID)),0);
+}
+$totalpages = ceil($totalres / $max);
 
-echo '<div class=\'pgtitle\'>Games</div>
-<form action=\'\' method=\'POST\'>
-<table width=\'95%\' border=\'0\' align=\'center\' class=\'header5\'>
-	<tr>
-		<th>Name</th>
-		<th>Type</th>
-		<th>&nbsp;</th>
-	</tr>';
+echo '<div class="heading">
+	<h2>Manage Games</h2>
+</div>
+<br clear="all">
+<form action=\'\' method=\'post\'>
+	<table id="table">
+		<thead>
+			<tr>
+				<th width="50px">Image</th>
+				<th colspan="2">Name</th>
+			</tr>
+		</thead>
+		<tbody>';
 if(!mysql_num_rows($sql)){
 	echo '<tr>
-			<td colspan=\'4\' align=\'center\'>There are no games added.<b></td>
-		</tr>	';
+			<td colspan=\'3\' align=\'center\'>There are no games added.</td>
+		</tr>';
 }
 while($row = $db->fetch_row($sql)){
 if($row['type'] == 1){
@@ -123,36 +141,67 @@ if($row['type'] == 1){
 }else{
 	$type = 'Enabled Code';
 }
+$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row[thumb].'" width="55" width="55" border="0" />';
 echo '<tr>
-		<td class=\'content5\' align=\'center\'>'.$row['name'].'</td>
-		<td class=\'content5\' align=\'center\'>'.$type.'</td>
-		<td class=\'content5\' width=\'50\' align=\'center\'>
-		<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$row['ID'].'&type='.$row['type'].'\'><img src=\''.$domain.'/templates/default/images/editbtn.png\' border=\'0\'></a>
-		<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row['name'].'?\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' border=\'0\'></a>
-		
+		<td width="90px">'.$thumbs.'</td>
+		<td width="750px">'.$row['name'].'</td>
+		<td><a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$row['ID'].'&type='.$row['type'].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
+			<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row['name'].'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a>
 		</td>
 	</tr>';
 }
-echo '
-</table></form>Pages: ';
-for($i = 1; $i <= $totalpages; $i++){ 
+echo '</tbody>
+	</table>
+</form>
 
-echo '<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'\'>'.$i.'</a> ';
-
+<div class="page-box">
+'.$totalres.' game(s) - Page '.$show.' of '.$totalpages.' - ';
+for($i = 1; $i <= $totalpages; $i++){
+	if($show == $i){
+		echo '<a href="'.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'" class="page-select">'.$i.'</a> ';
+	}else{
+		echo '<a href="'.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'" class="page">'.$i.'</a> ';
+	}
 }
+echo'</div>';
 }
 function delete(){
+global $domain, $db, $gamesfolder, $thumbsfolder, $directorypath;
 $ID = abs((int) $_GET['ID']);
-mysql_query(sprintf('DELETE FROM dd_games WHERE ID=\'%u\'', $ID));
-echo '<div class=\'msg\'>Game Deleted.
-		<br />
-		<A href="#" onclick="history.go(-1)">Back</a></div>';
+
+$query = mysql_query("select * FROM `fas_games` WHERE `ID`='$ID'");
+$row = mysql_fetch_array($query);
+
+if($row["type"] == "1")
+{
+
+$file = $row["file"];
+
+$myFile = "$directorypath/$gamesfolder/$file";
+unlink($myFile);
+}
+
+if($row["type"] == "1")
+{
+
+$thumb = $row["thumb"];
+
+$myThumb = "$directorypath/$thumbsfolder/$thumb";
+unlink($myThumb);
+}
+
+mysql_query(sprintf('DELETE FROM fas_games WHERE ID=\'%u\'', $ID));
+
+echo '
+		<div class=\'msg\'>Game Deleted <a href="javascript:void(0)" onclick="history.go(-1)"> Go Back</a></div>
+
+';
 }
 
 
 function approve(){
 $ID = abs((int) $_GET['ID']);
-mysql_query(sprintf('update dd_games set active=\'1\' where  ID=\'%u\'', $ID));
+mysql_query(sprintf('update fas_games set active=\'1\' where  ID=\'%u\'', $ID));
 echo '<div class=\'msg\'>Game Activated.
 		<br />
 		<A href="#" onclick="history.go(-1)">Back</a></div>';
@@ -164,48 +213,49 @@ echo '<div class=\'msg\'>Game Activated.
 function edit(){
 global $domain, $db, $gamesfolder, $thumbsfolder;
 $ID = abs((int) $_GET['ID']);
-$r = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_games WHERE ID=\'%u\'', $ID)));
+$r = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\'', $ID)));
 if($_GET['type'] == 1){
-if($_POST['submit']){
+if(isset($_POST['submit'])){
 
-	$name = $_POST['name'];
-	$desc = $_POST['desc'];
-	$width = $_POST['width'];
-	$height = $_POST['height'];
-	$category = $_POST['category'];
-	$active = $_POST['active'];
-	$tags = $_POST['tags'];
-	$highscore = $_POST['highscore'];
-	$highscoreable = $_POST['highscoreable'];
-	$highscoreuser = $_POST['highscoreuser'];
-	$highscoredate = $_POST['highscoredate'];
-	$highscoreip = $_POST['highscoreip'];
-	$sponsor = $_POST['sponsor'];
-	$sponsornotes = $_POST['sponsornotes'];
-	$sponsoractive = $_POST['sponsoractive'];
-	$ads1 = $_POST['ads1'];
-	$ads2 = $_POST['ads2'];
-	$ads3 = $_POST['ads3'];
-	$headerspace = $_POST['headerspace'];
-	$footerspace = $_POST['footerspace'];
-	$abovegames = $_POST['abovegames'];
-	$belowgames = $_POST['belowgames'];
-	
+	$name = clean($_POST['name']);
+	$desc = clean($_POST['desc']);
+	$width = clean($_POST['width']);
+	$height = clean($_POST['height']);
+	$category = clean($_POST['category']);
+	$active = clean($_POST['active']);
+	$tags = clean($_POST['tags']);
+	$featured = clean($_POST['featured']);
+	$highscore = clean($_POST['highscore']);
+	$highscoreable = clean($_POST['highscoreable']);
+	$highscoreuser = clean($_POST['highscoreuser']);
+	$highscoredate = clean($_POST['highscoredate']);
+	$highscoreip = clean($_POST['highscoreip']);
+	$sponsor = clean($_POST['sponsor']);
+	$sponsornotes = clean($_POST['sponsornotes']);
+	$sponsoractive = clean($_POST['sponsoractive']);
+	$ads1 = clean($_POST['ads1']);
+	$ads2 = clean($_POST['ads2']);
+	$ads3 = clean($_POST['ads3']);
+	$headerspace = clean($_POST['headerspace']);
+	$footerspace = clean($_POST['footerspace']);
+	$abovegames = clean($_POST['abovegames']);
+	$belowgames = clean($_POST['belowgames']);
 
 	if(!$name){
 		echo 'No name entered.';
 	}else{
-	mysql_query("UPDATE dd_games SET name='$name',
+	mysql_query("UPDATE fas_games SET name='$name',
 						description='$desc',
 						width='$width',
 						height='$height',
-						category='$category', 
-						active='$active', 
+						category='$category',
+						active='$active',
 						tags='$tags',
+						featured='$featured',
 						highscore='$highscore',
 						highscoreable='$highscoreable',
 						highscoreuser='$highscoreuser',
-						highscoredate='$highscoredate', 
+						highscoredate='$highscoredate',
 						highscoreip='$highscoreip',
  					      sponsor='$sponsor',
  					      sponsornotes='$sponsornotes',
@@ -216,199 +266,158 @@ if($_POST['submit']){
  			       		headerspace='$headerspace',
  				      	footerspace='$footerspace',
  				      	abovegames='$abovegames',
- 				      	belowgames='$belowgames' WHERE ID='$ID'"); 
-						
+ 				      	belowgames='$belowgames' WHERE ID='$ID'");
+
 	echo '<div class=\'error\'>Game updated.<br />
 
-		<A href="#" onclick="history.go(-1)">Back</a></div></div>';		
+		<A href="#" onclick="history.go(-1)">Back</a></div>';
 }
 }else{
-echo '<form action=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$ID.'&type=1\' method=\'POST\'>
-	<table align=\'center\'>
-		<tr>
-			<td class=\'content5\'>Name:*</td>
-			<td class=\'content5\'><input type=\'text\' name=\'name\' size=\'40\' value=\''.$r['name'].'\'></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Description:*</td>
-			<td class=\'content5\'><textarea cols=\'40\' rows=\'5\' name=\'desc\'>'.$r['description'].'</textarea></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Width:*</td>
-			<td class=\'content5\'><input type=\'text\' name=\'width\' value=\''.$r['width'].'\'></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Height:*</td>
-			<td class=\'content5\'><input type=\'text\' name=\'height\' value=\''.$r['height'].'\'></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Category:*</td>
-			<td class=\'content5\'>
-			<select type=\'dropdown\' name=\'category\' >' ;
-             
-		$query = $db->query('SELECT * FROM dd_categories');
-		while($row = $db->fetch_row($query)){
-                  if ($row['ID']==$r[category]) {
-
-			echo '<option value=\''.$row['ID'].'\' selected>'.$row['name'].'</option>';
-                  } else {
-
-			echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>'; };
-		}	
-		echo '	
-			</select>
-		</td>
-			
-		</tr>
-		<tr>
-			<td class=\'content5\'>Thumb File:*</td>
-			<td class=\'content5\'>'.$thumbsfolder.'/'.$r['thumb'].'</td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>SWF Game File:*</td>
-			<td class=\'content5\'>'.$gamesfolder.'/'.$r['file'].'</td>
-		</tr>
-
-
-
-		<tr>
-			<td class=\'content5\'>Active:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'active\' value=\''.$r['active'].'\'></td>
-		</tr>
-
-		<tr>
-			<td class=\'content5\'>Tags:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'tags\' value=\''.$r['tags'].'\'></td>
-		</tr>
-
-
-		<tr>
-			<td class=\'content5\'>Highscore:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'highscore\' value=\''.$r['highscore'].'\'></td>
-		</tr>
-
-
-		<tr>
-			<td class=\'content5\'>Highscore Capable:<br><small></td>
-			<td class=\'content5\'><input type=\'text\' name=\'highscoreable\' value=\''.$r['highscoreable'].'\'></td>
-		</tr>
-
-
-		<tr>
-			<td class=\'content5\'>Highscore User:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'highscoreuser\' value=\''.$r['highscoreuser'].'\'></td>
-		</tr>
-
-
-		<tr>
-			<td class=\'content5\'>Highscore Date:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'highscoredate\' value=\''.$r['highscoredate'].'\'></td>
-		</tr>
-
-
-		<tr>
-			<td class=\'content5\'>Highscore IP:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'highscoreip\' value=\''.$r['highscoreip'].'\'></td>
-		</tr>
-
-
-
-		</tr>
-			<td class=\'content5\'>Sponsor:</td>	
-			<td class=\'content5\'><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
-		</tr>
-		</tr>
-			<td class=\'content5\'>Sponsor Notes:
-                  <br><small>Use this to keep track of when sponsorship expires for now, or other needed notes.</small></td>	
-			<td class=\'content5\'><textarea name=\'sponsornotes\' rows=\'12\' cols=\'50\' >'.$r['sponsornotes'].'</textarea></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Sponsorship Active:<br><small>0=No sponsor yet<br>1=Sponsor pending<br>2=Sponsor active</small></td>
-			<td class=\'content5\'><input type=\'text\' name=\'sponsoractive\' value=\''.$r['sponsoractive'].'\'></td>
-		</tr>
-
-
-
-
-
-		</tr>
-			<td class=\'content5\'>Ads 1:</td>	
-			<td class=\'content5\'><textarea name=\'ads1\' rows=\'12\' cols=\'50\' >'.$r['ads1'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Ads 2:</td>	
-			<td class=\'content5\'><textarea name=\'ads2\' rows=\'12\' cols=\'50\' >'.$r['ads2'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Ads 3:<br><small>Does not show up anywhere. Extra ad code you may use to place
-                  where you want.</small></td>	
-			<td class=\'content5\'><textarea name=\'ads3\' rows=\'12\' cols=\'50\' >'.$r['ads3'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Header Space:<br><small>Turns off automaticaly if left empty.</small></td>	
-			<td class=\'content5\'><textarea name=\'headerspace\' rows=\'12\' cols=\'50\' >'.$r['headerspace'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Footer Space:</td>	
-			<td class=\'content5\'><textarea name=\'footerspace\' rows=\'12\' cols=\'50\' >'.$r['footerspace'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Above Games:</td>	
-			<td class=\'content5\'><textarea name=\'abovegames\' rows=\'12\' cols=\'50\' >'.$r['abovegames'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Below Games:</td>	
-			<td class=\'content5\'><textarea name=\'belowgames\' rows=\'12\' cols=\'50\' >'.$r['belowgames'].'</textarea></td>
-		</tr>
-
-
-
-
-
-		<tr>
-			<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Edit Game\'></td>
-		</tr>
-	</table>		
-	</form>';
+echo '<div class="heading">
+	<h2>Editing Game: '.$r['name'].'</h2>
+</div>
+<br clear="all">
+<form action=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$ID.'&type=1\' method=\'post\'>
+	<table id="table">
+		<thead>
+			<tr>
+				<th colspan="2">Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Name:*</td>
+				<td><input type=\'text\' name=\'name\' size=\'40\' value=\''.$r['name'].'\'></td>
+			</tr>
+			<tr>
+				<td>Description:*</td>
+				<td><textarea cols=\'40\' rows=\'5\' name=\'desc\'>'.$r['description'].'</textarea></td>
+			</tr>
+			<tr>
+				<td>Width:*</td>
+				<td><input type=\'text\' name=\'width\' value=\''.$r['width'].'\'></td>
+			</tr>
+			<tr>
+				<td>Height:*</td>
+				<td><input type=\'text\' name=\'height\' value=\''.$r['height'].'\'></td>
+			</tr>
+			<tr>
+				<td>Category:*</td>
+				<td><select type=\'dropdown\' name=\'category\' >' ;
+					$query = $db->query('SELECT * FROM fas_categories');
+					while($row = $db->fetch_row($query)){
+                  		if ($row['ID']==$r[category]) {
+							echo '<option value=\''.$row['ID'].'\' selected>'.$row['name'].'</option>';
+                  		} else {
+							echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
+						};
+					}
+					echo'</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Thumb File:*</td>
+				<td>'.$thumbsfolder.'/'.$r['thumb'].'</td>
+			</tr>
+			<tr>
+				<td>SWF Game File:*</td>
+				<td>'.$gamesfolder.'/'.$r['file'].'</td>
+			</tr>
+			<tr>
+				<td>Active:</td>
+				<td><input type=\'text\' name=\'active\' value=\''.$r['active'].'\'></td>
+			</tr>
+			<tr>
+				<td>Tags:</td>
+				<td><input type=\'text\' name=\'tags\' value=\''.$r['tags'].'\'></td>
+			</tr>
+		        <tr>
+			        <td>Featured Game:<br><small>0 = No<br>1 = Yes</small></td>
+			        <td><input type=\'text\' size=\'2\' name=\'featured\' value=\''.$r['featured'].'\'></td>
+                        </tr>
+                        <tr>
+				<td>Sponsor:</td>
+				<td><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Sponsor Notes:
+                                <br><small>Use this to keep track of when sponsorship expires for now, or other needed notes.</small></td>
+				<td><textarea name=\'sponsornotes\' rows=\'12\' cols=\'50\' >'.$r['sponsornotes'].'</textarea></td>
+			</tr>
+			<tr>
+				<td>Sponsorship Active:<br><small>0=No sponsor yet<br>1=Sponsor pending<br>2=Sponsor active</small></td>
+				<td><input type=\'text\' name=\'sponsoractive\' value=\''.$r['sponsoractive'].'\'></td>
+			</tr>
+			</tr>
+				<td>Ad One:</td>
+				<td><textarea name=\'ads1\' rows=\'12\' cols=\'50\' >'.$r['ads1'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Ad Two:</td>
+				<td><textarea name=\'ads2\' rows=\'12\' cols=\'50\' >'.$r['ads2'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Ad Three:<br><small>Does not show up anywhere. Extra ad code you may use to place
+                  where you want.</small></td>
+				<td><textarea name=\'ads3\' rows=\'12\' cols=\'50\' >'.$r['ads3'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Header Space:<br><small>Turns off automaticaly if left empty.</small></td>
+				<td><textarea name=\'headerspace\' rows=\'12\' cols=\'50\' >'.$r['headerspace'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Footer Space:</td>
+				<td><textarea name=\'footerspace\' rows=\'12\' cols=\'50\' >'.$r['footerspace'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Above Games:</td>
+				<td><textarea name=\'abovegames\' rows=\'12\' cols=\'50\' >'.$r['abovegames'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Below Games:</td>
+				<td><textarea name=\'belowgames\' rows=\'12\' cols=\'50\' >'.$r['belowgames'].'</textarea></td>
+			</tr>
+			<tr>
+				<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Edit Game\'></td>
+			</tr>
+		</tbody>
+	</table>
+</form>';
 }
 }else{
 
 if(isset($_POST['submit'])){
-	$thumburl = $_POST['thumburl'];
-	$name = $_POST['name'];
-	$desc = $_POST['desc'];
-	$category = $_POST['category'];
-	$active = $_POST['active'];
-	$enabledcode = $_POST['enabledcode'];
-	$tags = $_POST['tags'];
-	$sponsor = $_POST['sponsor'];
-	$sponsornotes = $_POST['sponsornotes'];
-	$sponsoractive = $_POST['sponsoractive'];
-	$ads1 = $_POST['ads1'];
-	$ads2 = $_POST['ads2'];
-	$ads3 = $_POST['ads3'];
-	$headerspace = $_POST['headerspace'];
-	$footerspace = $_POST['footerspace'];
-	$abovegames = $_POST['abovegames'];
-	$belowgames = $_POST['belowgames'];
+	$thumburl = clean($_POST['thumburl']);
+	$name = clean($_POST['name']);
+	$desc = clean($_POST['desc']);
+	$category = clean($_POST['category']);
+	$active = clean($_POST['active']);
+	$enabledcode = clean($_POST['enabledcode']);
+	$tags = clean($_POST['tags']);
+	$featured = clean($_POST['featured']);
+	$sponsor = clean($_POST['sponsor']);
+	$sponsornotes = clean($_POST['sponsornotes']);
+	$sponsoractive = clean($_POST['sponsoractive']);
+	$ads1 = clean($_POST['ads1']);
+	$ads2 = clean($_POST['ads2']);
+	$ads3 = clean($_POST['ads3']);
+	$headerspace = clean($_POST['headerspace']);
+	$footerspace = clean($_POST['footerspace']);
+	$abovegames = clean($_POST['abovegames']);
+	$belowgames = clean($_POST['belowgames']);
 
-	
 
-	mysql_query("UPDATE dd_games SET name='$name',
+
+	mysql_query("UPDATE fas_games SET name='$name',
 						description='$desc',
 						width='$width',
 						height='$height',
 						category='$category',
 						thumburl='$thumburl',
-						enabledcode='$enabledcode' 
-						active='$active', 
+						enabledcode='$enabledcode'
+						active='$active',
 						tags='$tags',
+                                                featured='$featured',
  					      sponsor='$sponsor',
  					      sponsornotes='$sponsornotes',
  					      sponsoractive='$sponsoractive',
@@ -418,117 +427,107 @@ if(isset($_POST['submit'])){
  			       		headerspace='$headerspace',
  				      	footerspace='$footerspace',
  				      	abovegames='$abovegames',
- 				      	belowgames='$belowgames'  WHERE ID='$ID'"); 
+ 				      	belowgames='$belowgames'  WHERE ID='$ID'");
 
 }else{
-echo '<form action=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$ID.'&type=1\' method=\'POST\'>
-	<table align=\'center\'>
-		<tr>
-			<td class=\'content5\'>Name:*</td>
-			<td class=\'content5\'><input type=\'text\' name=\'name\' size=\'40\' value=\''.$r['name'].'\'></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Description:*</td>
-			<td class=\'content5\'><textarea cols=\'40\' rows=\'5\' name=\'desc\'>'.$r['description'].'</textarea></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Category:*</td>
-			<td class=\'content5\'>
-			<select type=\'dropdown\' name=\'category\'>';
-		$query = $db->query('SELECT * FROM dd_categories');
-		while($row = $db->fetch_row($query)){
-			echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
-		}	
-		echo '	
-			</select>
-		</td>
-			
-		</tr>
-		<tr>
-			<td class=\'content5\'>Thumb URL:*</td>
-			<td class=\'content5\'><input type=\'text\' size=\'55\' name=\'thumburl\' value=\''.$r['thumburl'].'\'></td>
-		</tr>
-		<tr>
-			<td class=\'content5\'>Code:*</td>
-			<td class=\'content5\'><textarea cols=\'45\' rows=\'6\' name=\'enabledcode\'>'.$r['enabledcode'].'</textarea></td>
-		</tr>
-
-		<tr>
-			<td class=\'content5\'>Active:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'active\' value=\''.$r['active'].'\'></td>
-		</tr>
-
-
-		<tr>
-			<td class=\'content5\'>Tags:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'tags\' value=\''.$r['tags'].'\'></td>
-		</tr>
-
-
-		</tr>
-			<td class=\'content5\'>Sponsor:</td>	
-			<td class=\'content5\'><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Sponsor Notes:
-                  <br><small>Use this to keep track of when sponsorship expires for now, or other needed notes.</small></td>	
-			<td class=\'content5\'><textarea name=\'sponsornotes\' rows=\'12\' cols=\'50\' >'.$r['sponsornotes'].'</textarea></td>
-		</tr>
-
-		<tr>
-			<td class=\'content5\'>Sponsorship Active:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'sponsoractive\' value=\''.$r['sponsoractive'].'\'></td>
-		</tr>
-
-
-
-		</tr>
-			<td class=\'content5\'>Ads 1:</td>	
-			<td class=\'content5\'><textarea name=\'ads1\' rows=\'12\' cols=\'50\' >'.$r['ads1'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Ads 2:</td>	
-			<td class=\'content5\'><textarea name=\'ads2\' rows=\'12\' cols=\'50\' >'.$r['ads2'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Ads 3:<br><small>Does not show up anywhere. Extra ad code you may use to place
-                  where you want.</small></td>	
-			<td class=\'content5\'><textarea name=\'ads3\' rows=\'12\' cols=\'50\' >'.$r['ads3'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Header Space:<br><small>Turns off automaticaly if left empty.</small></td>	
-			<td class=\'content5\'><textarea name=\'headerspace\' rows=\'12\' cols=\'50\' >'.$r['headerspace'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Footer Space:</td>	
-			<td class=\'content5\'><textarea name=\'footerspace\' rows=\'12\' cols=\'50\' >'.$r['footerspace'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Above Games:</td>	
-			<td class=\'content5\'><textarea name=\'abovegames\' rows=\'12\' cols=\'50\' >'.$r['abovegames'].'</textarea></td>
-		</tr>
-
-		</tr>
-			<td class=\'content5\'>Below Games:</td>	
-			<td class=\'content5\'><textarea name=\'belowgames\' rows=\'12\' cols=\'50\' >'.$r['belowgames'].'</textarea></td>
-		</tr>
-
-
-
-
-
-
-		<tr>
-			<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Edit Game\'></td>
-		</tr>
-	</table>		
-	</form>';
+echo '<div class="heading">
+	<h2>Editing Game: '.$r['name'].'</h2>
+</div>
+<br clear="all">
+<form action=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$ID.'&type=1\' method=\'post\'>
+	<table id="table">
+		<thead>
+			<tr>
+				<th colspan="2">Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Name:*</td>
+				<td><input type=\'text\' name=\'name\' size=\'40\' value=\''.$r['name'].'\'></td>
+			</tr>
+			<tr>
+				<td>Description:*</td>
+				<td><textarea cols=\'40\' rows=\'5\' name=\'desc\'>'.$r['description'].'</textarea></td>
+			</tr>
+			<tr>
+				<td>Category:*</td>
+				<td><select type=\'dropdown\' name=\'category\'>';
+					$query = $db->query('SELECT * FROM fas_categories');
+					while($row = $db->fetch_row($query)){
+						echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
+					}
+					echo'</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Thumb URL:*</td>
+				<td><input type=\'text\' size=\'55\' name=\'thumburl\' value=\''.$r['thumburl'].'\'></td>
+			</tr>
+			<tr>
+				<td>Code:*</td>
+				<td><textarea cols=\'45\' rows=\'6\' name=\'enabledcode\'>'.$r['enabledcode'].'</textarea></td>
+			</tr>
+			<tr>
+				<td>Active:</td>
+				<td><input type=\'text\' name=\'active\' value=\''.$r['active'].'\'></td>
+			</tr>
+			<tr>
+				<td>Tags:</td>
+				<td><input type=\'text\' name=\'tags\' value=\''.$r['tags'].'\'></td>
+			</tr>
+		        <tr>
+			        <td>Featured Game:<br><small>0 = No<br>1 = Yes</small></td>
+			        <td><input type=\'text\' size=\'2\' name=\'featured\' value=\''.$r['featured'].'\'></td>
+                        </tr>
+			</tr>
+				<td>Sponsor:</td>
+				<td><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Sponsor Notes:
+                  <br><small>Use this to keep track of when sponsorship expires for now, or other needed notes.</small></td>
+				<td><textarea name=\'sponsornotes\' rows=\'12\' cols=\'50\' >'.$r['sponsornotes'].'</textarea></td>
+			</tr>
+			<tr>
+				<td>Sponsorship Active:</td>
+				<td><input type=\'text\' name=\'sponsoractive\' value=\''.$r['sponsoractive'].'\'></td>
+			</tr>
+			</tr>
+				<td>Ad One:</td>
+				<td><textarea name=\'ads1\' rows=\'12\' cols=\'50\' >'.$r['ads1'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Ad Two:</td>
+				<td><textarea name=\'ads2\' rows=\'12\' cols=\'50\' >'.$r['ads2'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Ad Three:<br><small>Does not show up anywhere. Extra ad code you may use to place
+                  where you want.</small></td>
+				<td><textarea name=\'ads3\' rows=\'12\' cols=\'50\' >'.$r['ads3'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Header Space:<br><small>Turns off automaticaly if left empty.</small></td>
+				<td><textarea name=\'headerspace\' rows=\'12\' cols=\'50\' >'.$r['headerspace'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Footer Space:</td>
+				<td><textarea name=\'footerspace\' rows=\'12\' cols=\'50\' >'.$r['footerspace'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Above Games:</td>
+				<td><textarea name=\'abovegames\' rows=\'12\' cols=\'50\' >'.$r['abovegames'].'</textarea></td>
+			</tr>
+			</tr>
+				<td>Below Games:</td>
+				<td><textarea name=\'belowgames\' rows=\'12\' cols=\'50\' >'.$r['belowgames'].'</textarea></td>
+			</tr>
+			<tr>
+				<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Edit Game\'></td>
+			</tr>
+		</tbody>
+	</table>
+</form>';
 }
 
 

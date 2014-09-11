@@ -17,7 +17,7 @@ exit;
 function inbox(){
 global $db, $domain, $userid;
 
-$w = $db->query("SELECT * FROM dd_messages WHERE to_userid='{$userid}' ORDER BY datesent DESC");
+$w = $db->query("SELECT * FROM fas_messages WHERE to_userid='{$userid}' ORDER BY datesent DESC");
 echo '<h2>Messages</h2>
 <table width="100%" border="0" align="center">
 <tr>
@@ -33,7 +33,7 @@ $status = '<font color="green">Unread</font>';
 }else{
 $status = '<font color="red">Read</font>';
 }
-$gr = $db->fetch_row($db->query("SELECT userid, username FROM dd_users WHERE userid='{$iw['from_userid']}'"));
+$gr = $db->fetch_row($db->query("SELECT userid, username FROM fas_users WHERE userid='{$iw['from_userid']}'"));
 echo ' <tr>
 <td class="content"><div align="center">'.$iw['ID'].'</div></td>
 <td class="content"><small>
@@ -60,7 +60,7 @@ function read(){
 global $db, $domain, $template, $userid;
 
 $ID = abs((int) $_GET['ID']);
-$ir = $db->query("SELECT * FROM dd_messages WHERE to_userid='{$userid}' AND ID='{$ID}'");
+$ir = $db->query("SELECT * FROM fas_messages WHERE to_userid='{$userid}' AND ID='{$ID}'");
 
 $or = $db->fetch_row($ir);
 if(!$db->num_rows($ir)){
@@ -68,8 +68,8 @@ echo 'Either you do not own that message or it does not exist.';
 include ('templates/'.$template.'/footer.php');
 exit;
 }
-$db->query("UPDATE dd_messages SET status='1' WHERE ID='$ID'");
-$ud = $db->fetch_row($db->query("SELECT username, userid FROM dd_users WHERE userid='{$or['from_userid']}'"));
+$db->query("UPDATE fas_messages SET status='1' WHERE ID='$ID'");
+$ud = $db->fetch_row($db->query("SELECT username, userid FROM fas_users WHERE userid='{$or['from_userid']}'"));
 $message = str_replace('\n', '<br />', $or['content']);
 $replysubject = 'Re: '.$or['subject'];
 echo '<table width="95%" border="0" align="center">
@@ -113,10 +113,10 @@ echo '<table width="95%" border="0" align="center">
 <th class="header">Message</th>
 </tr>';
 $senderid=$or['from_userid'];
-$tt = $db->query("SELECT * FROM dd_messages WHERE to_userid='{$userid}' AND from_userid='$senderid' ORDER BY datesent DESC") or die(mysql_error());
+$tt = $db->query("SELECT * FROM fas_messages WHERE to_userid='{$userid}' AND from_userid='$senderid' ORDER BY datesent DESC") or die(mysql_error());
 
 while($row = mysql_fetch_array($tt)){
-$op = $db->fetch_row($db->query("select username from dd_users where userid='{$row['from_userid']}'"));
+$op = $db->fetch_row($db->query("select username from fas_users where userid='{$row['from_userid']}'"));
 echo ' <tr align="center">
 
 <td class="content">'.$op['username'].'
@@ -136,7 +136,7 @@ if(!$to || !$message){ echo "All fields must be filled in!";
 include ('templates/'.$template.'/footer.php');
  exit; };
 $date = time();
-$db->query("INSERT INTO dd_messages SET
+$db->query("INSERT INTO fas_messages SET
 from_userid='{$userid}',
 to_userid='{$to}',
 subject='{$subject}',
@@ -155,7 +155,7 @@ if(!$to || !$message){ echo "All fields must be filled in!";
 include ('templates/'.$template.'/footer.php'); 
 exit; }
 $date = time();
-$db->query("INSERT INTO dd_messages SET
+$db->query("INSERT INTO fas_messages SET
 from_userid='{$userid}',
 to_userid='{$to}',
 subject='{$subject}',
@@ -211,7 +211,7 @@ echo 'Deleted.';
 }
 function deleteall(){
 global $db, $userid;
-$db->query("DELETE FROM dd_messages WHERE to_userid='$userid'");
+$db->query("DELETE FROM fas_messages WHERE to_userid='$userid'");
 }
 
 

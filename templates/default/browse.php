@@ -15,10 +15,10 @@ if(empty($show)){
 	$show = 1;
 }
 $limits = ($show - 1) * $max; 
-$r2 = "SELECT * FROM dd_games WHERE category='$ID' && active='1' ORDER BY ID DESC LIMIT ".$limits.",".$max ;
+$r2 = "SELECT * FROM fas_games WHERE category='$ID' && active='1' ORDER BY ID DESC LIMIT ".$limits.",".$max ;
 $sqltitle = "browse-cat".$ID."page".$show;
 $r1 = sqlcache($sqltitle, $cachelife, $r2);
-$totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM dd_games WHERE active=\'1\' and category=\''.$ID.'\''),0);	
+$totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM fas_games WHERE active=\'1\' and category=\''.$ID.'\''),0);	
 $totalpages = ceil($totalres / $max); 
 echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 	<tr>
@@ -31,7 +31,7 @@ echo '	<tr>
 	</tr>';
 }
 foreach($r1 as $in ){
-$gamename = ereg_replace('[^A-Za-z0-9]', '', $in['name']);
+$gamename = preg_replace('[^A-Za-z0-9]', '', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{
@@ -119,7 +119,7 @@ $ID = abs((int) ($ID));
 $show = clean($_GET['page']);
 if(empty($show)){
 	$show = 1; };
-$m1 = mysql_query("SELECT * FROM dd_categories where ID='$ID' limit 1 ");	
+$m1 = mysql_query("SELECT * FROM fas_categories where ID='$ID' limit 1 ");	
 
 $m4 = mysql_fetch_row($m1) ;
 $pagetitle = $m4[1];

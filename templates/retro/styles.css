@@ -1,0 +1,500 @@
+body{
+	background:#4069e1 url(images/back.gif);
+	padding:0;
+	margin:0;
+	background-repeat:repeat-x;
+	color:#ffffff;
+}
+
+
+
+.maintable{
+	background:#27408b url(images/maintable.gif);
+	border:1px solid #000000;
+		background-repeat:repeat-x;
+}
+
+
+.maintable td td table{
+  background:#000000;
+  border: 1px solid #3f67dd;
+
+}
+
+.maintable td td table td a{   
+color:#000000;
+ 
+}
+
+.maintable td td table td a:hover{
+color:#ff3300;
+
+}
+
+.maintable td td table table{
+  
+  border:none;
+
+}
+
+#midcontent  table{
+  background:#000000;
+  border: 1px solid #3f67dd;
+  color:#ffffff;
+
+}
+
+.header {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #FFFFFF;
+	text-align:center;
+	background-color: #0d0d0d;
+	background: url('images/headerback.gif') repeat-x;
+}
+
+.content {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #003f9d;
+	text-align:left;
+	padding:5px;
+	background: #5699ff url(images/contentback.gif);
+	background-repeat:repeat-x;
+}
+.header2 {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #FFFFFF;
+	padding:2px;
+	text-align:center;
+	background-color: #c50000;
+	background: url('images/headerback.gif') repeat-x;
+
+}
+
+.content2 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #444444;
+	text-align:left;
+	background-color: #cfe2ff;
+	border:1px solid #000000;
+}
+
+.header3 {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #000000;
+	text-align:center;
+	background-color: #CFEDFF;
+	padding:3px;
+}
+
+.content3 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #000000;
+	text-align:left;
+	background-color: #F2FAFF;
+}
+
+.header4 {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #000000;
+	text-align:center;
+	background-color: #FFFFFF;
+	border:1px solid #EEEEEE;
+	padding:3px;
+}
+
+.content4 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #000000;
+	text-align:left;
+	background-color: #FAFAFA;
+}
+
+.header5 {
+	font-family: Tahoma;
+	font-size: 14px;
+	color: #000000;
+	text-align:center;
+	background-color: #F2F2F2;
+	border:1px solid #EEEEEE;
+}
+
+.content5 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #000000;
+	text-align:left;
+	background-color: #FAFAFA;
+	border:1px solid #EEEEEE;
+}
+.gamehometitle{
+	font-family:arial;
+	font-size:13px;
+	color:#003f9d;
+	font-weight:bold;
+}
+.gamehomeholder {
+	float: left;
+	position: relative;
+	color: #000;
+	background: #cfe2ff url();
+	background-repeat:repeat-x;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 135px;
+	height: 110px;
+	margin-left: 4px;
+	margin-top: 4px;
+	border: 2px ridge #003;
+}
+.gamehomedesc{
+	color:#003f9d;
+	font-family:arial;
+	font-size:10px;
+	width:220px;
+}
+a, a:visited, a:hover{
+	color:#000;
+	text-decoration:none;
+	font-size:12px;
+}
+.catmenu{
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+.catmenu li{
+	padding:4px;
+}
+.catmenu li:hover{
+
+	background-color: #ff3300; /*Red color theme*/
+
+
+	background: url('images/topback2.gif') repeat-x;
+}
+.catmenu li a{
+	font-size:15px;
+	display:block;
+}
+.catmenu li a:hover{
+  color: white;
+}
+.playlink{
+	color:#000000;
+	
+}
+
+.menutop{
+padding: 0;
+width: 100%;
+border-top: 1px solid #cfe2ff; /*Red color theme*/
+background: transparent;
+voice-family: "\"}\"";
+voice-family: inherit;
+}
+
+.menutop ul{
+margin:0;
+margin-left: 2px; /*margin between first menu item and left browser edge*/
+padding: 0;
+list-style: none;
+}
+
+.menutop li{
+display: inline;
+margin: 0 2px 0 0;
+padding: 0;
+text-transform:none;
+}
+
+.menutop a{
+float: left;
+display: block;
+font: bold 14px Arial;
+color: #003F9D;
+text-decoration: none;
+border:1px solid #ffffff;
+margin: 0 1px 0 0; /*Margin between each menu item*/
+padding: 5px 10px 9px 10px; /*Padding within each menu item*/
+/*background-color: white; /*Default menu color*/
+
+	background-color: #599bff;
+	background: url('images/topback.gif') repeat-x;
+
+/*BELOW 4 LINES add rounded bottom corners to each menu item.
+  ONLY WORKS IN FIREFOX AND FUTURE CSS3 CAPABLE BROWSERS
+  REMOVE IF DESIRED*/
+-moz-border-radius-bottomleft: 5px;
+border-bottom-left-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+border-bottom-right-radius: 5px;
+}
+
+.menutop a:hover{
+background-color: #ff3300; /*Red color theme*/
+padding-top: 9px; /*Flip default padding-top value with padding-bottom */
+padding-bottom: 5px; /*Flip default padding-bottom value with padding-top*/
+color: white;
+	background: url('images/topback2.gif') repeat-x;
+}
+
+.menutop .current a{ /** currently selected menu item **/
+background-color: #D10000; /*Red color theme*/
+padding-top: 9px; /*Flip default padding-top value with padding-bottom */
+padding-bottom: 5px; /*Flip default padding-bottom value with padding-top*/
+color: white;
+}
+
+.floatr{ /*CSS for sample search box. Remove if desired */
+float: right;
+margin: 0;
+margin-top: 2px;
+padding: 0;
+}
+.msg{
+	border:1px solid #FCFFCF;
+	background:#E8EB99;
+	padding:3px;
+	text-align:center;
+}
+h1{
+font-size:14px;
+padding: 0px;
+margin: 0px;
+	color:#FFFFFF;
+}
+h2{
+	padding:0;
+	margin:0;
+	text-align:center;
+	color:#000000;
+	font-size:12px;
+	padding-bottom:5px;
+}
+.menu1{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight:normal;
+	color: #000000;
+	text-align:left;
+	border-style:solid;
+	border-width:1px;
+	border-color: #EBEBEB;
+	background-color: #FAFAFA;
+}
+.error{
+	background:#579aff;
+	border:1px solid #000000;
+	font-size:14px;
+	text-align:center;
+}
+.pgtitle{
+	font-size:22px;
+	padding-bottom:1px;
+	color:#666666;
+	padding-left:4px;
+	font-family:arial;
+	border-bottom:1px dotted #CCCCCC;
+	
+}
+.pnlink{
+	padding:4px;
+	margin:5;
+	border:1px solid #EEEEEE;
+}
+
+
+.pagenat{
+	border:1px solid #CCCCCC;
+	padding:3px;
+	background:#EEEEEE;
+}
+.star-rating,
+.star-rating a:hover,
+.star-rating a:active,
+.star-rating .current-rating{
+	background: url(images/rating_star.gif) left -1000px repeat-x;
+}
+.star-rating{
+	position:relative;
+	width:125px;
+	height:25px;
+	overflow:hidden;
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-position: left top;
+}
+.star-rating li{
+	display: inline;
+}
+.star-rating a, 
+.star-rating .current-rating{
+	position:absolute;
+	top:0;
+	left:0;
+	text-indent:-1000em;
+	height:25px;
+	line-height:25px;
+	outline:none;
+	overflow:hidden;
+	border: none;
+}
+.star-rating a:hover{
+	background-position: left bottom;
+}
+.star-rating a.one-star{
+	width:20%;
+	z-index:6;
+}
+.star-rating a.two-stars{
+	width:40%;
+	z-index:5;
+}
+.star-rating a.three-stars{
+	width:60%;
+	z-index:4;
+}
+.star-rating a.four-stars{
+	width:80%;
+	z-index:3;
+}
+.star-rating a.five-stars{
+	width:100%;
+	z-index:2;
+}
+.star-rating .current-rating{
+	z-index:1;
+	background-position: left center;
+}	
+
+/* SECOND STAR (ALREADY VOTED */
+
+
+.star-rating2,
+.star-rating2 a:active,
+.star-rating2 .current-rating{
+	background: url(images/rating_star_2.gif) left -1000px repeat-x;
+}
+.star-rating2{
+	position:relative;
+	width:125px;
+	height:25px;
+	overflow:hidden;
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-position: left top;
+}
+.star-rating2 li{
+	display: inline;
+}
+.star-rating2 a, 
+.star-rating2 .current-rating {
+	position:absolute;
+	top:0;
+	left:0;
+	text-indent:-1000em;
+	height:25px;
+	line-height:25px;
+	outline:none;
+	overflow:hidden;
+	border: none;
+	cursor:default;
+}
+
+.star-rating2 a.one-star{
+	width:20%;
+	z-index:6;
+}
+.star-rating2 a.two-stars{
+	width:40%;
+	z-index:5;
+}
+.star-rating2 a.three-stars{
+	width:60%;
+	z-index:4;
+}
+.star-rating2 a.four-stars{
+	width:80%;
+	z-index:3;
+}
+.star-rating2 a.five-stars{
+	width:100%;
+	z-index:2;
+}
+.star-rating2 .current-rating{
+	z-index:1;
+	background-position: left center;
+}
+
+
+/* END SECOND STAR */
+
+/* for an inline rater */
+.inline-rating{
+	display:-moz-inline-block;
+	display:-moz-inline-box;
+	display:inline-block;
+	vertical-align: middle;
+}
+.voted_twice {
+	background: #FFDDDD url(images/rating_warning.gif) no-repeat 5px 50%;
+	padding:5px 5px 5px 16px;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#333;
+	width:130px;
+	font-size:11px;
+	}
+.voted {
+	background: #E7FFCE url(images/rating_tick.gif) no-repeat 5px 50%;
+	padding:5px 5px 5px 16px;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#333;
+	width:130px;
+	font-size:11px;
+	}
+/* The text that displays the rating information */
+.rated_text {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	margin-bottom:5px;
+	color:#666;
+	}
+/* Green text that shows 3.34/5 */
+.out5Class {
+	color:#00CC00;
+	font-weight:bold;
+	}
+.percentClass {
+	/* Insert styles here for the percentage display. Example (74%) */
+	}
+.votesClass {
+	/* Insert styles here for the votes display. Example (2 Votes) */
+	}
+.topRatedList {
+	padding:0;
+	margin:0;
+	}
+.topRatedList li {
+	list-style-type:none;
+	}

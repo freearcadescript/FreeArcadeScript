@@ -26,7 +26,7 @@ $avatar=clean($_POST['avatar']);
 
 if ($avatar == 0) {
 
-mysql_query("UPDATE dd_users SET avatar='$avatar', avatarfile=''  WHERE userid='$userid'" ) ;
+mysql_query("UPDATE fas_users SET avatar='$avatar', avatarfile=''  WHERE userid='$userid'" ) ;
 echo 'Profile updated';
 
 
@@ -58,7 +58,7 @@ $target = $target . $ran4.$ext;
 if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target)) 
 {
 echo "The file has been uploaded.";
-mysql_query("UPDATE dd_users SET avatar='$avatar', avatarfile='$avatarfile'   WHERE userid='$userid'" ) ;
+mysql_query("UPDATE fas_users SET avatar='$avatar', avatarfile='$avatarfile'   WHERE userid='$userid'" ) ;
 
 } 
 else
@@ -160,7 +160,7 @@ $bio = clean($_POST['bio']);
 $ip = $_SERVER['REMOTE_ADDR'];
 
 
-mysql_query("UPDATE dd_users SET newsletter='$newsletter', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location', 
+mysql_query("UPDATE fas_users SET newsletter='$newsletter', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location', 
 job='$job', website='$website', link1='$link1', link2='$link2', link3='$link3', link4='$link4', link5='$link5', link6='$link6', link7='$link7', link8='$link8', sex='$sex', interests='$interests', bio='$bio', ip='$ip' WHERE userid='$userid'" ) ;
 echo '<div class=\'msg\'>Profile updated</div><p>';
 };
@@ -168,7 +168,7 @@ echo '<div class=\'msg\'>Profile updated</div><p>';
 
 
 $userid = $usrdata['userid'];
-$ir = $db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $userid));
+$ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $username = $r2['username'];
 $plays = $r2['plays'];
@@ -317,10 +317,10 @@ if ($avatar == "1" ) { $avatarfileurl = '<img src=\''.$domain.'/avatars/'.$avata
 function favorites(){
 global $domain, $db, $usrdata, $thumbsfolder, $gamesfolder, $seo_on;
 echo '<h2>My Favorites</h2>';
-$ro = $db->query(sprintf('SELECT * FROM dd_user_favorites WHERE userid=\''.$usrdata['userid'].'\''));
+$ro = $db->query(sprintf('SELECT * FROM fas_user_favorites WHERE userid=\''.$usrdata['userid'].'\''));
 echo '<table width=\'100%\' border=\'0\'>';
 while($r = $db->fetch_row($ro)){
-$in1 = $db->query(sprintf('SELECT * FROM dd_games WHERE ID=\'%u\'', $r['gameid']));
+$in1 = $db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\'', $r['gameid']));
 $in = $db->fetch_row($in1);
 
 $gamename = ereg_replace('[^A-Za-z0-9]', '', $in['name']);
@@ -359,7 +359,7 @@ function changeemail(){
 	global $domain, $db, $usrdata, $seo_on, $supportemail, $sitename;
 	
 $userid = $usrdata['userid'];
-$ir = $db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $userid));
+$ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $current_email = $r2['email'];
 	if(isset($_POST['submit'])){
@@ -377,7 +377,7 @@ $current_email = $r2['email'];
 			exit;
 		}
 
-	$ru = $db->query('SELECT email FROM dd_users WHERE email=\''.$email.'\'');
+	$ru = $db->query('SELECT email FROM fas_users WHERE email=\''.$email.'\'');
 	if($db->num_rows($ru) == 1){
 		echo '<div class=\'error\'>Email is already in use.</div>';
 		include ('templates/'.$template.'/footer.php');
@@ -394,7 +394,7 @@ $headers = 'From: '.$supportemail.'' . "\r\n" .
 
 mail($email, $subject, $message, $headers);
 
-mysql_query("UPDATE dd_users SET `new_email`='$email', `new_email_key`='$activation_number' WHERE userid='{$usrdata['userid']}'");
+mysql_query("UPDATE fas_users SET `new_email`='$email', `new_email_key`='$activation_number' WHERE userid='{$usrdata['userid']}'");
 echo '<div class=\'msg\'>An email has been sent for you to comfirm its correct.</div>';
 
 }
@@ -439,7 +439,7 @@ function changequestion(){
 		if($pass != $usrdata['password']){
 			echo '<div class=\'error\'>Current Password is incorrect.</div>';
 		}else{
-			mysql_query("UPDATE dd_users SET `pass_question`='$question', `pass_answer`='$answer' WHERE userid='{$usrdata['userid']}'");
+			mysql_query("UPDATE fas_users SET `pass_question`='$question', `pass_answer`='$answer' WHERE userid='{$usrdata['userid']}'");
 			echo '<div class=\'msg\'>Question & answer updated.</div>';
 		}
 		
@@ -451,7 +451,7 @@ function changequestion(){
 		}
 
 $userid = $usrdata['userid'];
-$ir = $db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $userid));
+$ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $questionf = $r2['pass_question'];
 $answerf = $r2['pass_answer'];
@@ -496,7 +496,7 @@ function changepassword(){
 		if($oldpass != $usrdata['password']){
 			echo '<div class=\'error\'>Old Password is incorrect.</div>';
 		}else{
-			$db->query(sprintf('UPDATE dd_users SET password=\'%s\' WHERE userid=\'%u\'', $newpass, $usrdata['userid']));
+			$db->query(sprintf('UPDATE fas_users SET password=\'%s\' WHERE userid=\'%u\'', $newpass, $usrdata['userid']));
 			echo '<div class=\'msg\'>Password Updated</div>';
 		}
 		

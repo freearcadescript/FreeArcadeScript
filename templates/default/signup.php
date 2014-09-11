@@ -34,17 +34,18 @@ if(isset($_POST['submit'])){
 		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
-	$ru = $db->query('SELECT username FROM dd_users WHERE username=\''.$user_name.'\'');
+	$ru = $db->query('SELECT username FROM fas_users WHERE username=\''.$user_name.'\'');
 	if($db->num_rows($ru) == 1){
 		echo '<div class=\'error\'>Username is already in use.</div>';
 		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
 	$pass = md5($pass_word);
-	$db->query(sprintf('INSERT INTO dd_users SET
+	$db->query(sprintf('INSERT INTO fas_users SET
 				username=\'%s\',
 				password=\'%s\',
-				email =\'%s\'', $user_name, $pass, $email));
+				email =\'%s\'',
+                                joindate =\'%s\'', $user_name, $pass, $email, $joindate));
 				echo '<div class=\'msg\'>Success, you\'ve now registered.</div>';
 }
 if($seo_on == 1){

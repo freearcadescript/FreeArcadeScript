@@ -191,7 +191,7 @@ writebody();
 				<tr>
 					<td class="content2" stlye="padding:5px'">
 					<?php
-					$rlinkx2 = "SELECT * FROM dd_links where activate = '2' " ;
+					$rlinkx2 = "SELECT * FROM fas_links where activate = '2' " ;
                               $rlinkx1 = sqlcache('sitewidelinks', $cachelife, $rlinkx2);
 					
 
@@ -209,12 +209,12 @@ writebody();
 				</tr>
 			</table>
 			<?php
-			$totalgames = $db->num_rows($db->query(sprintf('SELECT ID FROM dd_games WHERE active="1"')));
-			$totalusers = $db->num_rows($db->query(sprintf('SELECT userid FROM dd_users WHERE activation_key="0"')));
-			$totalcats = $db->num_rows($db->query(sprintf('SELECT ID FROM dd_categories')));
-			$totalcomments = $db->num_rows($db->query(sprintf('SELECT ID FROM dd_comments')));
+			$totalgames = $db->num_rows($db->query(sprintf('SELECT ID FROM fas_games WHERE active="1"')));
+			$totalusers = $db->num_rows($db->query(sprintf('SELECT userid FROM fas_users WHERE activation_key="0"')));
+			$totalcats = $db->num_rows($db->query(sprintf('SELECT ID FROM fas_categories')));
+			$totalcomments = $db->num_rows($db->query(sprintf('SELECT ID FROM fas_comments')));
 			$time=time()-15*60;
-			$onlineusers = $db->num_rows($db->query("SELECT userid FROM dd_users WHERE status >= $time"));
+			$onlineusers = $db->num_rows($db->query("SELECT userid FROM fas_users WHERE status >= $time"));
 			$year = date('Y');
 		?>
 			<table width="100%">

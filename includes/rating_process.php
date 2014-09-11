@@ -30,7 +30,7 @@ if($_POST){
 	
 	if($rating <= 5 && $rating >= 1){
 	
-		if(@mysql_fetch_assoc(mysql_query("SELECT id FROM ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'")) || isset($_COOKIE['has_voted_'.$id])){
+		if(@mysql_fetch_assoc(mysql_query("SELECT id FROM fas_ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'")) || isset($_COOKIE['has_voted_'.$id])){
 		
 			echo 'already_voted';
 			
@@ -38,12 +38,12 @@ if($_POST){
 
 			
 			setcookie('has_voted_'.$id,$id,$expire,'/',$domainl,false);
-			mysql_query("INSERT INTO ratings (rating_id,rating_num,IP) VALUES ('$id','$rating','".$_SERVER['REMOTE_ADDR']."')") or die(mysql_error());
+			mysql_query("INSERT INTO fas_ratings (rating_id,rating_num,IP) VALUES ('$id','$rating','".$_SERVER['REMOTE_ADDR']."')") or die(mysql_error());
 			
 			$total = 0;
 			$rows = 0;
 			
-			$sel = mysql_query("SELECT rating_num FROM ratings WHERE rating_id = '$id'");
+			$sel = mysql_query("SELECT rating_num FROM fas_ratings WHERE rating_id = '$id'");
 			while($data = mysql_fetch_assoc($sel)){
 			
 				$total = $total + $data['rating_num'];
@@ -72,14 +72,14 @@ if($_GET){
 	
 	if($rating <= 5 && $rating >= 1){
 	
-		if(@mysql_fetch_assoc(mysql_query("SELECT id FROM ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'")) || isset($_COOKIE['has_voted_'.$id])){
+		if(@mysql_fetch_assoc(mysql_query("SELECT id FROM fas_ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'")) || isset($_COOKIE['has_voted_'.$id])){
 		
 			echo 'already_voted';
 			
 		} else {
 			
 			setcookie('has_voted_'.$id,$id,$expire,'/',$domain,false);
-			mysql_query("INSERT INTO ratings (rating_id,rating_num,IP) VALUES ('$id','$rating','".$_SERVER['REMOTE_ADDR']."')") or die(mysql_error());
+			mysql_query("INSERT INTO fas_ratings (rating_id,rating_num,IP) VALUES ('$id','$rating','".$_SERVER['REMOTE_ADDR']."')") or die(mysql_error());
 			
 		}
 		

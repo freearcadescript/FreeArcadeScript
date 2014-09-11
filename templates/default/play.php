@@ -2,7 +2,7 @@
 $ID = clean($_GET['ID']);
 $ID = abs((int) ($ID));
 
-$ir1 = "SELECT * FROM dd_games WHERE ID='$ID'" ;
+$ir1 = "SELECT * FROM fas_games WHERE ID='$ID'" ;
 $sqltitle = "gamedata-".$ID ;
 $ir2 = sqlcache($sqltitle, $cachelife, $ir1);
 foreach ( $ir2 as $r ); {
@@ -56,7 +56,7 @@ if(!$r['name']){
 	
 	exit;
 }
- $ir = $db->query(sprintf('SELECT * FROM dd_games WHERE ID=\'%u\'', $ID));
+ $ir = $db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\'', $ID));
 
  $r = $db->fetch_row($ir);
 
@@ -72,7 +72,7 @@ if(isset($_POST['commentsubmit'])){
 	}else{
 		$approved = 0;
 	}
-	$db->query(sprintf('INSERT INTO dd_comments SET
+	$db->query(sprintf('INSERT INTO fas_comments SET
 						gameid=\'%u\',
 						commenter=\'%u\',
 						comment=\'%s\',
@@ -137,7 +137,7 @@ echo '
 	<tr>
 		<td class=\'content\' colspan=\'2\'>
 		<div align=\'center\' style=\'padding:5px;\'>';
-	$rrb = $db->query('SELECT * FROM dd_games ORDER BY RAND() LIMIT 0,6');
+	$rrb = $db->query('SELECT * FROM fas_games ORDER BY RAND() LIMIT 0,6');
 		
 	echo '<table align=\'center\'>';
 	
@@ -198,7 +198,7 @@ echo '	<tr>
 		<td  width=\'70%\' valign=\'top\' colspan=\'2\' align=\'center\'>
 		<div align=\'center\'>
 		<table width=\'100%\' border=\'0\'>';
-		$rrr2 = "SELECT * FROM dd_comments WHERE gameid='$ID' AND approved='1' ORDER BY date DESC LIMIT 3";
+		$rrr2 = "SELECT * FROM fas_comments WHERE gameid='$ID' AND approved='1' ORDER BY date DESC LIMIT 3";
             $sqltitle = "gamecomments0-".$ID ;
 
 
@@ -206,7 +206,7 @@ echo '	<tr>
 		foreach ($rrr1 as $row ){
 		$date = date('d-m-Y', $row['date']);
             $useridc=$row['commenter'] ;
-		$rra2 = "SELECT * FROM dd_users WHERE userid='$useridc'";
+		$rra2 = "SELECT * FROM fas_users WHERE userid='$useridc'";
 
             $sqltitle = "userprofile-".$row['commenter'] ;
             $rra1 = sqlcache($sqltitle, $cachelife, $rra2);
@@ -278,6 +278,7 @@ if($seo_on == 1){
 			</tr>
 	</table>';
 	}
+
 if($seo_on == 1){
 		$taf1 = ''.$domain.'/taf/';
 	}else{
@@ -310,14 +311,14 @@ Your friend\'s e-mail: <input type=\'text\' name=\'recipient\' size=\'50\'>
             </div>
             </td>
       </tr>
-
 </table>';
+
 $useridp=$usrdata['userid'] ;
 if ($useridp=='0' or $useridp=='') {$useridp='-1'; };
-$db->query(sprintf('UPDATE dd_games SET views=views+1 WHERE ID=\'%u\'', $ID));
+$db->query(sprintf('UPDATE fas_games SET views=views+1 WHERE ID=\'%u\'', $ID));
 
 if ($useridp!='-1') {
-$db->query('UPDATE dd_users SET plays=plays+1 WHERE userid=\''.$useridp.'\'');
+$db->query('UPDATE fas_users SET plays=plays+1 WHERE userid=\''.$useridp.'\'');
  };
 
 

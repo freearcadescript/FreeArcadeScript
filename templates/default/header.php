@@ -1,8 +1,11 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
+<title><?php echo $pagetitle; ?></title>
 <head>
-<meta name="keywords" content="flash games,free flash games,games,arcade games¸sonic,nintendo,online" />
-<meta name="description" content="Take a break play some free games,facebook games" />
-<link href="<?=$domain?>/templates/default/styles.css" rel="stylesheet" type="text/css">
+<meta name="keywords" content="<?php echo $metatags; ?>" />
+<meta name="description" content="<?php echo $metadescription ; ?>" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="<?=$domain?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">
 <?php
 include ("js/rating_update.php");
 
@@ -12,7 +15,7 @@ include ("js/rating_update.php");
 <table width="900" border="0" align="center" class="maintable" cellpadding="0" cellspacing="0">
 	<tr>
 		<td colspan="3">
-		<img src="<?=$domain?>/templates/default/images/banner.png" width="900"></img>
+		<img src="<?=$domain?>/templates/<?php echo $template ; ?>/images/banner.png" width="900"></img>
 		
 		<?php
 
@@ -24,7 +27,8 @@ include ("js/rating_update.php");
 		echo '	<ul>
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/mostplayed/\' title=\'Most Played\'>Most Played</a></li>
-				<li><a href=\''.$domain.'/newest/\' title=\'Newest\'>Newest</a></li><li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
+				<li><a href=\''.$domain.'/newest/\' title=\'Newest\'>Newest</a></li>
+                                <li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/search/\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/links/\' title=\'Links\'>Links</a></li>
 				<li><a href=\''.$domain.'/fineprint/\' title=\'Fine Print\'>Fine Print</a></li>
@@ -47,7 +51,8 @@ include ("js/rating_update.php");
 		echo '	<ul>
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/index.php?action=mostplayed\' title=\'Most Played\'>Most Played</a></li>
-				<li><a href=\''.$domain.'/index.php?action=newest\' title=\'Newest\'>Newest</a></li><li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
+				<li><a href=\''.$domain.'/index.php?action=newest\' title=\'Newest\'>Newest</a></li>
+                                <li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/index.php?action=search\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/index.php?action=links\' title=\'Links\'>Links</a></li>
 				<li><a href=\''.$domain.'/index.php?action=fineprint\' title=\'Fine Print\'>Fine Print</a></li>
@@ -130,7 +135,7 @@ include ("js/rating_update.php");
 					<?php
 					echo '<ul class=\'catmenu\'>';
 					
-					$tur = $db->query('SELECT username, userid, plays FROM dd_users ORDER BY plays DESC LIMIT 0,15');
+					$tur = $db->query('SELECT username, userid, plays FROM fas_users ORDER BY plays DESC LIMIT 0,15');
 					while($r = $db->fetch_row($tur)){
 					echo '
 						<li>'.$r['username'].' - ('.$r['plays'].')</li>';

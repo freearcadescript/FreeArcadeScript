@@ -9,7 +9,7 @@ global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder,
 
 $count = 0;
 
-$baser2 = "SELECT * FROM dd_categories where active='1'";
+$baser2 = "SELECT * FROM fas_categories where active='1'";
 $baser1 = sqlcache('mainpagecats', $cachelife, $baser2);
 
 
@@ -17,7 +17,7 @@ echo '<table width=\'99%\' border=\'0\' cellpadding=\'0\' cellspacing=\'0\'  ali
 foreach($baser1 as $row){
 
 $categorynamev = $row['name'];
-$categorynameu = ereg_replace('[^A-Za-z0-9]', '-', $categorynamev );
+$categorynameu = preg_replace('[^A-Za-z0-9]', '-', $categorynamev );
 
 if($seo_on == 1){
 		$categoryurl = ''.$domain.'/browse/'.$row['ID'].'-'.$categorynameu.'.html';
@@ -38,7 +38,7 @@ if($count%2==0){
 	      	echo '<table>';
                   $catid1=$row['ID'];
                   $sqltitle='mainpagecat'.$catid1 ;
-	      	$baseir2 = "SELECT * FROM dd_games WHERE category='$catid1' and active='1' ORDER BY rand() LIMIT 0,".$limitboxgames ;
+	      	$baseir2 = "SELECT * FROM fas_games WHERE category='$catid1' and active='1' ORDER BY rand() LIMIT 0,".$limitboxgames ;
                   $baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
 
 	      	foreach($baseir1 as $row ){
@@ -95,12 +95,12 @@ echo '
 	      			      	echo '<table>';
                   $catid1=$row['ID'];
                   $sqltitle='mainpagecat'.$catid1 ;
-	      	$baseir2 = "SELECT * FROM dd_games WHERE category='$catid1' and active='1' ORDER BY rand() LIMIT 0,".$limitboxgames ;
+	      	$baseir2 = "SELECT * FROM fas_games WHERE category='$catid1' and active='1' ORDER BY rand() LIMIT 0,".$limitboxgames ;
                   $baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
 
 	      	foreach($baseir1 as $row ){
 
-				      	$gamename = ereg_replace('[^A-Za-z0-9]', '-', $row['name']);
+				      	$gamename = preg_replace('[^A-Za-z0-9]', '-', $row['name']);
 				      	if($seo_on == 1){
 				      		$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 				      	}else{

@@ -12,10 +12,9 @@ RewriteRule ^blogentry/entryid/([^/]*)/([^/]*)\.html$ /index.php?action=blogentr
 RewriteRule ^blogentry/submitcomment/$ /index.php?action=blogentry&cmd=submitcomment [L]
 RewriteRule ^blog/page/([^/]*)\.html$ /index.php?action=blog&page=$1 [L]
 RewriteRule ^showcomments/([^/]*)/([^/]*)/([^/]*)\.html$ /index.php?action=showcomments&name=$1&ID=$2&page=$3 [L]
-RewriteRule ^mostplayed/page([^/]*)\.html$ /index.php?action=newest&page=$2 [L]
+RewriteRule ^mostplayed/page([^/]*)\.html$ /index.php?action=mostplayed&page=$2 [L]
 RewriteRule ^browse/([^-]*)-([^-]*)/page([^-]*)\.html$ /index.php?action=browse&ID=$1&name=$2&page=$3 [L]
 RewriteRule ^play/([^/]*)-([^/]*)\.html$ /index.php?action=play&ID=$1&name=$2 [L]
 RewriteRule ^pages/([^/]*)-([^/]*)\.html$ /index.php?action=page&entryid=$1&name=$2 [L]
 RewriteRule ^pages\/$ /index.php?action=pages [L]
 RewriteRule ^forgotpassword\/$ /index.php?action=forgotpassword [L]
-

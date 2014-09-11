@@ -17,7 +17,7 @@ echo '
 					';
 					echo '<ul class=\'catmenu\'>';
 					
-					$tur1 = 'SELECT username, userid, plays FROM dd_users ORDER BY plays DESC LIMIT 0,15';
+					$tur1 = 'SELECT username, userid, plays FROM fas_users ORDER BY plays DESC LIMIT 0,15';
                               $tur = sqlcache('topplayers', $cachelife, $tur1);
 					foreach($tur as $r){
 					echo '
