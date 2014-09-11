@@ -1,0 +1,17 @@
+RewriteEngine On
+RewriteRule ^([^/]*)\/$ /index.php?action=$1 [L]
+RewriteRule ^showprofile/([^/]*)\.html$ /index.php?action=showprofile&profile=$1 [L]
+RewriteRule ^memberslist/([^/]*)\.html$ /index.php?action=memberslist&page=$1 [L]
+RewriteRule ^([^/]*)/([^/]*)\/$ /index.php?action=$1&cmd=$2 [L]
+RewriteRule ^browse/([^/]*)-([^/]*)\.html$ /index.php?action=browse&ID=$1&name=$2 [L]
+RewriteRule ^newest/page([^/]*)\.html$ /index.php?action=newest&page=$2 [L]
+
+RewriteRule ^blog/([^/]*)/([^/]*)/$ /index.php?action=blogcat&category=$1&page=$2 [L]
+RewriteRule ^blog/$ /index.php?action=blog [L]
+RewriteRule ^blogentry/entryid/([^/]*)/([^/]*)\.html$ /index.php?action=blogentry&entryid=$1&page=$2 [L]
+RewriteRule ^blogentry/submitcomment/$ /index.php?action=blogentry&cmd=submitcomment [L]
+RewriteRule ^blog/page/([^/]*)\.html$ /index.php?action=blog&page=$1 [L]
+RewriteRule ^showcomments/([^/]*)/([^/]*)/([^/]*)\.html$ /index.php?action=showcomments&name=$1&ID=$2&page=$3 [L]
+RewriteRule ^mostplayed/page([^/]*)\.html$ /index.php?action=newest&page=$2 [L]
+RewriteRule ^browse/([^-]*)-([^-]*)/page([^-]*)\.html$ /index.php?action=browse&ID=$1&name=$2&page=$3 [L]
+RewriteRule ^play/([^/]*)-([^/]*)\.html$ /index.php?action=play&ID=$1&name=$2 [L]
