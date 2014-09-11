@@ -14,7 +14,7 @@ switch($_GET['cmd']){
 	
 }
 function categories(){
-	global $domain, $db, $template;
+	global $domain, $db;
 	echo '
 	<div class=\'pgtitle\'>Manage Categories</div><br />
 	<table width=\'80%\' align=\'center\'>
@@ -27,9 +27,9 @@ function categories(){
 	echo '	<tr>
 			<td>'.$ir['name'].'</td>
 			
-			<td><a href=\''.$domain.'/index.php?action=admin&case=managecategories&cmd=edit&ID='.$ir['ID'].'\'><img src=\''.$domain.'/templates/'.$template.'/images/editbtn.png\' border=\'0\'></a>
+			<td><a href=\''.$domain.'/index.php?action=admin&case=managecategories&cmd=edit&ID='.$ir['ID'].'\'><img src=\''.$domain.'/templates/default/images/editbtn.png\' border=\'0\'></a>
 		
-			<a href=\''.$domain.'/index.php?action=admin&case=managecategories&cmd=delete&ID='.$ir['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the category '.$ir['name'].'? \n All games in this category will be deleted from the database too.\')"><img src=\''.$domain.'/templates/'.$template.'/images/deletebtn.png\' border=\'0\'></a>
+			<a href=\''.$domain.'/index.php?action=admin&case=managecategories&cmd=delete&ID='.$ir['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the category '.$ir['name'].'? \n All games in this category will be deleted from the database too.\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' border=\'0\'></a>
 		
 		</td>
 	

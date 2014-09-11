@@ -29,7 +29,7 @@ echo '<div class=\'msg\'>Comment Deleted.<br />
 			<A href="#" onclick="history.go(-1)">Back</a></div>';
 }
 function approve(){
-	global $domain, $db, $blogcommentpermissions, $template;
+	global $domain, $db, $blogcommentpermissions;
 	if($blogcommentpermissions == 1){
 		echo '<div class=\'error\'>You have auto approve blog comments set to on.</div><br />';
 	}
@@ -45,9 +45,9 @@ function approve(){
                   <b>Commenter IP: </b>'.$row['ipaddress'].'<br>
                   <b>Commenter URL: </b><a href=\'http://'.$row['commenterurl'].'\'>'.$row['commenterurl'].'</a></td>
 			<td class=\'content5\' valign=\'top\' >
-			<a href=\''.$domain.'/index.php?action=blogadmin&case=approveblogcomments&cmd=do_approve&commentid='.$row['commentid'].'\'><img src=\''.$domain.'/templates/'.$template.'/images/approve.png\' border=\'0\'></a>
+			<a href=\''.$domain.'/index.php?action=blogadmin&case=approveblogcomments&cmd=do_approve&commentid='.$row['commentid'].'\'><img src=\''.$domain.'/templates/default/images/approve.png\' border=\'0\'></a>
 
-<a href=\''.$domain.'/index.php?action=blogadmin&case=approveblogcomments&cmd=delete&commentid='.$row['commentid'].'\'  onclick="return confirm(\'Are you sure you want to delete the comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/deletebtn.png\' border=\'0\'></a>
+<a href=\''.$domain.'/index.php?action=blogadmin&case=approveblogcomments&cmd=delete&commentid='.$row['commentid'].'\'  onclick="return confirm(\'Are you sure you want to delete the comment?\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' border=\'0\'></a>
 
 			</td>
 		</tr>';

@@ -10,7 +10,7 @@ global $db, $domain, $suserid, $sitename, $domain, $template, $gamesfolder, $thu
 
 if($usrdata['bloglevel'] ==  0 || $usrdata['bloglevel'] == 1){
 	echo 'You are not blog admin, therfore you can not access this part of the site.';
-	
+	include ('templates/'.$template.'/footer.php');
 	exit;
 }
 

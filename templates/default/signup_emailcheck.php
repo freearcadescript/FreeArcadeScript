@@ -23,8 +23,11 @@ if(isset($_POST['submit'])){
 	$pass_word = clean($_POST['pass_word']);
 	$pass_word2 = clean($_POST['pass_word2']);
 	$email = clean($_POST['email']);
+	$question = clean($_POST['question']);
+	$answer = clean($_POST['answer']);
+	$activation_number = rand( );
 	
-	if(!$user_name || !$pass_word || !$pass_word2 || !$email){
+	if(!$user_name || !$pass_word || !$pass_word2 || !$email || !$question || !$answer){
 		echo '<div class=\'error\'>You\'ve not filled all required fields in.</div>';
 		include ('templates/'.$template.'/footer.php');
 		exit;
@@ -40,12 +43,30 @@ if(isset($_POST['submit'])){
 		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
+	$ru = $db->query('SELECT email FROM dd_users WHERE email=\''.$email.'\'');
+	if($db->num_rows($ru) == 1){
+		echo '<div class=\'error\'>Email is already in use.</div>';
+		include ('templates/'.$template.'/footer.php');
+		exit;
+	}
 	$pass = md5($pass_word);
 	$db->query(sprintf('INSERT INTO dd_users SET
 				username=\'%s\',
 				password=\'%s\',
-				email =\'%s\'', $user_name, $pass, $email));
-				echo '<div class=\'msg\'>Success, you\'ve now registered.</div>';
+				activation_key=\'%s\',
+				email =\'%s\',
+				pass_question =\'%s\',
+				pass_answer =\'%s\'', $user_name, $pass, $activation_number, $email, $question, $answer));
+				echo '<div class=\'msg\'>Thank you for signing up!<br> <font color=red>Please check your email for an activation key!</font></div>';
+
+$subject = 'Welcome to '.$sitename.'';
+$message = 'Dear '.$user_name.',<br>Thank you for registering at <a href="'.$domain.'">'.$sitename.'</a>,<br> <a href="'.$domain.'/index.php?action=activate&id='.$activation_number.'">Click Here</a> to activate your new account.<br>Thanks again,<br>'.$sitename.' administration';
+$headers = 'From: '.$supportemail.'' . "\r\n" .
+    'Content-Type: text/html; charset=\"iso-8859-1\"' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($email, $subject, $message, $headers);
+
 }
 if($seo_on == 1){
 	$surl = ''.$domain.'/signup/';
@@ -70,9 +91,20 @@ echo '<form action=\''.$surl.'\' method=\'POST\'>
 			<td class=\'content\'><input type=\'password\' name=\'pass_word2\' size=\'35\'></td>
 		</tr>
 		<tr>
-			<td class=\'content\'>Email:*</td>
+			<td class=\'content\'>Email:*<br><small>Email must be valid!</small></td>
 			<td class=\'content\'><input type=\'text\' name=\'email\' size=\'40\'></td>
 		</tr>
+
+		<tr>
+			<td class=\'content\'>Question:*<br><small>If you forgot your password!</small></td>
+			<td class=\'content\'><input type=\'text\' name=\'question\' size=\'40\'></td>
+		</tr>
+
+		<tr>
+			<td class=\'content\'>Answer:*<br><small>If you forgot your password!</small></td>
+			<td class=\'content\'><input type=\'text\' name=\'answer\' size=\'40\'></td>
+		</tr>
+
 		<tr>
 			<td colspan=\'2\' align=\'center\' class=\'header\'><input type=\'submit\' name=\'submit\' value=\'Signup Now\'>
 		</tr>

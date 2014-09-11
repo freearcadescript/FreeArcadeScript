@@ -48,7 +48,7 @@ else if($count%3==1){
 
 }
 function games(){
-global $domain, $db, $usrdata, $template;
+global $domain, $db, $usrdata;
 $CID = abs((int) $_GET['CID']);
 
 $max = 20;
@@ -86,8 +86,8 @@ echo '<tr>
 		<td class=\'content5\' align=\'center\'>'.$row['name'].'</td>
 		<td class=\'content5\' align=\'center\'>'.$type.'</td>
 		<td class=\'content5\' width=\'50\' align=\'center\'>
-		<a href=\''.$domain.'/index.php?action=gameadmin&case=managegames&cmd=edit&ID='.$row['ID'].'&type='.$row['type'].'\'><img src=\''.$domain.'/templates/'.$template.'/images/editbtn.png\' border=\'0\'></a>
-		<a href=\''.$domain.'/index.php?action=gameadmin&case=managegames&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/deletebtn.png\' border=\'0\'></a>
+		<a href=\''.$domain.'/index.php?action=gameadmin&case=managegames&cmd=edit&ID='.$row['ID'].'&type='.$row['type'].'\'><img src=\''.$domain.'/templates/default/images/editbtn.png\' border=\'0\'></a>
+		<a href=\''.$domain.'/index.php?action=gameadmin&case=managegames&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row['name'].'?\')"><img src=\''.$domain.'/templates/default/images/deletebtn.png\' border=\'0\'></a>
 		
 		</td>
 	</tr>';

@@ -12,13 +12,14 @@ if(isset($_POST['submit'])){
 	$username = clean($_POST['username']);
 	$password = md5(clean($_POST['password']));
 	
-	$r = $db->query(sprintf('SELECT userid FROM dd_users WHERE username=\'%s\' AND password=\'%s\'', $username, $password));
+	$r = $db->query(sprintf('SELECT * FROM dd_users WHERE username=\'%s\' AND password=\'%s\'', $username, $password));
 	if(!$db->num_rows($r)){
 		echo '<div class=\'error\'>User account does not exist.</div>';
 		include ('templates/'.$template.'/footer.php');
 		exit;
 	}else{
 		$ir = $db->fetch_row($r);
+	if($ir['activation_key'] == "0"){
 		$_SESSION['username'] = $username;
 		$_SESSION['userid']= $ir['userid'];
 		$_SESSION['website']= $ir['website'];
@@ -28,9 +29,12 @@ if(isset($_POST['submit'])){
 		$_SESSION['bloglevel']= $ir['bloglevel'];
 		echo '<div class=\'msg\'>You\'ve now logged on.</div>';
 		
-PRINT<<<ETL
-<meta http-equiv="REFRESH" content="0;url=$domain">
-ETL;
+
+echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
+}else{
+echo "<div class='error'>You need to activate your account first!</div>";
+}
+
 	}
 	
 }else{

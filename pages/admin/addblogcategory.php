@@ -5,7 +5,7 @@ if(isset($_POST['submit'])){
 	$activate = clean($_POST['activate']);
 	if(!$categoryname){
 		echo '<div class=\'error\'>No name submitted.</div>';
-		
+		include ('templates/'.$template.'/footer.php');
 		exit;
 	};
 	mysql_query("INSERT INTO blogcategories SET topcategory='$topcategory', categoryname='$categoryname', activate='$activate' ");

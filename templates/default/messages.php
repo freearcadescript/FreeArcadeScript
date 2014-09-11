@@ -65,7 +65,7 @@ $ir = $db->query("SELECT * FROM dd_messages WHERE to_userid='{$userid}' AND ID='
 $or = $db->fetch_row($ir);
 if(!$db->num_rows($ir)){
 echo 'Either you do not own that message or it does not exist.';
-
+include ('templates/'.$template.'/footer.php');
 exit;
 }
 $db->query("UPDATE dd_messages SET status='1' WHERE ID='$ID'");
@@ -133,6 +133,7 @@ $to = abs((int) $_POST['to']);
 $message = clean($_POST['message']);
 $subject = clean($_POST['subject']);
 if(!$to || !$message){ echo "All fields must be filled in!";
+include ('templates/'.$template.'/footer.php');
  exit; };
 $date = time();
 $db->query("INSERT INTO dd_messages SET
@@ -151,7 +152,7 @@ $to = abs((int) $_POST['to']);
 $message = clean($_POST['message']);
 $subject = clean($_POST['subject']);
 if(!$to || !$message){ echo "All fields must be filled in!";
-
+include ('templates/'.$template.'/footer.php'); 
 exit; }
 $date = time();
 $db->query("INSERT INTO dd_messages SET
@@ -163,7 +164,7 @@ status = '0',
 datesent='{$date}'");
 
 echo 'Message sent.';
-
+include ('templates/'.$template.'/footer.php');
 exit;
 }
 if($to == ''){

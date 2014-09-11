@@ -6,7 +6,7 @@
 <meta name="description" content="<?php echo $metadescription ; ?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-<link href="<?php $domain; ?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">
+<link href="<?=$domain?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">
 <?php
 include ("js/rating_update.php");
 
@@ -16,7 +16,7 @@ include ("js/rating_update.php");
 <table width="900" border="0" align="center" class="maintable" cellpadding="0" cellspacing="0">
 	<tr>
 		<td colspan="3">
-		<img src="<?php echo $domain; ?>/templates/<?php echo $template ; ?>/images/banner.png" width="900"></img>
+		<img src="<?=$domain?>/templates/<?php echo $template ; ?>/images/banner.png" width="100%"></img>
 		
 		<?php
 
@@ -36,6 +36,7 @@ include ("js/rating_update.php");
 					';
 				if(!isset($suserid)){
 				$mymenu1 = '	<li ><a href=\''.$domain.'/login/\'>Login</a></li>
+					<li><a href=\''.$domain.'/forgotpassword/\'>Forgot password?</a></li>
 					<li ><a href=\''.$domain.'/signup/\'>Signup</a></li>';
 				}else{
 				$mymenu1 = '	
@@ -52,13 +53,15 @@ include ("js/rating_update.php");
 		echo '	<ul>
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/index.php?action=mostplayed\' title=\'Most Played\'>Most Played</a></li>
-				<li><a href=\''.$domain.'/index.php?action=newest\' title=\'Newest\'>Newest</a></li><li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
+				<li><a href=\''.$domain.'/index.php?action=newest\' title=\'Newest\'>Newest</a></li>
+				<li><a href="'.$domain.'/index.php?action=memberslist" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/index.php?action=search\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/index.php?action=links\' title=\'Links\'>Links</a></li>
 				<li><a href=\''.$domain.'/index.php?action=fineprint\' title=\'Fine Print\'>Fine Print</a></li>
 				';
 				if(!isset($suserid)){
 				$mymenu1 = '	<li ><a href=\''.$domain.'/index.php?action=login\'>Login</a></li>
+					<li><a href=\''.$domain.'/index.php?action=forgotpassword\'>Forgot password?</a></li>
 					<li ><a href=\''.$domain.'/index.php?action=signup\'>Signup</a></li>';
 				}else{
 				$mymenu1 = '	
@@ -206,10 +209,12 @@ writebody();
 				</tr>
 			</table>
 			<?php
-			$totalgames = $db->num_rows($db->query(sprintf('SELECT ID FROM dd_games')));
-			$totalusers = $db->num_rows($db->query(sprintf('SELECT userid FROM dd_users')));
+			$totalgames = $db->num_rows($db->query(sprintf('SELECT ID FROM dd_games WHERE active="1"')));
+			$totalusers = $db->num_rows($db->query(sprintf('SELECT userid FROM dd_users WHERE activation_key="0"')));
 			$totalcats = $db->num_rows($db->query(sprintf('SELECT ID FROM dd_categories')));
 			$totalcomments = $db->num_rows($db->query(sprintf('SELECT ID FROM dd_comments')));
+			$time=time()-15*60;
+			$onlineusers = $db->num_rows($db->query("SELECT userid FROM dd_users WHERE status >= $time"));
 			$year = date('Y');
 		?>
 			<table width="100%">
@@ -223,7 +228,7 @@ writebody();
 					Total Categories: <?php echo $totalcats; ?><br />
 					Total Comments: <? echo $totalcomments; ?><br />
                               Total Hits: <?php include ("$directorypath/includes/counter.php"); ?><br />
-					Users Online: <? echo countusersonline(); ?><p>
+					Users Online: <? echo $onlineusers; ?><p>
                               <a href="<?php echo $domain; ?>/rss-arcade.php"><img src="<? echo $domain; ?>/templates/default/images/rss.gif"  border="0" ></img> RSS-Games</a><br /> 
                               <?php   if ($showblog == 1) { echo '<a href="'.$domain.'/rss-blog.php"><img src="'.$domain.'/templates/default/images/rss.gif" border="0" ></img> RSS-Blog</a><br />' ; };
 
@@ -236,6 +241,6 @@ writebody();
 			</td>	</tr></table><br />
 <div align="center">
  <! -- Please do not remove the "powered by" link unless, you've purchased the removal. -- >
-	<div align="center"> <?php echo "Copyright ".$sitename." &copy; 2008-".date('Y'); ?> All Rights Reserved - Powered By <a href="http://www.freearcadescript.net" target="_blank">Free Arcade Script</a> - Rating mod by <a href="http://www.boedesign.com" target="_blank">boedesign.com</a></div> <Br />
+	<div align="center"> <?php echo "Copyright ".$sitename." &copy; 2008-".date('Y'); ?> All Rights Reserved - Powered By <a href="http://www.freearcadescript.net" target="_blank">Free Arcade Script</a>.</div> <Br />
 <?php echo $footerspace; ?>
 </body></html>

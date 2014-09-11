@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
       $IPaddress = $_SERVER['REMOTE_ADDR'];
 	if(!$title || !$url){
 		echo '<div class=\'error\'>Title or URL was not filled.</div>';
-		
+		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
 	mysql_query("INSERT INTO dd_links SET 

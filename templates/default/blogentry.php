@@ -144,7 +144,7 @@ echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 		<td colspan=\'2\' class=\'header\'>Comments - Total('.$totalres.')</td>
 	</tr>';
 
-if( $totalres == '0' ){
+if( $roralres == '0' ){
 echo '	<tr>
 		<td colspan=\'2\' class=\'content\'>There currently are no comments.</td>
 	</tr>';

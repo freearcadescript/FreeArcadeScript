@@ -4,8 +4,4 @@ Disallow:/logout/
 Disallow:/contact/
 Disallow:/blogentry/submitcomment/
 Disallow:/search/
-
-
-
-
-
+Disallow:/forgotpassword/

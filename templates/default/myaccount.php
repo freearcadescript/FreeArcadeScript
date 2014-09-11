@@ -123,17 +123,19 @@ if($seo_on == 1){
 	$url3 = ''.$domain.'/myaccount/';
       $url4 = ''.$domain.'/messages/';
       $url5 = ''.$domain.'/myaccount/changeavatar/';
+	$url6 = ''.$domain.'/myaccount/changequestion/';
+	$url7 = ''.$domain.'/myaccount/changeemail/';
 }else{
 	$url1 = ''.$domain.'/index.php?action=myaccount&cmd=favorites';
 	$url2 = ''.$domain.'/index.php?action=myaccount&cmd=changepassword';
 	$url3 = ''.$domain.'/index.php?action=myaccount';
       $url4 = ''.$domain.'/index.php?action=messages';
       $url5 = ''.$domain.'/index.php?action=myaccount&cmd=changeavatar';
+      $url6 = ''.$domain.'/index.php?action=myaccount&cmd=changequestion';
+      $url7 = ''.$domain.'/index.php?action=myaccount&cmd=changeemail';
 }
 
 if(isset($_POST['newsletter'])){
-
-
 $userid = $usrdata['userid'];
 $newsletter = clean($_POST['newsletter']);
 $email = clean($_POST['email']);
@@ -158,11 +160,9 @@ $bio = clean($_POST['bio']);
 $ip = $_SERVER['REMOTE_ADDR'];
 
 
-mysql_query("UPDATE dd_users SET email='$email', newsletter='$newsletter', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location', 
+mysql_query("UPDATE dd_users SET newsletter='$newsletter', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location', 
 job='$job', website='$website', link1='$link1', link2='$link2', link3='$link3', link4='$link4', link5='$link5', link6='$link6', link7='$link7', link8='$link8', sex='$sex', interests='$interests', bio='$bio', ip='$ip' WHERE userid='$userid'" ) ;
 echo '<div class=\'msg\'>Profile updated</div><p>';
-
-
 };
 
 
@@ -171,7 +171,6 @@ $userid = $usrdata['userid'];
 $ir = $db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $username = $r2['username'];
-$email = $r2['email'];
 $plays = $r2['plays'];
 $newsletter = $r2['newsletter'];
 $aim = $r2['aim'];
@@ -211,6 +210,8 @@ if ($avatar == "1" ) { $avatarfileurl = '<img src=\''.$domain.'/avatars/'.$avata
                         <td class=\'content\' style=\'padding:3px;\'>'.$avatarfileurl.' </td>
 				<td colspan=\'3\' class=\'content\' style=\'padding:3px;\'><a href=\''.$url1.'\'>My Favorites</a> -
 				<a href=\''.$url2.'\'>Change Password</a> - 
+                        <a href= \''.$url6.'\'>Change pass question/answer</a> - 
+                        <a href= \''.$url7.'\'>Change email</a> - 
                         <a href= \''.$url4.'\'>Messages</a> - 
                         <a href= \''.$url5.'\'>Change Avatar</a>
                         </td>
@@ -230,11 +231,6 @@ if ($avatar == "1" ) { $avatarfileurl = '<img src=\''.$domain.'/avatars/'.$avata
 <option value="yes" '.$nsel.' >Yes</option>
 </select>
 </td>
-</tr>
-
-<tr>
-<td class="content">E-mail:</td>
-<td class="content"><input name="email" type="text" size="50" value="'.$email.'"></td>
 </tr>
 
 <tr>
@@ -359,8 +355,129 @@ echo '&nbsp;';
 
 
 
+function changeemail(){
+	global $domain, $db, $usrdata, $seo_on, $supportemail, $sitename;
+	
+$userid = $usrdata['userid'];
+$ir = $db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $userid));
+$r2 = $db->fetch_row($ir);
+$current_email = $r2['email'];
+	if(isset($_POST['submit'])){
+		$email = clean($_POST['email']);
+		
+		if(!$email){
+			echo '<div class=\'error\'>All feilds are required!</div>';
+			include ('templates/'.$template.'/footer.php');
+			exit;
+		}
+
+		if($email == $current_email){
+			echo '<div class=\'error\'>This is your current email. Change your email to something different</div>';
+			include ('templates/'.$template.'/footer.php');
+			exit;
+		}
+
+	$ru = $db->query('SELECT email FROM dd_users WHERE email=\''.$email.'\'');
+	if($db->num_rows($ru) == 1){
+		echo '<div class=\'error\'>Email is already in use.</div>';
+		include ('templates/'.$template.'/footer.php');
+		exit;
+	}
+		
+$user_name=$usrdata[username];
+$activation_number = rand( );
+$subject = 'Email change';
+$message = 'Dear '.$user_name.',<br>We have recived a request to change your email on <a href="'.$domain.'">'.$sitename.'</a>. Please click <a href="'.$domain.'/index.php?action=activateemail&newemail='.$email.'&oldemail='.$current_email.'&id='.$activation_number.'">here</a> to activate your new email.<br>Thanks,<br>'.$sitename.' administration';
+$headers = 'From: '.$supportemail.'' . "\r\n" .
+    'Content-Type: text/html; charset=\"iso-8859-1\"' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+
+mail($email, $subject, $message, $headers);
+
+mysql_query("UPDATE dd_users SET `new_email`='$email', `new_email_key`='$activation_number' WHERE userid='{$usrdata['userid']}'");
+echo '<div class=\'msg\'>An email has been sent for you to comfirm its correct.</div>';
+
+}
+		
+		if($seo_on == 1){
+			$surl = ''.$domain.'/myaccount/changeemail/';
+		}else{
+			$surl = ''.$domain.'/index.php?action=myaccount&cmd=changeemail';
+		}
+
+		echo '<form action=\''.$surl.'\' method=\'POST\'>
+		<h2>Change email</h2>
+		<table>
+			<tr>
+				<td>Email:</td>
+				<td><input type=\'text\' name=\'email\' size=\'35\' value=\''.$current_email.'\'></td>
+			</tr>
+			<tr>
+				<th colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
+			</tr>
+		</table>		
+		</form>';
+		
+	
+}
 
 
+
+function changequestion(){
+	global $domain, $db, $usrdata, $seo_on;
+	
+	if(isset($_POST['submit'])){
+		$pass = clean(md5($_POST['pass']));
+		$answer = clean($_POST['answer']);
+		$question = clean($_POST['question']);
+		
+		if(!$question || !$answer || !$pass){
+			echo 'All feilds were not filled out!';
+			exit;
+		}
+		
+		if($pass != $usrdata['password']){
+			echo '<div class=\'error\'>Current Password is incorrect.</div>';
+		}else{
+			mysql_query("UPDATE dd_users SET `pass_question`='$question', `pass_answer`='$answer' WHERE userid='{$usrdata['userid']}'");
+			echo '<div class=\'msg\'>Question & answer updated.</div>';
+		}
+		
+		if($seo_on == 1){
+			$surl = ''.$domain.'/myaccount/changequestion/';
+		}else{
+			$surl = ''.$domain.'/index.php?action=myaccount&cmd=changequestion';
+		}
+		}
+
+$userid = $usrdata['userid'];
+$ir = $db->query(sprintf('SELECT * FROM dd_users WHERE userid=\'%u\'', $userid));
+$r2 = $db->fetch_row($ir);
+$questionf = $r2['pass_question'];
+$answerf = $r2['pass_answer'];
+		echo '<form action=\''.$surl.'\' method=\'POST\'>
+		<h2>Change password question/answer</h2>
+		<table>
+			<tr>
+				<td>Question:</td>
+				<td><input type=\'text\' name=\'question\' size=\'35\' value=\''.$questionf.'\'></td>
+			</tr>
+			<tr>
+				<td>Answer:</td>
+				<td><input type=\'text\' name=\'answer\' size=\'35\' value=\''.$answerf.'\'></td>
+			</tr>
+			<tr>
+				<td>Current Password:</td>
+				<td><input type=\'password\' name=\'pass\' size=\'35\'></td>
+			</tr>
+			<tr>
+				<th colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
+			</tr>
+		</table>		
+		</form>';
+		
+	
+}
 
 
 function changepassword(){
@@ -372,12 +489,12 @@ function changepassword(){
 		$newpass = md5($_POST['newpass']);
 		
 		if(!$oldpass || !$newpass){
-			echo 'Old password, or new password field was not filled.';
+			echo 'All feilds were not filled out!';
 			exit;
 		}
 		
 		if($oldpass != $usrdata['password']){
-			echo '<div class=\'error\'>Old Passwords to not match.</div>';
+			echo '<div class=\'error\'>Old Password is incorrect.</div>';
 		}else{
 			$db->query(sprintf('UPDATE dd_users SET password=\'%s\' WHERE userid=\'%u\'', $newpass, $usrdata['userid']));
 			echo '<div class=\'msg\'>Password Updated</div>';
@@ -390,16 +507,17 @@ function changepassword(){
 			$surl = ''.$domain.'/index.php?action=myaccount&cmd=changepassword';
 		}
 		}
+
 		echo '<form action=\''.$surl.'\' method=\'POST\'>
 		<h2>Change Password</h2>
 		<table>
 			<tr>
 				<td>Old Password:</td>
-				<td><input type=\'text\' name=\'oldpass\' size=\'35\'></td>
+				<td><input type=\'password\' name=\'oldpass\' size=\'35\'></td>
 			</tr>
 			<tr>
 				<td>New Password:</td>
-				<td><input type=\'text\' name=\'newpass\' size=\'35\'></td>
+				<td><input type=\'password\' name=\'newpass\' size=\'35\'></td>
 			</tr>
 			<tr>
 				<th colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
@@ -424,6 +542,14 @@ switch($_GET['cmd']){
 	
 	case 'changepassword':
 	changepassword();
+	break;
+
+	case 'changequestion':
+	changequestion();
+	break;
+
+	case 'changeemail':
+	changeemail();
 	break;
 	
 	case 'changeavatar':

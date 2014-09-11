@@ -4,6 +4,9 @@ include ('includes/functions.php');
 include ('includes/core.php');
 include('includes/rating_functions.php');
 
+if($suserid){
+mysql_query("UPDATE dd_users SET status=unix_timestamp() WHERE userid='$suserid'");
+}
 
 switch($_GET['action']){
 
@@ -38,17 +41,37 @@ switch($_GET['action']){
 	include ('includes/arcadesubmenu2.php');
 	break;
 	
+	case 'forgotpassword':
+	include ('templates/'.$template.'/forgot_pass.php');
+	include ('includes/arcadesubmenu.php');
+	include ('includes/arcadesubmenu2.php');
+	break;
+
 	case 'login':
-	include ('templates/'.$template.'/login.php'); 
+	include ('templates/'.$template.'/login_emailcheck.php'); 
 	include ('includes/defaultsubmenu.php'); 
 	include ('includes/defaultsubmenu2.php');
 	break;
-	
+
 	case 'signup':
-	include ('templates/'.$template.'/signup.php'); 
+	include ('templates/'.$template.'/signup_emailcheck.php'); 
 	include ('includes/defaultsubmenu.php'); 
 	include ('includes/defaultsubmenu2.php');
 	break;
+
+
+	case 'activate':
+	include ('templates/'.$template.'/activate_account.php');
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
+	break;
+
+	case 'activateemail':
+	include ('templates/'.$template.'/activate_new_email.php');
+	include ('includes/defaultsubmenu.php'); 
+	include ('includes/defaultsubmenu2.php');
+	break;
+
 	
 	case 'myaccount':
 	include ('templates/'.$template.'/myaccount.php');

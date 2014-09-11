@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
 	
 	if(!$ssitename || !$domain || !$stemplate || !$sgamesfolder || !$sgamesthumbs || !$slimitboxgames || !$sgamesonpage){
 		echo 'Not all fields where filled.';
-		
+		include ('templates/'.$template.'/footer.php');
 		exit;
 	}
  		mysql_query('UPDATE dd_settings SET 

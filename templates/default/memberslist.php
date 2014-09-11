@@ -2,7 +2,7 @@
 
 
 function writebody() {
-global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
+global $emailcheck, $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
 
 
@@ -13,19 +13,21 @@ if(empty($show)){
 $show = 1;
 }
 $limits = ($show - 1) * $max; 
-$r = $db->query(sprintf("SELECT * FROM dd_users ORDER BY username ASC LIMIT $limits,$max"));
+$r = $db->query(sprintf("SELECT * FROM dd_users WHERE activation_key='0' ORDER BY username ASC LIMIT $limits,$max"));
+
 $totalres = mysql_result($db->query('SELECT COUNT(userid) AS total FROM dd_users'),0); 
 $totalpages = ceil($totalres / $max); 
 echo '
 
 <table width="89%" align="center">
 	<tr>
-		<td colspan=\'4\' class=\'header\'>User List</td>
+		<td colspan=\'5\' class=\'header\'>User List</td>
 	</tr>
 <tr>
 <th class="header">#</th>
 <th class="header">Name</th>
 <th class="header">Plays</th>
+<th class="header">Status</th>
 <th class="header"> </th>
 </tr>';
 while($ir = $db->fetch_row($r)){
@@ -37,11 +39,16 @@ if($seo_on == 1){
 }
 
 
-
+if($ir['status'] >= time()-15*60){
+$status='<font color=green>Online!</font>';
+}else{
+$status='<font color=red>Offline!</font>';
+}
 echo ' <tr>
 <td class="content">'.$ir['userid'].'</td>
 <td class="content">'.$ir['username'].'</td>
 <td class="content">'.$ir['plays'].'</td>
+<td class="content">'.$status.'</td>
 <td class="content"><a href="'.$urlp.'">View Profile</a></td>
 </tr>';
 }

@@ -48,7 +48,7 @@ global $db, $domain, $suserid, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $a
 
 if(!$ID){
 	echo '<div class=\'error\'>No game selected.</div>';
-	
+	include ('templates/'.$template.'/footer.php');
 	exit;
 }
 if(!$r['name']){

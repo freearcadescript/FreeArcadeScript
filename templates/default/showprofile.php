@@ -174,13 +174,20 @@ $sqltitle = "gameuseradded-".$userids ;
             <tr><td class="content" colspan="2">';
 		foreach ($gua1 as $row ){ 
               $gamename = ereg_replace('[^A-Za-z0-9]', '', $row['name']);
+		$type = clean($row['type']);
+		$thumburl = clean($row['thumburl']);
+		if($type == 2){
+			$image="<img src='$thumburl' width='55' width='55' />";
+		}else{
+			$image='<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'55\' width=\'55\' border=\'0\' alt=\''.$row[name].'\'>';
+		}
 	        if($seo_on == 1){
               $playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
               }else{
               $playlink = ''.$domain.'/index.php?action=play&amp;ID='.$row['ID'].'';
               }
 
-              echo ' <a href=\''.$playlink.'\' class=\'playlink\'><img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'55\' width=\'55\' border=\'0\' alt=\''.$row[name].'\'></a> ';
+              echo ' <a href=\''.$playlink.'\' class=\'playlink\'>'.$image.'</a> ';
 
                                     };
             echo '</td></tr>';

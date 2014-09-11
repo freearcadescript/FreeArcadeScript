@@ -1,12 +1,4 @@
 <?
-/*
-Dynamic Star Rating Redux
-Developed by Jordan Boesch
-www.boedesign.com
-Licensed under Creative Commons - http://creativecommons.org/licenses/by-nc-nd/2.5/ca/
-
-Used CSS from komodomedia.com.
-*/
 header("Cache-Control: no-cache");
 header("Pragma: nocache");
 

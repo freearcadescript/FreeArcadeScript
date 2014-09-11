@@ -154,11 +154,11 @@ function pullRating($id,$show5 = false, $showPerc = false, $showVotes = false, $
 		return $text.'
 			<ul class="star-rating" id="rater_'.$id.'">
 				<li class="current-rating" style="width:'.getRating($id).';" id="ul_'.$id.'"></li>
-				<li><a onclick="rate(\'1\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="'.$domain.'/includes/rating_process.php?id='.$id.'&rating=1" title="1 star out of 5" class="one-star" >1</a></li>
-				<li><a onclick="rate(\'2\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="'.$domain.'/includes/rating_process.php?id='.$id.'&rating=2" title="2 stars out of 5" class="two-stars">2</a></li>
-				<li><a onclick="rate(\'3\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="'.$domain.'/includes/rating_process.php?id='.$id.'&rating=3" title="3 stars out of 5" class="three-stars">3</a></li>
-				<li><a onclick="rate(\'4\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="'.$domain.'/includes/rating_process.php?id='.$id.'&rating=4" title="4 stars out of 5" class="four-stars">4</a></li>
-				<li><a onclick="rate(\'5\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="'.$domain.'/includes/rating_process.php?id='.$id.'&rating=5" title="5 stars out of 5" class="five-stars">5</a></li>
+				<li><a onclick="rate(\'1\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=1" title="1 star out of 5" class="one-star" >1</a></li>
+				<li><a onclick="rate(\'2\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=2" title="2 stars out of 5" class="two-stars">2</a></li>
+				<li><a onclick="rate(\'3\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=3" title="3 stars out of 5" class="three-stars">3</a></li>
+				<li><a onclick="rate(\'4\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=4" title="4 stars out of 5" class="four-stars">4</a></li>
+				<li><a onclick="rate(\'5\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=5" title="5 stars out of 5" class="five-stars">5</a></li>
 			</ul>
 			<div id="loading_'.$id.'"></div>';
 	
