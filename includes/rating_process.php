@@ -38,7 +38,7 @@ if($_POST){
 
 			
 			setcookie('has_voted_'.$id,$id,$expire,'/',$domainl,false);
-			mysql_query("INSERT INTO ratings (rating_id,rating_num,IP) VALUES ('$id','$rating','".$_SERVER['REMOTE_ADDR']."')") or die(mysql_error());
+			mysql_query("INSERT INTO fas_ratings (rating_id,rating_num,IP) VALUES ('$id','$rating','".$_SERVER['REMOTE_ADDR']."')") or die(mysql_error());
 			
 			$total = 0;
 			$rows = 0;

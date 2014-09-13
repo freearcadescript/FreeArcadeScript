@@ -1,4 +1,4 @@
-<?
+<?php
 include("rating_config.php");
 
 function getRating($id){
@@ -60,7 +60,7 @@ function outOfFive($id){
 
 function getVotes($id){
 
-	$sel = mysql_query("SELECT rating_num FROM ratings WHERE rating_id = '$id'");
+	$sel = mysql_query("SELECT rating_num FROM fas_ratings WHERE rating_id = '$id'");
 	$rows = mysql_num_rows($sel);
 	if($rows == 0){
 		$votes = '0 Votes';
@@ -79,7 +79,7 @@ function pullRating($id,$show5 = false, $showPerc = false, $showVotes = false, $
 	// Check if they have already voted...
 	$text = '';
 	
-	$sel = mysql_query("SELECT id FROM ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'");
+	$sel = mysql_query("SELECT id FROM fas_ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'");
 	if(mysql_num_rows($sel) > 0 || $static == 'novote' || isset($_COOKIE['has_voted_'.$id])){
 	
 		
@@ -171,8 +171,8 @@ function getTopRated($limit, $table, $idfield, $namefield){
 	
 	$result = '';
 	
-	$sql = "SELECT COUNT(ratings.id) as rates,ratings.rating_id,".$table.".".$namefield." as thenamefield,ROUND(AVG(ratings.rating_num),2) as rating 
-			FROM ratings,".$table." WHERE ".$table.".".$idfield." = ratings.rating_id GROUP BY rating_id 
+	$sql = "SELECT COUNT(fas_ratings.id) as rates,fas_ratings.rating_id,".$table.".".$namefield." as thenamefield,ROUND(AVG(fas_ratings.rating_num),2) as rating 
+			FROM fas_ratings,".$table." WHERE ".$table.".".$idfield." = fas_ratings.rating_id GROUP BY rating_id 
 			ORDER BY rates DESC,rating DESC LIMIT ".$limit."";
 			
 	$sel = mysql_query($sql);
