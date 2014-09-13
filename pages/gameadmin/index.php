@@ -32,6 +32,14 @@ switch($_GET['case']){
 	case 'addcategory':
 	include ('addcategory.php');
 	break;
+
+        case 'reportedgames':
+	include ('reportedgames.php');
+	break;
+
+	case 'managegamecomments':
+	include ('managegamecomments.php');
+	break;
 }
 }
 };

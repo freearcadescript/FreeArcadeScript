@@ -6,10 +6,10 @@
 	$time=time()-15*60;
 	$onlineusers = $db->num_rows($db->query("SELECT userid FROM fas_users WHERE status >= $time"));
 	$year = date('Y');
-
+	
 	$timeoutseconds 	= 600;	// Timeout Value in Seconds - 300 equals 5 minutes.
-	$timestamp=time();
-	$timeout=$timestamp-$timeoutseconds;
+	$timestamp=time();                       
+	$timeout=$timestamp-$timeoutseconds; 
 	$ip = $_SERVER['REMOTE_ADDR'];
 	//Insert all users online
 	$query_add = "INSERT INTO fas_onlineuser VALUES ('$timestamp','$ip')";
@@ -27,7 +27,7 @@
 	$resultt = mysql_query($query_resultt);
 	if (!$resultt) { echo 'Cannot connect to the database'; }
 
-	$totalonline = (mysql_num_rows($resultt));
+	$totalonline = (mysql_num_rows($resultt)); 
 
 	$guests = $totalonline - $onlineusers;
 ?>

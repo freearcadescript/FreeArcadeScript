@@ -7,11 +7,11 @@ switch($_GET['cmd']){
 	default:
 	listentries();
 	break;
-	
+
 	case 'editentry':
 	editentry();
 	break;
-	
+
 	case 'newentry':
 	newentry();
 	break;
@@ -38,10 +38,10 @@ $max = '50';
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{
-	$show = clean($_GET['page']);	
+	$show = clean($_GET['page']);
 }
-$limits = ($show - 1) * $max; 
-$totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM fas_pageentries'),0); 
+$limits = ($show - 1) * $max;
+$totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM fas_pageentries'),0);
 $totalpages = ceil($totalres / $max);
 
 	$r = mysql_query("SELECT * FROM fas_pageentries ORDER BY entryid DESC limit $limits,$max");
@@ -81,7 +81,7 @@ echo '</table>';
 
 echo '
 <div class="page-box">'.$totalres.' page(s) - Page '.$show.' of '.$totalpages.' - ';
-for($i = 1; $i <= $totalpages; $i++){ 
+for($i = 1; $i <= $totalpages; $i++){
 	if($show == $i){
 		echo '<a href="'.$domain.'/index.php?action=admin&case=pageentries&page='.$i.'" class="page-select">'.$i.'</a>&nbsp;';
 	}else{
@@ -101,7 +101,7 @@ $pgname = 'Page entry list';
 function editentry(){
 global $domain, $db;
 $entryid = abs((int) $_GET['entryid']);
-$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_pageentries WHERE entryid=\'%u\'', $entryid))); 
+$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_pageentries WHERE entryid=\'%u\'', $entryid)));
 	echo '<div class="heading">
 			<h2>Edit Page Entry</h2>
 		</div>
@@ -167,7 +167,7 @@ echo'<tbody>
 		<tr>
 			<td>Meta Description:</td>
 			<td><input type=\'text\' name=\'metadescription\' size=\'50\' value=\''.$metadescription.'\'></td>
-		</tr> 
+		</tr>
 		<tr>
 			<td colspan="2"><input type=\'submit\' value=\'save\'></td>
 		</tr>
@@ -195,7 +195,7 @@ $metadescription = clean($_POST['metadescription']);
 mysql_query("UPDATE fas_pageentries SET title='$title', body='$body', visible='$visible', category='$category', tags='$tags', metadescription='$metadescription'  WHERE entryid='$entryid'" ) ;
 echo '<div class=\'msg\'>Page Entry '.$entryid.' updated</div><p>';
 
-	
+
 }
 
 
@@ -204,7 +204,7 @@ echo '<div class=\'msg\'>Page Entry '.$entryid.' updated</div><p>';
 
 function newentry(){
 	global $domain, $db;
-	
+
 
 echo '<div class="heading">
 	<h2>New Page Entry</h2>
@@ -260,7 +260,7 @@ echo '</select></td>
 			</tr>
 		</tbody>
 	</table>
-</form>'; 
+</form>';
 
 
 
@@ -271,7 +271,7 @@ echo '</select></td>
 
 function savenew(){
 	global $domain, $db, $susername, $usrdata;
-	
+
       $title = clean($_POST['title']);
       $body = clean($_POST['body']);
       $author = $usrdata['userid'];
@@ -281,7 +281,7 @@ function savenew(){
       $tags = clean($_POST['tags']);
       $metadescription = clean($_POST['metadescription']);
 
-	$r = $db->query("INSERT INTO fas_pageentries SET 
+	$r = $db->query("INSERT INTO fas_pageentries SET
 					title='$title',
 					body='$body',
 					author='$author',

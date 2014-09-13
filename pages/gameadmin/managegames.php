@@ -8,18 +8,18 @@ switch($_GET['cmd']){
 	default:
 	cats();
 	break;
-	
+
 	case 'games':
 	games();
 	break;
-	
+
 	case 'edit':
 	edit();
 	break;
-	
+
 	case 'delete':
 	delete();
-	break;	
+	break;
 }
 function cats(){
 global $domain;
@@ -27,6 +27,7 @@ $rr = mysql_query(sprintf('SELECT * FROM fas_categories'));
 echo '<div class="heading">
 	<h2>Manage Games</h2>
 </div>
+<br clear="all">
 <table id="table">
 	<thead>
 		<tr>
@@ -44,7 +45,7 @@ while($row = mysql_fetch_array($rr)){
 			<td><a href=\''.$domain.'/index.php?action=gameadmin&case=managegames&cmd=games&CID='.$row['ID'].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" /></a></td>
 		</tr>';
    }
-   
+
 	echo'</tbody>
 </table>';
 
@@ -57,9 +58,9 @@ $max = 20;
 if(!isset($_GET['show'])){
 	$show = '1';
 }else{
-	$show = $_GET['show'];	
+	$show = $_GET['show'];
 }
-$limits = ($show - 1) * $max; 
+$limits = ($show - 1) * $max;
 $useridm = clean($usrdata['userid']);
 
 if($CID == "all"){
@@ -67,13 +68,14 @@ if($CID == "all"){
 	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games WHERE gameadder=\'%s\' ',$useridm)),0);
 }else{
 	$sql = $db->query(sprintf('SELECT * FROM fas_games WHERE category=\'%u\' and gameadder=\'%s\' order by name ASC LIMIT '.$limits.','.$max.' ', $CID, $useridm)) or die(mysql_error());
-	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games WHERE category=\'%u\' and  gameadder=\'%s\' ', $CID, $useridm)),0);	
+	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games WHERE category=\'%u\' and  gameadder=\'%s\' ', $CID, $useridm)),0);
 }
-$totalpages = ceil($totalres / $max); 
+$totalpages = ceil($totalres / $max);
 
 echo '<div class="heading">
 	<h2>Manage Games</h2>
 </div>
+<br clear="all">
 <form action=\'\' method=\'post\'>
 <table id="table">
 		<thead>
@@ -108,7 +110,7 @@ echo '</tbody>
 
 <div class="page-box">
 '.$totalres.' game(s) - Page '.$show.' of '.$totalpages.' - ';
-for($i = 1; $i <= $totalpages; $i++){ 
+for($i = 1; $i <= $totalpages; $i++){
 	if($show == $i){
 		echo '<a href="'.$domain.'/index.php?action=gameadmin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'" class="page-select">'.$i.'</a> ';
 	}else{
@@ -157,17 +159,18 @@ if(isset($_POST['submit'])){
 						highscore='$highscore',
 						highscoreable='$highscoreable',
 						highscoreuser='$highscoreuser',
-						highscoredate='$highscoredate', 
-						highscoreip='$highscoreip' WHERE ID='$ID' and gameadder='$useridm'"); 
-						
+						highscoredate='$highscoredate',
+						highscoreip='$highscoreip' WHERE ID='$ID' and gameadder='$useridm'");
+
 	echo '<div class=\'error\'>Game updated.<br />
 
-		<A href="#" onclick="history.go(-1)">Back</a></div></div>';		
+		<A href="#" onclick="history.go(-1)">Back</a></div></div>';
 }
 }else{
 echo '<div class="heading">
 	<h2>Editing Game: '.$r['name'].'</h2>
 </div>
+<br clear="all">
 <form action=\''.$domain.'/index.php?action=gameadmin&case=managegames&cmd=edit&ID='.$ID.'&type=1\' method=\'post\'>
 	<table id="table">
 		<thead>
@@ -195,10 +198,10 @@ echo '<div class="heading">
 			<tr>
 				<td>Category:*</td>
 				<td><select type=\'dropdown\' name=\'category\' >';
-					$query = $db->query('SELECT * FROM dd_categories');
+					$query = $db->query('SELECT * FROM fas_categories');
 					while($row = $db->fetch_row($query)){
 						echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
-					}	
+					}
 					echo'</select>
 				</td>
 			</tr>
@@ -238,7 +241,7 @@ echo '<div class="heading">
 				<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Edit Game\'></td>
 			</tr>
 		</tbody>
-	</table>		
+	</table>
 </form>';
 }
 }else{
@@ -255,7 +258,7 @@ if(isset($_POST['submit'])){
 	$highscoreuser = clean($_POST['highscoreuser']);
 	$highscoredate = clean($_POST['highscoredate']);
 	$highscoreip = clean($_POST['highscoreip']);
-	
+
 
 	mysql_query("UPDATE fas_games SET name='$name',
 						description='$desc',
@@ -263,18 +266,19 @@ if(isset($_POST['submit'])){
 						height='$height',
 						category='$category',
 						thumburl='$thumburl',
-						enabledcode='$enabledcode' 
-						active='$active', 
+						enabledcode='$enabledcode'
+						active='$active',
 						tags='$tags',
 						highscore='$highscore',
 						highscoreuser='$highscoreuser',
-						highscoredate='$highscoredate', 
-						highscoreip='$highscoreip' WHERE ID='$ID' and gameadder='$useridm'"); 
+						highscoredate='$highscoredate',
+						highscoreip='$highscoreip' WHERE ID='$ID' and gameadder='$useridm'");
 
 }else{
 echo '<div class="heading">
 	<h2>Editing Game: '.$r['name'].'</h2>
 </div>
+<br clear="all">
 <form action=\''.$domain.'/index.php?action=gameadmin&case=managegames&cmd=edit&ID='.$ID.'&type=1\' method=\'post\'>
 	<table id="table">
 		<thead>
@@ -294,10 +298,10 @@ echo '<div class="heading">
 			<tr>
 				<td>Category:*</td>
 				<td><select type=\'dropdown\' name=\'category\'>';
-					$query = $db->query('SELECT * FROM dd_categories');
+					$query = $db->query('SELECT * FROM fas_categories');
 						while($row = $db->fetch_row($query)){
 							echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
-						}	
+						}
 		echo'</select>
 				</td>
 			</tr>
@@ -333,7 +337,7 @@ echo '<div class="heading">
 				<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Edit Game\'></td>
 			</tr>
 		</tbody>
-	</table>		
+	</table>
 </form>';
 }
 }

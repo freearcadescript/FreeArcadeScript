@@ -139,7 +139,7 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
     <div class="center">
 		<div class="arcade"></div>
 		<div class="logo">
-			<img src="pages/admin/img/logo.png" alt="logo" width="336" height="37" />
+			<h1>'.$sitename.' - Admin Control Panel</h1>
 		</div>
 	</div>
 	<div id="nav">
@@ -191,8 +191,8 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
         <div class="main">';
 			writebody();
 		echo'</div>
-		<br /><div align="center"><a href="http://freearcadescript.net/forums/index.php?action=forum">Support Forums</a>
-		<br />Powered by <a href="http://freearcadescript.net/">Free Arcade Script</a></div>
+		<div id="footerlinks"><a href="http://freearcadescript.net/forums/index.php?action=forum">Support Forums</a>
+		<br />Powered by <a href="http://freearcadescript.net/">Free Arcade Script</a></div><br />
 	</div>
 </body>
 </html>';

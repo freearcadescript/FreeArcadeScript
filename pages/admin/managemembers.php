@@ -5,22 +5,22 @@ if (!isset($_GET['cmd'])){
 
 
 switch($_GET['cmd']){
-	default: 
+	default:
 	first();
 	break;
-	
+
 	case 'delete':
 	delete();
 	break;
-	
+
 	case 'edit':
 	edit();
 	break;
-	
+
 	case 'submited':
 	submited();
 	break;
-	
+
 
 };
 function first(){
@@ -31,12 +31,12 @@ $max = '100';
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{
-	$show = clean($_GET['page']);	
+	$show = clean($_GET['page']);
 }
-$limits = ($show - 1) * $max; 
+$limits = ($show - 1) * $max;
 $r = $db->query(sprintf("SELECT * FROM fas_users where userid!='0' ORDER BY username ASC LIMIT $limits,$max"));
-$totalres = mysql_result($db->query('SELECT COUNT(userid) AS total FROM fas_users WHERE userid != "0"'),0); 
-$totalpages = ceil($totalres / $max); 
+$totalres = mysql_result($db->query('SELECT COUNT(userid) AS total FROM fas_users WHERE userid != "0"'),0);
+$totalpages = ceil($totalres / $max);
 echo'<div class="heading">
 	<h2>User List</h2>
 </div>
@@ -69,7 +69,7 @@ echo'<tbody>
 
 echo '</table>
 <div class="page-box">'.$totalres.' user(s) - Page '.$show.' of '.$totalpages.' - ';
-for($i = 1; $i <= $totalpages; $i++){ 
+for($i = 1; $i <= $totalpages; $i++){
 	if($show == $i){
 		echo '<a href="'.$domain.'/index.php?action=admin&case=managemembers&page='.$i.'" class="page-select">'.$i.'</a>&nbsp; ';
 	}else{
@@ -90,7 +90,7 @@ else {
 	echo '<div class=\'msg\'>Member Deleted.<br>';
 	$db->query(sprintf('DELETE FROM fas_comments WHERE commenter=\'%u\'', $userid));
 	echo 'Member comments Deleted from games.<br>';
-	$db->query(sprintf('DELETE FROM fas_blogcomments WHERE commenterid=\'%u\'', $userid));
+	$db->query(sprintf('DELETE FROM blogcomments WHERE commenterid=\'%u\'', $userid));
 	echo 'Member comments Deleted from blog.<br>
 				</div>';
 }
@@ -134,7 +134,7 @@ $signature = clean($_POST['signature']);
 $avatar = clean($_POST['avatar']);
 $avatarfile = clean($_POST['avatarfile']);
 
-mysql_query("UPDATE fas_users SET user_level='$user_level', newsletter='$newsletter', template='$utemplate', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location', 
+mysql_query("UPDATE fas_users SET user_level='$user_level', newsletter='$newsletter', template='$utemplate', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location',
 job='$job', website='$website', link1='$link1', link2='$link2', link3='$link3', link4='$link4', link5='$link5', link6='$link6', link7='$link7', link8='$link8', sex='$sex', interests='$interests', bio='$bio', bloglevel='$bloglevel', forumlevel='$forumlevel', gamelevel='$gamelevel', signature='$signature', avatar='$avatar', avatarfile='$avatarfile' WHERE userid='$userid'" ) ;
 echo '<div class=\'msg\'>Profile updated</div><p>';
 
@@ -194,9 +194,9 @@ echo'<div class="heading">
 <br clear="all">
 <form action="'.$domain.'/index.php?action=admin&case=managemembers&cmd=submited" method="post">
 	<table id="table">
-		<thead>	
+		<thead>
 			<tr>
-				<th colspan="2">User Profile: '.$username.'/'.$userid.' ~ 
+				<th colspan="2">User Profile: '.$username.'/'.$userid.' ~
 <a href=\''.$domain.'/index.php?action=admin&case=managemembers&cmd=delete&userid='.$userid.'\'>Delete Member?</a></th>
 			</tr>
 		</thead>
@@ -219,7 +219,7 @@ echo'<div class="heading">
 				<td><select type="dropdown" name="template">
 					<option value="default">default</option>';
 					$path = $directorypath."templates";
-					$directory = dir($path);	
+					$directory = dir($path);
 					while (false !== ($item = $directory->read())) {
 						if ($item !== "." && $item !== "..") {
 							if ($item == $utemplate) { $usel = "selected"; }else{ $usel = NULL; }
@@ -309,6 +309,10 @@ echo'<div class="heading">
 			<tr>
 				<td>Blog Permissions:<br><small>1=read<br>2=write: no HTML<br>3= TRUSTED: can use HTML</small></td>
 				<td><input name="bloglevel" type="text" size="1" value="'.$bloglevel.'"></td>
+			</tr>
+			<tr>
+				<td>Game Permissions:<br><small>1=user<br>2=game adder: not live<br></small></td>
+				<td><input name="gamelevel" type="text" size="1" value="'.$gamelevel.'"></td>
 			</tr>
 			<tr>
 				<td>Signature:</td>

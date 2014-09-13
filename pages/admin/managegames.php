@@ -141,7 +141,7 @@ if($row['type'] == 1){
 }else{
 	$type = 'Enabled Code';
 }
-$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row[thumb].'" width="55" width="55" border="0" />';
+$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row[thumb].'" width="55" height="55" border="0" />';
 echo '<tr>
 		<td width="90px">'.$thumbs.'</td>
 		<td width="750px">'.$row['name'].'</td>

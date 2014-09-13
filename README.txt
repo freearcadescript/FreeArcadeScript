@@ -1,5 +1,3 @@
-Free Arcade Script Install Instructions
-
 1. Download the version you wish and unzip it on your computer.
 2. Using the tools provided by your hosting provider, add a database to your hosting account and record the name carefully.
 3. Using Notepad (or any other text editor you have), edit the file /includes/config.php with the following:

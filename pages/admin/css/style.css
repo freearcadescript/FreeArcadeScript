@@ -110,6 +110,10 @@ body{
 	 color:#fff;
 }
 
+h1 {text-shadow: 0 0 3px #FCC10A;}
+#footerlinks{background:transparent;color:#000;height:20px;padding-top:8px;text-align:center;width:950px;}
+#footerlinks a{color:#333;font-family:Arial;font-size:14px;font-weight:bold;margin:0 2px;text-decoration:none;}
+#footerlinks a:hover{color:#666;font-family:Arial;font-size:14px;font-weight:bold;text-decoration:none;}
 /*Content CSS*/
 
 .page{
@@ -229,5 +233,3 @@ A:link {text-decoration: none}
 A:visited {text-decoration: none}
 A:active {text-decoration: none}
 A:hover {text-decoration: none}
-
-h1, h2, h3, h4, h5, h6 {clear: both}

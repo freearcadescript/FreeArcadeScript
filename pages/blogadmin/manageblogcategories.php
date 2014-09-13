@@ -22,6 +22,7 @@ function categories(){
 	echo '<div class="heading">
 			<h2>Manage Categories</h2>
 		</div>
+                <br clear="all">
 		<table id="table">
 			<thead>
 				<tr>
@@ -63,12 +64,13 @@ if(!$categoryid) {return;}
 if(isset($_POST['submit'])){
 	$categoryname  = clean($_POST['categoryname']);
 	echo '<div class=\'msg\'>Category name changed to '.$categoryname.'</div>';
-	mysql_query("UPDATE fas_blogcategories SET categoryname='$categoryname', topcategory='$topcategory' WHERE categoryid='$categoryid'"); 
+	mysql_query("UPDATE blogcategories SET categoryname='$categoryname', topcategory='$topcategory' WHERE categoryid='$categoryid'"); 
 }else{
 $ir = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_blogcategories WHERE categoryid=\'%u\'', $categoryid)));
 echo '<div class="heading">
 	<h2>Editing Blog Category: '.$ir['categoryname'].'</h2>
 </div>
+<br clear="all">
 <form action=\''.$domain.'/index.php?action=blogadmin&case=manageblogcategories&cmd=edit&categoryid='.$categoryid.'\' method=\'POST\'>
     <table id="table">
 		<thead>

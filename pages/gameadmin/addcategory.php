@@ -13,6 +13,7 @@ if(isset($_POST['submit'])){
 		echo '<div class="heading">
 			<h2>Add Category</h2>
 		</div>
+                <br clear="all">
 		<form action=\''.$domain.'/index.php?action=gameadmin&case=addcategory\' method=\'post\'>
 			<table id="table">
 				<thead>

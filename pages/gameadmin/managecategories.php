@@ -4,24 +4,25 @@ if (!isset($_GET['cmd'])){
 }
 
 switch($_GET['cmd']){
-	default: 
+	default:
 	categories();
 	break;
-	
+
 	case 'delete':
 	delete();
 	break;
-	
+
 	case 'edit':
 	edit();
 	break;
-	
+
 }
 function categories(){
 	global $domain, $db;
 	echo '<div class="heading">
 		<h2>Manage Categories</h2>
 	</div>
+        <br clear="all">
 	<table id="table">
 		<thead>
 			<tr>
@@ -31,14 +32,14 @@ function categories(){
 		</thead>
 		<tbody>';
 	$r = $db->query(sprintf('SELECT * FROM fas_categories'));
-	while($ir = $db->fetch_row($r)){	
+	while($ir = $db->fetch_row($r)){
 	echo '<tr>
 			<td width="50px">'.$ir['ID'].'</td>
 			<td width="790px">'.$ir['name'].'</td>
 			<td><a href=\''.$domain.'/index.php?action=gameadmin&case=managecategories&cmd=edit&ID='.$ir['ID'].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
 				<a href=\''.$domain.'/index.php?action=gameadmin&case=managecategories&cmd=delete&ID='.$ir['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the category '.$ir['name'].'? \n All games in this category will be deleted from the database too.\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a></td>
 		</tr>';
-	}	
+	}
 echo '</tbody>
 </table>';
 }
@@ -60,12 +61,13 @@ if(isset($_POST['submit'])){
 	$tags  = clean($_POST['tags']);
 	$metadescr  = clean($_POST['metadescr']);
 	echo '<div class=\'msg\'>Category info Changed</div>';
-	mysql_query("UPDATE dd_categories SET name='$name', tags='$tags', metadescr='$metadescr' WHERE ID='$ID' ");
+	mysql_query("UPDATE fas_categories SET name='$name', tags='$tags', metadescr='$metadescr' WHERE ID='$ID' ");
 }else{
 $ir = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_categories WHERE ID=\'%u\'', $ID)));
 echo '<div class="heading">
 	<h2>Editing Category: '.$ir['name'].'</h2>
 </div>
+<br clear="all">
 <form action=\''.$domain.'/index.php?action=gameadmin&case=managecategories&cmd=edit&ID='.$ID.'\' method=\'post\'>
 	<table id="table">
 		<thead>

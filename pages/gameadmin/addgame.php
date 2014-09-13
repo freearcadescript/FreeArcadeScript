@@ -4,22 +4,22 @@ if (!isset($_GET['cmd'])){
 }
 
 switch($_GET['cmd']){
-	default: 
+	default:
 	addgame();
 	break;
-	
+
 	case 'enabled':
 	enabled();
 	break;
-	
+
 	case 'hosted':
 	hosted();
 	break;
-	
+
 	case 'uploaded':
 	preuploaded();
 	break;
-	
+
 
 }
 
@@ -28,6 +28,7 @@ function addgame(){
 	echo'<div class="heading">
 			<h2>Add Game</h2>
 		</div>
+                <br clear="all">
 		<table id="table">
 			<thead>
 				<tr>
@@ -41,7 +42,7 @@ function addgame(){
 					<td><a href=\''.$domain.'/index.php?action=gameadmin&case=addgame&cmd=uploaded\'>Pre Uploaded</a></td>
 				</tr>
 			</tbody>
-		</table>';	
+		</table>';
 }
 
 function hosted(){
@@ -66,24 +67,24 @@ if(!$game || !$thumb || !$name || !$desc){
 	$msg = 'Not all fields where filled.';
 }
 
-function findexts ($filename) 
-{ 
-$filename = strtolower($filename) ; 
-$exts = split("[/\\.]", $filename) ; 
-$n = count($exts)-1; 
-$exts = $exts[$n]; 
-return $exts; 
-} 
-$ext = findexts ($_FILES['thumb']['name']) ; 
+function findexts ($filename)
+{
+$filename = strtolower($filename) ;
+$exts = split("[/\\.]", $filename) ;
+$n = count($exts)-1;
+$exts = $exts[$n];
+return $exts;
+}
+$ext = findexts ($_FILES['thumb']['name']) ;
 $os = array("gif", "jpg", "jpeg", "png");
 if (!in_array($ext, $os)) {
-echo  "Thumb extension not allowed"; return; 
+echo  "Thumb extension not allowed"; return;
 } else { };
 
-$ext = findexts ($_FILES['game']['name']) ; 
+$ext = findexts ($_FILES['game']['name']) ;
 $os = array("swf", "dcr");
 if (!in_array($ext, $os)) {
-echo  "Game file extension not allowed"; return; 
+echo  "Game file extension not allowed"; return;
 } else { };
 
 
@@ -110,11 +111,11 @@ if($error == 1){
 	echo '<div class=\'error\'>'.$msg.'</div>';
 }else{
       $gamevar1 = $gamespath.$game;
-      
+
       $gamesize = getimagesize($gamevar1);
       $width = $gamesize[0];
       $height = $gamesize[1];
-      
+
 
 	echo '<div class=\'msg\'>Game Successfully added but not activated!</div>';
 	$type= 1;
@@ -126,10 +127,10 @@ if($error == 1){
 				height=\'%u\',
 				category=\'%u\',
 				thumb=\'%s\',
-				dateadded=\'%u\', 
+				dateadded=\'%u\',
 				type=\'%u\',
-				tags=\'%s\', 
-				highscoreable=\'%s\',  
+				tags=\'%s\',
+				highscoreable=\'%s\',
 				gameadder=\'%u\',
 				adderip=\'%s\'
 ',
@@ -155,12 +156,12 @@ echo '<form action=\''.$domain.'/index.php?action=gameadmin&case=addgame&type=ho
 			<tr>
 				<td>Category:*</td>
 				<td><select type=\'dropdown\' name=\'category\'>';
-					$query = $db->query('SELECT * FROM dd_categories');
+					$query = $db->query('SELECT * FROM fas_categories');
 					while($row = $db->fetch_row($query)){
 						echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
-					}	
+					}
 					echo'</select>
-				</td>	
+				</td>
 			</tr>
 			<tr>
 				<td>Thumb File:*</td>
@@ -186,7 +187,7 @@ echo '<form action=\''.$domain.'/index.php?action=gameadmin&case=addgame&type=ho
 				<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Add Game\'></td>
 			</tr>
 		</tbody>
-	</table>		
+	</table>
 </form>';
 }
 function enabled(){
@@ -216,7 +217,7 @@ if($error == 1){
 				dateadded=\'%u\',
 				thumburl=\'%s\',
 				enabledcode=\'%s\',
-				tags=\'%s\', 
+				tags=\'%s\',
 				gameadder=\'%u\',
 				adderip=\'%s\' ',
 				$name, $desc, $category, $type, $time, $thumburl, $enabledcode, $tags, $gameadder, $adderip));
@@ -241,10 +242,10 @@ echo '<form action=\''.$domain.'/index.php?action=gameadmin&case=addgame&type=en
 			<tr>
 				<td>Category:*</td>
 				<td><select type=\'dropdown\' name=\'category\'>';
-					$query = $db->query('SELECT * FROM dd_categories');
+					$query = $db->query('SELECT * FROM fas_categories');
 					while($row = $db->fetch_row($query)){
 						echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
-					}	
+					}
 					echo'</select>
 				</td>
 			</tr>
@@ -255,7 +256,7 @@ echo '<form action=\''.$domain.'/index.php?action=gameadmin&case=addgame&type=en
 			<tr>
 				<td>Enabled Code:</td>
 				<td><textarea cols=\'45\' rows=\'5\' name=\'enabledcode\'></textarea></td>
-			</tr>	
+			</tr>
 			<tr>
 				<td>Tags:</td>
 				<td><input type=\'text\' name=\'tags\' size=\'35\'></td>
@@ -264,9 +265,9 @@ echo '<form action=\''.$domain.'/index.php?action=gameadmin&case=addgame&type=en
 				<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Add Game\'></td>
 			</tr>
 		</tbody>
-	</table>		
-</form>';	
-}	
+	</table>
+</form>';
+}
 
 
 
@@ -298,11 +299,11 @@ if($error == 1){
 	echo '<div class=\'error\'>'.$msg.'</div>';
 }else{
       $gamevar1 = $gamespath.$game;
-      
+
       $gamesize = getimagesize($gamevar1);
       $width = $gamesize[0];
       $height = $gamesize[1];
-      
+
 
 	echo '<div class=\'msg\'>Game Successfully added but not activated!</div>';
 	$type= 1;
@@ -314,10 +315,10 @@ if($error == 1){
 				height=\'%u\',
 				category=\'%u\',
 				thumb=\'%s\',
-				dateadded=\'%u\', 
+				dateadded=\'%u\',
 				type=\'%u\',
-				tags=\'%s\',  
-				highscoreable=\'%s\',  
+				tags=\'%s\',
+				highscoreable=\'%s\',
 				gameadder=\'%u\',
 				adderip=\'%s\' ',
 				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $tags, $highscoreable, $gameadder, $adderip));
@@ -345,9 +346,9 @@ echo '<form action=\''.$domain.'/index.php?action=gameadmin&case=addgame&type=up
 						$query = $db->query('SELECT * FROM fas_categories');
 						while($row = $db->fetch_row($query)){
 							echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
-						}	
+						}
 					echo'</select>
-				</td>	
+				</td>
 			</tr>
 			<tr>
 				<td>Thumb File:*</td>
@@ -365,7 +366,7 @@ echo '<form action=\''.$domain.'/index.php?action=gameadmin&case=addgame&type=up
 				<td align=\'center\' colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Add Game\'></td>
 			</tr>
 		</tbody>
-	</table>		
+	</table>
 </form>';
 }
 ?>

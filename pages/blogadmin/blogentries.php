@@ -7,11 +7,11 @@ switch($_GET['cmd']){
 	default:
 	listentries();
 	break;
-	
+
 	case 'editentry':
 	editentry();
 	break;
-	
+
 	case 'newentry':
 	newentry();
 	break;
@@ -39,9 +39,9 @@ $max = '50';
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{
-	$show = clean($_GET['page']);	
+	$show = clean($_GET['page']);
 }
-$limits = ($show - 1) * $max; 
+$limits = ($show - 1) * $max;
 $totalres = mysql_result($db->query(sprintf('SELECT COUNT(entryid) AS total FROM fas_blogentries WHERE author=\'%s\'', $useridm)),0);
 $totalpages = ceil($totalres / $max);
 
@@ -49,6 +49,7 @@ $totalpages = ceil($totalres / $max);
 	echo '<div class="heading">
 		<h2>Blog Entries</h2>
 	</div>
+        <br clear="all">
 	<a href=\''.$domain.'/index.php?action=blogadmin&case=blogentries&cmd=newentry\' class="button">New Entry</a>
 	<table id="table">
 		<thead>
@@ -69,14 +70,14 @@ $totalpages = ceil($totalres / $max);
       $category = $row['category'];
 			echo '<tr>
 				<td width="50px">'.$entryid.'</td>
-				<td width="780px">'.$title.'</td> 
+				<td width="780px">'.$title.'</td>
 				<td><a href=\''.$domain.'/index.php?action=blogadmin&case=blogentries&cmd=editentry&entryid='.$entryid.'\' ><img src="pages/admin/img/edit.png" width="24" height="24 alt="edit" title="Edit" /></a>
 					<a href=\''.$domain.'/index.php?action=blogadmin&case=blogentries&cmd=deleteentry&entryid='.$entryid.'\' onclick="return confirm(\'Are you sure you want to delete this blog '.$row['title'].'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" /></a></td>
 			</tr>'; }
 echo '</tbody>
 </table>
 <div class="page-box">'.$totalres.' blog(s) - Page '.$show.' of '.$totalpages.' - ';
-for($i = 1; $i <= $totalpages; $i++){ 
+for($i = 1; $i <= $totalpages; $i++){
 	if($show == $i){
 		echo '<a href="'.$domain.'/index.php?action=blogadmin&case=blogentries&page='.$i.'" class="page-select">'.$i.'</a>&nbsp;';
 	}else{
@@ -91,10 +92,11 @@ function editentry(){
 global $domain, $db, $usrdata ;
 $useridm = $usrdata['username'];
 $entryid = abs((int) $_GET['entryid']);
-$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_blogentries WHERE entryid=\'%u\' and author=\'%s\'', $entryid, $useridm))); 
+$row2 = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_blogentries WHERE entryid=\'%u\' and author=\'%s\'', $entryid, $useridm)));
 	echo '<div class="heading">
 		<h1>Edit Blog Entry: '.$row2['title'].'</h1>
-	</div>';
+	</div>
+      <br clear="all">';
       $title = $row2['title'];
       $body = $row2['body'];
       $author = $row2['author'];
@@ -138,7 +140,7 @@ echo '<form action=\''.$domain.'/index.php?action=blogadmin&case=blogentries&cmd
 				New Line: <b>[br]</b></td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea name=\'body\' rows=\'30\' cols=\'130\' >'.$body.'</textarea></td>
+				<td colspan="2"><textarea name=\'body\' rows=\'30\' cols=\'110\' >'.$body.'</textarea></td>
 			</tr>
 			<tr>
 				<td>Visible?: </td>
@@ -183,7 +185,7 @@ $tags = clean($_POST['tags']);
 mysql_query("UPDATE fas_blogentries SET title='$title', body='$body', visible='$visible', category='$category', tags='$tags'  WHERE entryid='$entryid' and author='$useridm' " ) ;
 echo '<div class=\'msg\'>Blog Entry '.$entryid.' updated</div><p>';
 
-	
+
 }
 
 
@@ -193,11 +195,12 @@ echo '<div class=\'msg\'>Blog Entry '.$entryid.' updated</div><p>';
 function newentry(){
 	global $domain, $db, $usrdata ;
 $useridm = $usrdata['username'];
-	
+
 
 echo '<div class="heading">
 	<h2>New Blog Entry</h2>
 </div>
+<br clear="all">
 <form action=\''.$domain.'/index.php?action=blogadmin&case=blogentries&cmd=savenew\' method=\'POST\' >
 	<table id="table">
 		<thead>
@@ -220,7 +223,7 @@ echo '<div class="heading">
 				New Line: <b>[br]</b></td>
 			</tr>
 			<tr>
-				<td colspan="2"><textarea name=\'body\' rows=\'30\' cols=\'120\' ></textarea></td>
+				<td colspan="2"><textarea name=\'body\' rows=\'30\' cols=\'110\' ></textarea></td>
 			</tr>
 			<tr>
 				<td>Visible?: </td>
@@ -247,12 +250,12 @@ echo '<div class="heading">
 			</tr>
 		</tbody>
 	</table>
-</form>'; 
+</form>';
 }
 
 function savenew(){
 	global $domain, $db, $susername, $usrdata;
-	
+
       $title = clean($_POST['title']);
       if ($usrdata['bloglevel'] == 3) { $body = $_POST['body']; } else { $body = clean($_POST['body']); };
       $author = $_SESSION['username'];
@@ -261,7 +264,7 @@ function savenew(){
       $category = clean($_POST['category']);
       $tags = clean($_POST['tags']);
 
-	$r = $db->query("INSERT INTO fas_blogentries SET 
+	$r = $db->query("INSERT INTO fas_blogentries SET
 					title='$title',
 					body='$body',
 					author='$author',

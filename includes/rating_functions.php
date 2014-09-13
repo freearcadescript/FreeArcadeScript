@@ -60,7 +60,7 @@ function outOfFive($id){
 
 function getVotes($id){
 
-	$sel = mysql_query("SELECT rating_num FROM fas_ratings WHERE rating_id = '$id'");
+	$sel = mysql_query("SELECT rating_num FROM ratings WHERE rating_id = '$id'");
 	$rows = mysql_num_rows($sel);
 	if($rows == 0){
 		$votes = '0 Votes';
@@ -79,7 +79,7 @@ function pullRating($id,$show5 = false, $showPerc = false, $showVotes = false, $
 	// Check if they have already voted...
 	$text = '';
 	
-	$sel = mysql_query("SELECT id FROM fas_ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'");
+	$sel = mysql_query("SELECT id FROM ratings WHERE IP = '".$_SERVER['REMOTE_ADDR']."' AND rating_id = '$id'");
 	if(mysql_num_rows($sel) > 0 || $static == 'novote' || isset($_COOKIE['has_voted_'.$id])){
 	
 		
@@ -154,11 +154,11 @@ function pullRating($id,$show5 = false, $showPerc = false, $showVotes = false, $
 		return $text.'
 			<ul class="star-rating" id="rater_'.$id.'">
 				<li class="current-rating" style="width:'.getRating($id).';" id="ul_'.$id.'"></li>
-				<li><a onclick="rate(\'1\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=1" title="1 star out of 5" class="one-star" >1</a></li>
-				<li><a onclick="rate(\'2\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=2" title="2 stars out of 5" class="two-stars">2</a></li>
-				<li><a onclick="rate(\'3\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=3" title="3 stars out of 5" class="three-stars">3</a></li>
-				<li><a onclick="rate(\'4\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=4" title="4 stars out of 5" class="four-stars">4</a></li>
-				<li><a onclick="rate(\'5\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&rating=5" title="5 stars out of 5" class="five-stars">5</a></li>
+				<li><a onclick="rate(\'1\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&amp;rating=1" title="1 star out of 5" class="one-star" >1</a></li>
+				<li><a onclick="rate(\'2\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&amp;rating=2" title="2 stars out of 5" class="two-stars">2</a></li>
+				<li><a onclick="rate(\'3\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&amp;rating=3" title="3 stars out of 5" class="three-stars">3</a></li>
+				<li><a onclick="rate(\'4\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&amp;rating=4" title="4 stars out of 5" class="four-stars">4</a></li>
+				<li><a onclick="rate(\'5\',\''.$id.'\','.$show5bool.','.$showPercbool.','.$showVotesbool.'); return false;" href="includes/rating_process.php?id='.$id.'&amp;rating=5" title="5 stars out of 5" class="five-stars">5</a></li>
 			</ul>
 			<div id="loading_'.$id.'"></div>';
 	
@@ -172,7 +172,7 @@ function getTopRated($limit, $table, $idfield, $namefield){
 	$result = '';
 	
 	$sql = "SELECT COUNT(ratings.id) as rates,ratings.rating_id,".$table.".".$namefield." as thenamefield,ROUND(AVG(ratings.rating_num),2) as rating 
-			FROM fas_ratings,".$table." WHERE ".$table.".".$idfield." = ratings.rating_id GROUP BY rating_id 
+			FROM ratings,".$table." WHERE ".$table.".".$idfield." = ratings.rating_id GROUP BY rating_id 
 			ORDER BY rates DESC,rating DESC LIMIT ".$limit."";
 			
 	$sel = mysql_query($sql);

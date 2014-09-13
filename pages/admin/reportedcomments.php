@@ -28,13 +28,13 @@ $totalpages = ceil($totalres / $max);
 
 	$r = mysql_query("SELECT * FROM fas_report_comments ORDER BY ID DESC limit $limits,$max");
 	echo '<div class="heading">
-		<h2>Reported Comments</h2>
+		<h2>Reported Blogs</h2>
 	</div>
 	<table id="table">
 		<thead>
 			<tr>
 				<th>Reported By</th>
-				<th colspan="2">Game</th>
+				<th colspan="2">Blog Entry</th>
 			</tr>
 		</thead>';
 	while($row = $db->fetch_row($r)){

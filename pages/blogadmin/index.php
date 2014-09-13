@@ -11,27 +11,35 @@ if (!isset($_GET['case'])){
 }
 
 switch($_GET['case']){
-	default: 
+	default:
 	include ('blogentries.php');
 	break;
-	
+
 	case 'blogentries':
 	include ('blogentries.php');
 	break;
-	
+
 	case 'addblogcategory':
 	include ('addblogcategory.php');
 	break;
-	
+
 	case 'manageblogcategories':
 	include ('manageblogcategories.php');
 	break;
-	
+
 	case 'approveblogcomments':
 	include ('approveblogcomments.php');
 	break;
+
+	case 'manageblogcomments':
+	include ('manageblogcomments.php');
+	break;
+
+	case 'reportedcomments':
+	include ('reportedcomments.php');
+	break;
 }
 }
-};	
+};
 include ('pages/blogadmin/template.php');
 ?>

@@ -92,8 +92,8 @@ echo '<div class="heading">
 				<td><input type=\'text\' size=\'40\' name=\'comment\' value=\''.$ir['comment'].'\'></td>
 			<tr>
 			</tr>
-				<td>Date: </td>
-				<td><input type=\'text\' size=\'2\' name=\'date\' value=\''.$ir['date'].'\'></td>
+				<td>Date Posted: </td>
+				<td>'.$ir['date'].'</td>
 			<tr>
 			</tr>
 				<td>Approved: </td>

@@ -7,11 +7,11 @@ switch($_GET['cmd']){
 	default:
 	listnewsletters();
 	break;
-	
+
 	case 'editnewsletter':
 	editnewsletter();
 	break;
-	
+
 	case 'newnewsletter':
 	newnewsletter();
 	break;
@@ -149,7 +149,7 @@ $pageauthor = clean($_POST['pageauthor']);
 mysql_query("UPDATE fas_newsletter SET pagetitle='$pagetitle', pagebody='$pagebody', pageauthor='$pageauthor'  WHERE pageid='$pageid'" ) ;
 echo '<div class=\'msg\'>Newsletter updated</div><p>';
 
-	
+
 }
 
 
@@ -158,7 +158,7 @@ echo '<div class=\'msg\'>Newsletter updated</div><p>';
 
 function newnewsletter(){
 	global $domain, $db;
-	
+
 
 echo'<div class="heading">
 	<h2>New Newsletter</h2>
@@ -191,7 +191,7 @@ echo'<div class="heading">
 			</tr>
 		</tbody>
 	</table>
-</form>'; 
+</form>';
 
 
 
@@ -202,14 +202,14 @@ echo'<div class="heading">
 
 function savenew(){
 	global $domain, $db;
-	
+
       $pagetitle = clean($_POST['pagetitle']);
       $pagebody = clean($_POST['pagebody']);
       $pageauthor = clean($_POST['pageauthor']);
       $datesent = '0000-00-00';
 
 
-	$r = $db->query("INSERT INTO fas_newsletter SET 
+	$r = $db->query("INSERT INTO fas_newsletter SET
 					pagetitle='$pagetitle',
 					pagebody='$pagebody',
 					pageauthor='$pageauthor',
@@ -240,7 +240,7 @@ global $domain, $db, $supportemail;
 	$pageid = abs((int) $_GET['pageid']);
 if(!$pageid){return;}
 $row4 = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_newsletter WHERE pageid=\'%u\'', $pageid)));
-	
+
 
 
       $pagetitle = $row4['pagetitle'];

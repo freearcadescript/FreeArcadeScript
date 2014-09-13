@@ -15,6 +15,7 @@ if(isset($_POST['submit'])){
 	echo'<div class="heading">
 		<h2>Add Blog Category</h2>
 	</div>
+        <br clear="all">
 	<form action=\''.$domain.'/index.php?action=blogadmin&case=addblogcategory\' method=\'post\'>
 		<table id="table">
 			<thead>
