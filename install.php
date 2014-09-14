@@ -378,7 +378,8 @@ mysql_query("INSERT INTO fas_settings SET
  					headerspace='headerspace',
  					footerspace='footerspace',
  					abovegames='abovegames',
- 					belowgames='belowgames' ") ;
+ 					belowgames='belowgames',
+                                        analytics=''") ; 					") ;
 
 mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `newsletter`, `aim`, `icq`, `msn`, `yim`, `location`, `job`, `website`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `sex`, `interests`, `bio`, `ip`, `bloglevel`, `forumlevel`, `gamelevel`, `signature`, `avatar`, `avatarfile`) VALUES(0, 'Guest', 'hhhhhhhhhhhhhhhhh', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, 1, '', 0, '');");
 mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`) VALUES
@@ -400,7 +401,7 @@ ADD  `new_email_key` VARCHAR( 255 ) NOT NULL; ");
 mysql_query("ALTER TABLE `fas_settings` ADD `showpages` TINYINT( 1 ) NOT NULL DEFAULT '0' AFTER `showblog` ;");
 mysql_query("UPDATE fas_users SET `userid` = '0' WHERE `username` ='Guest' LIMIT 1 ; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `joindate` varchar(255) NOT NULL AFTER `user_level`; ");
-mysql_query("ALTER TABLE  `fas_categories` ADD  `show` tinyint(1) NOT NULL default '1'; ");
+mysql_query("ALTER TABLE  `fas_categories` ADD  `show` tinyint(1) NOT NULL DEFAULT '1'; ");
 
 echo '<div class=\'msg\'>Updated.</div><br />
 Please delete the install.php file. <br /><br />Username: admin Password: admin<br />
@@ -446,7 +447,7 @@ echo '<form action=\'install.php\' method=\'POST\'>
 			<td class=\'content5\'>Games On Home:<br /><small>
 			How many games in each category do you want to be displayed in each box on the homepage?
 			</small></td>
-			<td class=\'content5\'><input type=\'text\' name=\'limitboxgames\' size=\'40\' value=\'5\'></td>
+			<td class=\'content5\'><input type=\'text\' name=\'limitboxgames\' size=\'40\' value=\'3\'></td>
 		</tr>
 		</tr>
 			<td class=\'content5\'>Games in category per page:</td>
