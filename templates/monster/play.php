@@ -369,7 +369,8 @@ $db->query(sprintf('UPDATE fas_games SET views=views+1 WHERE ID=\'%u\'', $ID));
 if ($useridp!='-1') {
 $db->query('UPDATE fas_users SET plays=plays+1 WHERE userid=\''.$useridp.'\'');
  };
-
+$db->query('UPDATE `fas_gamestats` set numbers=numbers +1 WHERE id = \'1\''); // adds a play to the total plays stats
+$db->query('UPDATE `fas_gamestats` set numbers=numbers +1 WHERE id = \'2\''); // adds a play to the daily plays stats
 
 };
 
