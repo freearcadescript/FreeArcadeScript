@@ -11,8 +11,8 @@ $db->configure(
 	$dbpre
 	);
 $db->connect();
-// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_settings')));
-//ALTER TABLE dd_users ADD template VARCHAR(250) AFTER plays;
+// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_settings')));
+//ALTER TABLE fas_users ADD template VARCHAR(250) AFTER plays;
 
 
 
@@ -51,6 +51,7 @@ foreach($set1 as $set){
 	$limitboxgames = $set['limitboxgames'];
 	$email_on = $set['email_on'];
 	$comments_on = $set['comments_on'];
+	$taf_on = $set['taf_on'];
 	$autoapprovecomments = $set['autoapprovecomments'];
 	$seo_on = $set['seo_on'];
 	$sitename = $set['sitename'];
@@ -65,6 +66,7 @@ foreach($set1 as $set){
 	$footerspace = $set['footerspace'];
 	$abovegames = $set['abovegames'];
 	$belowgames = $set['belowgames'];
+	$analytics = $set['analytics'];
 	$showwebsitelimit = $set['showwebsitelimit'];
 	$supportemail = $set['supportemail'];
 
