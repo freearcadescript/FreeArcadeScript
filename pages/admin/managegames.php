@@ -109,10 +109,10 @@ if(!isset($_GET['show'])){
 }
 $limits = ($show - 1) * $max;
 if($CID == "all"){
-	$sql = $db->query(sprintf('SELECT * FROM fas_games LIMIT '.$limits.','.$max.' ')) or die(mysql_error());
+	$sql = $db->query(sprintf('SELECT * FROM fas_games ORDER BY ID DESC LIMIT '.$limits.','.$max.' ')) or die(mysql_error());
 	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games')),0);
 }else{
-	$sql = $db->query(sprintf('SELECT * FROM fas_games WHERE category=\'%u\' LIMIT '.$limits.','.$max.' ', $CID)) or die(mysql_error());
+	$sql = $db->query(sprintf('SELECT * FROM fas_games WHERE category=\'%u\' ORDER BY ID DESC LIMIT '.$limits.','.$max.' ', $CID)) or die(mysql_error());
 	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games WHERE category=\'%u\'', $CID)),0);
 }
 $totalpages = ceil($totalres / $max);
