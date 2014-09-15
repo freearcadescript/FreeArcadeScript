@@ -87,7 +87,6 @@ switch($_GET['case']){
 	include ('manageblogcategories.php');
 	break;
 
-
 	case 'approveblogcomments':
 	include ('approveblogcomments.php');
 	break;
@@ -110,6 +109,14 @@ switch($_GET['case']){
 
 	case 'manageblogcomments':
 	include ('manageblogcomments.php');
+	break;
+
+	case 'socialmedia':
+	include ('socialmedia.php');
+	break;
+
+	case 'sitemap':
+	include ('sitemap.php');
 	break;
 };
 };

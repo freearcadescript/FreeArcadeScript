@@ -10,25 +10,25 @@ global $db, $cachelife, $domain, $sitename, $domain, $template, $gamesfolder, $t
 if(!isset($_GET['ID'])){
 	$ID = NULL;
 }else{
-	$ID = clean($_GET['ID']);	
+	$ID = clean($_GET['ID']);
 }
 if(!isset($_GET['name'])){
 	$name = NULL;
 }else{
-	$name = clean($_GET['name']);	
+	$name = clean($_GET['name']);
 }
 $max = $gamesonpage;
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{
-	$show = clean($_GET['page']);	
+	$show = clean($_GET['page']);
 }
-$limits = ($show - 1) * $max; 
+$limits = ($show - 1) * $max;
 $r = "SELECT * FROM fas_comments WHERE gameid='$ID' and approved ='1' order by date desc LIMIT ".$limits.", ".$max ;
 
 $sqltitle = "gamecomments".$show."-".$ID ;
-$totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM fas_comments WHERE gameid=\''.$ID.'\' and approved=\'1\' '),0);	
-$totalpages = ceil($totalres / $max); 
+$totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM fas_comments WHERE gameid=\''.$ID.'\' and approved=\'1\' '),0);
+$totalpages = ceil($totalres / $max);
 echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 	<tr>
 		<td colspan=\'2\' class=\'header\'> Comments Left For '.$name.' </td>
@@ -44,15 +44,15 @@ $r4 = sqlcache($sqltitle, $cachelife, $r);
 foreach ( $r4 as $in ){
 $comment = $in['comment'];
 $commenter = abs((int) ($in['commenter']));
-	$date = date('d-m-Y', $in['date']);
+$date = date('M-d-Y', $in['date']);
 
  $nv1 = "SELECT * FROM fas_users WHERE userid='$commenter' limit 1 "  ;
- $sqltitle = "userprofile-".$commenter; 
+ $sqltitle = "userprofile-".$commenter;
  $nv3 = sqlcache($sqltitle, $cachelife, $nv1);
 
  foreach ( $nv3 as $nv2 ){
  $useridl = $nv2['userid'];
- if (empty($username)) {$username="No longer a member";}; 
+ if (empty($username)) {$username="No longer a member";};
 
 if ($commenter == '0') {$username = 'Guest';} else {
 
@@ -72,10 +72,13 @@ if ($commenter == '0') {$username = 'Guest';} else {
 
 
 
-       echo ' <tr>
-				<td width=\'30%\' class=\'content\' style=\'padding:4px;\' valign=\'top\'><b>Posted By:</b> <a href="'.$urlp.'">'.$username.'<img src=\''.$domain.'/avatars/'.$avatarfileurl.'\' height=\'100\' width=\'100\' /></a><p>
-                        <small><i><b>Posted On:</b> '.$date.'</i></small>
-                        </td>
+            echo '<tr>
+				<td width=\'30%\' class=\'content\' style=\'padding:4px;\' valign=\'top\'>
+				<b>Posted By:</b> <a href="'.$urlp.'">'.$username.'</a><br />
+				<a href="'.$urlp.'"><img src=\''.$domain.'/avatars/'.$avatarfileurl.'\' height=\'100\' width=\'100\' /></a><br />
+                <small><i><b>Posted On:</b> '.$date.'</i></small>
+                </td>
+
 				<td valig=\'top\' class=\'content\' valign=\'top\'>'.$in['comment'].'</td>
 			</tr>
 			<tr>
@@ -105,7 +108,7 @@ if ($totalpages != '1'){
 	if ($show > '1'){
 		echo '<a href="'.$previous.'" class="page">Previous</a>';
 	}
-	for($i = 1; $i <= $totalpages; $i++){ 
+	for($i = 1; $i <= $totalpages; $i++){
 		if($show - $i < '4' || $totalpages - $i < '7'){
 			if($i - $show < '4' || $i < '8'){
 				if($seo_on == 1){
@@ -113,7 +116,7 @@ if ($totalpages != '1'){
 				}else{
 					$urk = ''.$domain.'/index.php?action=showcomments&name='.$name.'&ID='.$ID.'&page='.$i.'';
 				}
-	
+
 				if($show == $i){
 					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
 				}else{

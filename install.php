@@ -17,7 +17,6 @@ if(isset($_POST['submit'])){
 	$slimitboxgames = $_POST['limitboxgames'];
 	$sgamesonpage = $_POST['gamesonpage'];
 	$scomments_on = $_POST['comments_on'];
-	$staf_on = $_POST['taf_on'];	
 	$sautoapprovecomments = $_POST['autoapprovecomments'];
 	$sseo_on = $_POST['seo_on'];
 	$senabled_code = $_POST['enabled_code'];
@@ -216,6 +215,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_settings` (
   `email_on` int(11) NOT NULL default '1',
   `comments_on` int(11) NOT NULL default '1',
   `taf_on` int(11) NOT NULL default '1',
+  `fbcomments_on` int(11) NOT NULL default '1',
   `autoapprovecomments` int(11) NOT NULL,
   `seo_on` int(11) NOT NULL,
   `sitename` varchar(250) NOT NULL,
@@ -230,6 +230,18 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_settings` (
   `footerspace` text NOT NULL,
   `abovegames` text NOT NULL,
   `belowgames` text NOT NULL,
+  `analytics` text NOT NULL,
+  `socialmedia1` text NOT NULL,
+  `socialmedia2` text NOT NULL,
+  `socialmedia3` text NOT NULL,
+  `socialmedia4` text NOT NULL,
+  `socialmedia5` text NOT NULL,
+  `socialmedia6` text NOT NULL,
+  `socialmedia7` text NOT NULL,
+  `socialmedia8` text NOT NULL,
+  `socialmedia9` text NOT NULL,
+  `socialmedia10` text NOT NULL,
+  `facebookappid` text NOT NULL,
   `showwebsitelimit` int(11) NOT NULL default '10',
   `supportemail` varchar(60) NOT NULL,
   `showblog` tinyint(1) NOT NULL default '1',
@@ -364,7 +376,8 @@ mysql_query("INSERT INTO fas_settings SET
  					thumbsfolder='$sgamesthumbs',
  					limitboxgames='$slimitboxgames',
  					comments_on='$scomments_on',
-					taf_on='$staf_on', 					
+ 					taf_on='$staf_on',
+ 					fbcomments_on='$sfbcomments_on',
  					autoapprovecomments='$sautoapprovecomments',
  					seo_on='$sseo_on',
  					sitename='$ssitename',
@@ -379,7 +392,18 @@ mysql_query("INSERT INTO fas_settings SET
  					footerspace='footerspace',
  					abovegames='abovegames',
  					belowgames='belowgames',
-                                        analytics=''") ; 					") ;
+                    analytics='',
+ 					socialmedia1='#',
+ 					socialmedia2='#',
+ 					socialmedia3='#',
+ 					socialmedia4='#',
+ 					socialmedia5='#',
+ 					socialmedia6='#',
+ 					socialmedia7='#',
+ 					socialmedia8='#',
+ 					socialmedia9='#',
+ 					socialmedia10='',
+ 					facebookappid=''") ;
 
 mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `newsletter`, `aim`, `icq`, `msn`, `yim`, `location`, `job`, `website`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `sex`, `interests`, `bio`, `ip`, `bloglevel`, `forumlevel`, `gamelevel`, `signature`, `avatar`, `avatarfile`) VALUES(0, 'Guest', 'hhhhhhhhhhhhhhhhh', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, 1, '', 0, '');");
 mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`) VALUES
@@ -401,7 +425,7 @@ ADD  `new_email_key` VARCHAR( 255 ) NOT NULL; ");
 mysql_query("ALTER TABLE `fas_settings` ADD `showpages` TINYINT( 1 ) NOT NULL DEFAULT '0' AFTER `showblog` ;");
 mysql_query("UPDATE fas_users SET `userid` = '0' WHERE `username` ='Guest' LIMIT 1 ; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `joindate` varchar(255) NOT NULL AFTER `user_level`; ");
-mysql_query("ALTER TABLE  `fas_categories` ADD  `show` tinyint(1) NOT NULL DEFAULT '1'; ");
+mysql_query("ALTER TABLE  `fas_categories` ADD  `show` tinyint(1) NOT NULL default '1'; ");
 
 echo '<div class=\'msg\'>Updated.</div><br />
 Please delete the install.php file. <br /><br />Username: admin Password: admin<br />

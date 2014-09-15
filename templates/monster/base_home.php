@@ -11,7 +11,7 @@ $baser1 = sqlcache('mainpagecats', $cachelife, $baser2);
 
 if($baser1 == false){//If no games are added to the category yet, display error.
 	echo'<div class="msg">No categories added yet</div>';
-	return;	
+	return;
 }//end if $baser1
 
 foreach($baser1 as $row){
@@ -45,10 +45,10 @@ foreach($baser1 as $row){
 	      				echo'<div class="home_wrap">
 	      					<div class="home_img">
 	      						<a href=\''.$playlink.'\'>';
-				      				if($row['type'] == 1){	
-				      					echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' alt= \''.$gamename.'\' class="home_img" />';
+				      				if($row['type'] == 1){
+				      					echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' alt= \''.$gamename.'\' title= \''.$gamename.'\' class="home_img" />';
 				      				}else{//else type
-				      					echo '	<img src=\''.$row['thumburl'].'\' alt= \''.$gamename.'\' class="home_img" />';
+				      					echo '	<img src=\''.$row['thumburl'].'\' alt= \''.$gamename.'\' title= \''.$gamename.'\' class="home_img" />';
 									}//end type
 				      			echo'</a>
 	      					</div>
@@ -57,11 +57,11 @@ foreach($baser1 as $row){
 	      						<div class=\'home_desc\'>'.desclimit($row['description']).'</div>
 	      					</div>
 						</div>';
-	      				};//end foreach baseir1 
+	      				};//end foreach baseir1
 				}else{//else isset($baseir1)
 					echo'<div>
 						No games have been added to this category yet.
-					</div>';	
+					</div>';
 				}//end isset($baseir1)
 			echo'</div>
 		</div>';
@@ -87,11 +87,11 @@ foreach($baser1 as $row){
 			      		echo'<div class="home_wrap">
 	      					<div class="home_img">
 				      			<a href=\''.$playlink.'\'>';
-				      				if($row['type'] == 1){	
-				      					echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' class="home_img" alt=\''.$gamename.'\' />';
+				      				if($row['type'] == 1){
+				      					echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' class="home_img" alt=\''.$gamename.'\' title= \''.$gamename.'\' />';
 				      				}else{
-				      					echo '	<img src=\''.$row['thumburl'].'\' class="home_img" alt= \''.$gamename.'\' />';
-				      				}	
+				      					echo '	<img src=\''.$row['thumburl'].'\' class="home_img" alt= \''.$gamename.'\' title= \''.$gamename.'\' />';
+				      				}
 				      			echo'</a>
 				      		</div>
 							<div class="home_info">
@@ -103,7 +103,7 @@ foreach($baser1 as $row){
 					}else{
 						echo'<div>
 							No games have been added to this category yet.
-						</div>';	
+						</div>';
 					}
 			echo'</div>
 		</div>

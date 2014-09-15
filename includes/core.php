@@ -4,15 +4,15 @@ global $_CONFIG;
 include_once ('includes/db.class.php');
 $db=new database;
 $db->configure(
-	$dbhost, 
-	$dbuser, 
-	$dbpass, 
-	$dbname, 
+	$dbhost,
+	$dbuser,
+	$dbpass,
+	$dbname,
 	$dbpre
 	);
 $db->connect();
-// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_settings')));
-//ALTER TABLE fas_users ADD template VARCHAR(250) AFTER plays;
+// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_settings')));
+//ALTER TABLE dd_users ADD template VARCHAR(250) AFTER plays;
 
 
 
@@ -21,7 +21,7 @@ if(isset($_SESSION['userid'])){
 	$usrdata = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $suserid)));
 }else{
 	$suserid = NULL;
-	$usrdata = NULL;	
+	$usrdata = NULL;
 }
 
 if(isset($suserid)){
@@ -32,12 +32,12 @@ if(isset($suserid)){
 	$user_template = '';
 }
 
-if(!empty($user_template) && $user_template != "default"){ 
-	$template = $user_template; 
+if(!empty($user_template) && $user_template != "default"){
+	$template = $user_template;
 }else{
 	$query = mysql_query("SELECT `template` FROM `fas_themes` WHERE `default`='1'");
 	$row = mysql_fetch_array($query);
-	$template = $row['template']; 
+	$template = $row['template'];
 }
 
 
@@ -52,6 +52,7 @@ foreach($set1 as $set){
 	$email_on = $set['email_on'];
 	$comments_on = $set['comments_on'];
 	$taf_on = $set['taf_on'];
+	$fbcommnets_on = $set['fbcomments_on'];
 	$autoapprovecomments = $set['autoapprovecomments'];
 	$seo_on = $set['seo_on'];
 	$sitename = $set['sitename'];
@@ -67,6 +68,17 @@ foreach($set1 as $set){
 	$abovegames = $set['abovegames'];
 	$belowgames = $set['belowgames'];
 	$analytics = $set['analytics'];
+	$socialmedia1 = $set['socialmedia1'];
+	$socialmedia2 = $set['socialmedia2'];
+	$socialmedia3 = $set['socialmedia3'];
+	$socialmedia4 = $set['socialmedia4'];
+	$socialmedia5 = $set['socialmedia5'];
+	$socialmedia6 = $set['socialmedia6'];
+	$socialmedia7 = $set['socialmedia7'];
+	$socialmedia8 = $set['socialmedia8'];
+	$socialmedia9 = $set['socialmedia9'];
+	$socialmedia10 = $set['socialmedia10'];
+	$facebookappid = $set['facebookappid'];
 	$showwebsitelimit = $set['showwebsitelimit'];
 	$supportemail = $set['supportemail'];
 
@@ -86,7 +98,7 @@ foreach($set1 as $set){
 	$blogcharactersrss = $set['blogcharactersrss'];
 	$metatags = $set['metatags'];
 	$metadescription = $set['metadescr'];
-	$pagetitle = $sitename ;	
+	$pagetitle = $sitename ;
 };
 
 

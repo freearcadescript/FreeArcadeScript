@@ -29,6 +29,14 @@ switch($_GET['case']){
 	$b = 'active';
 	break;
 
+	case 'socialmedia':
+	$b = 'active';
+	break;
+
+	case 'sitemap':
+	$b = 'active';
+	break;
+
 	case 'newsletter':
 	$c = 'active';
 	break;
@@ -146,7 +154,12 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
 		<div class="center">
    			<ul>
         		<li class="'.$a.'"><a href="'.$domain.'/index.php?action=admin">Home</a></li>
-                <li class="'.$b.'"><a href="'.$domain.'/index.php?action=admin&case=settings">Settings</a></li>
+                <li class="'.$b.'"><a href="'.$domain.'/index.php?action=admin&case=settings">Settings</a>
+ 					<ul>
+            			<li><a href="'.$domain.'/index.php?action=admin&case=settings">Settings</a></li>
+                        <li><a href="'.$domain.'/index.php?action=admin&case=socialmedia">Social Media</a></li>
+        			</ul>
+				</li>
 				<li class="'.$c.'"><a href="'.$domain.'/index.php?action=admin&case=newsletter">News</a></li>
                 <li class="'.$d.'"><a href="'.$domain.'/index.php?action=admin&case=managemembers">Users</a></li>
         		<li class="'.$e.'"><a href="'.$domain.'/index.php?action=admin&case=managegames">Games</a>

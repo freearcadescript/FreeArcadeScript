@@ -2,6 +2,7 @@
 if ($email_on == "0") {$emsel = "selected=\"selected\"";}else{$emsel = NULL;};
 if ($comments_on == "0") {$cesel = "selected=\"selected\"";}else{$cesel = NULL;};
 if ($taf_on == "0") {$tafsel = "selected=\"selected\"";}else{$tafsel = NULL;};
+if ($fbcomments_on == "0") {$fbsel = "selected=\"selected\"";}else{$fbsel = NULL;};
 if ($autoapprovecomments == "0" ) {$aasel = "selected=\"selected\"";}else{$aasel = NULL;};
 if ($seo_on == "0") {$seoosel = "selected=\"selected\"";}else{$seoosel = NULL;};
 if ($enabledcode_on == "0") {$ecsel = "selected=\"selected\"";}else{$ecsel = NULL;};
@@ -29,6 +30,7 @@ if(isset($_POST['submit'])){
 	$semail_on = clean($_POST['email_on']);
 	$scomments_on = clean($_POST['comments_on']);
 	$staf_on = clean($_POST['taf_on']);
+	$sfbcomments_on = clean($_POST['fbcomments_on']);
 	$sautoapprovecomments = clean($_POST['autoapprovecomments']);
 	$sseo_on = clean($_POST['seo_on']);
 	$senabled_code = clean($_POST['enabled_code']);
@@ -74,6 +76,7 @@ if(isset($_POST['submit'])){
 					email_on="'.$semail_on.'",
  					comments_on="'.$scomments_on.'",
  					taf_on="'.$staf_on.'",
+ 					fbcomments_on="'.$sfbcomments_on.'",
  					autoapprovecomments="'.$sautoapprovecomments.'",
  					seo_on="'.$sseo_on.'",
  					sitename="'.$ssitename.'",
@@ -169,12 +172,19 @@ echo '
 							</select></td>
 			</tr>
 			<tr>
-				<td>Tell a Friend Enabled:</td>	
+				<td>Tell a Friend Enabled:</td>
 				<td><select name="taf_on">
 								<option value="1">Yes</option>
 								<option value="0" '.$tafsel.'>No</option>
 							</select></td>
-			</tr>			
+			</tr>
+			<tr>
+				<td>Facebook Comments Enabled:</td>
+				<td><select name="fbcomments_on">
+								<option value="1">Yes</option>
+								<option value="0" '.$fbsel.'>No</option>
+							</select></td>
+			</tr>
 			<tr>
 				<td>Auto Approve Comments:</td>
 				<td><select name="autoapprovecomments">
