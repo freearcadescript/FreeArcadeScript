@@ -14,7 +14,7 @@ header ("Content-type: text/xml");
 
 
 
-$datas = mysql_query ("SELECT * FROM `blogentries` where visible='1' ORDER BY `entryid` DESC LIMIT 10");
+$datas = mysql_query ("SELECT * FROM `fas_blogentries` where visible='1' ORDER BY `entryid` DESC LIMIT 10");
 $row = mysql_fetch_array($datas);
 print "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
 print ""."<rss version=\"2.0\">\n";
