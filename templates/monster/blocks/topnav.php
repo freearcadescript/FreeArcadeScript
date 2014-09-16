@@ -10,7 +10,8 @@ echo '<div class="nav">
 			echo '<ul>
 				<li><a href="'.$domain.'">Home</a></li>
 				<li><a href="'.$domain.'/memberslist/">Members</a></li>
-				<li><a href="'.$domain.'/fineprint/">Fine Print</a></li>';
+				<li><a href="'.$domain.'/fineprint/">Fine Print</a></li>
+				<li><a href="'.$domain.'/contact/">Contact Us</a></li>';
        	    	if ($showpages == 1) { echo '<li><a href="'.$domain.'/pages/">Pages</a></li>'; };
        	    	if ($showblog == 1) { echo '<li><a href="'.$domain.'/blog/">Blog</a></li>'; };
 			echo '</ul>';
@@ -18,7 +19,8 @@ echo '<div class="nav">
 			echo '<ul>
 				<li><a href="'.$domain.'">Home</a></li>
 				<li><a href="'.$domain.'/index.php?action=memberslist">Members</a></li>
-				<li><a href="'.$domain.'/index.php?action=fineprint">Fine Print</a></li>';
+				<li><a href="'.$domain.'/index.php?action=fineprint">Fine Print</a></li>
+				<li><a href="'.$domain.'/index.php?action=contact">Contact Us</a></li>';
     	   	    if ($showpages == 1) { echo '<li><a href="'.$domain.'/index.php?action=pages">Pages</a></li>'; };
     	   	    if ($showblog == 1) { echo '<li><a href="'.$domain.'/index.php?action=blog">Blog</a></li>'; };
 			echo '</ul>';
