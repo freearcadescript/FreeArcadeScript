@@ -93,7 +93,7 @@ echo '<div class="heading">
 			<tr>
 			</tr>
 				<td>Date Posted: </td>
-				<td>'.$ir['date'].'</td>
+				<td>'.date('M-d-Y', $ir['date']).'</td>
 			<tr>
 			</tr>
 				<td>Approved: </td>

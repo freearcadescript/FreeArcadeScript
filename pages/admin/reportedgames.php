@@ -55,10 +55,10 @@ $totalpages = ceil($totalres / $max);
 	echo '<tbody>
 		<tr>
 			<td width="155px">'.$user.'</td>
-			<td width="655px"><a href=\''.$domain.'/index.php?action=admin&case=testgame&gameid='.$gameid.'\' target=\'_blank\'>'.$gamename.'</a></td> 
+			<td width="655px"><a href=\''.$domain.'/index.php?action=admin&case=testgame&ID='.$gameid.'\' target=\'_blank\'>'.$gamename.'</a></td> 
 			<td><a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$gameid.'&type='.$type.'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" /></a>
 				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=delete&ID='.$gameid.'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$gamename.'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" /></a>
-				<a href=\''.$domain.'/index.php?action=admin&case=reported&cmd=solved&ID='.$gameid.'\' ><img src="pages/admin/img/approve.png" width="24" height="24" alt="solved" title="Solved" /></a></td> 
+				<a href=\''.$domain.'/index.php?action=admin&case=reportedgames&cmd=solved&ID='.$gameid.'\' ><img src="pages/admin/img/approve.png" width="24" height="24" alt="solved" title="Solved" /></a></td> 
 		</tr>
 	</tbody>'; }
 echo '</table>

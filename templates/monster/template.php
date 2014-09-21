@@ -3,6 +3,7 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://www.facebook.com/2008/fbml"
       xml:lang="en-US"
       lang="en-US">
 <head>
@@ -11,7 +12,8 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
 	<meta name="description" content="'.$metadescription.'" />
 	<meta name="author" content="freearcadescript.net" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-	<link href="'.$domain.'/templates/'.$template.'/styles.css" rel="stylesheet" type="text/css" />';
+	<link href="'.$domain.'/templates/'.$template.'/styles.css" rel="stylesheet" type="text/css" />
+	<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>';
 	include ("js/rating_update.php");
 echo'</head>
 <body>';
@@ -39,10 +41,9 @@ echo'</head>
 	include("templates/$template/blocks/powered.php");
 	if (!$footerspace == "") { echo '<br /><div align="center">'.$footerspace.'</div><br />'; };
 	if (!$analytics == "") { echo ''.$analytics.''; };
-	echo'</div>
-	<div class="footer">';
-		//include ("templates/$template/blocks/loginnav.php");
-	echo'</div>
+	echo'</div>';
+
+	echo'
 </body>
 </html>';
 ?>

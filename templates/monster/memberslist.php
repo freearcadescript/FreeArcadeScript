@@ -9,15 +9,15 @@ $time = time()-15*60;
 if(!isset($_GET['orderby'])){
 	$orderby = NULL;
 }else{
-	$orderby = clean($_GET['orderby']);	
+	$orderby = clean($_GET['orderby']);
 }
 $max = '70';
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{
-	$show = clean($_GET['page']);	
+	$show = clean($_GET['page']);
 }
-$limits = ($show - 1) * $max; 
+$limits = ($show - 1) * $max;
 
 if(!empty($orderby)){
 if($orderby == "playshl"){
@@ -48,12 +48,15 @@ $r = $db->query(sprintf("SELECT * FROM fas_users WHERE activation_key='0' AND us
 $r = $db->query(sprintf("SELECT * FROM fas_users WHERE activation_key='0' AND user_level!='0' ORDER BY username ASC LIMIT $limits,$max"));
 }
 
-$totalres = mysql_result($db->query('SELECT COUNT(userid) AS total FROM fas_users WHERE userid != "0" '),0); 
+$totalres = mysql_result($db->query('SELECT COUNT(userid) AS total FROM fas_users WHERE userid != "0" '),0);
 $totalpages = ceil($totalres / $max);
 $down = '<img src="'.$domain.'/templates/'.$template.'/images/down.png" width="12" height="12" alt="down" title="Down" />';
 $up = '<img src="'.$domain.'/templates/'.$template.'/images/up.png" width="12" height="12" alt="up" title="Up" />';
 echo '
 <table width="100%" align="center">
+<tr>
+<td class="header" colspan="4">Members List</td>
+</tr>
 <tr>
 <th class="header2">Name <a href=\''.$domain.'/index.php?action=memberslist&amp;orderby=usernamelh\'>'.$down.'</a><a href=\''.$domain.'/index.php?action=memberslist&amp;orderby=usernamehl\'>'.$up.'</a></th>
 <th class="header2">Plays <a href=\''.$domain.'/index.php?action=memberslist&amp;orderby=playslh\'>'.$down.'</a><a href=\''.$domain.'/index.php?action=memberslist&amp;orderby=playshl\'>'.$up.'</a></th>
@@ -108,7 +111,7 @@ if ($totalpages != '1'){
 	if ($show > '1'){
 		echo '<a href="'.$previous.'" class="page">Previous</a>';
 	}
-	for($i = 1; $i <= $totalpages; $i++){ 
+	for($i = 1; $i <= $totalpages; $i++){
 		if($show - $i < '4' || $totalpages - $i < '7'){
 			if($i - $show < '4' || $i < '8'){
 				if($seo_on == 1){
@@ -116,7 +119,7 @@ if ($totalpages != '1'){
 				}else{
 					$urk = ''.$domain.'/index.php?action=memberslist&page='.$i;
 				}
-	
+
 				if($show == $i){
 					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
 				}else{

@@ -132,7 +132,7 @@ include ("js/rating_update.php");
 
 
 		<table width="100%">
-                        <?php submenu2 (); ?>
+                        <?php // submenu2 (); ?>
 
 				<tr>
 					<td class="header2">Ads</td>
@@ -231,8 +231,8 @@ writebody();
 					Total Comments: <? echo $totalcomments; ?><br />
                               Total Hits: <?php include ("$directorypath/includes/counter.php"); ?><br />
 					Users Online: <? echo $onlineusers; ?><p>
-                              <a href="<?php echo $domain; ?>/rss-arcade.php"><img src="<? echo $domain; ?>/templates/default/images/rss.gif"  border="0" ></img> RSS-Games</a><br />
-                              <?php   if ($showblog == 1) { echo '<a href="'.$domain.'/rss-blog.php"><img src="'.$domain.'/templates/default/images/rss.gif" border="0" ></img> RSS-Blog</a><br />' ; };
+                              <a href="<?php echo $domain; ?>/rss-arcade.php"><img src="<? echo $domain; ?>/images/rss.gif"  border="0" ></img> RSS-Games</a><br />
+                              <?php   if ($showblog == 1) { echo '<a href="'.$domain.'/rss-blog.php"><img src="'.$domain.'/images/rss.gif" border="0" ></img> RSS-Blog</a><br />' ; };
 
                               ?>
 

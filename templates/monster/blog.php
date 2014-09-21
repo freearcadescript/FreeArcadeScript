@@ -10,16 +10,16 @@ $max = $blogentriesshown;
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{
-	$show = clean($_GET['page']);	
+	$show = clean($_GET['page']);
 }
-$limits = ($show - 1) * $max; 
+$limits = ($show - 1) * $max;
 $r2 = "SELECT * FROM fas_blogentries WHERE visible='1' order by entryid desc LIMIT ".$limits.",".$max ;
 
 $sqltitle="blogmain-page".$show ;
 $r1 = sqlcache($sqltitle, $cachelife, $r2);
 
-$totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM fas_blogentries where visible=\'1\' '),0);	
-$totalpages = ceil($totalres / $max); 
+$totalres = mysql_result($db->query('SELECT COUNT(entryid) AS total FROM fas_blogentries where visible=\'1\' '),0);
+$totalpages = ceil($totalres / $max);
 echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 	<tr>
 		<td colspan=\'2\' class=\'header\'>Blog Entries</td>
@@ -84,7 +84,7 @@ $body = str_replace("[br]","<br />",$bodystring);
 
 echo '</table>';
 echo 'Pages: ';
-for($i = 1; $i <= $totalpages; $i++){ 
+for($i = 1; $i <= $totalpages; $i++){
 if($seo_on == 1){
 	$urk = ''.$domain.'/blog/page/'.$i.'.html';
 }else{

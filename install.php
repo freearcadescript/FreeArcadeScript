@@ -24,11 +24,11 @@ if(isset($_POST['submit'])){
 
 
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_report_comments` (
-  `ID` int(11) NOT NULL NOT NULL auto_increment,
-  `gamename` varchar(250) NOT NULL,
-  `gameid` int(11) NOT NULL DEFAULT '0',
+  `id` int(11) NOT NULL NOT NULL auto_increment,
+  `comment` varchar(250) NOT NULL,
+  `blogid` int(11) NOT NULL DEFAULT '0',
   `userid` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_agffeed` (
@@ -155,7 +155,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_games` (
   `thumburl` text NOT NULL,
   `enabledcode` longtext NOT NULL,
   `views` int(11) NOT NULL default '0',
-  `active` tinyint(1) NOT NULL default '0',
+  `active` tinyint(1) NOT NULL default '1',
   `tags` varchar(100) NOT NULL,
   `highscore` bigint(20) NOT NULL,
   `highscoreable` tinyint(1) NOT NULL default '0',
@@ -268,6 +268,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_users` (
   `password` varchar(250) NOT NULL,
   `email` varchar(250) NOT NULL,
   `user_level` int(11) NOT NULL default '1',
+  `joindate` varchar(255) NOT NULL,
   `plays` int(11) NOT NULL default '0',
   `template` varchar(250) NOT NULL default 'default',
   `newsletter` varchar(4) NOT NULL,
@@ -356,17 +357,18 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_themes` (
   `active` int(11) NOT NULL DEFAULT '0',
   `default` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ; ");
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ; ");
 
 
 mysql_query("INSERT INTO `fas_blogcategories` (`categoryid`, `topcategory`, `categoryname`, `activate`, `metatags`, `metadescr`) VALUES
 (1, 1, 'Main', 0, 'Main, general', 'Main blog category');");
 
+$date = date('Y-m-d H:i:s');
 mysql_query("INSERT INTO `fas_blogentries` VALUES
-(1, 'Blog test', 'This is a test of the emergency blogging system, this is only a test. If this had been an actual blog you would be laughing by now.\r\n\r\n;)', 'admin', '2009-11-21', '1', '1', 'blog test 1');");
+(1, 'Blog test', 'This is a test of the emergency blogging system, this is only a test. If this had been an actual blog you would be laughing by now.\r\n\r\n;)', 'admin', '$date', '1', '1', 'blog test 1');");
 
 mysql_query("INSERT INTO `fas_links` (`ID`, `title`, `url`, `hits`, `dateadded`, `activate`, `IPaddress`) VALUES
-(1, 'Free Arcade Script', 'http://freearcadescript.net', 0, '1239646822', 2, '97.114.113.112');");
+(1, 'Free Arcade Script', 'http://freearcadescript.net', 0, '', 2, '');");
 
 mysql_query("INSERT INTO fas_settings SET
  					domain='$sdomain',
@@ -406,11 +408,15 @@ mysql_query("INSERT INTO fas_settings SET
  					facebookappid=''") ;
 
 mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `newsletter`, `aim`, `icq`, `msn`, `yim`, `location`, `job`, `website`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `sex`, `interests`, `bio`, `ip`, `bloglevel`, `forumlevel`, `gamelevel`, `signature`, `avatar`, `avatarfile`) VALUES(0, 'Guest', 'hhhhhhhhhhhhhhhhh', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, 1, '', 0, '');");
-mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '$email', 2, 0)");
-mysql_query("INSERT INTO `fas_newsletter` (`pageid`, `sent`, `showpage`, `pagetitle`, `pagebody`, `pageauthor`, `datesent`) VALUES(1, 1, 1, 'We want to hear from you!', 'We want to hear from you.\r\n\r\nWe want to hear what you want added or changed in here. Let us know. We are thinking a blog for starters, or a shoutbox.\r\n\r\n', 'Admin', '2009-04-18');");
+
+$time = time();
+mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `joindate`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '$email', 2, 0, '$time')");
+$date = date('Y-m-d H:i:s');
+mysql_query("INSERT INTO `fas_newsletter` (`pageid`, `sent`, `showpage`, `pagetitle`, `pagebody`, `pageauthor`, `datesent`) VALUES(1, 1, 1, 'We want to hear from you!', 'We want to hear from you.\r\n\r\nWe want to hear what you want added or changed in here. Let us know. We are thinking a blog for starters, or a shoutbox.\r\n\r\n', 'Admin', '$date');");
 mysql_query("INSERT INTO `fas_pagecategories` (`categoryid`, `topcategory`, `categoryname`, `activate`, `metatags`, `metadescr`) VALUES(1, 1, 'Main', 1, '', ''); ");
-mysql_query("INSERT INTO `fas_pageentries` (`entryid`, `title`, `body`, `author`, `entrydate`, `visible`, `category`, `tags`, `metadescription`) VALUES(1, 'Demo Page', 'This is a demo of the pages\r\n\r\nYou may use HTML or JavaScript', '1', '2009-12-06', '1', '1', 'Demo Page', ''); ");
+$date = date('Y-m-d H:i:s');
+mysql_query("INSERT INTO `fas_pageentries` (`entryid`, `title`, `body`, `author`, `entrydate`, `visible`, `category`, `tags`, `metadescription`) VALUES(1, 'Demo Page', 'This is a demo of the pages\r\n\r\nYou may use HTML or JavaScript', '1', '$date', '1', '1', 'Demo Page', ''); ");
 mysql_query("INSERT INTO `fas_themes` (`name`, `template`, `active`, `default`) VALUES('Monster', 'monster', '1', '1'); ");
 
 
@@ -424,8 +430,10 @@ mysql_query("ALTER TABLE  `fas_users` ADD  `new_email` VARCHAR( 255 ) NOT NULL,
 ADD  `new_email_key` VARCHAR( 255 ) NOT NULL; ");
 mysql_query("ALTER TABLE `fas_settings` ADD `showpages` TINYINT( 1 ) NOT NULL DEFAULT '0' AFTER `showblog` ;");
 mysql_query("UPDATE fas_users SET `userid` = '0' WHERE `username` ='Guest' LIMIT 1 ; ");
-mysql_query("ALTER TABLE  `fas_users` ADD  `joindate` varchar(255) NOT NULL AFTER `user_level`; ");
-mysql_query("ALTER TABLE  `fas_categories` ADD  `show` tinyint(1) NOT NULL default '1'; ");
+
+mysql_query("ALTER TABLE  `fas_categories` ADD  `visible` tinyint(1) NOT NULL default '1'; ");
+mysql_query("ALTER TABLE  `fas_settings` ADD  `version` varchar(12) NOT NULL DEFAULT '3.0'; ");
+mysql_query("ALTER TABLE  `fas_settings` ADD  `disabled` char(3) NOT NULL DEFAULT 'no'; ");
 
 echo '<div class=\'msg\'>Updated.</div><br />
 Please delete the install.php file. <br /><br />Username: admin Password: admin<br />
@@ -505,9 +513,6 @@ echo '<form action=\'install.php\' method=\'POST\'>
 							<option value=\'0\'>No</option>
 						</select></td>
 		</tr>
-
-
-
 		</tr>
 			<td class=\'content5\'>Your email:</td>
 			<td class=\'content5\'><input type=\'text\' name=\'email\' size=\'40\'></td>

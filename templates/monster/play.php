@@ -37,7 +37,7 @@ if ( $r['tags'] == '' ) { $metatags = $cname; } else { $metatags = $r['tags']; }
 // $gviews
 
 function writebody() {
-global $db, $domain, $suserid, $cachelife, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $ads3, $headerspace, $footerspace, $ID, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
+global $db, $domain, $suserid, $cachelife, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $ads3, $headerspace, $footerspace, $ID, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $tags;
 
 
 
@@ -80,17 +80,18 @@ if(isset($_POST['commentsubmit'])){
 		$msgcom = 'Comment Posted, Awaiting admin approval.';
 	}
 	echo '<div class=\'msg\'>'.$msgcom.'</div><br />';
-}
-echo '<table width=\'100%\' align=\'center\'>';
-				 if (!$abovegames == "") {
-	echo '<tr>
-		<td class=\'content\' colspan=\'2\' ><div align=\'center\'>'.$abovegames.'<p></div></td>
-	</tr>'; };
-	echo'	<tr>
-		<td class=\'header\' colspan=\'2\' >'.$r['name'].'</td>
-	</tr>
-
+    }
+    echo '<table width=\'100%\' align=\'center\'>
 	<tr>
+		<td class=\'header\' colspan=\'2\' >'.$r['name'].'</td>
+	</tr>';
+					 if (!$abovegames == "") {
+		echo '<tr>
+			<td class=\'content\' colspan=\'2\' ><div align=\'center\'>'.$abovegames.'<p></div></td>
+	</tr>';
+	};
+
+	echo'<tr>
 		<td class=\'content\' align=\'center\' colspan=\'2\'>
 		<div align=\'center\'>';
 		if($r['type'] == 1){
@@ -156,7 +157,6 @@ echo '<table width=\'100%\' align=\'center\'>';
 		echo '</div><br />
         </td>
 		<td class=\'content\' valign=\'top\' style=\'padding:2px;\' width="30%"><b>Total Views:</b> '.$r['views'].'<br /><br />';
-
     echo '<div class="fb-like" data-href=".urlencode($url)." data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div></td>';
 	echo '</tr>
 	    </table>
@@ -233,7 +233,7 @@ echo '
 		}else{
 			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$ro['ID'].'';
 	    }
-        if($comments_on == 1){
+        if($fbcomments_on == 1){
         echo '<table  width="100%">
         <tr>
 		     <td class=\'header\' colspan=\'2\'>Comments</td>
@@ -242,7 +242,9 @@ echo '
         <td><div class="fb-comments" data-href="'.$playlink.'" data-numposts="5" data-colorscheme="light" data-width="100%"></div></td>
         </tr>
         </table>';
-        }else{ };
+        }else{
+
+        };
 
 	    if($comments_on == 1){
         echo '<table  width="100%">
@@ -305,10 +307,12 @@ echo '
 		     </td>
 		     <td valign=\'top\' class=\'content\'>'.$row['comment'].'';
        if($usrdata['user_level'] == 2){
-	   echo '<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=admin&amp;case=approvecomments&amp;cmd=delete&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' border=\'0\' alt=\'Delete Comment\' title=\'Delete Comment\' /></a> </div>';
+	   echo '<div style="float: right; padding-right: 20px;">
+	        <a href=\''.$domain.'/index.php?action=admin&amp;case=managegamecomments&amp;cmd=edit&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to edit this comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' border=\'0\' alt=\'Edit Comment\' title=\'Edit Comment\' /></a>
+	        <a href=\''.$domain.'/index.php?action=admin&amp;case=managegamecomments&amp;cmd=delete&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete this comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' border=\'0\' alt=\'Delete Comment\' title=\'Delete Comment\' /></a>
+	        </div>';
 		     }
-       echo '<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=admin&amp;case=approvecomments&amp;cmd=report&amp;ID='.$row['ID'].'\' onclick="return confirm(\'Are you sure you want to report this comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Comment\' title=\'Report Comment\' /></a></div>
-		     </td>
+       echo '</td>
         </tr>
         <tr>
 		     <td width=\'100%\' colspan=\'2\' class=\'content\'>&nbsp;</td>

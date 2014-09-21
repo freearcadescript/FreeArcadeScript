@@ -1,5 +1,11 @@
 <?php
 
+if($seo_on == 1){
+		$con1 = ''.$domain.'/contact/';
+	}else{
+		$con1 = ''.$domain.'/index.php?action=contact';
+	};
+
 function writebody() {
 global $db, $domain, $sitename, $con1, $userid, $template;
 
@@ -94,7 +100,7 @@ echo '<div class="header2">
 		</li>
 		<li>I want to know about advertising on your site.
 			<ul>
-				<li>Use the Contact Us form.</li>
+				<li>Use the <a href=\''.$con1.'\'>Contact Us</a> form.</li>
 			</ul>
 		</li>
 	</ol>

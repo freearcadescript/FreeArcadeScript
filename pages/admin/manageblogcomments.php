@@ -28,7 +28,7 @@ function comments(){
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Title</th>
+				<th>Blog ID</th>
 				<th colspan="2">Comment</th>
 			</tr>
 		</thead>
@@ -39,8 +39,8 @@ function comments(){
 			<td width="50px">'.$ir['commentid'].'</td>
 			<td width="100px">'.$ir['blogentryid'].'</td>
 			<td width="680px">'.$ir['commentbody'].'</td>
-			<td><a href=\''.$domain.'/index.php?action=admin&case=manageblogcomments&cmd=edit&ID='.$ir['commentid'].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
-				<a href=\''.$domain.'/index.php?action=admin&case=manageblogcomments&cmd=delete&ID='.$ir['commentid'].'\'  onclick="return confirm(\'Are you sure you want to delete this Blog Comment?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a></td>
+			<td><a href=\''.$domain.'/index.php?action=admin&case=manageblogcomments&cmd=edit&commentid='.$ir['commentid'].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=manageblogcomments&cmd=delete&commentid='.$ir['commentid'].'\'  onclick="return confirm(\'Are you sure you want to delete this Blog Comment?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a></td>
 		</tr>';
 	}
 echo '</tbody>
@@ -48,16 +48,16 @@ echo '</tbody>
 }
 function delete(){
 global $db, $domain;
-$ID = abs((int) $_GET['ID']);
-if(!$ID) {return;}
+$commentid = abs((int) $_GET['commentid']);
+if(!$commentid) {return;}
 	$db->query(sprintf('DELETE FROM fas_blogcomments WHERE commentid=\'%u\'', $commentid));
 	echo '<div class=\'msg\'>Blog Comment Deleted!.
 				<br /><A href="#" onclick="history.go(-1)">Back</a></div>';
 }
 function edit(){
 global $db, $domain;
-$ID = abs((int) $_GET['ID']);
-if(!$ID) {return;}
+$commentid = abs((int) $_GET['commentid']);
+if(!$commentid) {return;}
 if(isset($_POST['submit'])){
 	$commentid  = clean($_POST['commentid']);
 	$blogentryid  = clean($_POST['blogentryid']);
@@ -67,17 +67,15 @@ if(isset($_POST['submit'])){
 	$commenterid  = clean($_POST['commenterid']);
 	$commenterurl  = clean($_POST['commenterurl']);
 	$visible  = clean($_POST['visible']);
-	$commentdate  = clean($_POST['commentdate']);
-	$ipaddress  = clean($_POST['ipaddress']);
 	echo '<div class=\'msg\'>Blog Comment Updated!</div>';
-	mysql_query("UPDATE fas_blogcomments SET commentid='$commentid', blogentryid='$blogentryid', commenttitle='$commenttitle', commentbody='$commentbody', commenter='$commenter', commenterid='$commenterid', commenterurl='$commenterurl', visible='$visible', commentdate='$commentdate', ipaddress='$ipaddress' WHERE ID='$ID' ");
+	mysql_query("UPDATE fas_blogcomments SET commentid='$commentid', blogentryid='$blogentryid', commenttitle='$commenttitle', commentbody='$commentbody', commenter='$commenter', commenterid='$commenterid', commenterurl='$commenterurl', visible='$visible' WHERE commentid='$commentid' ");
 }else{
 $ir = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_blogcomments WHERE commentid=\'%u\'', $commentid)));
 echo '<div class="heading">
 	<h2>Editing Blog Comment: '.$ir['commentid'].'</h2>
 </div>
 <br clear="all">
-<form action=\''.$domain.'/index.php?action=admin&case=manageblogcomments&cmd=edit&ID='.$commentid.'\' method=\'post\'>
+<form action=\''.$domain.'/index.php?action=admin&case=manageblogcomments&cmd=edit&commentid='.$commentid.'\' method=\'post\'>
 	<table id="table">
 		<thead>
 			<tr>
@@ -86,11 +84,11 @@ echo '<div class="heading">
 		</thead>
 		<tbody>
 			<tr>
-				<td>Comment ID: </td>
+				<td>Comment commentid: </td>
 				<td><input type=\'text\' size=\'40\' name=\'commentid\' value=\''.$ir['commentid'].'\'></td>
 			<tr>
 			</tr>
-				<td>Blog ID: </td>
+				<td>Blog commentid: </td>
 				<td><input type=\'text\' size=\'40\' name=\'blogentryid\' value=\''.$ir['blogentryid'].'\'></td>
 			<tr>
 			</tr>
@@ -99,31 +97,31 @@ echo '<div class="heading">
 			<tr>
 			</tr>
 				<td>Comment: </td>
-				<td><input type=\'text\' size=\'2\' name=\'commentbody\' value=\''.$ir['commentbody'].'\'></td>
+				<td><input type=\'text\' size=\'20\' name=\'commentbody\' value=\''.$ir['commentbody'].'\'></td>
 			<tr>
 			</tr>
 				<td>Comment By: </td>
-				<td><input type=\'text\' size=\'2\' name=\'commenter\' value=\''.$ir['commenter'].'\'></td>
+				<td><input type=\'text\' size=\'20\' name=\'commenter\' value=\''.$ir['commenter'].'\'></td>
 			<tr>
 			</tr>
-				<td>User ID: </td>
-				<td><input type=\'text\' size=\'2\' name=\'commenterid\' value=\''.$ir['commenterid'].'\'></td>
+				<td>User commentid: </td>
+				<td><input type=\'text\' size=\'20\' name=\'commenterid\' value=\''.$ir['commenterid'].'\'></td>
 			<tr>
 			</tr>
 				<td>URL: </td>
-				<td><input type=\'text\' size=\'2\' name=\'commenterurl\' value=\''.$ir['commenterurl'].'\'></td>
+				<td><input type=\'text\' size=\'20\' name=\'commenterurl\' value=\''.$ir['commenterurl'].'\'></td>
 			<tr>
 			</tr>
 				<td>Approved: </td>
-				<td><input type=\'text\' size=\'2\' name=\'visible\' value=\''.$ir['visible'].'\'></td>
+				<td><input type=\'text\' size=\'20\' name=\'visible\' value=\''.$ir['visible'].'\'></td>
 			<tr>
 			</tr>
 				<td>Date: </td>
-				<td><input type=\'text\' size=\'2\' name=\'commentdate\' value=\''.$ir['commentdate'].'\'></td>
+				<td>'.date('M-d-Y', $ir['commentdate']).'</td>
 			<tr>
 			</tr>
 				<td>IPaddress: </td>
-				<td><input type=\'text\' size=\'2\' name=\'ipaddress\' value=\''.$ir['ipaddress'].'\'></td>
+				<td>'.$ir['ipaddress'].'</td>
 			<tr>
 			</tr>
 				<td colspan="2"><input type=\'submit\' name=\'submit\' value=\'Change\'></td>

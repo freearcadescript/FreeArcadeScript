@@ -14,9 +14,6 @@ if ($avatar_on == "0") {$avsel = "selected=\"selected\"";}else{$avsel = NULL;};
 if ($gender_on == "0") {$gavsel = "selected=\"selected\"";}else{$gavsel = NULL;};
 
 
-
-
-
 if(isset($_POST['submit'])){
 
 	$ssitename = clean($_POST['sitename']);
@@ -36,10 +33,8 @@ if(isset($_POST['submit'])){
 	$senabled_code = clean($_POST['enabled_code']);
 	$showwebsitelimit = clean($_POST['showwebsitelimit']);
 	$supportemail = clean($_POST['supportemail']);
-
 	$showblog = clean($_POST['showblog']);
 	$showpages = clean($_POST['showpages']);
-
 	$blogentriesshown = clean($_POST['blogentriesshown']);
 	$blogcharactersshown = clean($_POST['blogcharactersshown']);
 	$blogcommentpermissions = clean($_POST['blogcommentpermissions']);
@@ -48,17 +43,11 @@ if(isset($_POST['submit'])){
 	$blogcharactersrss = clean($_POST['blogcharactersrss']);
 	$metatags = clean($_POST['metatags']);
 	$metadescr = clean($_POST['metadescr']);
-
 	$savatar_on = clean($_POST['avatar_on']);
 	$saimg = clean($_POST['aimg']);
 	$sgender_on = clean($_POST['gender_on']);
 	$smimg = clean($_POST['mimg']);
 	$sfimg = clean($_POST['fimg']);
-
-
-
-
-
 
 
 	if(!$ssitename || !$domain || !$stemplate || !$sgamesfolder || !$sgamesthumbs || !$slimitboxgames || !$sgamesonpage){
@@ -93,7 +82,6 @@ if(isset($_POST['submit'])){
   					blogcharactersrss="'.$blogcharactersrss.'",
  					metatags="'.$metatags.'",
  					metadescr="'.$metadescr.'",
-
 					avatar_on="'.$savatar_on.'",
 					aimg="'.$saimg.'",
 					gender_on="'.$sgender_on.'",
@@ -111,10 +99,14 @@ echo '
 	<table id="table">
 		<thead>
 			<tr>
-				<th colspan="2">Manage Settings</th>
+				<th colspan="2">Manage Settings:</th>
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td>Free Arcade Script: version '.$set['version'].'</td>
+				<td></td>
+			</tr>
 			<tr>
 				<td>Site Name:</td>
 				<td><input type="text" name="sitename" size="40" value="'.$set['sitename'].'" /></td>

@@ -80,7 +80,7 @@ echo '<table width="100%" align="center">
 		<td colspan=\'2\' class=\'header\'>User Profile: '.$username.'</td>
 	</tr>
 	<tr>
-		<td class="content" width="100">About Me:<br><img src=\''.$domain.'/avatars/'.$avatarfileurl.'\' height=\'100\' width=\'100\' /></td>
+		<td class="content" width="100">About Me:<br><img src=\''.$domain.'/avatars/'.$avatarfile.'\' height=\'100\' width=\'100\' /></td>
 		<td class="content" width="450">'.$bio.'</td>
 	</tr>
 	<tr>

@@ -23,7 +23,7 @@ while($in = $db->fetch_row($r)){
 		$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$in['ID'].'';
 	}
 	if($count%2==0){
-		echo '<div class="home_wrap">
+		echo '<div class="home_category">
 			<div class="home_img">
 				<a href="'.$playlink.'">';
 					if($in['type'] == 1){	

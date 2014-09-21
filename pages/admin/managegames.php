@@ -141,7 +141,7 @@ if($row['type'] == 1){
 }else{
 	$type = 'Enabled Code';
 }
-$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row[thumb].'" width="55" height="55" border="0" />';
+$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'" width="55" height="55" border="0" />';
 echo '<tr>
 		<td width="90px">'.$thumbs.'</td>
 		<td width="750px">'.$row['name'].'</td>
@@ -224,12 +224,6 @@ if(isset($_POST['submit'])){
 	$category = clean($_POST['category']);
 	$active = clean($_POST['active']);
 	$tags = clean($_POST['tags']);
-	$featured = clean($_POST['featured']);
-	$highscore = clean($_POST['highscore']);
-	$highscoreable = clean($_POST['highscoreable']);
-	$highscoreuser = clean($_POST['highscoreuser']);
-	$highscoredate = clean($_POST['highscoredate']);
-	$highscoreip = clean($_POST['highscoreip']);
 	$sponsor = clean($_POST['sponsor']);
 	$sponsornotes = clean($_POST['sponsornotes']);
 	$sponsoractive = clean($_POST['sponsoractive']);
@@ -251,18 +245,12 @@ if(isset($_POST['submit'])){
 						category='$category',
 						active='$active',
 						tags='$tags',
-						featured='$featured',
-						highscore='$highscore',
-						highscoreable='$highscoreable',
-						highscoreuser='$highscoreuser',
-						highscoredate='$highscoredate',
-						highscoreip='$highscoreip',
- 					      sponsor='$sponsor',
- 					      sponsornotes='$sponsornotes',
- 					      sponsoractive='$sponsoractive',
+ 					    sponsor='$sponsor',
+ 					    sponsornotes='$sponsornotes',
+ 					    sponsoractive='$sponsoractive',
  				      	ads1='$ads1',
  				      	ads2='$ads2',
- 			                  ads3='$ads3',
+ 			            ads3='$ads3',
  			       		headerspace='$headerspace',
  				      	footerspace='$footerspace',
  				      	abovegames='$abovegames',
@@ -331,10 +319,6 @@ echo '<div class="heading">
 				<td>Tags:</td>
 				<td><input type=\'text\' name=\'tags\' value=\''.$r['tags'].'\'></td>
 			</tr>
-		        <tr>
-			        <td>Featured Game:<br><small>0 = No<br>1 = Yes</small></td>
-			        <td><input type=\'text\' size=\'2\' name=\'featured\' value=\''.$r['featured'].'\'></td>
-                        </tr>
                         <tr>
 				<td>Sponsor:</td>
 				<td><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
@@ -394,7 +378,6 @@ if(isset($_POST['submit'])){
 	$active = clean($_POST['active']);
 	$enabledcode = clean($_POST['enabledcode']);
 	$tags = clean($_POST['tags']);
-	$featured = clean($_POST['featured']);
 	$sponsor = clean($_POST['sponsor']);
 	$sponsornotes = clean($_POST['sponsornotes']);
 	$sponsoractive = clean($_POST['sponsoractive']);
@@ -417,13 +400,12 @@ if(isset($_POST['submit'])){
 						enabledcode='$enabledcode'
 						active='$active',
 						tags='$tags',
-                                                featured='$featured',
- 					      sponsor='$sponsor',
- 					      sponsornotes='$sponsornotes',
- 					      sponsoractive='$sponsoractive',
+ 					    sponsor='$sponsor',
+ 					    sponsornotes='$sponsornotes',
+ 					    sponsoractive='$sponsoractive',
  				      	ads1='$ads1',
  				      	ads2='$ads2',
- 			                  ads3='$ads3',
+ 			            ads3='$ads3',
  			       		headerspace='$headerspace',
  				      	footerspace='$footerspace',
  				      	abovegames='$abovegames',
@@ -455,10 +437,22 @@ echo '<div class="heading">
 				<td><select type=\'dropdown\' name=\'category\'>';
 					$query = $db->query('SELECT * FROM fas_categories');
 					while($row = $db->fetch_row($query)){
-						echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
+                  		if ($row['ID']==$r[category]) {
+							echo '<option value=\''.$row['ID'].'\' selected>'.$row['name'].'</option>';
+                  		} else {
+							echo '<option value=\''.$row['ID'].'\'>'.$row['name'].'</option>';
+						};
 					}
 					echo'</select>
 				</td>
+			</tr>
+			<tr>
+				<td>Width:*</td>
+				<td><input type=\'text\' name=\'width\' value=\''.$r['width'].'\'></td>
+			</tr>
+			<tr>
+				<td>Height:*</td>
+				<td><input type=\'text\' name=\'height\' value=\''.$r['height'].'\'></td>
 			</tr>
 			<tr>
 				<td>Thumb URL:*</td>
@@ -476,11 +470,7 @@ echo '<div class="heading">
 				<td>Tags:</td>
 				<td><input type=\'text\' name=\'tags\' value=\''.$r['tags'].'\'></td>
 			</tr>
-		        <tr>
-			        <td>Featured Game:<br><small>0 = No<br>1 = Yes</small></td>
-			        <td><input type=\'text\' size=\'2\' name=\'featured\' value=\''.$r['featured'].'\'></td>
-                        </tr>
-			</tr>
+			<tr>
 				<td>Sponsor:</td>
 				<td><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
 			</tr>

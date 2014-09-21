@@ -2,7 +2,7 @@
 $ID = clean($_GET['ID']);
 $ID = abs((int) ($ID));
 
-$ir1 = "SELECT * FROM dd_games WHERE ID='$ID'" ;
+$ir1 = "SELECT * FROM fas_games WHERE ID='$ID'" ;
 $sqltitle = "gamedata-".$ID ;
 $ir2 = sqlcache($sqltitle, $cachelife, $ir1);
 foreach ( $ir2 as $r ); {
@@ -32,7 +32,7 @@ $metadescription = $r['description'];
 $pagetitle=$cname;
 if ( $r['tags'] == '' ) { $metatags = $cname; } else { $metatags = $r['tags']; };
 };
- 
+
 // $gwidth
 // $gheight
 // $gfile
@@ -53,7 +53,7 @@ if(!$ID){
 }
 if(!$r['name']){
 	echo '<div class=\'error\'>Game does not exist.</div>';
-	
+
 	exit;
 }
  $ir = $db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\'', $ID));
@@ -63,7 +63,7 @@ if(!$r['name']){
 $cname = ereg_replace('[^A-Za-z0-9]', '-', $cname );
 if(isset($_POST['commentsubmit'])){
 	$commenter = $usrdata['userid'];
-      
+
 	$gameid = $ID;
 	$comment = clean($_POST['comment']);
 	$date = time();
@@ -105,9 +105,9 @@ echo '
 			</object>';
 		}else{
 			echo $r['enabledcode'];
-		}	
-			
-	echo '		
+		}
+
+	echo '
 		</div>
 		</td>
 	</tr>
@@ -138,9 +138,9 @@ echo '
 		<td class=\'content\' colspan=\'2\'>
 		<div align=\'center\' style=\'padding:5px;\'>';
 	$rrb = $db->query('SELECT * FROM fas_games ORDER BY RAND() LIMIT 0,6');
-		
+
 	echo '<table align=\'center\'>';
-	
+
 	while($ro = $db->fetch_row($rrb)){
 $gamename = ereg_replace('[^A-Za-z0-9]', '', $ro['name']);
 	if($seo_on == 1){
@@ -152,7 +152,7 @@ $gamename = ereg_replace('[^A-Za-z0-9]', '', $ro['name']);
 		$imgg = ''.$domain.'/'.$thumbsfolder.'/'.$ro['thumb'].'';
 	}else{
 		$imgg = $ro['thumburl'];
-	}	
+	}
 	echo '<td>
 	<div align=\'center\'><A href=\''.$playlink.'\'>
 	<img src=\''.$imgg.'\' border=\'0\' width=\'65\' height=\'65\'><br />
@@ -160,9 +160,9 @@ $gamename = ereg_replace('[^A-Za-z0-9]', '', $ro['name']);
 	</div>
 	</td>
 		<td width=\'%2\'></td>';
-	}	
+	}
 	echo '</table>	</div>
-		</td>	
+		</td>
 	</tr>';
 	if($enabledcode_on == 1){
 echo '	<tr>
@@ -173,7 +173,7 @@ echo '	<tr>
 		<div align=\'center\' style=\'padding:5px;\'>
 		<textarea cols=\'60\' rows=\'5\'>';
 	if($r['type'] == 1){
-	echo '			
+	echo '
 &lt;object width=&quot;500&quot; height=&quot;500&quot;&gt;
 &lt;param name=&quot;movie&quot; value=&quot;'.$domain.'/'.$gamesfolder.$r['file'].'&quot;&gt;
 &lt;embed src=&quot;'.$domain.'/'.$gamesfolder.$r['file'].'&quot; width=&quot;500&quot; height=&quot;500&quot;&gt;
@@ -183,11 +183,11 @@ echo '	<tr>
 echo '
 '.$r['enabledcode'].'
 ';
-}	
-		
+}
+
 	echo '	</textarea>
 		</div>
-		</td>	
+		</td>
 	</tr>';
 	}
 	if($comments_on == 1){
@@ -230,7 +230,7 @@ echo '	<tr>
 			<tr>
 				<td width=\'100%\' colspan=\'2\' class=\'content\'>&nbsp;</td>
 			</tr>';
-			
+
 		};
             };
 
@@ -245,13 +245,13 @@ if($seo_on == 1){
 		echo ' <tr>
 				<td width=\'100%\' colspan=\'2\' class=\'content\'><a href=\''.$urco.'\'><small><i><b>More Comments</b></i></small></a></td>
 			</tr>';
-              
+
 		$gamename = ereg_replace('[^A-Za-z0-9]', '', $r['name']);
 			if($seo_on == 1){
 				$comlink = ''.$domain.'/play/'.$ID.'-'.$gamename.'.html';
 			}else{
 				$comlink = ''.$domain.'/index.php?action=play&amp;ID='.$ID.'';
-			}	
+			}
 
 
 
@@ -283,8 +283,8 @@ if($seo_on == 1){
 	}else{
 		$taf1 = ''.$domain.'/index.php?action=taf';
 	};
-	echo '		
-					
+	echo '
+
 </div>
 		</td>
 	</tr>

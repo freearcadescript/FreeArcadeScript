@@ -2,7 +2,7 @@
 
 
 function writebody() {
-global $db, $domain, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
+global $db, $domain, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
 
 
 
@@ -10,7 +10,7 @@ global $db, $domain, $suserid, $sitename, $domain, $template, $gamesfolder, $thu
 if(!isset($suserid)){
 echo '<div class=\'error\'>Please login first.</div>';
 
-exit;
+return;
 };
 
 
@@ -18,7 +18,7 @@ exit;
 
 
 function changeavatar(){
-	global $domain, $db, $usrdata, $seo_on;
+	global $domain, $db, $usrdata, $seo_on, $template, $directorypath;
 	$userid = $usrdata['userid'];
 	if(isset($_POST['avatar'])){
 
@@ -27,24 +27,24 @@ $avatar=clean($_POST['avatar']);
 if ($avatar == 0) {
 
 mysql_query("UPDATE fas_users SET avatar='$avatar', avatarfile=''  WHERE userid='$userid'" ) ;
-echo 'Profile updated';
+echo '<div class=\'msg\'>Profile updated</div>';
 
 
 } else {
 function findexts ($filename)
 {
 $filename = strtolower($filename) ;
-$exts = split("[/\\.]", $filename) ;
+$exts = explode(".", $filename) ;
 $n = count($exts)-1;
 $exts = $exts[$n];
 return $exts;
 }
 
-if ( $_FILES['uploaded']['size'] > 40000 ) { echo 'Too big.'; exit; };
+if ( $_FILES['uploaded']['size'] > 40000 ) { echo '<div class=\'error\'>File size too big.</div>'; return; };
 $ext = findexts ($_FILES['uploaded']['name']) ;
 $os = array("gif", "jpg", "jpeg", "png");
 if (!in_array($ext, $os)) {
-echo  "not allowed"; exit;
+echo  '<div class=\'error\'>File type not allowed or no file selected!</div>'; return;
 } else { };
 
 $ran = "avatar" ;
@@ -57,13 +57,13 @@ $target = $directorypath."avatars/";
 $target = $target . $ran4.$ext;
 if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target))
 {
-echo "The file has been uploaded.";
+echo '<div class=\'msg\'>The file has been uploaded.</div>';
 mysql_query("UPDATE fas_users SET avatar='$avatar', avatarfile='$avatarfile'   WHERE userid='$userid'" ) ;
 
 }
 else
 {
-echo "Sorry, there was a problem uploading your file.";
+echo '<div class=\'error\'>Sorry, there was a problem uploading your file.</div>';
 };
 };
 
@@ -81,8 +81,10 @@ if($seo_on == 1){
 }
 
 
-echo '
-<table width=\'100%\'>
+echo '<table align=\'center\' width="100%">
+	<tr>
+		<td colspan=\'4\' class=\'header\'>Edit Avatar</td>
+	</tr>
 <tr>
 <td class=\'content\'>
 <form enctype=\'multipart/form-data\' action=\''.$curl1.'\' method=\'POST\'>
@@ -100,8 +102,7 @@ Please choose a file: <input name=\'uploaded\' type=\'file\' /><br />
 </form>
 </td>
 </tr>
-</table>
-';
+</table>';
 
 };
 };
@@ -116,7 +117,7 @@ Please choose a file: <input name=\'uploaded\' type=\'file\' /><br />
 
 
 function account(){
-global $domain, $db, $seo_on, $usrdata;
+global $domain, $db, $seo_on, $usrdata, $utemplate, $template, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
 if($seo_on == 1){
 	$url1 = ''.$domain.'/myaccount/favorites/';
 	$url2 = ''.$domain.'/myaccount/changepassword/';
@@ -138,7 +139,7 @@ if($seo_on == 1){
 if(isset($_POST['newsletter'])){
 $userid = $usrdata['userid'];
 $newsletter = clean($_POST['newsletter']);
-$email = clean($_POST['email']);
+$utemplate = clean($_POST['template']);
 $aim = clean($_POST['aim']);
 $icq = clean($_POST['icq']);
 $msn = clean($_POST['msn']);
@@ -160,7 +161,7 @@ $bio = clean($_POST['bio']);
 $ip = $_SERVER['REMOTE_ADDR'];
 
 
-mysql_query("UPDATE fas_users SET newsletter='$newsletter', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location',
+mysql_query("UPDATE fas_users SET newsletter='$newsletter', template='$utemplate', aim='$aim', icq='$icq', msn='$msn', yim='$yim', location='$location',
 job='$job', website='$website', link1='$link1', link2='$link2', link3='$link3', link4='$link4', link5='$link5', link6='$link6', link7='$link7', link8='$link8', sex='$sex', interests='$interests', bio='$bio', ip='$ip' WHERE userid='$userid'" ) ;
 echo '<div class=\'msg\'>Profile updated</div><p>';
 };
@@ -173,6 +174,7 @@ $r2 = $db->fetch_row($ir);
 $username = $r2['username'];
 $plays = $r2['plays'];
 $newsletter = $r2['newsletter'];
+$utemplate = $r2['template'];
 $aim = $r2['aim'];
 $icq = $r2['icq'];
 $msn = $r2['msn'];
@@ -194,23 +196,21 @@ $bio = $r2['bio'];
 $avatar = $r2['avatar'];
 $avatarfile = $r2['avatarfile'];
 
-if ( $newsletter == "yes" ) { $nsel = "selected" ; } ;
+if ( $newsletter == "yes" ) { $nsel = "selected" ; }else{ $nsel = ""; } ;
 if ( $sex == "m" ) { $msel = "selected" ; } ;
 if ( $sex == "f" ) { $fsel = "selected" ; } ;
-if ($avatar == "1" ) { $avatarfileurl = '<img src=\''.$domain.'/avatars/'.$avatarfile.'\' height=\'100\' width=\'100\'>'; } else { $avatarfileurl = ''; };
+$avatarfileurl = get_avatar($userid);
 
-
-	echo '
-		<table align=\'center\'>
+echo '<table align=\'center\' width="100%">
 	<tr>
 		<td colspan=\'4\' class=\'header\'>My Account</td>
 	</tr>
 
 			<tr>
-                        <td class=\'content\' style=\'padding:3px;\'>'.$avatarfileurl.' </td>
+                <td class=\'content\' style=\'padding:3px;\'><img src=\''.$domain.'/avatars/'.$avatarfileurl.'\' height=\'100\' width=\'100\' /></td>
 				<td colspan=\'3\' class=\'content\' style=\'padding:3px;\'><a href=\''.$url1.'\'>My Favorites</a> -
 				<a href=\''.$url2.'\'>Change Password</a> -
-                        <a href= \''.$url6.'\'>Change pass question/answer</a> -
+                        <a href= \''.$url6.'\'>Change security question/answer</a> -
                         <a href= \''.$url7.'\'>Change email</a> -
                         <a href= \''.$url4.'\'>Messages</a> -
                         <a href= \''.$url5.'\'>Change Avatar</a>
@@ -229,6 +229,21 @@ if ($avatar == "1" ) { $avatarfileurl = '<img src=\''.$domain.'/avatars/'.$avata
 <td class="content"><select type="dropdown" name="newsletter">
 <option value="no">No</option>
 <option value="yes" '.$nsel.' >Yes</option>
+</select>
+</td>
+</tr>
+
+<tr>
+<td class="content">Template:</td>
+<td class="content"><select type="dropdown" name="template">
+<option value="default">default</option>';
+	$theme = "SELECT * FROM fas_themes WHERE `active`='1'";
+	$theme = sqlcache('themes', $cachelife, $theme);
+	foreach($theme as $row2){
+		if ($row2['name'] == $utemplate) { $usel = "selected"; }else{ $usel = NULL; }
+		echo"<option value=".$row2['name']." ".$usel." >".$row2['name']."</option>";
+	}
+echo'
 </select>
 </td>
 </tr>
@@ -301,29 +316,39 @@ if ($avatar == "1" ) { $avatarfileurl = '<img src=\''.$domain.'/avatars/'.$avata
 <input type="submit" name="submit" value="Submit Changes">
 </td>
 </tr>
-
-
-
-
-
-
-		</table>	';
+</table>';
 };
 
+function deletefavorite(){
+global $domain, $db, $usrdata;
+$in1 = $db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\'', $_GET['deleteID']));
+$in = $db->fetch_row($in1);
+$gamename = preg_replace('[^A-Za-z0-9]', '', $in['name']);
 
+echo '<div class=\'msg\'>Are you sure you want to remove the game '.$gamename.' from your favorites?<br>
+	<a href=\''.$domain.'/index.php?action=myaccount&cmd=favorites&deletename='.$gamename.'&deleteID='.$_GET['deleteID'].'\'>Yes</a> &nbsp; <a href=\''.$domain.'/index.php?action=myaccount&cmd=favorites\'>No</a></div>';
 
-
+}
 
 function favorites(){
-global $domain, $db, $usrdata, $thumbsfolder, $gamesfolder, $seo_on;
-echo '<h2>My Favorites</h2>';
+global $domain, $db, $usrdata, $thumbsfolder, $gamesfolder, $seo_on, $template;
+
+if ( isset ( $_GET['deleteID'] ) && !empty ( $_GET['deleteID'] ) ) {
+	mysql_query('DELETE FROM fas_user_favorites WHERE userid=\''.$usrdata['userid'].'\' AND gameid=\''.$_GET['deleteID'].'\'');
+	echo '<div class=\'msg\'>Deleted '.$_GET['deletename'].' from your favorites.</div>';
+}
+
 $ro = $db->query(sprintf('SELECT * FROM fas_user_favorites WHERE userid=\''.$usrdata['userid'].'\''));
-echo '<table width=\'100%\' border=\'0\'>';
+
+echo '<table align=\'center\' width="100%">
+	<tr>
+		<td colspan=\'4\' class=\'header\'>My Favorites</td>
+	</tr>';
 while($r = $db->fetch_row($ro)){
 $in1 = $db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\'', $r['gameid']));
 $in = $db->fetch_row($in1);
 
-$gamename = ereg_replace('[^A-Za-z0-9]', '', $in['name']);
+$gamename = preg_replace('#\W#', '', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{
@@ -331,23 +356,26 @@ $gamename = ereg_replace('[^A-Za-z0-9]', '', $in['name']);
 	}
        echo '
 	      			<tr>
-	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><b>'.$in['name'].'</b></td>
+	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><a href=\''.$playlink.'\'><b>'.$in['name'].'</b></a></td>
 	      			</tr>
 	      			<tr>
 	      				<td width=\'55\' height=\'55\' valign=\'top\' class=\'content\'>
 	      				<a href=\''.$playlink.'\'>
 	      				';
 				      		if($in['type'] == 1){
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' width=\'55\' border=\'0\'>';
+				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' height=\'55\' border=\'0\' alt=\''.$gamename.'\'>';
 				      		}else{
-				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' width=\'55\' border=\'0\'>';
+				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' height=\'55\' border=\'0\' alt=\''.$gamename.'\'>';
 				      		}
 
 				      		echo '	</a>
 	      				</td>
-	      				<td valign=\'top\' class=\'content\'>'.browsedesclimit($in['description']).'
-	      				<a href=\''.$playlink.'\' class=\'playlink\'><b>Play</b></a></td>
+	      				<td valign=\'top\' class=\'content\'>'.browsedesclimit($in['description']).'';
+						mysql_query('DELETE FROM fas_user_favorites WHERE ID='.$in['ID'].'');
+						echo'<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=myaccount&amp;cmd=deletefavorite&amp;deleteID='.$in['ID'].'\'><img src=\''.$domain.'/images/deletebtn.png\' border=\'0\' title=\'Delete\' alt="delete" /></a></div>
+						</td>
 	      			</tr>';
+
 }
 echo '</table>';
 echo '&nbsp;';
@@ -356,7 +384,7 @@ echo '&nbsp;';
 
 
 function changeemail(){
-	global $domain, $db, $usrdata, $seo_on, $supportemail, $sitename;
+	global $domain, $db, $usrdata, $seo_on, $supportemail, $sitename, $template;
 
 $userid = $usrdata['userid'];
 $ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
@@ -367,21 +395,18 @@ $current_email = $r2['email'];
 
 		if(!$email){
 			echo '<div class=\'error\'>All feilds are required!</div>';
-			include ('templates/'.$template.'/footer.php');
-			exit;
+			return;
 		}
 
 		if($email == $current_email){
 			echo '<div class=\'error\'>This is your current email. Change your email to something different</div>';
-			include ('templates/'.$template.'/footer.php');
-			exit;
+			return;
 		}
 
 	$ru = $db->query('SELECT email FROM fas_users WHERE email=\''.$email.'\'');
 	if($db->num_rows($ru) == 1){
 		echo '<div class=\'error\'>Email is already in use.</div>';
-		include ('templates/'.$template.'/footer.php');
-		exit;
+		return;
 	}
 
 $user_name=$usrdata[username];
@@ -405,15 +430,17 @@ echo '<div class=\'msg\'>An email has been sent for you to comfirm its correct.<
 			$surl = ''.$domain.'/index.php?action=myaccount&cmd=changeemail';
 		}
 
-		echo '<form action=\''.$surl.'\' method=\'POST\'>
-		<h2>Change email</h2>
-		<table>
+echo '<form action=\''.$surl.'\' method=\'POST\'>
+		<table width="100%">
 			<tr>
-				<td>Email:</td>
-				<td><input type=\'text\' name=\'email\' size=\'35\' value=\''.$current_email.'\'></td>
+				<td class=\'header\' colspan=\'2\'>Change email</td>
 			</tr>
 			<tr>
-				<th colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
+				<td class=\'content\'>Email:</td>
+				<td class=\'content\'><input type=\'text\' name=\'email\' size=\'35\' value=\''.$current_email.'\'></td>
+			</tr>
+			<tr>
+				<th colspan=\'2\' class=\'content\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
 			</tr>
 		</table>
 		</form>';
@@ -424,7 +451,7 @@ echo '<div class=\'msg\'>An email has been sent for you to comfirm its correct.<
 
 
 function changequestion(){
-	global $domain, $db, $usrdata, $seo_on;
+	global $domain, $db, $usrdata, $seo_on, $template;
 
 	if(isset($_POST['submit'])){
 		$pass = clean(md5($_POST['pass']));
@@ -432,8 +459,8 @@ function changequestion(){
 		$question = clean($_POST['question']);
 
 		if(!$question || !$answer || !$pass){
-			echo 'All feilds were not filled out!';
-			exit;
+			echo '<div class=\'error\'>All feilds were not filled out!</div>';
+			return;
 		}
 
 		if($pass != $usrdata['password']){
@@ -442,36 +469,36 @@ function changequestion(){
 			mysql_query("UPDATE fas_users SET `pass_question`='$question', `pass_answer`='$answer' WHERE userid='{$usrdata['userid']}'");
 			echo '<div class=\'msg\'>Question & answer updated.</div>';
 		}
-
+		}
 		if($seo_on == 1){
 			$surl = ''.$domain.'/myaccount/changequestion/';
 		}else{
 			$surl = ''.$domain.'/index.php?action=myaccount&cmd=changequestion';
 		}
-		}
-
 $userid = $usrdata['userid'];
 $ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $questionf = $r2['pass_question'];
 $answerf = $r2['pass_answer'];
 		echo '<form action=\''.$surl.'\' method=\'POST\'>
-		<h2>Change password question/answer</h2>
-		<table>
+		<table width="100%">
 			<tr>
-				<td>Question:</td>
-				<td><input type=\'text\' name=\'question\' size=\'35\' value=\''.$questionf.'\'></td>
+				<td class=\'header\' colspan=\'2\'>Change password question/answer</td>
 			</tr>
 			<tr>
-				<td>Answer:</td>
-				<td><input type=\'text\' name=\'answer\' size=\'35\' value=\''.$answerf.'\'></td>
+				<td class=\'content\'>Question:</td>
+				<td class=\'content\'><input type=\'text\' name=\'question\' size=\'35\' value=\''.$questionf.'\'></td>
 			</tr>
 			<tr>
-				<td>Current Password:</td>
-				<td><input type=\'password\' name=\'pass\' size=\'35\'></td>
+				<td class=\'content\'>Answer:</td>
+				<td class=\'content\'><input type=\'text\' name=\'answer\' size=\'35\' value=\''.$answerf.'\'></td>
 			</tr>
 			<tr>
-				<th colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
+				<td class=\'content\'>Current Password:</td>
+				<td class=\'content\'><input type=\'password\' name=\'pass\' size=\'35\'></td>
+			</tr>
+			<tr>
+				<th colspan=\'2\' class=\'content\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
 			</tr>
 		</table>
 		</form>';
@@ -481,7 +508,7 @@ $answerf = $r2['pass_answer'];
 
 
 function changepassword(){
-	global $domain, $db, $usrdata, $seo_on;
+	global $domain, $db, $usrdata, $seo_on, $template;
 
 	if(isset($_POST['submit'])){
 
@@ -489,8 +516,8 @@ function changepassword(){
 		$newpass = md5($_POST['newpass']);
 
 		if(!$oldpass || !$newpass){
-			echo 'All feilds were not filled out!';
-			exit;
+			echo '<div class=\'error\'>All feilds were not filled out!</div>';
+			return;
 		}
 
 		if($oldpass != $usrdata['password']){
@@ -499,28 +526,27 @@ function changepassword(){
 			$db->query(sprintf('UPDATE fas_users SET password=\'%s\' WHERE userid=\'%u\'', $newpass, $usrdata['userid']));
 			echo '<div class=\'msg\'>Password Updated</div>';
 		}
-
-
+		}
 		if($seo_on == 1){
 			$surl = ''.$domain.'/myaccount/changepassword/';
 		}else{
 			$surl = ''.$domain.'/index.php?action=myaccount&cmd=changepassword';
 		}
-		}
-
 		echo '<form action=\''.$surl.'\' method=\'POST\'>
-		<h2>Change Password</h2>
-		<table>
+		<table width="100%">
 			<tr>
-				<td>Old Password:</td>
-				<td><input type=\'password\' name=\'oldpass\' size=\'35\'></td>
+				<td class=\'header\' colspan=\'2\'>Change Password</td>
 			</tr>
 			<tr>
-				<td>New Password:</td>
-				<td><input type=\'password\' name=\'newpass\' size=\'35\'></td>
+				<td class=\'content\'>Old Password:</td>
+				<td class=\'content\'><input type=\'password\' name=\'oldpass\' size=\'35\'></td>
 			</tr>
 			<tr>
-				<th colspan=\'2\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
+				<td class=\'content\'>New Password:</td>
+				<td class=\'content\'><input type=\'password\' name=\'newpass\' size=\'35\'></td>
+			</tr>
+			<tr>
+				<th colspan=\'2\' class=\'content\'><input type=\'submit\' name=\'submit\' value=\'Submit\'></th>
 			</tr>
 		</table>
 		</form>';
@@ -530,7 +556,9 @@ function changepassword(){
 
 
 
-
+if(!isset($_GET['cmd'])){
+	$_GET['cmd'] = NULL;
+}
 switch($_GET['cmd']){
 	default:
 	account();
@@ -538,6 +566,10 @@ switch($_GET['cmd']){
 
 	case 'favorites':
 	favorites();
+	break;
+
+	case 'deletefavorite':
+	deletefavorite();
 	break;
 
 	case 'changepassword':

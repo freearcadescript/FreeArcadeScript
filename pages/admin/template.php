@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+
 if($usrdata['user_level'] != 2){
 	echo 'You are not admin, therfore you can not access this part of the site.';
 
@@ -37,6 +40,10 @@ switch($_GET['case']){
 	$b = 'active';
 	break;
 
+	case 'themesettings':
+	$b = 'active';
+	break;
+
 	case 'newsletter':
 	$c = 'active';
 	break;
@@ -62,6 +69,10 @@ switch($_GET['case']){
 	break;
 
 	case 'managegames':
+	$e = 'active';
+	break;
+
+	case 'managegamefeeds':
 	$e = 'active';
 	break;
 
@@ -158,6 +169,7 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
  					<ul>
             			<li><a href="'.$domain.'/index.php?action=admin&case=settings">Settings</a></li>
                         <li><a href="'.$domain.'/index.php?action=admin&case=socialmedia">Social Media</a></li>
+                        <li><a href="'.$domain.'/index.php?action=admin&case=themes">Themes</a></li>
         			</ul>
 				</li>
 				<li class="'.$c.'"><a href="'.$domain.'/index.php?action=admin&case=newsletter">News</a></li>
@@ -191,7 +203,6 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
         		<li class="'.$k.'"><a href="'.$domain.'/index.php?action=admin&case=reportedgames">Reports ('.$totalreport.')</a>
         			<ul>
            				<li><a href="'.$domain.'/index.php?action=admin&case=reportedgames">Game Reports ('.$gamereport.')</a></li>
-            			<li><a href="'.$domain.'/index.php?action=admin&case=reportedcomments">Comment Reports ('.$commentreport.')</a></li>
         			</ul>
         		</li>
 				<li class="'.$l.'"><a href="'.$domain.'" target="_blank">View Site</a></li>

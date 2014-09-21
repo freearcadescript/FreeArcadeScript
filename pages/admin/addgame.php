@@ -55,11 +55,9 @@ $thumb = $_FILES['thumb']['name'];
 $game = $_FILES['game']['name'];
 $name = clean($_POST['name']);
 $desc= clean($_POST['desc']);
-// $width = clean($_POST['width']);
-// $height = clean($_POST['height']);
 $category = clean($_POST['category']);
+// $active = clean($_POST['active']);
 $tags = clean($_POST['tags']);
-$highscoreable = clean($_POST['highscoreable']);
 $gameadder = $usrdata['userid'];
 $adderip = $_SERVER['REMOTE_ADDR'];
 if(!$game || !$thumb || !$name || !$desc){
@@ -97,13 +95,10 @@ if($error == 1){
 				thumb=\'%s\',
 				dateadded=\'%u\',
 				type=\'%u\',
-				active=\'1\',
 				tags=\'%s\',
-				highscoreable=\'%s\',
 				gameadder=\'%u\',
-				adderip=\'%s\'
-',
-				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $active, $tags, $highscoreable, $gameadder, $adderip));
+				adderip=\'%s\'',
+				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $tags, $gameadder, $adderip));
 }
 }
 echo '<div class="heading">
@@ -165,6 +160,7 @@ $desc = clean($_POST['desc']);
 $category = clean($_POST['category']);
 $thumburl = clean($_POST['thumburl']);
 $enabledcode = clean($_POST['enabledcode']);
+$active = clean($_POST['active']);
 $tags = clean($_POST['tags']);
 $gameadder = $usrdata['userid'];
 $adderip = $_SERVER['REMOTE_ADDR'];
@@ -191,7 +187,7 @@ if($error == 1){
 				active=\'1\',
 				tags=\'%s\',
 				gameadder=\'%u\',
-				adderip=\'%s\' ',
+				adderip=\'%s\'',
 				$name, $desc, $category, $type, $time, $thumburl, $enabledcode, $active, $tags, $gameadder, $adderip));
 		}
 }
@@ -258,11 +254,9 @@ $thumb = clean($_POST['thumb']);
 $game = clean($_POST['game']);
 $name = clean($_POST['name']);
 $desc= clean($_POST['desc']);
-// $width = clean($_POST['width']);
-// $height = clean($_POST['height']);
 $category = clean($_POST['category']);
+$active = clean($_POST['active']);
 $tags = clean($_POST['tags']);
-$highscoreable = clean($_POST['highscoreable']);
 $gameadder = $usrdata['userid'];
 $adderip = $_SERVER['REMOTE_ADDR'];
 if(!$game || !$thumb || !$name || !$desc){
@@ -293,10 +287,9 @@ if($error == 1){
 				type=\'%u\',
 				active=\'1\',
 				tags=\'%s\',
-				highscoreable=\'%s\',
 				gameadder=\'%u\',
-				adderip=\'%s\' ',
-				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $active, $tags, $highscoreable, $gameadder, $adderip));
+				adderip=\'%s\'',
+				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $active, $tags, $gameadder, $adderip));
 }
 }
 echo '<div class="heading">

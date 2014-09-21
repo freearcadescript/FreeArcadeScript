@@ -1,6 +1,6 @@
 <?php
 function writebody() {
-global $db, $set, $domain, $showpages, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $email_on;
+global $db, $set, $domain, $showpages, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $email_on;
 
 if($usrdata['user_level'] != 2){
 	echo 'You are not admin, therfore you can not access this part of the site.';
@@ -115,9 +115,6 @@ switch($_GET['case']){
 	include ('socialmedia.php');
 	break;
 
-	case 'sitemap':
-	include ('sitemap.php');
-	break;
 };
 };
 };

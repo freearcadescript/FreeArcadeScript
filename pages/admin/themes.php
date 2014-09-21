@@ -11,11 +11,11 @@ switch($_GET['cmd']){
 	case 'edit':
 	edit();
 	break;
-	
+
 	case 'delete':
 	delete();
 	break;
-	
+
 	case 'install':
 	install();
 	break;
@@ -28,6 +28,7 @@ function themes(){
 	echo '<div class="heading">
 		<h2>Themes</h2>
 	</div>
+	<br clear="all">
 	<table id="table">
 		<thead>
 			<tr>
@@ -36,12 +37,12 @@ function themes(){
 		</thead>
 		<tbody>';
 	while($row = $db->fetch_row($r)){
-		$ID = $row['ID'];	
+		$ID = $row['ID'];
     	$name = $row['name'];
 		echo'<tr>
-				<td width="855px">'.$name.'</td> 
+				<td width="855px">'.$name.'</td>
 				<td><a href="'.$domain.'/index.php?action=admin&case=themes&cmd=edit&ID='.$ID.'"><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" /></a>
-					<a href="'.$domain.'/index.php?action=admin&case=themes&cmd=delete&ID='.$ID.'"  onclick="return confirm(\'Are you sure you want to delete the theme '.$name.'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" /></a></td> 
+					<a href="'.$domain.'/index.php?action=admin&case=themes&cmd=delete&ID='.$ID.'"  onclick="return confirm(\'Are you sure you want to delete the theme '.$name.'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" /></a></td>
 			</tr>'; }
 echo'</tbody>
 </table>';
@@ -55,12 +56,12 @@ echo'<table id="table">
 		</thead>
 		<tbody>';
 	while($row = $db->fetch_row($r)){
-		$ID = $row['ID'];	
+		$ID = $row['ID'];
     	$name = $row['name'];
 		echo'<tr>
-				<td width="855px">'.$name.'</td> 
+				<td width="855px">'.$name.'</td>
 				<td><a href="'.$domain.'/index.php?action=admin&case=themes&cmd=edit&ID='.$ID.'"><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" /></a>
-					<a href="'.$domain.'/index.php?action=admin&case=themes&cmd=delete&ID='.$ID.'"  onclick="return confirm(\'Are you sure you want to delete the theme '.$name.'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" /></a></td> 
+					<a href="'.$domain.'/index.php?action=admin&case=themes&cmd=delete&ID='.$ID.'"  onclick="return confirm(\'Are you sure you want to delete the theme '.$name.'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" /></a></td>
 			</tr>'; }
 echo'</tbody>
 </table>
@@ -73,16 +74,16 @@ echo'</tbody>
 		</thead>
 		<tbody>';
 	$path = $directorypath."templates";
-	$directory = dir($path);	
+	$directory = dir($path);
 	while (false !== ($item = $directory->read())) {
 		if ($item !== "." && $item !== "..") {
-			$query = mysql_query("SELECT COUNT(*) FROM fas_themes WHERE template='$item'"); 
+			$query = mysql_query("SELECT COUNT(*) FROM fas_themes WHERE template='$item'");
 			$total = mysql_fetch_array($query);
 			$total = $total[0];
 			if($total == 0){
 			echo'<tr>
-				<td width="855px">'.$item.'</td> 
-				<td><a href="'.$domain.'/index.php?action=admin&case=themes&cmd=install&name='.$item.'">install</a></td> 
+				<td width="855px">'.$item.'</td>
+				<td><a href="'.$domain.'/index.php?action=admin&case=themes&cmd=install&name='.$item.'">install</a></td>
 			</tr>';
 			}
 		}
@@ -95,7 +96,7 @@ echo'</tbody>
 
 function delete(){
 global $domain, $db;
-	
+
 	$ID = clean($_GET['ID']);
 	$ID = abs((int) ($ID));
 	mysql_query("DELETE FROM fas_themes WHERE ID='$ID'");
@@ -113,27 +114,27 @@ global $domain, $db;
 		}else{
 			$default = '1';
 		}
-		
+
 		if($default == '1' && $active== '0'){
 			echo '<div class="error">You cannot deactivate the default theme!</div>';
 			return;
 		}
-		
+
 		if(!$name){
 			echo '<div class="error">Not all of the fields where filled!</div>';
 			return;
 		}
-		
+
 		if($default == 1){
-			mysql_query("UPDATE fas_themes SET 
+			mysql_query("UPDATE fas_themes SET
  						`default`='0' WHERE `default`='1'") or die(mysql_error());
 		}
-		
- 		mysql_query('UPDATE fas_themes SET 
+
+ 		mysql_query('UPDATE fas_themes SET
 					name="'.$name.'",
  					active="'.$active.'",
 					`default`="'.$default.'" WHERE name="'.$name.'"') or die(mysql_error());
-		
+
 		echo'<div class="msg">The theme "'.$name.'" has been updated.</div>';
 		return;
 	}
@@ -143,6 +144,7 @@ global $domain, $db;
 	echo'<div class="heading">
 		<h2>Edit Theme</h2>
 	</div>
+	<br clear="all">
 	<form action=\''.$domain.'/index.php?action=admin&case=themes&cmd=edit\' method=\'post\'>
 		<table id="table">';
 			while($row = $db->fetch_row($sql)){
@@ -190,7 +192,7 @@ global $domain, $db;
 
 function install(){
 global $domain, $db;
-	
+
 	if(isset($_POST['submit'])){
 		$name = clean($_POST['name']);
 		$theme = clean($_POST['theme']);
@@ -198,17 +200,18 @@ global $domain, $db;
 			echo 'Not all of the fields where filled!';
 			return;
 		}
-		mysql_query("INSERT INTO fas_themes SET 
+		mysql_query("INSERT INTO fas_themes SET
 					name='$name',
 					template='$theme';");
-					
+
 		echo'<div class="msg">Your theme "'.$name.'" has been installed.</div>';
 		return;
 	}
 	$name = clean($_GET['name']);
 	echo'<div class="heading">
 		<h2>Install Theme</h2>
-	</div>';
+	</div>
+	<br clear="all">';
 	echo'<form action="'.$domain.'/index.php?action=admin&case=themes&cmd=install&name='.$name.'" method=\'post\'>
 		<table id="table">
 			<thead>

@@ -6,7 +6,7 @@ $id=clean($_GET['id']);
 
 $res=mysql_query("SELECT * from `fas_users` WHERE `activation_key`='$id'") or die(mysql_error());
 $row=mysql_fetch_assoc($res);
-$key=clean($row[activation_key]);
+$key=clean($row['activation_key']);
 if($key == $id){
 echo "<div class='msg'>Your account has been activated, you may now login</div>";
 }else{

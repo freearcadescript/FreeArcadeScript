@@ -13,7 +13,7 @@ global $domain, $db, $seo_on, $usrdata, $entryid, $suserid, $template, $cachelif
 // $r3 = $db->query(sprintf('SELECT * FROM fas_blogentries WHERE entryid=\'%u\'', $entryid));
 // $r4 = $db->fetch_row($r3);
 $r3 = "SELECT * FROM fas_blogentries WHERE entryid='$entryid'" ;
-$sqltitle = "blogenrty-".$entryid ;
+$sqltitle = "blogentry-".$entryid ;
 $r1 = sqlcache($sqltitle, $cachelife, $r3);
 foreach ( $r1 as $r4 )
 {
