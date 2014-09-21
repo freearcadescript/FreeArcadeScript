@@ -120,7 +120,7 @@ mysql_query("ALTER TABLE  `fas_settings` ADD `avatar_on` int(11) NOT NULL defaul
 mysql_query("ALTER TABLE  `fas_settings` ADD  `aimg` text NOT NULL AFTER `avatar_on` ; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `gender_on` int(11) NOT NULL default '0' AFTER `aimg` ; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `mimg` text NOT NULL AFTER `gender_on` ; ");
-mysql_query("ALTER TABLE  `fas_settings` ADD  `fimg` text NOT NULL AFTER `fimg` ; ");
+mysql_query("ALTER TABLE  `fas_settings` ADD  `fimg` text NOT NULL AFTER `mimg` ; ");
 
 mysql_query("ALTER TABLE  `fas_settings` ADD  `version` varchar(12) NOT NULL DEFAULT '3.0'; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `disabled` char(3) NOT NULL DEFAULT 'no'; ");
