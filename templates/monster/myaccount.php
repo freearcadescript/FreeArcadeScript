@@ -456,7 +456,9 @@ function changequestion(){
 	global $domain, $db, $usrdata, $seo_on, $template;
 
 	if(isset($_POST['submit'])){
-		$pass = clean(md5($_POST['pass']));
+		$pass = clean(($_POST['pass']));
+		$salt = $usrdata['salt'];
+		$pass = checkpass($pass, $salt);
 		$answer = clean($_POST['answer']);
 		$question = clean($_POST['question']);
 
@@ -514,8 +516,13 @@ function changepassword(){
 
 	if(isset($_POST['submit'])){
 
-		$oldpass = md5($_POST['oldpass']);
-		$newpass = md5($_POST['newpass']);
+		$salt = $usrdata['salt'];
+
+		$oldpass = clean(($_POST['oldpass']));
+		$newpass = clean(($_POST['newpass']));
+
+		$oldpass = checkpass($oldpass, $salt);
+		$newpass = setpass($newpass, $salt);
 
 		if(!$oldpass || !$newpass){
 			echo '<div class=\'error\'>All feilds were not filled out!</div>';

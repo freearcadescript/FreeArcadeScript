@@ -11,30 +11,45 @@ global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder,
 
 if(isset($_POST['submit'])){
 	$username = clean($_POST['username']);
-	$password = md5(clean($_POST['password']));
-	
-	$r = $db->query(sprintf('SELECT * FROM fas_users WHERE username=\'%s\' AND password=\'%s\'', $username, $password));
+	$password = clean($_POST['password']);
+
+	$r = $db->query(sprintf('SELECT * FROM fas_users WHERE username=\'%s\'', $username));
 	if(!$db->num_rows($r)){
-		echo '<div class=\'error\'>Your username or password is incorrect.</div>';
-		return;
+		echo "<div class='error'>The username you entered does not exist!</div>";
 	}else{
 		$ir = $db->fetch_row($r);
-	if($ir['activation_key'] == "0"){
-		$_SESSION['username'] = $username;
-		$_SESSION['userid']= $ir['userid'];
-		$_SESSION['website']= $ir['website'];
-		$_SESSION['signature']= $ir['signature'];
+		if($ir['activation_key'] == "0"){
+			$salt = $ir['salt'];
+			$password1 = checkPass($password, $salt);
+			if($password1 == $ir['password']){
+				$_SESSION['username'] = $username;
+				$_SESSION['userid']= $ir['userid'];
+				$_SESSION['website']= $ir['website'];
+				$_SESSION['signature']= $ir['signature'];
+				$_SESSION['bloglevel']= $ir['bloglevel'];
+
+				echo '<div class=\'msg\'>You\'ve now logged on.</div>';
+				echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
+			}elseif (md5($password) == $ir['password']) {
+				$salt = createSalt();//creates a 3 character string
+				$newPass = register($password, $salt);
+				$db->query(sprintf('UPDATE fas_users SET password = \'%s\', salt = \'%s\' WHERE username = \'%s\'',$newPass, $salt, $username));
 
 
-		$_SESSION['bloglevel']= $ir['bloglevel'];
-		echo '<div class=\'msg\'>You\'ve now logged on.</div>';
-		
+				$_SESSION['username'] = $username;
+				$_SESSION['userid']= $ir['userid'];
+				$_SESSION['website']= $ir['website'];
+				$_SESSION['signature']= $ir['signature'];
+				$_SESSION['bloglevel']= $ir['bloglevel'];
 
-echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
-}else{
-echo "<div class='error'>You need to activate your account first!</div>";
-}
-
+				echo '<div class=\'msg\'>You\'ve now logged on.</div>';
+				echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
+			}else{
+				echo "<div class='error'>Your password is incorrect!</div>";
+			}
+		}else{
+			echo "<div class='error'>You need to activate your account first!</div>";
+		}
 	}
 	
 }else{

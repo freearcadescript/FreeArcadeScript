@@ -32,8 +32,12 @@ $headers = 'From: '.$supportemail.'' . "\r\n" .
 mail($email, $subject, $message, $headers);
 
 
-	$pass = md5($pass_word);
-	mysql_query("UPDATE fas_users SET password='$pass' WHERE username='$username' AND pass_answer='$answer'");
+	$salt = $ir['salt'];
+	if(empty($salt)){
+		$salt = createSalt();//creates a 3 character string
+	}
+	$pass = setPass($pass_word, $salt);
+	mysql_query("UPDATE fas_users SET password='$pass', salt='$salt' WHERE username='$username' AND pass_answer='$answer'");
 				echo '<div class=\'msg\'><font color=red>Your password has been reset, please check your email for the new password!</font></div>';
 
 }

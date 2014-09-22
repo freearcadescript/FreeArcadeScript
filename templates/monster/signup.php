@@ -37,16 +37,18 @@ if(isset($_POST['submit'])){
 		return;
 	}
 
-	$pass = md5($pass_word);
+	$salt = createSalt();//creates a 3 character string
+	$pass = setPass($pass_word, $salt);
 	if($email_on == '1'){
 	$db->query(sprintf('INSERT INTO fas_users SET
 				username=\'%s\',
 				password=\'%s\',
+				salt=\'%s\',
 				activation_key=\'%s\',
 				email =\'%s\',
 				pass_question =\'%s\',
 				pass_answer =\'%s\',
-				joindate=\'%u\'', $user_name, $pass, $activation_number, $email, $question, $answer, $time));
+				joindate=\'%u\'', $user_name, $pass, $salt, $activation_number, $email, $question, $answer, $time));
 				echo '<div class=\'msg\'>Your account has been created! <br /> <font color=red>However, this board requires account activation, an activation key has been sent to the e-mail address you provided. Please check your e-mail for further information.</font></div>';
 
 $subject = 'Welcome to '.$sitename.'';
@@ -61,11 +63,12 @@ mail($email, $subject, $message, $headers);
 	$db->query(sprintf('INSERT INTO fas_users SET
 				username=\'%s\',
 				password=\'%s\',
+				salt=\'%s\',
 				activation_key=\'%s\',
 				email =\'%s\',
 				pass_question =\'%s\',
 				pass_answer =\'%s\',
-				joindate=\'%u\'',$user_name, $pass, '0', $email, $question, $answer, $time));
+				joindate=\'%u\'',$user_name, $pass, $salt, '0', $email, $question, $answer, $time));
 				echo '<div class=\'msg\'>Success, you\'ve now registered.</div>';
 	}
 return;

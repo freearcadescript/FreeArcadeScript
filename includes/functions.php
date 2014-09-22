@@ -1,4 +1,21 @@
 <?php
+
+function createSalt(){
+    $string = md5(uniqid(rand(), true));
+    return substr($string, 0, 3);
+}
+
+function setPass($pass, $salt){
+	$hash = hash("sha256", $pass);
+	$hash = hash("sha256", $salt . $hash);
+	return $hash;
+}
+
+function checkPass($pass, $salt){
+	$hash = hash('sha256', $salt . hash('sha256', $pass) );
+	return $hash;
+}
+
 function get_avatar($id){
 global $db, $domain, $avatar_on, $aimg, $gender_on, $mimg, $fimg;
 	$ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $id));

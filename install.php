@@ -266,6 +266,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_users` (
   `userid` int(11) NOT NULL auto_increment,
   `username` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
+  `salt` varchar(3) NOT NULL,
   `email` varchar(250) NOT NULL,
   `user_level` int(11) NOT NULL default '1',
   `joindate` varchar(255) NOT NULL,
@@ -394,7 +395,7 @@ mysql_query("INSERT INTO fas_settings SET
  					footerspace='footerspace',
  					abovegames='abovegames',
  					belowgames='belowgames',
-                                        analytics='',
+          analytics='',
  					socialmedia1='#',
  					socialmedia2='#',
  					socialmedia3='#',
@@ -424,7 +425,7 @@ mysql_query("ALTER TABLE  `fas_users` ADD  `activation_key` VARCHAR( 255 ) NOT N
 mysql_query("ALTER TABLE  `fas_users` ADD  `status` VARCHAR( 255 ) NOT NULL; ");
 mysql_query("UPDATE `fas_users` SET `activation_key`='0' WHERE `userid`=0; ");
 mysql_query("UPDATE `fas_users` SET `activation_key`='0' WHERE `userid`=1; ");
-mysql_query("ALTER TABLE  `fas_users` ADD  `pass_answer` TEXT NOT NULL; ");
+mysql_query("ALTER TABLE  `fas_users` ADD  `pass_answer` VARCHAR( 255 ) NOT NULL; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `pass_question` VARCHAR( 255 ) NOT NULL; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `new_email` VARCHAR( 255 ) NOT NULL,
 ADD  `new_email_key` VARCHAR( 255 ) NOT NULL; ");
