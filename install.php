@@ -68,7 +68,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_report_game` (
   `gameid` int(11) NOT NULL DEFAULT '0',
   `userid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;");
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;");
 
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_categories` (
   `ID` int(11) NOT NULL auto_increment,
@@ -394,7 +394,7 @@ mysql_query("INSERT INTO fas_settings SET
  					footerspace='footerspace',
  					abovegames='abovegames',
  					belowgames='belowgames',
-                    analytics='',
+                                        analytics='',
  					socialmedia1='#',
  					socialmedia2='#',
  					socialmedia3='#',

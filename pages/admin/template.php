@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
 
 if($usrdata['user_level'] != 2){
 	echo 'You are not admin, therfore you can not access this part of the site.';
@@ -36,11 +34,7 @@ switch($_GET['case']){
 	$b = 'active';
 	break;
 
-	case 'sitemap':
-	$b = 'active';
-	break;
-
-	case 'themesettings':
+	case 'themes':
 	$b = 'active';
 	break;
 
@@ -126,10 +120,6 @@ switch($_GET['case']){
 
 	case 'addpagecategory':
 	$g = 'active';
-	break;
-
-	case 'themes':
-	$l = 'active';
 	break;
 
 	case 'managegamecomments':

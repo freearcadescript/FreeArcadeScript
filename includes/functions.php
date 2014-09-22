@@ -42,7 +42,7 @@ function clean ($str){
     return $str;
 }
 
-function titlelimit($str, $n =30, $end_char = '&#8230;'){
+function titlelimit($str, $n =24, $end_char = '&#8230;'){
 if (strlen($str) <= $n){
 	return $str;
 }

@@ -1,8 +1,8 @@
 <?php
 $dbhost = 'localhost'; // Database host usually localhost
-$dbuser = 'admin-games'; // Database user
-$dbpass = 'cOx40x&7'; // Database password
-$dbname = 'games-gfg'; // Database name
+$dbuser = 'DBUSER'; // Database user
+$dbpass = 'DBPASS'; // Database password
+$dbname = 'DBNAME'; // Database name
 $dbpre = 0;
 // ////////////////////////////////////////////////////////////////////////////////////////////////////
 // You MUST edit the variable $cachepath below to your own hosting info. If you do not, you will get errors
@@ -18,6 +18,7 @@ $dbpre = 0;
 // The folowing is more secure, but not everybody can use it. It still needs to be edited though.
 // $cachepath='/home/hostingaccountname/cache/';   
 // This one is one almost everybody can use, but is less secure.
-$cachepath='/var/www/vhosts/greatflashgames.net/games.greatflashgames.net/cache/';   
+
+$cachepath=' ';   
 $cachelife = '60' ;  // Number of seconds to keep cache alive. 900 seconds equals 15 minutes. Too long and pages do not update frequently, too short and CPU resource usage goes up.
 ?>

@@ -40,7 +40,6 @@ if(!empty($user_template) && $user_template != "default"){
 	$template = $row['template'];
 }
 
-
 $set2 = "SELECT * FROM fas_settings" ;
 $set1 = sqlcache('sitesettings', '1', $set2);
 foreach($set1 as $set){
@@ -52,7 +51,7 @@ foreach($set1 as $set){
 	$email_on = $set['email_on'];
 	$comments_on = $set['comments_on'];
 	$taf_on = $set['taf_on'];
-	$fbcommnets_on = $set['fbcomments_on'];
+	$fbcomments_on = $set['fbcomments_on'];
 	$autoapprovecomments = $set['autoapprovecomments'];
 	$seo_on = $set['seo_on'];
 	$sitename = $set['sitename'];
@@ -81,13 +80,11 @@ foreach($set1 as $set){
 	$facebookappid = $set['facebookappid'];
 	$showwebsitelimit = $set['showwebsitelimit'];
 	$supportemail = $set['supportemail'];
-
 	$avatar_on = $set['avatar_on'];
 	$aimg = $set['aimg'];
 	$gender_on = $set['gender_on'];
 	$mimg = $set['mimg'];
 	$fimg = $set['fimg'];
-
 	$showblog = $set['showblog'];
 	$showpages = $set['showpages'];
 	$blogentriesshown = $set['blogentriesshown'];
