@@ -128,7 +128,11 @@ mysql_query("ALTER TABLE  `fas_settings` ADD  `disabled` char(3) NOT NULL DEFAUL
 
 
 mysql_query("UPDATE fas_settings SET
+<<<<<<< HEAD
                     			analytics='',
+=======
+          analytics='',
+>>>>>>> 18e13141c9b21ed97bb2ef66d5adba7202722cbe
  					socialmedia1='#',
  					socialmedia2='#',
  					socialmedia3='#',
@@ -161,4 +165,8 @@ echo '<form action=\'upgrade.php\' method=\'POST\'>
 	</form>
 ';
 }
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> 18e13141c9b21ed97bb2ef66d5adba7202722cbe
