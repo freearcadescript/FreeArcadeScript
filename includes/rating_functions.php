@@ -1,4 +1,4 @@
-<?
+<?php
 include("rating_config.php");
 
 function getRating($id){
@@ -171,8 +171,8 @@ function getTopRated($limit, $table, $idfield, $namefield){
 	
 	$result = '';
 	
-	$sql = "SELECT COUNT(ratings.id) as rates,ratings.rating_id,".$table.".".$namefield." as thenamefield,ROUND(AVG(ratings.rating_num),2) as rating 
-			FROM ratings,".$table." WHERE ".$table.".".$idfield." = ratings.rating_id GROUP BY rating_id 
+	$sql = "SELECT COUNT(fas_ratings.id) as rates,fas_ratings.rating_id,".$table.".".$namefield." as thenamefield,ROUND(AVG(fas_ratings.rating_num),2) as rating 
+			FROM fas_ratings,".$table." WHERE ".$table.".".$idfield." = fas_ratings.rating_id GROUP BY rating_id 
 			ORDER BY rates DESC,rating DESC LIMIT ".$limit."";
 			
 	$sel = mysql_query($sql);
