@@ -87,6 +87,7 @@ mysql_query("INSERT INTO `fas_themes` (`name`, `template`, `active`, `default`) 
 
 mysql_query("ALTER TABLE  `fas_categories` ADD  `visible` tinyint(1) NOT NULL default '1'; ");
 
+mysql_query("ALTER TABLE  `fas_users` ADD  `template` varchar(250) NOT NULL default 'default' AFTER `plays` ;");
 mysql_query("ALTER TABLE  `fas_users` ADD  `joindate` varchar(255) NOT NULL AFTER `user_level` ;");
 mysql_query("ALTER TABLE  `fas_users` ADD  `activation_key` VARCHAR(255) NOT NULL; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `status` VARCHAR(255) NOT NULL; ");
