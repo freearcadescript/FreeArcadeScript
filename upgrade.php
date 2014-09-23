@@ -87,11 +87,12 @@ mysql_query("INSERT INTO `fas_themes` (`name`, `template`, `active`, `default`) 
 
 mysql_query("ALTER TABLE  `fas_categories` ADD  `visible` tinyint(1) NOT NULL default '1'; ");
 
+mysql_query("ALTER TABLE  `fas_users` ADD  `salt` varchar(3) NOT NULL AFTER `password` ;");
 mysql_query("ALTER TABLE  `fas_users` ADD  `template` varchar(250) NOT NULL default 'default' AFTER `plays` ;");
 mysql_query("ALTER TABLE  `fas_users` ADD  `joindate` varchar(255) NOT NULL AFTER `user_level` ;");
 mysql_query("ALTER TABLE  `fas_users` ADD  `activation_key` VARCHAR(255) NOT NULL; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `status` VARCHAR(255) NOT NULL; ");
-mysql_query("ALTER TABLE  `fas_users` ADD  `pass_answer` TEXT NOT NULL; ");
+mysql_query("ALTER TABLE  `fas_users` ADD  `pass_answer` VARCHAR(255) NOT NULL; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `pass_question` VARCHAR(255) NOT NULL; ");
 mysql_query("ALTER TABLE  `fas_users` ADD  `new_email` VARCHAR(255) NOT NULL,
 ADD  `new_email_key` VARCHAR( 255 ) NOT NULL; ");
@@ -129,11 +130,7 @@ mysql_query("ALTER TABLE  `fas_settings` ADD  `disabled` char(3) NOT NULL DEFAUL
 
 
 mysql_query("UPDATE fas_settings SET
-<<<<<<< HEAD
                     			analytics='',
-=======
-          analytics='',
->>>>>>> 18e13141c9b21ed97bb2ef66d5adba7202722cbe
  					socialmedia1='#',
  					socialmedia2='#',
  					socialmedia3='#',
@@ -149,7 +146,7 @@ mysql_query("UPDATE fas_settings SET
 
 echo '<div class=\'msg\'>Updated.</div><br />
 Upgrade is Now Complete!<br />
-Please delete the upgrade.php and install.php file.';
+Please delete the upgrade.php and install.php files.';
 exit;
 
 } else {
@@ -166,8 +163,4 @@ echo '<form action=\'upgrade.php\' method=\'POST\'>
 	</form>
 ';
 }
-<<<<<<< HEAD
 ?>
-=======
-?>
->>>>>>> 18e13141c9b21ed97bb2ef66d5adba7202722cbe

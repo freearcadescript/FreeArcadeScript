@@ -123,15 +123,18 @@ if(isset($_POST['commentsubmit'])){
 		}else{
 		echo '<a href=\''.$domain.'/index.php?action=addtofavorites&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my favorites\' title=\'Add to My Favorites\' /></a> ';
 		}
+		if($usrdata['user_level'] == 1){
 	    if ($seo_on == 1){
 		echo '<a href=\''.$domain.'/report/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
 		}else{
 		echo '<a href=\''.$domain.'/index.php?action=report&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
 		}
+		}
 	    if($usrdata['user_level'] == 2){
 		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$r['ID'].'&amp;type='.$r['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' title=\'Edit Game\' alt=\'edit game\' border=\'0\' /></a> ';
 		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$r['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' title=\'Delete Game\' alt=\'delete game\' border=\'0\' /></a> ';
         }
+
         echo'</div>
         </td>
 	</tr>
@@ -157,7 +160,12 @@ if(isset($_POST['commentsubmit'])){
 		echo '</div><br />
         </td>
 		<td class=\'content\' valign=\'top\' style=\'padding:2px;\' width="30%"><b>Total Views:</b> '.$r['views'].'<br /><br />';
-    echo '<div class="fb-like" data-href=".urlencode($url)." data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div></td>';
+		if($seo_on == 1){
+			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
+		}else{
+			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
+	    }
+    echo '<div class="fb-like" data-href="'.$playlink.'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div></td>';
 	echo '</tr>
 	    </table>
 	    <table  width="100%">
@@ -174,7 +182,6 @@ if(isset($_POST['commentsubmit'])){
 
 	while($ro = $db->fetch_row($rrb)){
 	$gamename = preg_replace('[^A-Za-z0-9]', '', $ro['name']);
-    //$gamename = preg_replace('#\W#', '', $ro['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$ro['ID'].'-'.$gamename.'.html';
 	}else{
@@ -229,9 +236,9 @@ echo '
 	    }
 
 		if($seo_on == 1){
-			$playlink = ''.$domain.'/play/'.$ro['ID'].'-'.$gamename.'.html';
+			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
 		}else{
-			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$ro['ID'].'';
+			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
 	    }
         if($fbcomments_on == 1){
         echo '<table  width="100%">
@@ -333,12 +340,8 @@ echo '
 
 		echo '</table>';
     	}
-	    echo '</div>
-				</td>
-	    </tr>
-	    </table>';
 
-        if($seo_on == 1){
+         if($seo_on == 1){
 				$taf1 = ''.$domain.'/taf/';
 	    }else{
 		        $taf1 = ''.$domain.'/index.php?action=taf';
@@ -370,6 +373,14 @@ echo '
 	    </div>
         </table>';
         } else {};
+
+	    echo '</div>
+				</td>
+	    </tr>
+	    </table>';
+
+
+
 $useridp=$usrdata['userid'] ;
 if ($useridp=='0' or $useridp=='') {$useridp='-1'; };
 $db->query(sprintf('UPDATE fas_games SET views=views+1 WHERE ID=\'%u\'', $ID));
