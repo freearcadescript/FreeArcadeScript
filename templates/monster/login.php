@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 				echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
 			}elseif (md5($password) == $ir['password']) {
 				$salt = createSalt();//creates a 3 character string
-				$newPass = register($password, $salt);
+				$newPass = setPass($password, $salt);
 				$db->query(sprintf('UPDATE fas_users SET password = \'%s\', salt = \'%s\' WHERE username = \'%s\'',$newPass, $salt, $username));
 
 
