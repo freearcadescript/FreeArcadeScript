@@ -74,11 +74,11 @@ echo '</div>
 $pre = $show - '1';
 $ne = $show + '1';
 if($seo_on == 1){
-	$previous = ''.$domain.'/mostplayed/page'.$pre.'.html';
-	$next = ''.$domain.'/mostplayed/page'.$ne.'.html';
+	$previous = ''.$domain.'/newest/page'.$pre.'.html';
+	$next = ''.$domain.'/newest/page'.$ne.'.html';
 }else{
-	$previous = ''.$domain.'/index.php?action=mostplayed&page='.$pre.'';
-	$next = ''.$domain.'/index.php?action=mostplayed&page='.$ne.'';
+	$previous = ''.$domain.'/index.php?action=newest&page='.$pre.'';
+	$next = ''.$domain.'/index.php?action=newest&page='.$ne.'';
 	}
 if ($totalpages != '1'){
 	echo' - ';
@@ -89,9 +89,9 @@ if ($totalpages != '1'){
 		if($show - $i < '4' || $totalpages - $i < '7'){
 			if($i - $show < '4' || $i < '8'){
 				if($seo_on == 1){
-					$urk = ''.$domain.'/mostplayed/page'.$i.'.html';
+					$urk = ''.$domain.'/newest/page'.$i.'.html';
 				}else{
-					$urk = ''.$domain.'/index.php?action=mostplayed&page='.$i.'';
+					$urk = ''.$domain.'/index.php?action=newest&page='.$i.'';
 				}
 	
 				if($show == $i){
@@ -108,4 +108,9 @@ if ($totalpages != '1'){
 }
 echo'</div>';
 };
+
+$pagetitle = $sitename.' - Newest Games';
+$metatags = 'new games, latest games, newest games';
+$metadescription = $sitename.' newest Games';
+
 ?>

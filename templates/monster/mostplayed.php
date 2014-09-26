@@ -109,4 +109,9 @@ if ($totalpages != '1'){
 }
 echo'</div>';
 };
+
+$pagetitle = $sitename.' - Most Played Games';
+$metatags = 'most played games, popular games';
+$metadescription = $sitename.' most played games';
+
 ?>
