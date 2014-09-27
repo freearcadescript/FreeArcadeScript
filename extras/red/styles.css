@@ -256,7 +256,7 @@ body{
 
 .nav ul li a:hover {
 	text-align: center;
-	border-bottom:1px solid #1e899b;
+	border-bottom:1px solid #CA0C05;
 	padding:10px;
 	display:block;
 	text-decoration:none !important;
@@ -287,7 +287,7 @@ body{
 }
 
 .navbottom ul li:hover {
-	background:#1e899b;
+	background:#CA0C05;
 }
  
 .navbottom ul li a {
@@ -315,7 +315,7 @@ body{
 	font-size: 14px;
 	font-weight:bold;
 	color: #FFF;
-	background-color:#1e899b;
+	background-color:#CA0C05;
 }
 
 .content {
@@ -330,7 +330,7 @@ body{
 	font-size: 14px;
 	font-weight:bold;
 	color: #FFF;
-	background-color:#1e899b;
+	background-color:#CA0C05;
 }
 
 .content2 {
