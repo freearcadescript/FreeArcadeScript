@@ -18,9 +18,9 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
 echo'</head>
 <body>';
     if (!$facebookappid == "") { echo ''.$facebookappid.''; };
+	echo'<div id="center">';
 	include("templates/$template/blocks/topnav.php");
-	echo'<div class="center">
-		<div class="leftbar">';
+		echo'<div id="left">';
 			//include("templates/$template/blocks/search.php");
 			//include("templates/$template/blocks/bannerleft.php");
 			//include("templates/$template/blocks/bannersright.php");
@@ -34,12 +34,13 @@ echo'</head>
 			include("templates/$template/blocks/links.php");
 			include("templates/$template/blocks/stats.php");
 		echo'</div>
-		<div class="main">';
+		<div id="right">';
 			writebody();
-		echo'</div>';
-		/* Please do not remove the "powered by" link unless, you've purchased the removal. */
-	include("templates/$template/blocks/powered.php");
+		echo'</div>
+                          </div>';
 	if (!$footerspace == "") { echo '<br /><div align="center">'.$footerspace.'</div><br />'; };
+	/* Please do not remove the "powered by" link unless, you've purchased the removal. */
+	include("templates/$template/blocks/powered.php");
 	if (!$analytics == "") { echo ''.$analytics.''; };
 	echo'</div>';
 
