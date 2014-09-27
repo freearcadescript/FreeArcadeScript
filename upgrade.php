@@ -126,6 +126,8 @@ mysql_query("ALTER TABLE  `fas_settings` ADD  `fimg` text NOT NULL AFTER `mimg` 
 
 mysql_query("ALTER TABLE  `fas_settings` ADD  `version` varchar(12) NOT NULL DEFAULT '3.0'; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `disabled` char(3) NOT NULL DEFAULT 'no'; ");
+mysql_query("ALTER TABLE  `fas_settings` ADD  `seoheading` text NOT NULL; ");
+mysql_query("ALTER TABLE  `fas_settings` ADD  `seotext` text NOT NULL; ");
 
 
 

@@ -48,6 +48,8 @@ if(isset($_POST['submit'])){
 	$sgender_on = clean($_POST['gender_on']);
 	$smimg = clean($_POST['mimg']);
 	$sfimg = clean($_POST['fimg']);
+	$sseoheading = clean($_POST['seoheading']);
+	$sseotext = clean($_POST['seotext']);
 
 
 	if(!$ssitename || !$domain || !$stemplate || !$sgamesfolder || !$sgamesthumbs || !$slimitboxgames || !$sgamesonpage){
@@ -86,7 +88,9 @@ if(isset($_POST['submit'])){
 					aimg="'.$saimg.'",
 					gender_on="'.$sgender_on.'",
 					mimg="'.$smimg.'",
-					fimg="'.$sfimg.'" ') or die(mysql_error());
+					fimg="'.$sfimg.'",
+					seoheading="'.$sseoheading.'",
+					seotext="'.$sseotext.'" ') or die(mysql_error());
 		echo '<div class="msg">Updated.</div>';
 		return;
 }
@@ -282,6 +286,16 @@ echo '
 				<td>Female Avatar File:</td>
 				<td><input type="text" name="fimg" size="40" value="'.$set['fimg'].'" /></td>
 			</tr>
+		</tr>
+			<td class=\'content5\'>SEO Text Heading:
+			</td>
+			<td class=\'content5\'><input type=\'text\' name=\'seoheading\' size=\'40\' value=\''.$set['seoheading'].'\'></td>
+		</tr>
+
+		<tr>
+			<td class=\'content5\'>SEO Text Description:</td>
+			<td class=\'content5\'><textarea name=\'seotext\' rows=\'12\' cols=\'50\' >'.$set['text'].'</textarea></td>
+		</tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="submit" value="Change" /></td>
 			</tr>
