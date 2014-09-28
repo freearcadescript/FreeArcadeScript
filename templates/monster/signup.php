@@ -39,6 +39,7 @@ if(isset($_POST['submit'])){
 
 	$salt = createSalt();//creates a 3 character string
 	$pass = setPass($pass_word, $salt);
+	$answer = setPass($answer, $salt);
 	if($email_on == '1'){
 	$db->query(sprintf('INSERT INTO fas_users SET
 				username=\'%s\',

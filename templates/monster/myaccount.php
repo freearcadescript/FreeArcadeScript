@@ -460,6 +460,7 @@ function changequestion(){
 		$salt = $usrdata['salt'];
 		$pass = checkpass($pass, $salt);
 		$answer = clean($_POST['answer']);
+		$answer = checkPass($answer, $salt);
 		$question = clean($_POST['question']);
 
 		if(!$question || !$answer || !$pass){
@@ -483,7 +484,6 @@ $userid = $usrdata['userid'];
 $ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $questionf = $r2['pass_question'];
-$answerf = $r2['pass_answer'];
 		echo '<form action=\''.$surl.'\' method=\'POST\'>
 		<table width="100%">
 			<tr>
@@ -495,7 +495,7 @@ $answerf = $r2['pass_answer'];
 			</tr>
 			<tr>
 				<td class=\'content\'>Answer:</td>
-				<td class=\'content\'><input type=\'text\' name=\'answer\' size=\'35\' value=\''.$answerf.'\'></td>
+				<td class=\'content\'><input type=\'text\' name=\'answer\' size=\'35\' value=\'\'></td>
 			</tr>
 			<tr>
 				<td class=\'content\'>Current Password:</td>

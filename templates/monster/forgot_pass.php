@@ -14,37 +14,41 @@ if(isset($_POST['submit'])){
 		return;
 	}
 
-$r = $db->query(sprintf('SELECT * FROM fas_users WHERE username=\'%s\' AND pass_answer=\'%s\'', $username, $answer));
-	if(!$db->num_rows($r)){
-		echo '<div class=\'error\'>Either your username or answer is incorrect. Please try again!</div>';
-		return;
-	}else{
-		$ir = $db->fetch_row($r);
-		$email= clean($ir['email']);
-		$pass_word = rand( );
-$subject = 'Password Reset';
-$message = 'Hello '.$username.',<br><br>You are receiving this notification because you have (or someone pretending to be you has) requested a new password be sent for your account on <a href="'.$domain.'">'.$sitename.'</a>.<br> Your password has been reset, your new password is: '.$pass_word.'.<br><br> You can of course change this password yourself via the profile page. If you have any difficulties please contact the board administrator.
-<br><br>Best regards,<br>'.$sitename.' administration';
-$headers = 'From: '.$supportemail.'' . "\r\n" .
-    'Content-Type: text/html; charset=\"iso-8859-1\"' . "\r\n" .
-    'X-Mailer: PHP/' . phpversion();
-
-mail($email, $subject, $message, $headers);
-
-
-	$salt = $ir['salt'];
+	$r = $db->query(sprintf('SELECT * FROM fas_users WHERE username=\'%s\'', $username));
+	$ir = $db->fetch_row($r);
+	$salt = $ir['salt'];//check if the salt exists
 	if(empty($salt)){
 		$salt = createSalt();//creates a 3 character string
 	}
-	$pass = setPass($pass_word, $salt);
-	mysql_query("UPDATE fas_users SET password='$pass', salt='$salt' WHERE username='$username' AND pass_answer='$answer'");
-				echo '<div class=\'msg\'><font color=red>Your password has been reset, please check your email for the new password!</font></div>';
+	$answer = checkPass($answer, $salt);
 
-}
+	if(!$db->num_rows($r)){//check if user exists and answer is corect
+		echo '<div class=\'error\'>Your username is incorrect. Please try again!</div>';
+		return;
+	}elseif($answer != $ir['pass_answer']){
+		echo '<div class=\'error\'>Your security answer is incorrect. Please try again!</div>';
+		return;
+	}else{
+		
+		$email= clean($ir['email']);
+		$pass_word = rand( );
+		$subject = 'Password Reset';
+		$message = 'Hello '.$username.',<br><br>You are receiving this notification because you have (or someone pretending to be you has) requested a new password be sent for your account on <a href="'.$domain.'">'.$sitename.'</a>.<br> Your password has been reset, your new password is: '.$pass_word.'.<br><br> You can of course change this password yourself via the profile page. If you have any difficulties please contact the board administrator.
+		<br><br>Best regards,<br>'.$sitename.' administration';
+		$headers = 'From: '.$supportemail.'' . "\r\n" .
+    	'Content-Type: text/html; charset=\"iso-8859-1\"' . "\r\n" .
+    	'X-Mailer: PHP/' . phpversion();
+
+		mail($email, $subject, $message, $headers);
+
+		$pass = setPass($pass_word, $salt);
+		mysql_query("UPDATE fas_users SET password='$pass', salt='$salt' WHERE username='$username' AND pass_answer='$answer'");
+			echo '<div class=\'msg\'><font color=red>Your password has been reset, please check your email for the new password!</font></div>';
+	}
 }else{
-$username = clean($_GET['username']);
+	$username = clean($_GET['username']);
 
-$r = $db->query(sprintf('SELECT * FROM fas_users WHERE username=\'%s\'', $username));
+	$r = $db->query(sprintf('SELECT * FROM fas_users WHERE username=\'%s\'', $username));
 		$ir = $db->fetch_row($r);
 		$question= $ir['pass_question'];
 
@@ -98,7 +102,11 @@ echo '<form action=\''.$surl.'\' method=\'post\'>
 function getlink(){
 $username = clean($_POST['username']);
 
-echo "<center><a href='index.php?action=forgotpassword&amp;case=question&amp;username=$username'><font color='red' size='+3'>----> Next ----></font></a></center>";
+echo '<head>
+<meta http-equiv="refresh" content=".1; url=index.php?action=forgotpassword&amp;case=question&amp;username='.$username.'">
+</head>';
+
+//echo "<center><a href='index.php?action=forgotpassword&amp;case=question&amp;username=$username'><font color='red' size='+3'>----> Next ----></font></a></center>";
 }
 
 if(!isset($_GET['case'])){
