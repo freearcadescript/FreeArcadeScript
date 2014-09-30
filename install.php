@@ -418,7 +418,7 @@ mysql_query("INSERT INTO `fas_newsletter` (`pageid`, `sent`, `showpage`, `pageti
 mysql_query("INSERT INTO `fas_pagecategories` (`categoryid`, `topcategory`, `categoryname`, `activate`, `metatags`, `metadescr`) VALUES(1, 1, 'Main', 1, '', ''); ");
 $date = date('Y-m-d H:i:s');
 mysql_query("INSERT INTO `fas_pageentries` (`entryid`, `title`, `body`, `author`, `entrydate`, `visible`, `category`, `tags`, `metadescription`) VALUES(1, 'Demo Page', 'This is a demo of the pages\r\n\r\nYou may use HTML or JavaScript', '1', '$date', '1', '1', 'Demo Page', ''); ");
-mysql_query("INSERT INTO `fas_themes` (`name`, `template`, `active`, `default`) VALUES('Monster', 'monster', '1', '1'); ");
+mysql_query("INSERT INTO `fas_themes` (`ID`, `name`, `template`, `active`, `default`) VALUES('1', 'Monster', 'monster', '1', '1'); ");
 
 
 mysql_query("ALTER TABLE  `fas_users` ADD  `activation_key` VARCHAR( 255 ) NOT NULL; ");

@@ -115,8 +115,8 @@ if(isset($_POST['commentsubmit'])){
 
 	<table width=\'100%\'>
 	<tr>
-		<td class=\'header\' colspan=\'2\'>Details';
-	    echo'<div style="float: right; vertical-align: top; padding-right: 20px;">';
+	    <td class=\'content\' align=\'center\' colspan=\'2\'>';
+	    echo'<div align="center">';
 	    echo '<a href=\''.$domain.'/'.$gamesfolder.'/'.$r['file'].'\' /><img src=\''.$domain.'/templates/'.$template.'/images/fullscreen.png\' border=\'0\' alt=\'Full Screen\' title=\'Full Screen\' /></a> ';
 	    if ($seo_on == 1){
 		echo '<a href=\''.$domain.'/addtofavorites/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my Favorites\' title=\'Add to My Favorites\' /></a> ';
@@ -139,6 +139,9 @@ if(isset($_POST['commentsubmit'])){
         </td>
 	</tr>
 	<tr>
+		<td class=\'header\' colspan=\'2\'>Details</td>
+	</tr>
+	<tr>
 		<td class=\'content\' colspan=\'2\'><div align=\'center\'>'.$belowgames.'</div></td>
 	</tr>
 
@@ -154,19 +157,18 @@ if(isset($_POST['commentsubmit'])){
 		$result2 = mysql_query($query2);
 
 		$name = mysql_result($result2, 0, "name");
-		echo'<b>Category:</b> '.$name.'
-		<br /><br />
-		<div align="left">'; echo pullRating($ID,true,false,true);
-		echo '</div><br />
-        </td>
-		<td class=\'content\' valign=\'top\' style=\'padding:2px;\' width="30%"><b>Total Views:</b> '.$r['views'].'<br /><br />';
+		echo'<b>Category:</b> '.$name.'<br /><br />
+		<b>Total Views:</b> '.$r['views'].'<br /><br />';
 		if($seo_on == 1){
 			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
 		}else{
 			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
 	    }
-    echo '<div class="fb-like" data-href="'.$playlink.'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div></td>';
-	echo '</tr>
+		echo'<div class="fb-like" data-href="'.$playlink.'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div><br /><br />';
+		echo'<div align="left">'; echo pullRating($ID,true,false,true);
+		echo'</div>
+		</td>
+	</tr>
 	    </table>
 	    <table  width="100%">
 	<tr>

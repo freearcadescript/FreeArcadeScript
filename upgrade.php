@@ -83,7 +83,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_themes` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ; ");
 
-mysql_query("INSERT INTO `fas_themes` (`name`, `template`, `active`, `default`) VALUES('Monster', 'monster', '1', '1'); ");
+mysql_query("INSERT INTO `fas_themes` (`ID`, `name`, `template`, `active`, `default`) VALUES('1', 'Monster', 'monster', '1', '1'); ");
 
 mysql_query("ALTER TABLE  `fas_categories` ADD  `visible` tinyint(1) NOT NULL default '1'; ");
 

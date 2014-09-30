@@ -90,7 +90,7 @@ else {
 	echo '<div class=\'msg\'>Member Deleted.<br>';
 	$db->query(sprintf('DELETE FROM fas_comments WHERE commenter=\'%u\'', $userid));
 	echo 'Member comments Deleted from games.<br>';
-	$db->query(sprintf('DELETE FROM blogcomments WHERE commenterid=\'%u\'', $userid));
+	$db->query(sprintf('DELETE FROM fas_blogcomments WHERE commenterid=\'%u\'', $userid));
 	echo 'Member comments Deleted from blog.<br>
 				</div>';
 }

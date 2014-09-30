@@ -95,6 +95,8 @@ foreach($set1 as $set){
 	$blogcharactersrss = $set['blogcharactersrss'];
 	$metatags = $set['metatags'];
 	$metadescription = $set['metadescr'];
+	$seoheading = $set['seoheading'];
+	$seotext = $set['seotext'];
 	$pagetitle = $sitename ;
 };
 
