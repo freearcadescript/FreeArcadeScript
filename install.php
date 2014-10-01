@@ -208,6 +208,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_onlineuser` (
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_settings` (
   `domain` varchar(250) NOT NULL,
   `directorypath` varchar(250) NOT NULL,
+  `slogan` varchar(250) NOT NULL,
   `template` varchar(250) NOT NULL,
   `gamesfolder` varchar(250) NOT NULL,
   `thumbsfolder` varchar(250) NOT NULL,
@@ -374,6 +375,7 @@ mysql_query("INSERT INTO `fas_links` (`ID`, `title`, `url`, `hits`, `dateadded`,
 mysql_query("INSERT INTO fas_settings SET
  					domain='$sdomain',
  					directorypath='$directorypath',
+ 					slogan='$slogan',
  					template='$stemplate',
  					gamesfolder='$sgamesfolder',
  					thumbsfolder='$sgamesthumbs',

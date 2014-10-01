@@ -1,0 +1,16 @@
+<?php
+include("templates/$template/blocks/mymenu.php");
+//include("templates/$template/blocks/topplayers.php")
+//include("templates/$template/blocks/sitemap.php");
+include("templates/$template/blocks/random.php");
+//include("templates/$template/blocks/search.php");
+//include("templates/$template/blocks/bannerleft.php");
+//include("templates/$template/blocks/bannersright.php");
+include("templates/$template/blocks/category.php");
+include("templates/$template/blocks/ad1.php");
+//include("templates/$template/blocks/ad2.php");
+include("templates/$template/blocks/top.php");
+include("templates/$template/blocks/latest.php");
+include("templates/$template/blocks/links.php");
+include("templates/$template/blocks/stats.php");
+?>

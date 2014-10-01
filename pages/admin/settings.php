@@ -19,6 +19,7 @@ if(isset($_POST['submit'])){
 	$ssitename = clean($_POST['sitename']);
 	$sdomain = clean($_POST['domain']);
 	$directorypath = clean($_POST['directorypath']);
+	$slogan = clean($_POST['slogan']);
 	$stemplate = clean($_POST['template']);
 	$sgamesfolder = clean($_POST['gamesfolder']);
 	$sgamesthumbs = clean($_POST['thumbsfolder']);
@@ -59,6 +60,7 @@ if(isset($_POST['submit'])){
  		mysql_query('UPDATE fas_settings SET
  					domain="'.$sdomain.'",
  					directorypath="'.$directorypath.'",
+ 					slogan="'.$slogan.'",
  					template="'.$stemplate.'",
  					gamesfolder="'.$sgamesfolder.'",
  					thumbsfolder="'.$sgamesthumbs.'",
@@ -122,6 +124,10 @@ echo '
 			<tr>
 				<td>Directory Path:</td>
 				<td><input type="text" name="directorypath" size="40" value="'.$set['directorypath'].'" /></td>
+			</tr>
+			<tr>
+				   <td>Slogan:</td>
+				   <td><input type="text" name="slogan" size="40" value="'.$set['slogan'].'" /></td>
 			</tr>
 			<tr>
 				<td>Support E-mail:</td>
@@ -210,11 +216,11 @@ echo '
 			</tr>
 			<tr>
 				<td>Default Meta Keywords:</td>
-				<td><input type="text" name="metatags" size="40" value="'.$set['metatags'].'" /></td>
+				<td><textarea name=\'metatags\' rows=\'5\' cols=\'50\' >'.$set['metatags'].'</textarea></td>
 			</tr>
 			<tr>
 				<td>Default Meta Description:</td>
-				<td><input type="text" name="metadescr" size="40" value="'.$set['metadescr'].'" /></td>
+				<td><textarea name=\'metadescr\' rows=\'5\' cols=\'50\' >'.$set['metadescr'].'</textarea></td>
 			</tr>
 			<tr>
 				<td>Show Blog?:</td>
@@ -286,16 +292,14 @@ echo '
 				<td>Female Avatar File:</td>
 				<td><input type="text" name="fimg" size="40" value="'.$set['fimg'].'" /></td>
 			</tr>
-		</tr>
-			<td class=\'content5\'>SEO Text Heading:
-			</td>
-			<td class=\'content5\'><input type=\'text\' name=\'seoheading\' size=\'40\' value=\''.$set['seoheading'].'\'></td>
-		</tr>
-
-		<tr>
-			<td class=\'content5\'>SEO Text Description:</td>
-			<td class=\'content5\'><textarea name=\'seotext\' rows=\'12\' cols=\'50\' >'.$set['text'].'</textarea></td>
-		</tr>
+		        </tr>
+			        <td>SEO Text Heading:</td>
+			        <td><input type=\'text\' name=\'seoheading\' size=\'40\' value=\''.$set['seoheading'].'\'></td>
+		       </tr>
+		       <tr>
+			        <td>SEO Text Description:</td>
+			        <td ><textarea name=\'seotext\' rows=\'5\' cols=\'50\' >'.$set['seotext'].'</textarea></td>
+		        </tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="submit" value="Change" /></td>
 			</tr>

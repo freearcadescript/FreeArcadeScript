@@ -148,12 +148,6 @@ switch($_GET['action']){
 	include ('includes/arcadesubmenu2.php');
 	break;
 
-	case 'userlist':
-	include ('templates/'.$template.'/userlist.php');
-	include ('includes/arcadesubmenu.php');
-	include ('includes/arcadesubmenu2.php');
-	break;
-
 	case 'contact':
 	include ('templates/'.$template.'/contact.php');
 	include ('includes/arcadesubmenu.php');

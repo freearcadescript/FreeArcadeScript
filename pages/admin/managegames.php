@@ -101,7 +101,7 @@ function games(){
 global $domain, $db, $gamesfolder, $thumbsfolder, $directorypath;
 $CID = abs((int) $_GET['CID']);
 
-$max = 10;
+$max = 20;
 if(!isset($_GET['show'])){
 	$show = '1';
 }else{

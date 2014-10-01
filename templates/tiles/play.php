@@ -37,8 +37,7 @@ if ( $r['tags'] == '' ) { $metatags = $cname; } else { $metatags = $r['tags']; }
 // $gviews
 
 function writebody() {
-global $db, $domain, $suserid, $cachelife, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $ads3, $headerspace, $footerspace, $ID, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $tags;
-
+global $db, $domain, $suserid, $cachelife, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $ads3, $headerspace, $footerspace, $ID, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $showpages;
 
 
 
@@ -80,11 +79,11 @@ if(isset($_POST['commentsubmit'])){
 		$msgcom = 'Comment Posted, Awaiting admin approval.';
 	}
 	echo '<div class=\'msg\'>'.$msgcom.'</div><br />';
+
+
     }
-    echo '<table width=\'100%\' align=\'center\'>
-	<tr>
-		<td class=\'header\' colspan=\'2\' >'.$r['name'].'</td>
-	</tr>';
+    echo'<div id="game_content"><div class="content_nav2">'.$r['name'].'</div>';
+    echo '<table width=\'99%\' align=\'center\'>';
 					 if (!$abovegames == "") {
 		echo '<tr>
 			<td class=\'content\' colspan=\'2\' ><div align=\'center\'>'.$abovegames.'<p></div></td>
@@ -111,36 +110,32 @@ if(isset($_POST['commentsubmit'])){
 		</div>
 		</td>
 	</tr>
+	<tr>';
+		 	echo'<td class=\'content\' colspan=\'2\'><div align=\'center\'>';
+		    echo '<a href=\''.$domain.'/'.$gamesfolder.'/'.$r['file'].'\' target="_blank" /><img src=\''.$domain.'/templates/'.$template.'/images/fullscreen.png\' border=\'0\' alt=\'Full Screen\' title=\'Full Screen\' /></a> ';
+		    if ($seo_on == 1){
+			echo '<a href=\''.$domain.'/addtofavorites/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my Favorites\' title=\'Add to My Favorites\' /></a> ';
+			}else{
+			echo '<a href=\''.$domain.'/index.php?action=addtofavorites&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my favorites\' title=\'Add to My Favorites\' /></a> ';
+			}
+			if($usrdata['user_level'] == 1){
+		    if ($seo_on == 1){
+			echo '<a href=\''.$domain.'/report/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
+			}else{
+			echo '<a href=\''.$domain.'/index.php?action=report&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
+			}
+			}
+		    if($usrdata['user_level'] == 2){
+			echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$r['ID'].'&amp;type='.$r['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' title=\'Edit Game\' alt=\'edit game\' border=\'0\' /></a> ';
+			echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$r['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' title=\'Delete Game\' alt=\'delete game\' border=\'0\' /></a> ';
+	        }
+
+        echo'</div></td>';
+	echo'</tr>
 	</table>
 
 	<table width=\'100%\'>
-	<tr>
-	    <td class=\'content\' align=\'center\' colspan=\'2\'>';
-	    echo'<div align="center">';
-	    echo '<a href=\''.$domain.'/'.$gamesfolder.'/'.$r['file'].'\' /><img src=\''.$domain.'/templates/'.$template.'/images/fullscreen.png\' border=\'0\' alt=\'Full Screen\' title=\'Full Screen\' /></a> ';
-	    if ($seo_on == 1){
-		echo '<a href=\''.$domain.'/addtofavorites/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my Favorites\' title=\'Add to My Favorites\' /></a> ';
-		}else{
-		echo '<a href=\''.$domain.'/index.php?action=addtofavorites&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my favorites\' title=\'Add to My Favorites\' /></a> ';
-		}
-		if($usrdata['user_level'] == 1){
-	    if ($seo_on == 1){
-		echo '<a href=\''.$domain.'/report/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
-		}else{
-		echo '<a href=\''.$domain.'/index.php?action=report&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
-		}
-		}
-	    if($usrdata['user_level'] == 2){
-		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$r['ID'].'&amp;type='.$r['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' title=\'Edit Game\' alt=\'edit game\' border=\'0\' /></a> ';
-		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$r['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' title=\'Delete Game\' alt=\'delete game\' border=\'0\' /></a> ';
-        }
-
-        echo'</div>
-        </td>
-	</tr>
-	<tr>
-		<td class=\'header\' colspan=\'2\'>Details</td>
-	</tr>
+        <div class="content_nav2">'.$r['name'].' Details</div>
 	<tr>
 		<td class=\'content\' colspan=\'2\'><div align=\'center\'>'.$belowgames.'</div></td>
 	</tr>
@@ -159,21 +154,20 @@ if(isset($_POST['commentsubmit'])){
 		$name = mysql_result($result2, 0, "name");
 		echo'<b>Category:</b> '.$name.'<br /><br />
 		<b>Total Views:</b> '.$r['views'].'<br /><br />';
-		if($seo_on == 1){
-			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
-		}else{
-			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
-	    }
-		echo'<div class="fb-like" data-href="'.$playlink.'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div><br /><br />';
-		echo'<div align="left">'; echo pullRating($ID,true,false,true);
-		echo'</div>
-		</td>
-	</tr>
+				if($seo_on == 1){
+					$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
+				}else{
+					$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
+			    }
+       echo '<div class="fb-like" data-href="'.$playlink.'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div>
+       <br /><br />
+	   <div align="left">'; echo pullRating($ID,true,false,true);
+	   echo '</div><br />
+      </td>';
+	echo '</tr>
 	    </table>
 	    <table  width="100%">
-	<tr>
-		<td colspan=\'2\' class=\'header\'>Bored of this game? check these out!</td>
-	</tr>
+            <div class="content_nav2">Bored of this game? check these out!</div>
 	<tr>
 		<td class=\'content\' colspan=\'2\'>
 		<div align=\'center\' style=\'padding:5px;\'>';
@@ -210,9 +204,7 @@ if(isset($_POST['commentsubmit'])){
 	</table>';
 	if($enabledcode_on == 1 && $usrdata['user_level'] >= 1){
     echo '<table width="100%">
-	<tr>
-		<td colspan=\'2\' class=\'header\'>Enabled Code</td>
-	</tr>
+          <div class="content_nav2">Enabled Code</div>
 	<tr>
 		<td class=\'content\' colspan=\'2\'>
 		<div align=\'center\' style=\'padding:5px;\'>
@@ -243,10 +235,8 @@ echo '
 			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
 	    }
         if($fbcomments_on == 1){
-        echo '<table  width="100%">
-        <tr>
-		     <td class=\'header\' colspan=\'2\'>Comments</td>
-	    </tr>
+        echo '<table  width="99%">
+       <div class="content_nav2">Comments</div>
 	    <tr>
         <td><div class="fb-comments" data-href="'.$playlink.'" data-numposts="5" data-colorscheme="light" data-width="100%"></div></td>
         </tr>
@@ -256,14 +246,12 @@ echo '
         };
 
 	    if($comments_on == 1){
-        echo '<table  width="100%">
-        <tr>
-		     <td class=\'header\' colspan=\'2\'>Comments</td>
-	    </tr>
+        echo '<table  width="99%">
+        <div class="content_nav2">Comments</div>
 	    <tr>
 		     <td  width=\'70%\' valign=\'top\' colspan=\'2\' align=\'center\'>
 		<div align=\'center\'>
-		<table width=\'100%\' border=\'0\'>';
+		<table width=\'99%\' border=\'0\'>';
 		$gamename = preg_replace('#\W#', '', $r['name']);
 		if($seo_on == 1){
 		     $comlink = ''.$domain.'/play/'.$ID.'-'.$gamename.'.html';
@@ -330,7 +318,8 @@ echo '
 		};
             };
 
-        } else { echo '<tr><td colspan=\'2\' class=\'content\'>No Comments Yet!</td></tr>';};
+        } else {
+                 echo '<tr><td colspan=\'2\' class=\'content\'>No Comments Yet!</td></tr>';};
         if($seo_on == 1){
 		     $urco = ''.$domain.'/showcomments/'.$cname.'/'.$ID.'/1.html';
         }else{
@@ -349,14 +338,12 @@ echo '
 		        $taf1 = ''.$domain.'/index.php?action=taf';
 	    };
 		if($taf_on == 1){
-	    echo '<table width="100%">
-        <tr>
-				<td class=\'header\' colspan=\'2\'>Tell a Friend</td>
-	    </tr>
+	    echo '<table width="99%">
+            <div class="content_nav2">Tell a Friend</div>
 	    <tr>
 				<td  width=\'70%\' valign=\'top\' colspan=\'2\' class=\'content\' align=\'center\'>
 		<div align=\'center\'>
-        <form action =\''.$taf1.'\' method=\'POST\'>
+            <form action =\''.$taf1.'\' method=\'POST\'>
 	    <tr>
 				<td class=\'content\'>Your Name: </td>
 				<td class=\'content\'><input type=\'text\' name=\'sender\' size=\'50\'></td>
@@ -379,9 +366,8 @@ echo '
 	    echo '</div>
 				</td>
 	    </tr>
-	    </table>';
-
-
+	    </table>
+	    </div>';
 
 $useridp=$usrdata['userid'] ;
 if ($useridp=='0' or $useridp=='') {$useridp='-1'; };

@@ -4,6 +4,9 @@
 <head>
 <meta name="keywords" content="<?php echo $metatags; ?>" />
 <meta name="description" content="<?php echo $metadescription ; ?>" />
+<meta name="author" content="freearcadescript.net" />
+<meta property="og:url" content="<?=$domain?>" />
+<meta property="og:title" content="<?php echo $sitename; ?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
 <link href="<?=$domain?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">

@@ -100,7 +100,7 @@ mysql_query("UPDATE `fas_users` SET `activation_key`='0' WHERE `userid`=0; ");
 mysql_query("UPDATE `fas_users` SET `activation_key`='0' WHERE `userid`=1; ");
 mysql_query("UPDATE fas_users SET `userid` = '0' WHERE `username` ='Guest' LIMIT 1 ; ");
 
-
+mysql_query("ALTER TABLE  `fas_settings` ADD  `slogan` varchar(250) NOT NULL AFTER `directorypath` ; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `email_on` int(11) NOT NULL default '1' AFTER `limitboxgames` ;");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `taf_on` int(11) NOT NULL default '1' AFTER `comments_on` ;");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `fbcomments_on` int(11) NOT NULL default '1' AFTER `taf_on` ;");
@@ -146,9 +146,9 @@ mysql_query("UPDATE fas_settings SET
  					facebookappid=''") ;
 
 
-echo '<div class=\'msg\'>Updated.</div><br />
+echo '<div align="center">Updated.<br />
 Upgrade is Now Complete!<br />
-Please delete the upgrade.php and install.php files.';
+Please delete the upgrade.php and install.php files.</div>';
 exit;
 
 } else {
@@ -156,11 +156,11 @@ exit;
 echo '<form action=\'upgrade.php\' method=\'POST\'>
 	<table align=\'center\' cellpadding=\'5\'>
 		<tr>
-				<th class=\'header5\' colspan=\'2\'><b>Please back up your files and database before proceeding!</b></th>
+				<th><b>Please back up your files and database before proceeding!</b></th>
 		</tr>
 
 		<tr>
-				<th colspan=\'2\' class=\'header5\'><input type=\'submit\' name=\'submit\' value=\'Update\'></th>
+				<th><input type=\'submit\' name=\'submit\' value=\'Update\'></th>
 	</table>
 	</form>
 ';
