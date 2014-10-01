@@ -115,8 +115,8 @@ if(isset($_POST['commentsubmit'])){
 
 	<table width=\'100%\'>
 	<tr>
-	    <td class=\'content\' align=\'center\' colspan=\'2\'>';
-	    echo'<div align="center">';
+		<td class=\'header\' colspan=\'2\'>Details';
+	    echo'<div style="float: right; vertical-align: top; padding-right: 20px;">';
 	    echo '<a href=\''.$domain.'/'.$gamesfolder.'/'.$r['file'].'\' /><img src=\''.$domain.'/templates/'.$template.'/images/fullscreen.png\' border=\'0\' alt=\'Full Screen\' title=\'Full Screen\' /></a> ';
 	    if ($seo_on == 1){
 		echo '<a href=\''.$domain.'/addtofavorites/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my Favorites\' title=\'Add to My Favorites\' /></a> ';
@@ -135,11 +135,8 @@ if(isset($_POST['commentsubmit'])){
 		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$r['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' title=\'Delete Game\' alt=\'delete game\' border=\'0\' /></a> ';
         }
 
-        echo'</div>
-        </td>
-	</tr>
-	<tr>
-		<td class=\'header\' colspan=\'2\'>Details</td>
+        echo'</div>';
+		echo'</td>
 	</tr>
 	<tr>
 		<td class=\'content\' colspan=\'2\'><div align=\'center\'>'.$belowgames.'</div></td>
