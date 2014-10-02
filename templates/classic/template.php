@@ -4,15 +4,16 @@
 <head>
 <meta name="keywords" content="<?php echo $metatags; ?>" />
 <meta name="description" content="<?php echo $metadescription ; ?>" />
+<meta name="author" content="freearcadescript.net" />
+<meta property="og:url" content="<?=$domain?>" />
+<meta property="og:title" content="<?php echo $sitename; ?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
 <link href="<?=$domain?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">
-<?php
-include ("js/rating_update.php");
-
-?>
+<?php include ("js/rating_update.php"); ?>
 </head>
 <body>
+<?php if (!$facebookappid == "") { echo ''.$facebookappid.''; }; ?>
 <table width="900" border="0" align="center" class="maintable" cellpadding="0" cellspacing="0">
 	<tr>
 		<td colspan="3">
@@ -26,12 +27,12 @@ include ("js/rating_update.php");
 		echo '	<ul>
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/mostplayed/\' title=\'Most Played\'>Most Played</a></li>
-				<li><a href=\''.$domain.'/newest/\' title=\'Newest\'>Newest</a></li><li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
+				<li><a href=\''.$domain.'/newest/\' title=\'Newest\'>Newest</a></li>
+                                <li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/search/\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/links/\' title=\'Links\'>Links</a></li>
-				<li><a href=\''.$domain.'/fineprint/\' title=\'Fine Print\'>Fine Print</a></li>
-
-					';
+				<li><a href=\''.$domain.'/contact/\' title=\'Contact Us\'>Contact Us</a></li>
+				<li><a href=\''.$domain.'/fineprint/\' title=\'Fine Print\'>Fine Print</a></li>';
 				if(!isset($suserid)){
 				$mymenu1 = '	<li ><a href=\''.$domain.'/login/\'>Login</a></li>
 					<li><a href=\''.$domain.'/forgotpassword/\'>Forgot password?</a></li>
@@ -39,7 +40,7 @@ include ("js/rating_update.php");
 				}else{
 				$mymenu1 = '
 				<li ><a href=\''.$domain.'/myaccount/\'>My Account</a></li>
-					<li ><a href=\''.$domain.'/logout/\'>Logout</a></li>';
+				<li ><a href=\''.$domain.'/logout/\'>Logout</a></li>';
 				}
             if ($showpages == 1) { echo '<li><a href=\''.$domain.'/pages/\' title=\'pages\'>Pages</a></li>'; };
             if ($showblog == 1) { echo '<li><a href=\''.$domain.'/blog/\' title=\'blog\'>Blog</a></li>'; };
@@ -55,8 +56,8 @@ include ("js/rating_update.php");
 				<li><a href="'.$domain.'/index.php?action=memberslist" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/index.php?action=search\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/index.php?action=links\' title=\'Links\'>Links</a></li>
-				<li><a href=\''.$domain.'/index.php?action=fineprint\' title=\'Fine Print\'>Fine Print</a></li>
-				';
+				<li><a href=\''.$domain.'/index.php?action=contact\' title=\'Contact Us\'>Contact US</a></li>
+				<li><a href=\''.$domain.'/index.php?action=fineprint\' title=\'Fine Print\'>Fine Print</a></li>';
 				if(!isset($suserid)){
 				$mymenu1 = '	<li ><a href=\''.$domain.'/index.php?action=login\'>Login</a></li>
 					<li><a href=\''.$domain.'/index.php?action=forgotpassword\'>Forgot password?</a></li>

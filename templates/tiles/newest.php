@@ -23,7 +23,7 @@ echo '<div id="content">';
 $count = 0;
 echo'<div class="content_nav">Newest Games</div>';
 while($in = $db->fetch_row($r)){
-	$gamename = preg_replace('[^A-Za-z0-9]', '-', $in['name']);
+        $gamename = preg_replace('#\W#', '-', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{

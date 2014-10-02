@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
                   echo'</div>
 
                        <div id="content">';
-		 echo "<div class='error'>The username you entered does not exist!</div>";
+		echo "<div class='error'>The username you entered does not exist!</div>";
                  echo'</div></div></div>';
 	}else{
 		$ir = $db->fetch_row($r);
@@ -69,7 +69,6 @@ if(isset($_POST['submit'])){
 				echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
                                 echo'</div></div></div>';
 			}else{
-
                                 echo'<div id="container">
                                 <div id="content-container">
                                 <div id="side">';
@@ -80,7 +79,7 @@ if(isset($_POST['submit'])){
 				echo "<div class='error'>Your password is incorrect!</div>";
                                 echo'</div></div></div>';
 			}
-		        }else{
+		}else{
                                 echo'<div id="container">
                                 <div id="content-container">
                                 <div id="side">';
@@ -88,9 +87,9 @@ if(isset($_POST['submit'])){
                                 echo'</div>
 
                                 <div id="content">';
-			        echo "<div class='error'>You need to activate your account first!</div>";
+			 echo "<div class='error'>You need to activate your account first!</div>";
                                 echo'</div></div></div>';
-		        }
+		}
 	}
 	
 }else{
@@ -101,7 +100,6 @@ if($seo_on == 1){
 	$url = ''.$domain.'/index.php?action=login';
 	$forgot = ''.$domain.'/index.php?action=forgotpassword';
 }
-
 echo'<div id="container">
 <div id="content-container">
 <div id="side">';
@@ -111,7 +109,6 @@ echo'</div>
 <div id="content">
 <div class="content_nav">Log In</div>
 <div style="clear:both"></div>';
-
 echo '<form action=\''.$url.'\' method=\'post\'>
 	<table width="100%" border="0" cellpadding="0" cellspacing="1" align="center">
 	<tr>

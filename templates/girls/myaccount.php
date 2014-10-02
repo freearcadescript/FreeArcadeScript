@@ -2,7 +2,7 @@
 
 
 function writebody() {
-global $db, $domain, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
+global $db, $domain, $suserid, $sitename, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
 
 
 
@@ -117,7 +117,7 @@ Please choose a file: <input name=\'uploaded\' type=\'file\' /><br />
 
 
 function account(){
-global $domain, $db, $seo_on, $usrdata, $utemplate, $template, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
+global $domain, $db, $seo_on, $usrdata,$utemplate, $template, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
 if($seo_on == 1){
 	$url1 = ''.$domain.'/myaccount/favorites/';
 	$url2 = ''.$domain.'/myaccount/changepassword/';
@@ -320,15 +320,17 @@ echo'
 };
 
 function deletefavorite(){
-global $domain, $db, $usrdata;
+global $domain, $db, $usrdata, $template;
 $in1 = $db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\'', $_GET['deleteID']));
 $in = $db->fetch_row($in1);
-$gamename = preg_replace('[^A-Za-z0-9]', '', $in['name']);
+$gamename = preg_replace('#\W#', '', $in['name']);
 
 echo '<div class=\'msg\'>Are you sure you want to remove the game '.$gamename.' from your favorites?<br>
 	<a href=\''.$domain.'/index.php?action=myaccount&cmd=favorites&deletename='.$gamename.'&deleteID='.$_GET['deleteID'].'\'>Yes</a> &nbsp; <a href=\''.$domain.'/index.php?action=myaccount&cmd=favorites\'>No</a></div>';
 
 }
+
+
 
 function favorites(){
 global $domain, $db, $usrdata, $thumbsfolder, $gamesfolder, $seo_on, $template;
@@ -372,7 +374,7 @@ $gamename = preg_replace('#\W#', '', $in['name']);
 	      				</td>
 	      				<td valign=\'top\' class=\'content\'>'.browsedesclimit($in['description']).'';
 						mysql_query('DELETE FROM fas_user_favorites WHERE ID='.$in['ID'].'');
-						echo'<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=myaccount&amp;cmd=deletefavorite&amp;deleteID='.$in['ID'].'\'><img src=\''.$domain.'/images/deletebtn.png\' border=\'0\' title=\'Delete\' alt="delete" /></a></div>
+						echo'<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=myaccount&amp;cmd=deletefavorite&amp;deleteID='.$in['ID'].'\'><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' border=\'0\' alt="delete" /></a></div>
 						</td>
 	      			</tr>';
 
@@ -454,8 +456,11 @@ function changequestion(){
 	global $domain, $db, $usrdata, $seo_on, $template;
 
 	if(isset($_POST['submit'])){
-		$pass = clean(md5($_POST['pass']));
+		$pass = clean(($_POST['pass']));
+		$salt = $usrdata['salt'];
+		$pass = checkpass($pass, $salt);
 		$answer = clean($_POST['answer']);
+		$answer = checkPass($answer, $salt);
 		$question = clean($_POST['question']);
 
 		if(!$question || !$answer || !$pass){
@@ -479,7 +484,6 @@ $userid = $usrdata['userid'];
 $ir = $db->query(sprintf('SELECT * FROM fas_users WHERE userid=\'%u\'', $userid));
 $r2 = $db->fetch_row($ir);
 $questionf = $r2['pass_question'];
-$answerf = $r2['pass_answer'];
 		echo '<form action=\''.$surl.'\' method=\'POST\'>
 		<table width="100%">
 			<tr>
@@ -491,7 +495,7 @@ $answerf = $r2['pass_answer'];
 			</tr>
 			<tr>
 				<td class=\'content\'>Answer:</td>
-				<td class=\'content\'><input type=\'text\' name=\'answer\' size=\'35\' value=\''.$answerf.'\'></td>
+				<td class=\'content\'><input type=\'text\' name=\'answer\' size=\'35\' value=\'\'></td>
 			</tr>
 			<tr>
 				<td class=\'content\'>Current Password:</td>
@@ -512,8 +516,13 @@ function changepassword(){
 
 	if(isset($_POST['submit'])){
 
-		$oldpass = md5($_POST['oldpass']);
-		$newpass = md5($_POST['newpass']);
+		$salt = $usrdata['salt'];
+
+		$oldpass = clean(($_POST['oldpass']));
+		$newpass = clean(($_POST['newpass']));
+
+		$oldpass = checkpass($oldpass, $salt);
+		$newpass = setpass($newpass, $salt);
 
 		if(!$oldpass || !$newpass){
 			echo '<div class=\'error\'>All feilds were not filled out!</div>';

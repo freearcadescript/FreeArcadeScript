@@ -25,7 +25,7 @@ echo'</div>
 		$baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
 		if(isset($baseir1)){
 	      	foreach($baseir1 as $row1 ){
-	      	$gamename = preg_replace('[^A-Za-z0-9]', '-', $row1['name']);
+                $gamename = preg_replace('#\W#', '-', $row1['name']);
 	      	if($seo_on == 1){
 	      		$playlink = '/play/'.$row1['ID'].'-'.$gamename.'.html';
 	      	}else{

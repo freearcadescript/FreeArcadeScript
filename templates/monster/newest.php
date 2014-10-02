@@ -9,7 +9,7 @@ if(!isset($_GET['page'])){
 	$show = clean($_GET['page']);	
 }
 $limits = ($show - 1) * $max; 
-$r = $db->query(sprintf('SELECT * FROM fas_games WHERE `active`=\'1\' ORDER BY dateadded DESC LIMIT '.$limits.','.$max.' '));
+$r = $db->query(sprintf('SELECT * FROM fas_games WHERE `active`=\'1\' ORDER BY ID DESC LIMIT '.$limits.','.$max.' '));
 $totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM fas_games WHERE `active`="1"'),0);	
 $totalpages = ceil($totalres / $max); 
 echo '<div class="header2">Latest Games</div>';

@@ -7,7 +7,7 @@ echo'<div class="side_nav">Top Games</div>
 		$newest1 = sqlcache('newest', $cachelife, $newest2);
 		if(isset($newest1)){ 
 			foreach($newest1 as $row1){
-	                        $newestname = preg_replace('[^A-Za-z0-9]', '-', $row1['name']);
+                                $newestname = preg_replace('#\W#', '-', $row1['name']);
 				if($row1['type'] == 1){	
 						$img = "<img src='".$domain."/".$thumbsfolder."/".$row1["thumb"]."' alt='".$newestname."' title='".$newestname."' class='minithumb' />";
 					}else{

@@ -1,5 +1,6 @@
 <?php
 
+$pagetitle = 'Log in';
 
 function writebody() {
 global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
@@ -10,52 +11,76 @@ global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder,
 
 if(isset($_POST['submit'])){
 	$username = clean($_POST['username']);
-	$password = md5(clean($_POST['password']));
-	
-	$r = $db->query(sprintf('SELECT userid FROM fas_users WHERE username=\'%s\' AND password=\'%s\'', $username, $password));
+	$password = clean($_POST['password']);
+
+	$r = $db->query(sprintf('SELECT * FROM fas_users WHERE username=\'%s\'', $username));
 	if(!$db->num_rows($r)){
-		echo '<div class=\'error\'>User account does not exist.</div>';
-		include ('templates/'.$template.'/footer.php');
-		exit;
+		echo "<div class='error'>The username you entered does not exist!</div>";
 	}else{
 		$ir = $db->fetch_row($r);
-		$_SESSION['username'] = $username;
-		$_SESSION['userid']= $ir['userid'];
-		$_SESSION['website']= $ir['website'];
-		$_SESSION['signature']= $ir['signature'];
+		if($ir['activation_key'] == "0"){
+			$salt = $ir['salt'];
+			$password1 = checkPass($password, $salt);
+			if($password1 == $ir['password']){
+				$_SESSION['username'] = $username;
+				$_SESSION['userid']= $ir['userid'];
+				$_SESSION['website']= $ir['website'];
+				$_SESSION['signature']= $ir['signature'];
+				$_SESSION['bloglevel']= $ir['bloglevel'];
+
+				echo '<div class=\'msg\'>You\'ve now logged on.</div>';
+				echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
+			}elseif (md5($password) == $ir['password']) {
+				$salt = createSalt();//creates a 3 character string
+				$newPass = setPass($password, $salt);
+				$db->query(sprintf('UPDATE fas_users SET password = \'%s\', salt = \'%s\' WHERE username = \'%s\'',$newPass, $salt, $username));
 
 
-		$_SESSION['bloglevel']= $ir['bloglevel'];
-		echo '<div class=\'msg\'>You\'ve now logged on.</div>';
-		
-PRINT<<<ETL
-<meta http-equiv="REFRESH" content="0;url=$domain">
-ETL;
+				$_SESSION['username'] = $username;
+				$_SESSION['userid']= $ir['userid'];
+				$_SESSION['website']= $ir['website'];
+				$_SESSION['signature']= $ir['signature'];
+				$_SESSION['bloglevel']= $ir['bloglevel'];
+
+				echo '<div class=\'msg\'>You\'ve now logged on.</div>';
+				echo '<meta http-equiv="REFRESH" content="0;url='.$domain.'">';
+			}else{
+				echo "<div class='error'>Your password is incorrect!</div>";
+			}
+		}else{
+			echo "<div class='error'>You need to activate your account first!</div>";
+		}
 	}
 	
 }else{
 if($seo_on == 1){
 	$url = ''.$domain.'/login/';
+	$forgot = ''.$domain.'/forgotpassword/';	
 }else{
 	$url = ''.$domain.'/index.php?action=login';
+	$forgot = ''.$domain.'/index.php?action=forgotpassword';
 }
-echo '	<h2>Login</h2>
-	<form action=\''.$url.'\' method=\'POST\'>
-	<table align=\'center\'>
+echo '<form action=\''.$url.'\' method=\'post\'>
+	<table width="100%" border="0" cellpadding="0" cellspacing="1" align="center">
 	<tr>
-		<td class=\'header\'>Username:</td>
-		<td class=\'content\'><input type=\'text\' name=\'username\' size=\'37\'></td>
+		<td class=\'header\' colspan=\'2\'>Log In</td>
 	</tr>
 	<tr>
-		<td class=\'header\'>Password:</td>
-		<td class=\'content4\'><input type=\'password\' name=\'password\' size=\'37\'></td>
+		<td class=\'content\'>Username:</td>
+		<td class=\'content\'><input type=\'text\' name=\'username\' size=\'37\' /></td>
 	</tr>
 	<tr>
-		<td class=\'content\' colspan=\'2\' align=\'center\'><input type=\'submit\' name=\'submit\' value=\'Signon\'></td>
+		<td class=\'content\'>Password:</td>
+		<td class=\'content\'><input type=\'password\' name=\'password\' size=\'37\' /></td>
+	</tr>
+	<tr>
+		<td class=\'content\' colspan=\'2\'><a href=\''.$forgot.'\'>Forgot password?</a></td>
+	</tr>
+	<tr>
+		<td class=\'content\' colspan=\'2\' align=\'center\'><input type=\'submit\' name=\'submit\' value="login" /></td>
 	</tr>
 	</table>
-	
-	</form>';
+</form>';
 }
 
 };

@@ -4,10 +4,10 @@ function writebody() {
 global $db, $domain, $sitename, $con1, $userid, $template;
 
 
-echo '<div class="header2">
+echo '<div class="header">
 		Fine Print
 	</div>
-	<div class="content2">
+	<div class="content">
 		<b>Privacy Policy:</b>
 	<br />
 	<br />

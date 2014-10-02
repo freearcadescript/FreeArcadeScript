@@ -1,6 +1,6 @@
 <?php
-echo'<div class="side_nav">Random Games</div>
-     <div id="side_holder">';
+echo'<div class="header">Random Games</div>
+     <div class="content">';
 		$count2 = 0;
 			$random2 = "SELECT * FROM fas_games  WHERE `active`='1' ORDER BY RAND ()";
 			$random1 = sqlcache('random', $cachelife, $random2);

@@ -2,7 +2,7 @@
 
 
 function writebody() {
-global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
+global $db, $domain, $sitename, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
 
 
@@ -22,7 +22,7 @@ echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 	</tr>';
 $count = 0;
 while($in = $db->fetch_row($r)){
-$gamename = ereg_replace('[^A-Za-z0-9]', '-', $in['name']);
+$gamename = preg_replace('[^A-Za-z0-9]', '-', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{
@@ -35,21 +35,21 @@ if($count%2==0){
 
 	      		<table width=\'100%\' border=\'0\'>
 	      			<tr>
-	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><b>'.$in['name'].'</b></td>
+	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><b>'.titlelimit($in['name']).'</b></td>
 	      			</tr>
 	      			<tr>
 	      				<td width=\'55\' height=\'55\' valign=\'top\' class=\'content\'>
 	      				<a href=\''.$playlink.'\'>
 	      				';
 				      		if($in['type'] == 1){
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' width=\'55\' border=\'0\'>';
+				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' height=\'55\' border=\'0\'>';
 				      		}else{
-				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' width=\'55\' border=\'0\'>';
+				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' height=\'55\' border=\'0\'>';
 				      		}
 
 				      		echo '	</a>
 	      				</td>
-	      				<td valign=\'top\' class=\'content\'>'.browsedesclimit($in['description']).'
+	      				<td valign=\'top\' class=\'content\'>'.desclimit($in['description']).'
 	      				<a href=\''.$playlink.'\' class=\'playlink\'><b>Play</b></a></td>
 	      			</tr>
 	      		</table>
@@ -62,21 +62,21 @@ if($count%2==0){
 
 	      		<table width=\'100%\' border=\'0\'>
 	      			<tr>
-	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><b>'.$in['name'].'</b></td>
+	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><b>'.titlelimit($in['name']).'</b></td>
 	      			</tr>
 	      			<tr>
 	      				<td width=\'55\' height=\'55\' valign=\'top\' class=\'content\'>
 	      				<a href=\''.$playlink.'\'>
 	      				';
 				      		if($in['type'] == 1){
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' width=\'55\' border=\'0\'>';
+				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' height=\'55\' border=\'0\'>';
 				      		}else{
-				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' width=\'55\' border=\'0\'>';
+				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' height=\'55\' border=\'0\'>';
 				      		}
 
 				      		echo '	</a>
 	      				</td>
-	      				<td valign=\'top\' class=\'content\'>'.browsedesclimit($in['description']).'
+	      				<td valign=\'top\' class=\'content\'>'.desclimit($in['description']).'
 	      				<a href=\''.$playlink.'\' class=\'playlink\'><b>Play</b></a></td>
 	      			</tr>
 	      		</table>

@@ -159,6 +159,7 @@ if(isset($_POST['commentsubmit'])){
 		$name = mysql_result($result2, 0, "name");
 		echo'<b>Category:</b> '.$name.'<br /><br />
 		<b>Total Views:</b> '.$r['views'].'<br /><br />';
+		$gamename = preg_replace('#\W#', '-', $r['name']);
 		if($seo_on == 1){
 			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
 		}else{
@@ -219,9 +220,9 @@ if(isset($_POST['commentsubmit'])){
 		<textarea cols=\'60\' rows=\'5\'>';
 	if($r['type'] == 1){
 	echo '
-&lt;object width=&quot;500&quot; height=&quot;500&quot;&gt;
+&lt;object width=&quot;'.$r['width'].'&quot; height=&quot;'.$r['height'].'&quot;&gt;
 &lt;param name=&quot;movie&quot; value=&quot;'.$domain.'/'.$gamesfolder.'/'.$r['file'].'&quot;&gt;
-&lt;embed src=&quot;'.$domain.'/'.$gamesfolder.'/'.$r['file'].'&quot; width=&quot;500&quot; height=&quot;500&quot;&gt;
+&lt;embed src=&quot;'.$domain.'/'.$gamesfolder.'/'.$r['file'].'&quot; width=&quot;'.$r['width'].'&quot; height=&quot;'.$r['height'].'&quot;&gt;
 &lt;/embed&gt;
 &lt;/object&gt;	';
 }else{

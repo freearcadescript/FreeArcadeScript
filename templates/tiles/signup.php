@@ -39,6 +39,7 @@ if(isset($_POST['submit'])){
 
 	$salt = createSalt();//creates a 3 character string
 	$pass = setPass($pass_word, $salt);
+	$answer = setPass($answer, $salt);
 	if($email_on == '1'){
 	$db->query(sprintf('INSERT INTO fas_users SET
 				username=\'%s\',
@@ -78,6 +79,7 @@ if($seo_on == 1){
 }else{
 	$surl = ''.$domain.'/index.php?action=signup';
 }
+
 echo'<div id="container">
 <div id="content-container">
 <div id="side">';
@@ -85,7 +87,6 @@ include("includes/blocks.php");
 echo'</div>
 
 <div id="content">';
-
 echo '<form action=\''.$surl.'\' method=\'post\'>
 	<table width=\'100%\' border=\'0\' align=\'center\'>
 		<tr>

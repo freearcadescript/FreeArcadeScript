@@ -3,21 +3,22 @@
 $pagetitle = $sitename;
 
 function writebody() {
-global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
-
-
+global $db, $domain, $sitename, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
 $count = 0;
-
 $baser2 = "SELECT * FROM fas_categories where active='1'";
 $baser1 = sqlcache('mainpagecats', $cachelife, $baser2);
 
+if($baser1 == false){//If no games are added to the category yet, display error.
+	echo'<div class="msg">No categories added yet</div>';
+	return;
+}//end if $baser1
 
 echo '<table width=\'99%\' border=\'0\' cellpadding=\'0\' cellspacing=\'0\'  align=\'center\'>';
 foreach($baser1 as $row){
 
 $categorynamev = $row['name'];
-$categorynameu = preg_replace('[^A-Za-z0-9]', '-', $categorynamev );
+$categorynameu = preg_replace('#\W#', '-', $categorynamev );
 
 if($seo_on == 1){
 		$categoryurl = ''.$domain.'/browse/'.$row['ID'].'-'.$categorynameu.'.html';
@@ -40,9 +41,9 @@ if($count%2==0){
                   $sqltitle='mainpagecat'.$catid1 ;
 	      	$baseir2 = "SELECT * FROM fas_games WHERE category='$catid1' and active='1' ORDER BY rand() LIMIT 0,".$limitboxgames ;
                   $baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
-
+            if(isset($baseir1)){
 	      	foreach($baseir1 as $row ){
-	      	$gamename = ereg_replace('[^A-Za-z0-9]', '-', $row['name']);
+	      	$gamename = preg_replace('#\W#', '-', $row['name']);
 	      	if($seo_on == 1){
 	      		$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 	      	}else{
@@ -52,36 +53,41 @@ if($count%2==0){
 	      			<td width=\'45\' height=\'45\' valign=\'top\' class=\'content\'>
 	      			<a href=\''.$playlink.'\'>
 	      			';
-				      		if($row['type'] == 1){	
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'45\' width=\'45\' border=\'0\'>';
+				      		if($row['type'] == 1){
+				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'45\' height=\'45\' border=\'0\'>';
 				      		}else{
-				      		echo '	<img src=\''.$row['thumburl'].'\' width=\'45\' width=\'45\' border=\'0\'>';
+				      		echo '	<img src=\''.$row['thumburl'].'\' width=\'45\' height=\'45\' border=\'0\'>';
 				      		}
-				      			
-				      		echo '	
+
+				      		echo '
 	      			</a>
 	      			</td>
 	      			<td valign=\'top\' class=\'content\'><div class=\'gamehometitle\'>'.$row['name'].'</div>
 	      						<div class=\'gamehomedesc\'>'.desclimit($row['description']).'
 	      						<a href=\''.$playlink.'\'>Play</a></div></td>
 	      		</tr>';
-	      	};	 
+	      	};
 
+				}else{
+					echo'<div>
+						No games in this category yet.
+					</div>';
+				}
 
-echo '<tr><td colspan=\'2\' class=\'content\'>';			      	
+echo '<tr><td colspan=\'2\' class=\'content\'>';
 echo '<a href=\''.$categoryurl.'\'>Play more '.$categorynamev.' games</a>';
-echo '</td></tr>';	
+echo '</td></tr>';
 
 
 
 
 
-  	
-	      echo '  </table>';		
-	      			
+
+	      echo '  </table>';
+
 	      		echo '	</td>
 	      		</tr>
-	      	</table>		
+	      	</table>
 	      		</td>';
 }else{
 echo '
@@ -97,10 +103,10 @@ echo '
                   $sqltitle='mainpagecat'.$catid1 ;
 	      	$baseir2 = "SELECT * FROM fas_games WHERE category='$catid1' and active='1' ORDER BY rand() LIMIT 0,".$limitboxgames ;
                   $baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
-
+            if(isset($baseir1)){
 	      	foreach($baseir1 as $row ){
 
-				      	$gamename = preg_replace('[^A-Za-z0-9]', '-', $row['name']);
+				      	$gamename = preg_replace('#\W#', '-', $row['name']);
 				      	if($seo_on == 1){
 				      		$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 				      	}else{
@@ -109,12 +115,12 @@ echo '
 				      	echo '	<tr>
 				      			<td width=\'45\' height=\'45\' valign=\'top\' class=\'content\'>
 				      			<a href=\''.$playlink.'\'>';
-				      		if($row['type'] == 1){	
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'45\' width=\'45\' border=\'0\'>';
+				      		if($row['type'] == 1){
+				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'45\' height=\'45\' border=\'0\'>';
 				      		}else{
-				      		echo '	<img src=\''.$row['thumburl'].'\' width=\'45\' width=\'45\' border=\'0\'>';
+				      		echo '	<img src=\''.$row['thumburl'].'\' width=\'45\' height=\'45\' border=\'0\'>';
 				      		}
-				      			
+
 				      		echo '	</a>
 				      			</td>
 				      			<td valign=\'top\' class=\'content\'><div class=\'gamehometitle\'>'.$row['name'].'</div>
@@ -123,20 +129,26 @@ echo '
 				      		</tr>';
 				      	};
 
+				}else{
+					echo'<div>
+						No games in this category yet.
+					</div>';
+				}
 
-echo '<tr><td colspan=\'2\' class=\'content\'>';			      	
+
+echo '<tr><td colspan=\'2\' class=\'content\'>';
 echo '<a href=\''.$categoryurl.'\'>Play more '.$categorynamev.' games</a>';
-echo '</td></tr>';	
+echo '</td></tr>';
 
 
 
 
-	   	
-				      echo '  </table>';	
-	      			
+
+				      echo '  </table>';
+
 	      		echo '	</td>
 	      		</tr>
-	      	</table>		
+	      	</table>
 	      		</td>
 	      	</tr>';
 }

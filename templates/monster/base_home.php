@@ -16,7 +16,6 @@ if($baser1 == false){//If no games are added to the category yet, display error.
 
 foreach($baser1 as $row){
 	$categorynamev = $row['name'];
-	//$categorynameu = preg_replace('#\W#', '-', $categorynamev );
 	$categorynameu = preg_replace('[^A-Za-z0-9]', '-', $categorynamev );
 	if($seo_on == 1){
 		$categoryurl = ''.$domain.'/browse/'.$row['ID'].'-'.$categorynameu.'.html';
@@ -37,9 +36,8 @@ foreach($baser1 as $row){
 				$baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
 				if(isset($baseir1)){
 	      			foreach($baseir1 as $row ){
-	      			    $gamename = preg_replace('[^A-Za-z0-9]', '-', $row['name']);
-	      				//$gamename = preg_replace('#\W#', '-', $row['name']);
-						if($seo_on == 1){
+                                 $gamename = preg_replace('#\W#', '-', $row['name']);
+				        if($seo_on == 1){
 	      					$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 	      				}else{//else seo
 	      					$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$row['ID'].'';
@@ -80,8 +78,7 @@ foreach($baser1 as $row){
 				$baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
 				if(isset($baseir1)){
 					foreach($baseir1 as $row ){
-					    $gamename = preg_replace('[^A-Za-z0-9]', '-', $row['name']);
-						//$gamename = preg_replace('#\W#', '-', $row['name']);
+                                        $gamename = preg_replace('#\W#', '-', $row['name']);
 			    		if($seo_on == 1){
 			      			$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 			      		}else{

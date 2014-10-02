@@ -4,7 +4,7 @@ echo'<div class="header">
 	</div>
 	<div class="content">';
 		$count2 = 0;
-			$latest2 = "SELECT * FROM fas_games  WHERE `active`='1' ORDER BY dateadded DESC";
+			$latest2 = "SELECT * FROM fas_games  WHERE `active`='1' ORDER BY ID DESC";
 			$latest1 = sqlcache('latest', $cachelife, $latest2);
 			if(isset($latest1)){
 				foreach($latest1 as $row2){

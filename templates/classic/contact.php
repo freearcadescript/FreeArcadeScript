@@ -11,10 +11,10 @@ function writebody() {
 global $db, $domain, $sitename, $con1, $userid, $template;
 
 echo'<form action =\''.$con1.'\' method=\'post\'>
-	<div class="header2">
+	<div class="header">
 		Contact Us
 	</div>
-	<div class="content2">
+	<div class="content">
 		<table width="100%">
 			<tr>
 				<td>Your E-mail:</td>

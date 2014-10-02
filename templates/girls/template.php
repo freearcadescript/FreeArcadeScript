@@ -10,12 +10,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
 <link href="<?=$domain?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">
-<?php
-include ("js/rating_update.php");
-
-?>
+<?php include ("js/rating_update.php"); ?>
 </head>
 <body>
+<?php if (!$facebookappid == "") { echo ''.$facebookappid.''; }; ?>
 <table width="1040" border="0" align="center" class="maintable" cellpadding="0" cellspacing="0">
 	<tr>
 		<td colspan="3">
@@ -32,6 +30,7 @@ include ("js/rating_update.php");
 				<li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/search/\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/links/\' title=\'Links\'>Links</a></li>
+                                <li><a href=\''.$domain.'/contact/\' title=\'Contact Us\'>Contact Us</a></li>
 				<li><a href=\''.$domain.'/fineprint/\' title=\'Fine Print\'>Fine Print</a></li>';
 
 				if(!isset($suserid)){
@@ -61,6 +60,7 @@ include ("js/rating_update.php");
 				<li><a href="'.$domain.'/index.php?action=memberslist" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/index.php?action=search\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/index.php?action=links\' title=\'Links\'>Links</a></li>
+				<li><a href=\''.$domain.'/index.php?action=contact\' title=\'Contact Us\'>Contact US</a></li>
 				<li><a href=\''.$domain.'/index.php?action=fineprint\' title=\'Fine Print\'>Fine Print</a></li>
 				';
 				if(!isset($suserid)){
@@ -117,7 +117,7 @@ include ("js/rating_update.php");
 											while($row = $db->Fetch_row($rci)){
 											$numrws =$db->query(sprintf('SELECT ID FROM fas_games WHERE category=\'%u\'', $row['ID']));
 											$cnumrws = $db->num_rows($numrws);
-											$categoryname = ereg_replace('[^A-Za-z0-9]', '', $row['name']);
+											$categoryname = preg_replace('[^A-Za-z0-9]', '', $row['name']);
 										      	if($seo_on == 1){
 										      		$categoryurl = ''.$domain.'/browse/'.$row['ID'].'-'.$categoryname.'.html';
 										      	}else{
