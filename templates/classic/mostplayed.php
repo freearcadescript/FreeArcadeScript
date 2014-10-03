@@ -89,18 +89,6 @@ $count++;
 
 echo "</table>";
 
-echo 'Pages: ';
-for($i = 1; $i <= $totalpages; $i++){
-
-if($seo_on == 1){
-	$urlmp = ''.$domain.'/mostplayed/page'.$i.'.html';
-}else{
-	$urlmp = ''.$domain.'/index.php?action=mostplayed&page='.$i ;
-}
-
-echo '<a href="'.$urlmp.'" class="pagenat">'.$i.'</a>&nbsp;';
-}
-
 
 };
 

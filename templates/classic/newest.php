@@ -90,21 +90,6 @@ $count++;
 echo "</table>";
 
 
-echo 'Pages: ';
-for($i = 1; $i <= $totalpages; $i++){
-
-if($seo_on == 1){
-	$urlng = ''.$domain.'/newest/page'.$i.'.html';
-}else{
-	$urlng = ''.$domain.'/index.php?action=newest&page='.$i ;
-}
-
-echo '<a href="'.$urlng.'" class="pagenat">'.$i.'</a>&nbsp;';
-
-
-}
-
-
 };
 
 $pagetitle = $sitename.' - Newest Games';

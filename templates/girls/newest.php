@@ -51,17 +51,6 @@ $count++;
 	      			</tr>';
 
 echo "</table>";
-echo 'Pages: ';
-for($i = 1; $i <= $totalpages; $i++){
-
-if($seo_on == 1){
-	$urlmp = ''.$domain.'/newest/page'.$i.'.html';
-}else{
-	$urlmp = ''.$domain.'/index.php?action=newest&page='.$i ;
-}
-
-echo '<a href="'.$urlmp.'" class="pagenat">'.$i.'</a>&nbsp;';
-}
 
 
 };

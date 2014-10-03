@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
 	$sseotext = clean($_POST['seotext']);
 
 
-	if(!$ssitename || !$domain || !$stemplate || !$sgamesfolder || !$sgamesthumbs || !$slimitboxgames || !$sgamesonpage){
+	if(!$ssitename || !$domain || !$sgamesfolder || !$sgamesthumbs || !$slimitboxgames || !$sgamesonpage){
 		echo 'Not all of the fields where filled!';
 		return;
 	}
@@ -126,27 +126,19 @@ echo '
 				<td><input type="text" name="directorypath" size="40" value="'.$set['directorypath'].'" /></td>
 			</tr>
 			<tr>
-				   <td>Slogan:</td>
-				   <td><input type="text" name="slogan" size="40" value="'.$set['slogan'].'" /></td>
+				<td>Slogan:</td>
+				<td><input type="text" name="slogan" size="40" value="'.$set['slogan'].'" /></td>
 			</tr>
 			<tr>
 				<td>Support E-mail:</td>
 				<td><input type="text" name="supportemail" size="40" value="'.$set['supportemail'].'" /></td>
 			</tr>
 			<tr>
-				<td>Template:</td>
-				<td><input type="text" name="template" size="40" value="'.$set['template'].'" /></td>
-			</tr>
-			<tr>
-				<td>Games Folder:<br /><small>
-					Make sure you chmod the folder to 0777
-					</small></td>
+				<td>Games Folder:<br /><small>Make sure you chmod the folder to 0777</small></td>
 				<td><input type="text" name="gamesfolder" size="40" value="'.$set['gamesfolder'].'" /></td>
 			</tr>
 			<tr>
-				<td>Thumbs Folder:<br /><small>
-					Make sure you chmod the folder to 0777
-					</small></td>
+				<td>Thumbs Folder:<br /><small>Make sure you chmod the folder to 0777</small></td>
 				<td><input type="text" name="thumbsfolder" size="40" value="'.$set['thumbsfolder'].'" /></td>
 			</tr>
 			<tr>
@@ -195,8 +187,8 @@ echo '
 							</select></td>
 			</tr>
 			<tr>
-					<td>SEO On:</td>
-					<td><select name="seo_on">
+				<td>SEO On:</td>
+				<td><select name="seo_on">
 								<option value="1">Yes</option>
 								<option value="0" '.$seoosel.'>No</option>
 							</select></td>
