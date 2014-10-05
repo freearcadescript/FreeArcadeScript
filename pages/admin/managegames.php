@@ -154,13 +154,35 @@ echo '</tbody>
 	</table>
 </form>
 
-<div class="page-box">
-'.$totalres.' game(s) - Page '.$show.' of '.$totalpages.' - ';
-for($i = 1; $i <= $totalpages; $i++){
-	if($show == $i){
-		echo '<a href="'.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'" class="page-select">'.$i.'</a> ';
-	}else{
-		echo '<a href="'.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'" class="page">'.$i.'</a> ';
+<div class="page-box">'
+.$totalres.' game(s) - Page '.$show.' of '.$totalpages;
+$pre = $show - '1';
+$ne = $show + '1';
+
+$previous = ''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$pre.'';
+$next = ''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$ne.'';
+
+if ($totalpages > '1'){
+	echo' - ';
+	if ($show > '1'){
+		echo '<a href="'.$previous.'" class="page">Previous</a>';
+	}
+	for($i = 1; $i <= $totalpages; $i++){
+		if($show - $i < '4' || $totalpages - $i < '7'){
+			if($i - $show < '4' || $i < '8'){
+				
+				$urk = ''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'';
+				
+				if($show == $i){
+					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
+				}else{
+					echo '<a href="'.$urk.'" class="page">'.$i.'</a>';
+				}
+			}
+		}
+	}
+	if ($show < $totalpages){
+		echo '<a href="'.$next.'" class="page">Next</a>';
 	}
 }
 echo'</div>';
