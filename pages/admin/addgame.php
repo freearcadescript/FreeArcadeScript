@@ -56,7 +56,7 @@ $game = $_FILES['game']['name'];
 $name = clean($_POST['name']);
 $desc= clean($_POST['desc']);
 $category = clean($_POST['category']);
-// $active = clean($_POST['active']);
+$active = clean($_POST['active']);
 $tags = clean($_POST['tags']);
 $gameadder = $usrdata['userid'];
 $adderip = $_SERVER['REMOTE_ADDR'];
@@ -94,6 +94,7 @@ if($error == 1){
 				category=\'%u\',
 				thumb=\'%s\',
 				dateadded=\'%u\',
+				active=\'%u\',
 				type=\'%u\',
 				tags=\'%s\',
 				gameadder=\'%u\',
@@ -113,6 +114,14 @@ echo '<div class="heading">
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td>Active: </td>
+				<td><select type=\'dropdown\' name=\'active\'>
+					<option value=\'1\'>Yes</option>
+					<option value=\'0\'>No</option>
+					</select>
+				</td>
+			</tr>
 			<tr>
 				<td>Name:*</td>
 				<td><input type=\'text\' name=\'name\' size=\'40\'></td>
@@ -184,7 +193,7 @@ if($error == 1){
 				dateadded=\'%u\',
 				thumburl=\'%s\',
 				enabledcode=\'%s\',
-				active=\'1\',
+				active=\'%u\',
 				tags=\'%s\',
 				gameadder=\'%u\',
 				adderip=\'%s\'',
@@ -203,6 +212,14 @@ echo '<div class="heading">
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td>Active: </td>
+				<td><select type=\'dropdown\' name=\'active\'>
+					<option value=\'1\'>Yes</option>
+					<option value=\'0\'>No</option>
+					</select>
+				</td>
+			</tr>
 			<tr>
 				<td>Name:*</td>
 				<td><input type=\'text\' name=\'name\' size=\'40\'></td>
@@ -285,7 +302,7 @@ if($error == 1){
 				thumb=\'%s\',
 				dateadded=\'%u\',
 				type=\'%u\',
-				active=\'1\',
+				active=\'%u\',
 				tags=\'%s\',
 				gameadder=\'%u\',
 				adderip=\'%s\'',
@@ -304,6 +321,14 @@ echo '<div class="heading">
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td>Active: </td>
+				<td><select type=\'dropdown\' name=\'active\'>
+					<option value=\'1\'>Yes</option>
+					<option value=\'0\'>No</option>
+					</select>
+				</td>
+			</tr>
 			<tr>
 				<td>Name:*</td>
 				<td><input type=\'text\' name=\'name\' size=\'40\'></td>
