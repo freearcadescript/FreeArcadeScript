@@ -42,7 +42,7 @@ if($seo_on == 1){
                 $baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
                 if(isset($baseir1)){
 	      	foreach($baseir1 as $row ){
-	      	$gamename = preg_replace('[^A-Za-z0-9]', '-', $row['name']);
+            $gamename = preg_replace('#\W#', '-', $row['name']);
 	      	if($seo_on == 1){
 	      		$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 	      	}else{
@@ -51,9 +51,9 @@ if($seo_on == 1){
 	      	echo '<a href=\''.$playlink.'\' title=\''.$row['name'].'\'>';
 
 				      		if($row['type'] == 1){
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'80\' height=\'80\' border=\'0\'>';
+				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'\' width=\'80\' height=\'80\' style=\'margin:3px\' border=\'0\'>';
 				      		}else{
-				      		echo '	<img src=\''.$row['thumburl'].'\' width=\'80\' height=\'80\' border=\'0\'>';
+				      		echo '	<img src=\''.$row['thumburl'].'\' width=\'80\' height=\'80\' style=\'margin:3px\' border=\'0\'>';
 				      		}
 
 				      		echo '</a>';

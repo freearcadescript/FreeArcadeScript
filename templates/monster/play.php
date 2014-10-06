@@ -156,6 +156,7 @@ if(isset($_POST['commentsubmit'])){
 		$name = mysql_result($result2, 0, "name");
 		echo'<b>Category:</b> '.$name.'<br /><br />
 		<b>Total Views:</b> '.$r['views'].'<br /><br />';
+		$gamename = preg_replace('#\W#', '-', $r['name']);
 		if($seo_on == 1){
 			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
 		}else{
@@ -239,6 +240,7 @@ echo '
 		}else{
 			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
 	    }
+        $gamename = preg_replace('#\W#', '-', $r['name']);
         if($fbcomments_on == 1){
         echo '<table  width="100%">
         <tr>

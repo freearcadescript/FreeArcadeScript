@@ -11,7 +11,7 @@ if(!isset($_GET['orderby'])){
 }else{
 	$orderby = clean($_GET['orderby']);
 }
-$max = '70';
+$max = '40';
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{

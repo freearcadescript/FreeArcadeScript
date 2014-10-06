@@ -26,76 +26,32 @@ echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 	</tr>';
 $count = 0;
 if(!isset($r1)){
-echo '	<tr>
+echo '<tr>
 		<td colspan=\'2\' class=\'content\'><div align="center"><b>There currently are no games in this category.</b></div></td>
 	</tr>';
 }else{
+echo '<tr>
+	    <td width=\'100%\' valign=\'top\'><div align=\'center\'>';
 foreach($r1 as $in ){
-$gamename = preg_replace('[^A-Za-z0-9]', '', $in['name']);
+$gamename = preg_replace('#\W#', '-', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{
 		$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$in['ID'].'';
 	}
-if($count%2==0){
-
-       echo '<tr>
-	      	<td width=\'50%\' valign=\'top\'>
-
-	      		<table width=\'100%\' border=\'0\'>
-	      			<tr>
-	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><b>'.titlelimit($in['name']).'</b></td>
-	      			</tr>
-	      			<tr>
-	      				<td width=\'55\' height=\'55\' valign=\'top\' class=\'content\'>
-	      				<a href=\''.$playlink.'\'>
-	      				';
+       echo '<a href=\''.$playlink.'\' title=\''.$in['name'].'\'>';
 				      		if($in['type'] == 1){
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' height=\'55\' border=\'0\'>';
+				      		echo '<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' title=\''.$in['name'].'\' width=\'80\' height=\'80\' border=\'0\' style=\'margin:3px\'>';
 				      		}else{
-				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' height=\'55\' border=\'0\'>';
+				      		echo '<img src=\''.$in['thumburl'].'\' title=\''.$in['name'].'\' width=\'80\' height=\'80\' border=\'0\' style=\'margin:3px\'>';
 				      		}
-
-				      		echo '	</a>
-	      				</td>
-	      				<td valign=\'top\' class=\'content\'>'.desclimit($in['description']).'
-	      				<a href=\''.$playlink.'\' class=\'playlink\'><b>Play</b></a></td>
-	      			</tr>
-	      		</table>
-
-	      	</td>
-	';
-}else{
- echo '
-	      	<td width=\'50%\' valign=\'top\'>
-
-	      		<table width=\'100%\' border=\'0\'>
-	      			<tr>
-	      				<td valign=\'top\' colspan=\'2\' class=\'header\'><b>'.titlelimit($in['name']).'</b></td>
-	      			</tr>
-	      			<tr>
-	      				<td width=\'55\' height=\'55\' valign=\'top\' class=\'content\'>
-	      				<a href=\''.$playlink.'\'>
-	      				';
-				      		if($in['type'] == 1){
-				      		echo '	<img src=\''.$domain.'/'.$thumbsfolder.'/'.$in['thumb'].'\' width=\'55\' height=\'55\' border=\'0\'>';
-				      		}else{
-				      		echo '	<img src=\''.$in['thumburl'].'\' width=\'55\' height=\'55\' border=\'0\'>';
-				      		}
-
-				      		echo '	</a>
-	      				</td>
-	      				<td valign=\'top\' class=\'content\'>'.desclimit($in['description']).'
-	      				<a href=\''.$playlink.'\' class=\'playlink\'><b>Play</b></a></td>
-	      			</tr>
-	      		</table>
-
-	      	</td>
-	</tr>';
+				      		echo '</a>';
 }
 $count++;
 }
-}
+                       echo'</div>
+	      				</td>
+	      			</tr>';
 echo "</table>";
 echo 'Pages: ';
 for($i = 1; $i <= $totalpages; $i++){

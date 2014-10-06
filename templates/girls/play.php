@@ -159,6 +159,7 @@ if(isset($_POST['commentsubmit'])){
 		$name = mysql_result($result2, 0, "name");
 		echo'<b>Category:</b> '.$name.'<br /><br />
 		<b>Total Views:</b> '.$r['views'].'<br /><br />';
+		$gamename = preg_replace('#\W#', '-', $r['name']);
 		if($seo_on == 1){
 			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
 		}else{
@@ -183,7 +184,7 @@ if(isset($_POST['commentsubmit'])){
 	<tr>';
 
 	while($ro = $db->fetch_row($rrb)){
-	$gamename = preg_replace('[^A-Za-z0-9]', '', $ro['name']);
+	$gamename = preg_replace('#\W#', '-', $ro['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$ro['ID'].'-'.$gamename.'.html';
 	}else{
