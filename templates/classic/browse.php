@@ -31,7 +31,7 @@ echo '	<tr>
 	</tr>';
 }else{
 foreach($r1 as $in ){
-$gamename = preg_replace('[^A-Za-z0-9]', '', $in['name']);
+$gamename = preg_replace('#\W#', '-', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{

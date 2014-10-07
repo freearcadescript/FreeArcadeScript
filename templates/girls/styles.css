@@ -134,8 +134,38 @@ a, a:visited, a:hover{
 	font-size:15px;
 }
 .playlink{
-	color:#B89AFE;
-	
+	color:#B89AFE;	
+}
+
+.page{
+	font-size: 12px;
+	border: 1px solid #CCCCCC;
+	padding:2px 3px 2px 3px;
+	color:#EEEEEE;
+	background:#7b8a91;
+	margin-right: 2px;
+}
+
+.page:hover{
+	border: 1px solid #000;
+	color:#000;
+	background:#FFF;
+}
+
+.page-select{
+	font-size: 12px;
+	border: 1px solid #CCCCCC;
+	padding:2px 3px 2px 3px;
+	color:#EEEEEE;
+	background:#222222;
+	margin-right: 2px;
+}
+
+.page-box{
+	text-align:right;
+	font-size: 12px;
+	padding-bottom: 10px;
+	padding-top: 10px;	
 }
 
 .menutop{

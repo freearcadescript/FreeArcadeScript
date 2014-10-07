@@ -8,11 +8,12 @@ global $db, $domain, $sitename, $cachelife, $template, $gamesfolder, $thumbsfold
 
 
 $max = $gamesonpage;
-$show = clean($_GET['page']);
-if(empty($show)){
-	$show = 1;
+if(!isset($_GET['page'])){
+	$show = '1';
+}else{
+	$show = clean($_GET['page']);	
 }
-$limits = ($show - 1) * $max;
+$limits = ($show - 1) * $max; 
 $r = $db->query(sprintf('SELECT * FROM fas_games ORDER BY views DESC LIMIT '.$limits.','.$max.' '));
 $totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM fas_games'),0);
 $totalpages = ceil($totalres / $max);
@@ -22,7 +23,7 @@ echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 	</tr>';
 $count = 0;
 while($in = $db->fetch_row($r)){
-$gamename = preg_replace('[^A-Za-z0-9]', '-', $in['name']);
+$gamename = preg_replace('#\W#', '-', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{
@@ -88,7 +89,44 @@ $count++;
 }
 
 echo "</table>";
-
+echo'<div class="page-box">
+'.$totalres.' game(s) - Page '.$show.' of '.$totalpages;
+$pre = $show - '1';
+$ne = $show + '1';
+if($seo_on == 1){
+	$previous = ''.$domain.'/mostplayed/page'.$pre.'.html';
+	$next = ''.$domain.'/mostplayed/page'.$ne.'.html';
+}else{
+	$previous = ''.$domain.'/index.php?action=mostplayed&page='.$pre.'';
+	$next = ''.$domain.'/index.php?action=mostplayed&page='.$ne.'';
+	}
+if ($totalpages != '1'){
+	echo' - ';
+	if ($show > '1'){
+		echo '<a href="'.$previous.'" class="page">Previous</a>';
+	}
+	for($i = 1; $i <= $totalpages; $i++){ 
+		if($show - $i < '4' || $totalpages - $i < '7'){
+			if($i - $show < '4' || $i < '8'){
+				if($seo_on == 1){
+					$urk = ''.$domain.'/mostplayed/page'.$i.'.html';
+				}else{
+					$urk = ''.$domain.'/index.php?action=mostplayed&page='.$i.'';
+				}
+	
+				if($show == $i){
+					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
+				}else{
+					echo '<a href="'.$urk.'" class="page">'.$i.'</a>';
+				}
+			}
+		}
+	}
+	if ($show < $totalpages){
+		echo '<a href="'.$next.'" class="page">Next</a>';
+	}
+}
+echo'</div>';
 
 };
 

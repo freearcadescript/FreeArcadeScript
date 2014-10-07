@@ -46,6 +46,44 @@ $count++;
 	      			</tr>';
 
 echo "</table>";
+echo'<div class="page-box">
+'.$totalres.' game(s) - Page '.$show.' of '.$totalpages;
+$pre = $show - '1';
+$ne = $show + '1';
+if($seo_on == 1){
+	$previous = $urk = ''.$domain.'/mostplayed/page'.$pre.'.html';
+	$next = $urk = ''.$domain.'/mostplayed/page'.$ne.'.html';
+}else{
+	$previous = $urk = ''.$domain.'/index.php?action=mostplayed&page='.$pre.'';
+	$next = $urk = ''.$domain.'/index.php?action=mostplayed&page='.$ne.'';
+	}
+if ($totalpages != '1'){
+	echo' - ';
+	if ($show > '1'){
+		echo '<a href="'.$previous.'" class="page">Previous</a>';
+	}
+	for($i = 1; $i <= $totalpages; $i++){
+		if($show - $i < '4' || $totalpages - $i < '7'){
+			if($i - $show < '4' || $i < '8'){
+				if($seo_on == 1){
+					$urk = ''.$domain.'/mostplayed/page'.$i.'.html';
+				}else{
+					$urk = ''.$domain.'/index.php?action=mostplayed&page='.$i.'';
+				}
+
+				if($show == $i){
+					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
+				}else{
+					echo '<a href="'.$urk.'" class="page">'.$i.'</a>';
+				}
+			}
+		}
+	}
+	if ($show < $totalpages){
+		echo '<a href="'.$next.'" class="page">Next</a>';
+	}
+}
+echo'</div>';
 
 
 };

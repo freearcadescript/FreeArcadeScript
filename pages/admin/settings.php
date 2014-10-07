@@ -20,7 +20,6 @@ if(isset($_POST['submit'])){
 	$sdomain = clean($_POST['domain']);
 	$directorypath = clean($_POST['directorypath']);
 	$slogan = clean($_POST['slogan']);
-	$stemplate = clean($_POST['template']);
 	$sgamesfolder = clean($_POST['gamesfolder']);
 	$sgamesthumbs = clean($_POST['thumbsfolder']);
 	$slimitboxgames = clean($_POST['limitboxgames']);
@@ -61,7 +60,6 @@ if(isset($_POST['submit'])){
  					domain="'.$sdomain.'",
  					directorypath="'.$directorypath.'",
  					slogan="'.$slogan.'",
- 					template="'.$stemplate.'",
  					gamesfolder="'.$sgamesfolder.'",
  					thumbsfolder="'.$sgamesthumbs.'",
  					limitboxgames="'.$slimitboxgames.'",

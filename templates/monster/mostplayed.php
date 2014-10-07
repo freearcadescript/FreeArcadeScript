@@ -3,10 +3,9 @@ function writebody() {
 global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
 $max = $gamesonpage;
-if(!isset($_GET['page'])){
-	$show = '1';
-}else{
-	$show = clean($_GET['page']);
+$show = clean($_GET['page']);
+if(empty($show)){
+	$show = 1;
 }
 $limits = ($show - 1) * $max;
 $r = $db->query(sprintf('SELECT * FROM fas_games WHERE `active`=\'1\' ORDER BY views DESC LIMIT '.$limits.','.$max.' '));

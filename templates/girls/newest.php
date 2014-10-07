@@ -1,18 +1,15 @@
 <?php
 
-
 function writebody() {
 global $db, $domain, $sitename, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
-
-
-
 $max = $gamesonpage;
-$show = clean($_GET['page']);
-if(empty($show)){
-	$show = 1;
+if(!isset($_GET['page'])){
+	$show = '1';
+}else{
+	$show = clean($_GET['page']);	
 }
-$limits = ($show - 1) * $max;
+$limits = ($show - 1) * $max; 
 $r = $db->query(sprintf('SELECT * FROM fas_games WHERE `active`=\'1\' ORDER BY ID DESC LIMIT '.$limits.','.$max.' '));
 $totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM fas_games WHERE `active`=\'1\''),0);
 $totalpages = ceil($totalres / $max);
@@ -51,7 +48,44 @@ $count++;
 	      			</tr>';
 
 echo "</table>";
-
+echo'<div class="page-box">
+'.$totalres.' game(s) - Page '.$show.' of '.$totalpages;
+$pre = $show - '1';
+$ne = $show + '1';
+if($seo_on == 1){
+	$previous = ''.$domain.'/newest/page'.$pre.'.html';
+	$next = ''.$domain.'/newest/page'.$ne.'.html';
+}else{
+	$previous = ''.$domain.'/index.php?action=newest&page='.$pre.'';
+	$next = ''.$domain.'/index.php?action=newest&page='.$ne.'';
+	}
+if ($totalpages != '1'){
+	echo' - ';
+	if ($show > '1'){
+		echo '<a href="'.$previous.'" class="page">Previous</a>';
+	}
+	for($i = 1; $i <= $totalpages; $i++){ 
+		if($show - $i < '4' || $totalpages - $i < '7'){
+			if($i - $show < '4' || $i < '8'){
+				if($seo_on == 1){
+					$urk = ''.$domain.'/newest/page'.$i.'.html';
+				}else{
+					$urk = ''.$domain.'/index.php?action=newest&page='.$i.'';
+				}
+	
+				if($show == $i){
+					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
+				}else{
+					echo '<a href="'.$urk.'" class="page">'.$i.'</a>';
+				}
+			}
+		}
+	}
+	if ($show < $totalpages){
+		echo '<a href="'.$next.'" class="page">Next</a>';
+	}
+}
+echo'</div>';
 
 };
 

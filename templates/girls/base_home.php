@@ -5,13 +5,10 @@ $pagetitle = $sitename;
 function writebody() {
 global $db, $domain, $sitename, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
-
-
 $count = 0;
 
 $baser2 = "SELECT * FROM fas_categories where active='1'";
 $baser1 = sqlcache('mainpagecats', $cachelife, $baser2);
-
 
 echo '<table width=\'99%\' border=\'0\' align=\'center\'>';
 foreach($baser1 as $row){
@@ -24,8 +21,6 @@ if($seo_on == 1){
 		}else{
 		$categoryurl = ''.$domain.'/index.php?action=browse&amp;ID='.$row['ID'].'';
 		    };
-
-
 
        echo '<tr>
 	      	<td width=\'100%\' valign=\'top\'>
@@ -42,7 +37,7 @@ if($seo_on == 1){
                 $baseir1 = sqlcache($sqltitle, $cachelife, $baseir2);
                 if(isset($baseir1)){
 	      	foreach($baseir1 as $row ){
-            $gamename = preg_replace('#\W#', '-', $row['name']);
+                $gamename = preg_replace('#\W#', '-', $row['name']);
 	      	if($seo_on == 1){
 	      		$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 	      	}else{
@@ -68,10 +63,6 @@ if($seo_on == 1){
 echo '<tr><td class=\'content\'>';
 echo '<a href=\''.$categoryurl.'\'>Play more '.$categorynamev.' games</a>';
 echo '</td></tr></div>';
-
-
-
-
 
 
 	      echo '  </table></div>';
