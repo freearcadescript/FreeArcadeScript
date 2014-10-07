@@ -3,11 +3,12 @@ function writebody() {
 global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
 $max = $gamesonpage;
-$show = clean($_GET['page']);
-if(empty($show)){
-	$show = 1;
+if(!isset($_GET['page'])){
+	$show = '1';
+}else{
+	$show = clean($_GET['page']);	
 }
-$limits = ($show - 1) * $max;
+$limits = ($show - 1) * $max; 
 $r = $db->query(sprintf('SELECT * FROM fas_games WHERE `active`=\'1\' ORDER BY views DESC LIMIT '.$limits.','.$max.' '));
 $totalres = mysql_result($db->query('SELECT COUNT(ID) AS total FROM fas_games WHERE `active`=\'1\''),0);
 $totalpages = ceil($totalres / $max);
