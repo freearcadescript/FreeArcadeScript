@@ -156,13 +156,13 @@ if(isset($_POST['commentsubmit'])){
 		$name = mysql_result($result2, 0, "name");
 		echo'<b>Category:</b> '.$name.'<br /><br />
 		<b>Total Views:</b> '.$r['views'].'<br /><br />';
-        $gamename = preg_replace('#\W#', '-', $r['name']);
+
 		if($seo_on == 1){
 			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
 		}else{
 			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
 	    }
-		echo'<div class="fb-like" data-href="'.$playlink.'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div><br /><br />';
+		echo'<div class="fb-like" data-href="'.urlencode($playlink).'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div><br /><br />';
 		echo'<div align="left">'; echo pullRating($ID,true,false,true);
 		echo'</div>
 		</td>
@@ -246,7 +246,7 @@ echo '
 		     <td class=\'header\' colspan=\'2\'>Comments</td>
 	    </tr>
 	    <tr>
-        <td><div class="fb-comments" data-href="'.$playlink.'" data-numposts="5" data-colorscheme="light" data-width="100%"></div></td>
+        <td><div class="fb-comments" data-href="'.$playlink.'" data-numposts="5" data-colorscheme="dark" data-width="100%"></div></td>
         </tr>
         </table>';
         }else{

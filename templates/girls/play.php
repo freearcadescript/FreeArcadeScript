@@ -37,7 +37,7 @@ if ( $r['tags'] == '' ) { $metatags = $cname; } else { $metatags = $r['tags']; }
 // $gviews
 
 function writebody() {
-global $db, $domain, $suserid, $cachelife, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $ads3, $headerspace, $footerspace, $ID, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $tags;
+global $db, $domain, $suserid, $cachelife, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $ads3, $headerspace, $footerspace, $ID, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $gamename;
 
 
 
@@ -159,13 +159,13 @@ if(isset($_POST['commentsubmit'])){
 		$name = mysql_result($result2, 0, "name");
 		echo'<b>Category:</b> '.$name.'<br /><br />
 		<b>Total Views:</b> '.$r['views'].'<br /><br />';
-		$gamename = preg_replace('#\W#', '-', $r['name']);
+
 		if($seo_on == 1){
 			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
 		}else{
 			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
 	    }
-		echo'<div class="fb-like" data-href="'.$playlink.'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div><br /><br />';
+		echo'<div class="fb-like" data-href="'.urlencode($playlink).'" data-layout="standard" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="dark"></div><br /><br />';
 		echo'<div align="left">'; echo pullRating($ID,true,false,true);
 		echo'</div>
 		</td>

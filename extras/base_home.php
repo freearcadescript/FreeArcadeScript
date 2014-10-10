@@ -16,7 +16,7 @@ if($baser1 == false){//If no games are added to the category yet, display error.
 
 foreach($baser1 as $row){
 	$categorynamev = $row['name'];
-	$categorynameu = preg_replace('[^A-Za-z0-9]', '-', $categorynamev );
+        $categorynameu = preg_replace('#\W#', '-', $categorynamev );
 	if($seo_on == 1){
 		$categoryurl = ''.$domain.'/browse/'.$row['ID'].'-'.$categorynameu.'.html';
 	}else{//else seo
