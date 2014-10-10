@@ -56,7 +56,6 @@ if($seo_on == 1){
 }else{
 	$urlp = ''.$domain.'/index.php?action=showprofile&profile='.$userid ;
 }
-
 echo'<tbody>
 	<tr>
 		<td width="50px">'.$ir['userid'].'</td>
@@ -68,35 +67,12 @@ echo'<tbody>
 }
 
 echo '</table>
-<div class="page-box">'
-.$totalres.' game(s) - Page '.$show.' of '.$totalpages;
-$pre = $show - '1';
-$ne = $show + '1';
-
-$previous = ''.$domain.'/index.php?action=admin&case=managemembers&page='.$pre.'';
-$next = ''.$domain.'/index.php?action=admin&case=managemembers&page='.$ne.'';
-
-if ($totalpages > '1'){
-	echo' - ';
-	if ($show > '1'){
-		echo '<a href="'.$previous.'" class="page">Previous</a>';
-	}
-	for($i = 1; $i <= $totalpages; $i++){
-		if($show - $i < '4' || $totalpages - $i < '7'){
-			if($i - $show < '4' || $i < '8'){
-				
-				$urk = ''.$domain.'/index.php?action=admin&case=managemembers&page='.$i.'';
-				
-				if($show == $i){
-					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
-				}else{
-					echo '<a href="'.$urk.'" class="page">'.$i.'</a>';
-				}
-			}
-		}
-	}
-	if ($show < $totalpages){
-		echo '<a href="'.$next.'" class="page">Next</a>';
+<div class="page-box">'.$totalres.' user(s) - Page '.$show.' of '.$totalpages.' - ';
+for($i = 1; $i <= $totalpages; $i++){
+	if($show == $i){
+		echo '<a href="'.$domain.'/index.php?action=admin&case=managemembers&page='.$i.'" class="page-select">'.$i.'</a>&nbsp; ';
+	}else{
+		echo '<a href="'.$domain.'/index.php?action=admin&case=managemembers&page='.$i.'" class="page">'.$i.'</a>&nbsp; ';
 	}
 }
 echo '</div>';
@@ -203,6 +179,8 @@ $gamelevel = $set['gamelevel'];
 $signature = $set['signature'];
 $avatar = $set['avatar'];
 $avatarfile = $set['avatarfile'];
+$joindate = date('M-d-Y', $set['joindate']);
+$plays = $set['plays'];
 
 if ( $newsletter == "yes" ) { $nsel = "selected" ; }else{ $nsel = NULL;};
 if ( $sex == "m" ) { $msel = "selected" ; }else{$msel = NULL;} ;
@@ -222,6 +200,14 @@ echo'<div class="heading">
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td>Join Date:</td>
+				<td>'.$joindate.'</td>
+			</tr>
+			<tr>
+				<td>Game Plays:</td>
+				<td>'.$plays.'</td>
+			</tr>
 			<tr>
 				<td>User Level:</td>
 				<td><input type="hidden" name="userid" value="'.$userid.'"><br>
