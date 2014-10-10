@@ -99,7 +99,7 @@ if($error == 1){
 				tags=\'%s\',
 				gameadder=\'%u\',
 				adderip=\'%s\'',
-				$name, $desc, $game, $width, $height, $category, $thumb, $time, $type, $tags, $gameadder, $adderip));
+				$name, $desc, $game, $width, $height, $category, $thumb, $time, $active, $type, $tags, $gameadder, $adderip));
 }
 }
 echo '<div class="heading">
