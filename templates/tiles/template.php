@@ -1,5 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
+<html>
+<?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+?>
 <title><?php echo $pagetitle; ?></title>
 <head>
 <meta name="keywords" content="<?php echo $metatags; ?>" />
@@ -8,7 +12,7 @@
 <meta property="og:url" content="<?=$domain?>" />
 <meta property="og:title" content="<?php echo $sitename; ?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-
+<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
 <link href="<?=$domain?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">
 <?php include ("js/rating_update.php"); ?>
 </head>
@@ -25,13 +29,14 @@ if($seo_on == 1){
 	$su = ''.$domain.'/search/';
 }else{
 	$su = ''.$domain.'/index.php?action=search';
-} ?>
-<div class="search">
+}
+echo'<div class="search">
 			<form action="'.$su.'" method="post">
 				<input onblur="if (value ==\'\') {value = \'Search...\'}" onfocus="if (value == \'Search...\') {value =\'\'}" type="text" name="keyword" style="width:200px" value="Search..." />
 				<input class="button" type="submit" name="submit" value="Go" style="width:40px"/>
 			</form>
-		</div>
+		</div>';
+?>
         <div class="socialmedia">
 Follow us on :
 <?php

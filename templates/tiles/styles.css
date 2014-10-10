@@ -278,6 +278,11 @@ body{
 	font-size: 12px;	
 }
 
+.clear{clear:both;}
+.clear-left{clear:left;}
+.clear-right{clear:right;}
+.spacer {height: 8px;width: 100%;}
+
 h1{
 font-size:14px;
 padding: 0px;

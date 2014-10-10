@@ -382,6 +382,11 @@ body{
 	
 }
 
+.clear{clear:both;}
+.clear-left{clear:left;}
+.clear-right{clear:right;}
+.spacer {height: 8px;width: 100%;}
+
 .msg{
 	border:1px solid #FCFFCF;
 	background:#E8EB99;

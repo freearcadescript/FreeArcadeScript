@@ -168,6 +168,11 @@ a, a:visited, a:hover{
 	padding-top: 10px;	
 }
 
+.clear{clear:both;}
+.clear-left{clear:left;}
+.clear-right{clear:right;}
+.spacer {height: 8px;width: 100%;}
+
 .menutop{
 padding: 0;
 width: 100%;

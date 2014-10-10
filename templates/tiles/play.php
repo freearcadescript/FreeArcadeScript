@@ -230,11 +230,12 @@ echo '
 	    </table>';
 	    }
 
-		if($seo_on == 1){
-			$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
-		}else{
-			$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
-	    }
+        $gamename = preg_replace('#\W#', '-', $r['name']);
+	if($seo_on == 1){
+		$playlink = ''.$domain.'/play/'.$r['ID'].'-'.$gamename.'.html';
+	}else{
+		$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$r['ID'].'';
+	}
         if($fbcomments_on == 1){
         echo '<table  width="99%">
        <div class="content_nav2">Comments</div>

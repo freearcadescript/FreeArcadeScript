@@ -8,6 +8,7 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
 	<meta name="author" content="freearcadescript.net" />
         <meta property="og:url" content="'.$domain.'" />
         <meta property="og:title" content="'.$sitename.'" />
+        <meta property="og:image" content="'.$domain.'/templates/'.$template.'/images/logo.png" />
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link href="'.$domain.'/templates/'.$template.'/styles.css" rel="stylesheet" type="text/css" />
 	<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>';
