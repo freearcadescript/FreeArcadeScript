@@ -7,19 +7,22 @@ body{
 }
 
 #body_wrapper{margin:0 auto;text-align:left;width:1000px;background:#FFF;border: 2px solid;border-radius: 15px;}
+
 #game_holder {
 	float: left;
 	position: relative;
 	color: #000;
 	background-color: #CCC;
-	padding-top: 4px;
-	padding-bottom: 4px;
 	padding-left: 0px;
-	width: 165px;
-	height: 120px;
+	width: 90px;
+	height: 90px;
 	margin-left: 7px;
 	margin-top: 4px;
 	border: 2px ridge #000;
+        border-radius: 10px;
+}
+
+.game_img {
         border-radius: 10px;
 }
 
@@ -242,15 +245,15 @@ body{
 	font-size : 12px;
 	margin: 0 2px;
 }
-#footer_left{float:left;width:350px;font-size:12px;background: transparent;margin-left: 10px;}
+#footer_left{float:left;width:350px;font-size:12px;background:transparent;margin-left:10px;}
 #footer_left a{color:#000;font-family:Arial;font-size:12px;font-weight:bold;text-decoration:none;}
 #footer_left a:hover{color:#333;font-family:Arial;font-size:12px;font-weight:bold;text-decoration:none;}
 
-#footer_right{float:right;width:370px;font-size:12px;background: transparent;} 
+#footer_right{float:right;width:370px;font-size:12px;background:transparent;} 
 #footer_right a{color:#000;font-family:Arial;font-size:12px;font-weight:bold;text-decoration:none;}
 #footer_right a:hover{color:#333;font-family:Arial;font-size:12px;font-weight:bold;text-decoration:none;}
 
-#seotext_left{float:left;width:800px;font-size:12px;background: transparent;margin-left: 10px;margin-bottom: 25px;margin-top: 10px;}
+#seotext_left{float:left;width:800px;font-size:12px;background:transparent;margin-left:10px;margin-bottom:25px;margin-top:10px;}
 #seotext_left a{color:#000;font-family:Arial;font-size:12px;font-weight:bold;text-decoration:none;}
 #seotext_left a:hover{color:#333;font-family:Arial;font-size:12px;font-weight:bold;text-decoration:none;}
 
@@ -334,7 +337,7 @@ body{
 .clear{clear:both;}
 .clear-left{clear:left;}
 .clear-right{clear:right;}
-.spacer {height: 8px;width: 100%;}
+.spacer {height: 20px;width: 100%;}
 
 h1{
 font-size:14px;

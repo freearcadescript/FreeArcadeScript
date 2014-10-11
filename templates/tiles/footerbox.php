@@ -28,7 +28,6 @@ if (!$ads3 == ""){
 	echo'<div align="center">'.$ads3.'</div>';
 };
 ?>
-<div align="center"><a href=""><img src="images/300x250.png" /></a></div>
 </div>
 
 <div id="footer_content">

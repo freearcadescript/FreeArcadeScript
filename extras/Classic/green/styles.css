@@ -1,0 +1,599 @@
+body{
+	background:#001A00;
+	padding:0;
+	margin:0;
+	background-repeat:repeat-x;
+	color:#F8BB49;
+}
+
+.maintable{
+	background:#013300;
+	border:1px solid #F8BB49;
+	background-repeat:repeat-x;
+}
+
+
+.maintable td td table{
+  background:#003300;
+  border: 1px solid #F8BB49;
+
+}
+
+.maintable td td table td a{   
+color:#F8BB49;
+ 
+}
+
+.maintable td td table td a:hover{
+color:#D1DF84;
+
+}
+
+.maintable td td table table{
+  border:none;
+
+}
+
+#midcontent  table{
+  background:#FF3300; /*Not Sure Where this is*/
+  border: 1px solid #F8BB49;
+  color:#ffffff;
+
+}
+
+.header {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #D1DF84;
+	text-align:center;
+	background-color: #FF3300; /*Not Sure Where this is*/
+	background: url('images/topmenu.jpg') repeat-x;
+}
+
+.content {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #F8BB49;
+	text-align:left;
+	padding:5px;
+	background: #345F1A;
+	background-repeat:repeat-x;
+}
+.header2 {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #D1DF84;
+	padding:2px;
+	text-align:center;
+	background-color: #F8BB49;
+	background: url('images/topmenu.jpg') repeat-x;
+
+}
+
+.content2 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #F8BB49;
+	text-align:left;
+	background-color: #345F1A;
+	border:1px solid #F8BB49;
+}
+
+.header3 {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #FF3300; /*Not Sure Where this is*/
+	text-align:center;
+	background-color: #CFEDFF; /*Not Sure Where this is*/
+	padding:3px;
+}
+
+.content3 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #FF3300; /*Not Sure Where this is*/
+	text-align:left;
+	background-color: #F8BB49;
+}
+
+.header4 {
+	font-family: Tahoma;
+	font-size: 16px;
+	font-weight:bold;
+	color: #000000;
+	text-align:center;
+	background-color: #FFFFFF;
+	border:1px solid #F8BB49;
+	padding:3px;
+}
+
+.content4 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #000000;
+	text-align:left;
+	background-color: #FAFAFA;
+}
+
+.header5 {
+	font-family: Tahoma;
+	font-size: 14px;
+	color: #000000;
+	text-align:center;
+	background-color: #F2F2F2;
+	border:1px solid #F8BB49;
+}
+
+.content5 {
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight:normal;
+	color: #000000;
+	text-align:left;
+	background-color: #FAFAFA;
+	border:1px solid #F8BB49;
+}
+.gamehometitle{
+	font-family:arial;
+	font-size:13px;
+	color:#F8BB49;
+	font-weight:bold;
+}
+.gamehomeholder {
+	float: left;
+	position: relative;
+	color: #000;
+	background: #013300 url();
+	background-repeat:repeat-x;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 135px;
+	height: 110px;
+	margin-right: 0px;
+	margin-left: 4px;
+	margin-top: 4px;
+	border: 2px ridge #003;
+}
+.gamehomedesc{
+	color:#F8BB49;
+	font-family:arial;
+	font-size:10px;
+	width:220px;
+}
+a, a:visited{
+	color:#F8BB49;
+	text-decoration:none;
+	font-size:12px;
+	}
+a:hover{
+	color:#D1DF84;
+	text-decoration:none;
+	font-size:12px;	
+}
+.catmenu{
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+.catmenu li{
+	padding:4px;
+}
+.catmenu li:hover{
+	background-color: #ff3300; 
+	background: url('images/topback2.gif') repeat-x;
+}
+.catmenu li a{
+	font-size:15px;
+	display:block;
+}
+.catmenu li a:hover{
+        color: white;
+}
+.playlink{
+	color:#F8BB49;
+}
+
+.page{
+	font-size: 12px;
+	border: 1px solid #e3e3e3;
+	padding:2px 3px 2px 3px;
+	color:#EEEEEE;
+	background:#7b8a91;
+	margin-right: 2px;
+}
+
+.page:hover{
+	border: 1px solid #000;
+	color:#000;
+	background:#FFF;
+}
+
+.page-select{
+	font-size: 12px;
+	border: 1px solid #e3e3e3;
+	padding:2px 3px 2px 3px;
+	color:#EEEEEE;
+	background:#222222;
+	margin-right: 2px;
+}
+
+.page-box{
+	text-align:right;
+	font-size: 12px;
+	padding-bottom: 10px;	
+}
+.minithumb{
+	width:20px;
+	height:20px;
+	float:left;
+	margin-right:5px;
+	margin-bottom:5px;
+}
+
+.thumb{
+	
+}
+
+.miniavatar{
+	width:25px;
+	height:25px;
+	float:left;
+	margin-right:5px;
+	margin-bottom:5px;
+}
+
+.clear{clear:both;}
+.clear-left{clear:left;}
+.clear-right{clear:right;}
+.spacer {height: 8px;width: 100%;}
+
+.menutop{
+padding: 0;
+width: 100%;
+border-top: 3px solid #F8BB49; 
+background: transparent;
+voice-family: "\"}\"";
+voice-family: inherit;
+}
+
+.menutop ul{
+margin:0;
+margin-left: 2px; 
+padding: 0;
+list-style: none;
+}
+
+.menutop li{
+display: inline;
+margin: 0 2px 0 0;
+padding: 0;
+text-transform:none;
+}
+
+.menutop a{
+float: left;
+display: block;
+font: bold 14px Arial;
+color: #F8BB49;
+text-decoration: none;
+border:1px solid #F8BB49;
+margin: 0 1px 0 0; 
+padding: 5px 10px 9px 10px; 
+background-color: #599bff;
+background: url('images/topback.gif') repeat-x;
+
+/*BELOW 4 LINES add rounded bottom corners to each menu item.
+  ONLY WORKS IN FIREFOX AND FUTURE CSS3 CAPABLE BROWSERS
+  REMOVE IF DESIRED*/
+-moz-border-radius-bottomleft: 5px;
+border-bottom-left-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+border-bottom-right-radius: 5px;
+}
+
+.menutop a:hover{
+background-color: #F8BB49; 
+padding-top: 9px; 
+padding-bottom: 5px; 
+color: #003300;
+background: url('images/topback2.gif') repeat-x;
+}
+
+.menutop .current a{ 
+background-color: #D10000; 
+padding-top: 9px; 
+padding-bottom: 5px; 
+color: white;
+}
+
+.floatr{ 
+float: right;
+margin: 0;
+margin-top: 2px;
+padding: 0;
+}
+.msg{
+	border:1px solid #F8BB49;
+	background:#E8EB99;
+	padding:3px;
+	text-align:center;
+}
+h1{
+font-size:14px;
+padding: 0px;
+margin: 0px;
+	color:#F8BB49;
+}
+h2{
+	padding:0;
+	margin:0;
+	text-align:center;
+	color:#F8BB49;
+	font-size:12px;
+	padding-bottom:5px;
+}
+.menu1{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight:normal;
+	color: #000000;
+	text-align:left;
+	border-style:solid;
+	border-width:1px;
+	border-color: #EBEBEB;
+	background-color: #F8BB49;
+}
+.error{
+	background:#579aff;
+	border:1px solid #F8BB49;
+	color: #000000;
+	font-size:14px;
+	text-align:center;
+}
+.pgtitle{
+	font-size:22px;
+	padding-bottom:1px;
+	color:#666666;
+	padding-left:4px;
+	font-family:arial;
+	border-bottom:1px dotted #F8BB49;
+	
+}
+.pnlink{
+	padding:4px;
+	margin:5;
+	border:1px solid #F8BB49;
+}
+
+
+.pagenat{
+	border:1px solid #F8BB49;
+	padding:3px;
+	background:#EEEEEE;
+}
+.star-rating,
+.star-rating a:hover,
+.star-rating a:active,
+.star-rating .current-rating{
+	background: url(images/rating_star.gif) left -1000px repeat-x;
+}
+.star-rating{
+	position:relative;
+	width:125px;
+	height:25px;
+	overflow:hidden;
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-position: left top;
+}
+.star-rating li{
+	display: inline;
+}
+.star-rating a, 
+.star-rating .current-rating{
+	position:absolute;
+	top:0;
+	left:0;
+	text-indent:-1000em;
+	height:25px;
+	line-height:25px;
+	outline:none;
+	overflow:hidden;
+	border: none;
+}
+.star-rating a:hover{
+	background-position: left bottom;
+}
+.star-rating a.one-star{
+	width:20%;
+	z-index:6;
+}
+.star-rating a.two-stars{
+	width:40%;
+	z-index:5;
+}
+.star-rating a.three-stars{
+	width:60%;
+	z-index:4;
+}
+.star-rating a.four-stars{
+	width:80%;
+	z-index:3;
+}
+.star-rating a.five-stars{
+	width:100%;
+	z-index:2;
+}
+.star-rating .current-rating{
+	z-index:1;
+	background-position: left center;
+}	
+
+/* SECOND STAR (ALREADY VOTED */
+
+
+.star-rating2,
+.star-rating2 a:active,
+.star-rating2 .current-rating{
+	background: url(images/rating_star_2.gif) left -1000px repeat-x;
+}
+.star-rating2{
+	position:relative;
+	width:125px;
+	height:25px;
+	overflow:hidden;
+	list-style:none;
+	margin:0;
+	padding:0;
+	background-position: left top;
+}
+.star-rating2 li{
+	display: inline;
+}
+.star-rating2 a, 
+.star-rating2 .current-rating {
+	position:absolute;
+	top:0;
+	left:0;
+	text-indent:-1000em;
+	height:25px;
+	line-height:25px;
+	outline:none;
+	overflow:hidden;
+	border: none;
+	cursor:default;
+}
+
+.star-rating2 a.one-star{
+	width:20%;
+	z-index:6;
+}
+.star-rating2 a.two-stars{
+	width:40%;
+	z-index:5;
+}
+.star-rating2 a.three-stars{
+	width:60%;
+	z-index:4;
+}
+.star-rating2 a.four-stars{
+	width:80%;
+	z-index:3;
+}
+.star-rating2 a.five-stars{
+	width:100%;
+	z-index:2;
+}
+.star-rating2 .current-rating{
+	z-index:1;
+	background-position: left center;
+}
+
+
+/* END SECOND STAR */
+
+/* for an inline rater */
+.inline-rating{
+	display:-moz-inline-block;
+	display:-moz-inline-box;
+	display:inline-block;
+	vertical-align: middle;
+}
+.voted_twice {
+	background: #FFDDDD url(images/rating_warning.gif) no-repeat 5px 50%;
+	padding:5px 5px 5px 16px;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#333;
+	width:130px;
+	font-size:11px;
+	}
+.voted {
+	background: #E7FFCE url(images/rating_tick.gif) no-repeat 5px 50%;
+	padding:5px 5px 5px 16px;
+	text-align:center;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#333;
+	width:130px;
+	font-size:11px;
+	}
+/* The text that displays the rating information */
+.rated_text {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	margin-bottom:5px;
+	color:#666;
+	}
+/* Green text that shows 3.34/5 */
+.out5Class {
+	color:#00CC00;
+	font-weight:bold;
+	}
+.percentClass {
+	/* Insert styles here for the percentage display. Example (74%) */
+	}
+.votesClass {
+	/* Insert styles here for the votes display. Example (2 Votes) */
+	}
+.topRatedList {
+	padding:0;
+	margin:0;
+	}
+.topRatedList li {
+	list-style-type:none;
+	}
+.links{background:transparent;color:#fff;height:20px;padding-top:8px;text-align:center;width:950px;}
+.links a{color:#EAEAEA;font-family:Arial;font-size:12px;font-weight:bold;margin:0 2px;text-decoration:none;}
+.links a:hover{color:#FFF666;font-family:Arial;font-size:12px;font-weight:bold;text-decoration:none;}
+.menu{background:url(images/topmenu.jpg) repeat-x top left;color:#F8BB49;line-height:18px;padding-bottom:8px;padding-top:8px;text-align:center;width:100%;}
+.menu a{color:#F8BB49;font-family:Arial;font-size:16px;font-weight:700;margin:0 2px;text-decoration:none;}
+.menu a:hover{color:#D1DF84;font-family:Arial;font-size:16px;font-weight:700;text-decoration:none;}	
+
+.top {
+	color: #00132F;
+	background: transparent url('');
+	background-repeat: no-repeat;
+	background-position: top center;
+	width: 100%;
+	height: 150px;
+	text-align: left;
+	position: relative;	
+}
+.top a{
+color:#00132F;
+font-size:12px;
+font-weight:700;
+}
+.top a:hover{
+color:#333;
+font-size:12px;
+font-weight:700;
+}
+.logo
+{   
+    float:left;
+    width:320px;
+    height:130px;
+    margin-top:10px;
+    margin-left:0px;
+    padding-left: 0px;
+}
+.logo2
+{
+    float:right;
+    width:728px;
+    height:90px;
+    background: transparent;
+    background-position:top right;
+    margin-top:20px;
+}
