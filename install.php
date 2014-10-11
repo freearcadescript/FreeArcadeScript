@@ -410,7 +410,8 @@ mysql_query("INSERT INTO fas_settings SET
  					socialmedia10='',
  					facebookappid=''") ;
 
-mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `newsletter`, `aim`, `icq`, `msn`, `yim`, `location`, `job`, `website`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `sex`, `interests`, `bio`, `ip`, `bloglevel`, `forumlevel`, `gamelevel`, `signature`, `avatar`, `avatarfile`) VALUES(0, 'Guest', 'hhhhhhhhhhhhhhhhh', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, 1, '', 0, '');");
+$time = time();
+mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `newsletter`, `aim`, `icq`, `msn`, `yim`, `location`, `job`, `website`, `link1`, `link2`, `link3`, `link4`, `link5`, `link6`, `link7`, `link8`, `sex`, `interests`, `bio`, `ip`, `bloglevel`, `forumlevel`, `gamelevel`, `signature`, `avatar`, `avatarfile`, `joindate`) VALUES(0, 'Guest', 'hhhhhhhhhhhhhhhhh', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, 1, 1, '', 0, '', '$time');");
 
 $time = time();
 mysql_query("INSERT INTO `fas_users` (`userid`, `username`, `password`, `email`, `user_level`, `plays`, `joindate`) VALUES

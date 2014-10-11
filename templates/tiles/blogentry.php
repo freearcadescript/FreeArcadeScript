@@ -2,7 +2,7 @@
 
 
 function writebody() {
-global $db, $suserid, $entryid, $cachelife, $sitename, $domain, $directorypath, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $username, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $seoheading, $seotext, $showpages;
+global $db, $suserid, $entryid, $cachelife, $sitename, $domain, $directorypath, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $username, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $seoheading, $seotext, $showpages;
 
 function show(){
 global $domain, $db, $seo_on, $usrdata, $entryid, $suserid, $template, $cachelife, $gamesfolder, $thumbsfolder, $directorypath, $ads1, $ads2, $ads3, $showblog, $showpages;

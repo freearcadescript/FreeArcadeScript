@@ -8,7 +8,6 @@
 <meta property="og:url" content="<?=$domain?>" />
 <meta property="og:title" content="<?php echo $sitename; ?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<meta property="og:image" content="'.$domain.'/templates/'.$template.'/images/logo.png" />
 <link href="<?=$domain?>/templates/<?php echo $template ; ?>/styles.css" rel="stylesheet" type="text/css">
 <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
 <?php include ("js/rating_update.php"); ?>

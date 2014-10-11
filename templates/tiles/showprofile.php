@@ -2,7 +2,7 @@
 
 
 function writebody() {
-global $db, $cachelife, $domain, $suserid, $sitename, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $username, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $showpages;
+global $db, $cachelife, $domain, $suserid, $sitename, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $username, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $showpages;
 
 
 
@@ -22,8 +22,19 @@ else
 </div>
 </form> ';};
 
+
 if(empty($userids)){
+echo'<div id="container">
+<div id="content-container">
+<div id="side">';
+include("includes/blocks.php");
+echo'</div>
+
+<div id="content">
+<div class="content_nav">Error!</div>
+<div style="clear:both"></div>';
 echo '<div class="error">No profile selected</div>';
+echo'</div></div></div>';
 } else {
 $r = "SELECT * FROM fas_users WHERE userid='$userids' " ;
 $sqltitle = "userprofile-".$userids ;
@@ -96,7 +107,7 @@ echo '<table width="100%" align="center">
 		<td colspan=\'2\' class=\'header\'>User Profile: '.$username.'</td>
 	</tr>
 	<tr>
-		<td class="content" width="100">About Me:<br><img src=\''.$domain.'/avatars/'.$avatarfile.'\' height=\'100\' width=\'100\' /></td>
+		<td class="content" width="100">About Me:<br><img src=\''.$domain.'/avatars/'.$avatarfileurl.'\' height=\'100\' width=\'100\' /></td>
 		<td class="content" width="450">'.$bio.'</td>
 	</tr>
 	<tr>

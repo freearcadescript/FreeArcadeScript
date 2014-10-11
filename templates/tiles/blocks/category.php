@@ -4,5 +4,6 @@ echo'<div class="side_nav">Categories</div>
 		<ul class=\'catmenu\'>';
 				submenu1();
 			echo '</ul>
-	</div>';
+	</div>
+<div style="clear:both"></div>';
 ?>
