@@ -53,8 +53,8 @@ if(isset($_POST['submit'])){
 					");
 
 	echo '<div class=\'msg\'>Link Added, waiting for verification.<p>
-<b><font size=\'4\'>If our link is not up on your end before we check, your link will be deleted without notice.</font><br />
-			';
+<b><font size=\'4\'>If our link is not up on your end before we check, your link will be deleted without notice.</font></div><br />
+	</div></div>		';
 }else{
 	if($seo_on == 1){
 		$submitlink = ''.$domain.'/links/';
@@ -101,7 +101,7 @@ URL: '.$domain.'<p></b></td>
 		</tr>
 	</table>
 	</form>
-</div></div>';
+</div></div></div>';
 };
 };
 
