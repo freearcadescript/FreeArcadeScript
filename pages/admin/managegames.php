@@ -109,8 +109,8 @@ if(!isset($_GET['show'])){
 }
 $limits = ($show - 1) * $max;
 if($CID == "all"){
-	$sql = $db->query(sprintf('SELECT * FROM fas_games ORDER BY ID DESC LIMIT '.$limits.','.$max.' ')) or die(mysql_error());
-	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games')),0);
+	$sql = $db->query(sprintf('SELECT * FROM fas_games WHERE active=\'1\' ORDER BY ID DESC LIMIT '.$limits.','.$max.' ')) or die(mysql_error());
+	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games WHERE active=\'1\'')),0);
 }else{
 	$sql = $db->query(sprintf('SELECT * FROM fas_games WHERE category=\'%u\' ORDER BY ID DESC LIMIT '.$limits.','.$max.' ', $CID)) or die(mysql_error());
 	$totalres = mysql_result($db->query(sprintf('SELECT COUNT(ID) AS total FROM fas_games WHERE category=\'%u\'', $CID)),0);
@@ -170,9 +170,9 @@ if ($totalpages > '1'){
 	for($i = 1; $i <= $totalpages; $i++){
 		if($show - $i < '4' || $totalpages - $i < '7'){
 			if($i - $show < '4' || $i < '8'){
-				
+
 				$urk = ''.$domain.'/index.php?action=admin&case=managegames&cmd=games&CID='.$CID.'&show='.$i.'';
-				
+
 				if($show == $i){
 					echo '<a href="'.$urk.'" class="page-select">'.$i.'</a>';
 				}else{
@@ -398,6 +398,7 @@ if(isset($_POST['submit'])){
 	$desc = clean($_POST['desc']);
 	$category = clean($_POST['category']);
 	$active = clean($_POST['active']);
+	$thumburl = clean($_POST['thumburl']);
 	$enabledcode = clean($_POST['enabledcode']);
 	$tags = clean($_POST['tags']);
 	$sponsor = clean($_POST['sponsor']);
