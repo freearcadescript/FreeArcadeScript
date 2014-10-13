@@ -239,6 +239,18 @@ $r = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_games WHERE ID=\'%u\''
 if($_GET['type'] == 1){
 if(isset($_POST['submit'])){
 
+	if(isset($_POST['thumburl'])){
+		$thumburl = clean($_POST['thumburl']);
+	}else{
+		$thumburl = NULL;
+	}
+
+	if(isset($_POST['enabledcode'])){
+		$enabledcode = clean($_POST['enabledcode']);
+	}else{
+		$enabledcode = NULL;
+	}
+
 	$name = clean($_POST['name']);
 	$desc = clean($_POST['desc']);
 	$width = clean($_POST['width']);
@@ -265,6 +277,8 @@ if(isset($_POST['submit'])){
 						width='$width',
 						height='$height',
 						category='$category',
+						thumburl='$thumburl',
+						enabledcode='$enabledcode',
 						active='$active',
 						tags='$tags',
  					    sponsor='$sponsor',
@@ -392,49 +406,6 @@ echo '<div class="heading">
 }
 }else{
 
-if(isset($_POST['submit'])){
-	$thumburl = clean($_POST['thumburl']);
-	$name = clean($_POST['name']);
-	$desc = clean($_POST['desc']);
-	$category = clean($_POST['category']);
-	$active = clean($_POST['active']);
-	$thumburl = clean($_POST['thumburl']);
-	$enabledcode = clean($_POST['enabledcode']);
-	$tags = clean($_POST['tags']);
-	$sponsor = clean($_POST['sponsor']);
-	$sponsornotes = clean($_POST['sponsornotes']);
-	$sponsoractive = clean($_POST['sponsoractive']);
-	$ads1 = clean($_POST['ads1']);
-	$ads2 = clean($_POST['ads2']);
-	$ads3 = clean($_POST['ads3']);
-	$headerspace = clean($_POST['headerspace']);
-	$footerspace = clean($_POST['footerspace']);
-	$abovegames = clean($_POST['abovegames']);
-	$belowgames = clean($_POST['belowgames']);
-
-
-
-	mysql_query("UPDATE fas_games SET name='$name',
-						description='$desc',
-						width='$width',
-						height='$height',
-						category='$category',
-						thumburl='$thumburl',
-						enabledcode='$enabledcode'
-						active='$active',
-						tags='$tags',
- 					    sponsor='$sponsor',
- 					    sponsornotes='$sponsornotes',
- 					    sponsoractive='$sponsoractive',
- 				      	ads1='$ads1',
- 				      	ads2='$ads2',
- 			            ads3='$ads3',
- 			       		headerspace='$headerspace',
- 				      	footerspace='$footerspace',
- 				      	abovegames='$abovegames',
- 				      	belowgames='$belowgames'  WHERE ID='$ID'");
-
-}else{
 echo '<div class="heading">
 	<h2>Editing Game: '.$r['name'].'</h2>
 </div>
@@ -483,7 +454,7 @@ echo '<div class="heading">
 			</tr>
 			<tr>
 				<td>Code:*</td>
-				<td><textarea cols=\'45\' rows=\'6\' name=\'enabledcode\'>'.$r['enabledcode'].'</textarea></td>
+				<td><textarea name=\'enabledcode\' rows=\'12\' cols=\'50\' >'.$r['enabledcode'].'</textarea></td>
 			</tr>
 			<tr>
 				<td>Active:</td>
@@ -541,8 +512,6 @@ echo '<div class="heading">
 		</tbody>
 	</table>
 </form>';
-}
-
 
 
 
