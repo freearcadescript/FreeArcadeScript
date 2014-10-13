@@ -279,6 +279,8 @@ $adderip = $_SERVER['REMOTE_ADDR'];
 if(!$game || !$thumb || !$name || !$desc){
 	$error = 1;
 	$msg = 'Not all fields where filled.';
+}else{
+	$error = NULL;
 }
 
 
