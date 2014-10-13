@@ -35,7 +35,7 @@ echo'</div>
 		if($row1['type'] == 1){
 		echo '<div align="center"><img src=\'/'.$thumbsfolder.'/'.$row1['thumb'].'\' width=\'90\' height=\'90\' alt= \''.$row1['name'].'\' title= \''.$row1['name'].'\' border=\'0px\' class=\'game_img\' /></a><br />';
 		}else{
-		echo '<div align="center"><img src=\'/'.$row1['thumburl'].'\' width=\'90\' height=\'90\' alt= \''.$row1['name'].'\' title= \''.$row1['name'].'\' border=\'0px\' class=\'game_img\' /></a><br />';
+		echo '<div align="center"><img src=\''.$row1['thumburl'].'\' width=\'90\' height=\'90\' alt= \''.$row1['name'].'\' title= \''.$row1['name'].'\' border=\'0px\' class=\'game_img\' /></a><br />';
 		}
 
 		echo '</div></div>';

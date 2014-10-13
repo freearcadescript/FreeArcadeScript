@@ -35,7 +35,7 @@ echo'</div>
 		if($row1['type'] == 1){
 		echo '<div align="center"><img src=\'/'.$thumbsfolder.'/'.$row1['thumb'].'\' width=\'150\' height=\'100\' alt= \''.$row1['name'].'\' title= \''.$row1['name'].'\' border=\'0\'/></a><br />';
 		}else{
-		echo '<div align="center"><img src=\'/'.$row1['thumburl'].'\' width=\'150\' height=\'100\' alt= \''.$row1['name'].'\' title= \''.$row1['name'].'\' border=\'0\'/></a><br />';
+		echo '<div align="center"><img src=\''.$row1['thumburl'].'\' width=\'150\' height=\'100\' alt= \''.$row1['name'].'\' title= \''.$row1['name'].'\' border=\'0\'/></a><br />';
 		}
 
 		echo '<a href=\''.$playlink.'\'><h2>'.titlelimit($row1['name']).'</h2></a></div></div>';
