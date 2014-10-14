@@ -75,7 +75,11 @@ if($row[9] == 1){
 $thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row[7].'" width="55" width="55" border="0" />';
 $descriptions = $row[2];
 
-if ($row[9] == '1') {$dlurl1='<a href=\''.$domain.'/'.$gamesfolder.'/'.$row[3].'\'><img src="pages/admin/img/download.png" width="24" height="24" alt="download" title="Download" border="0" /></a>';}
+if ($row[9] == '1') {
+	$dlurl1='<a href=\''.$domain.'/'.$gamesfolder.'/'.$row[3].'\'><img src="pages/admin/img/download.png" width="24" height="24" alt="download" title="Download" border="0" /></a>';
+}else{
+	$dlurl1 = NULL;
+}
 	echo '<tr>
 			<td>'.$row[1].'<br>'.$thumbs.'<p>'.$descriptions.'</td>
 			<td align=\'center\'>'.$type.'</td>
