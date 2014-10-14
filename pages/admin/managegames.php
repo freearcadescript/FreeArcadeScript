@@ -83,7 +83,7 @@ if ($row[9] == '1') {
 	$dlurl1 = NULL;
 }
 	echo '<tr>
-			<td>'.$row[1].'<br>'.$thumbs.'<p>'.$descriptions.'</td>
+			<td width = "600px">'.$row[1].'<br>'.$thumbs.'<p>'.$descriptions.'</td>
 			<td align=\'center\'>'.$type.'</td>
 			<td align=\'center\'>
 				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$row[0].'&type='.$row[9].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
