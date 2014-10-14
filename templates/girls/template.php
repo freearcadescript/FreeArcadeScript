@@ -221,6 +221,14 @@ writebody();
 			$time=time()-15*60;
 			$onlineusers = $db->num_rows($db->query("SELECT userid FROM fas_users WHERE status >= $time"));
 			$year = date('Y');
+
+	                $plays = mysql_query(sprintf('SELECT * FROM fas_gamestats'));
+
+	                while($rows = mysql_fetch_array($plays)){
+
+		        $totalplays = $rows['total_played'];
+		        $playstoday = $rows['played_today'];
+	                }
 		?>
 			<table width="100%">
 				<tr>
@@ -229,6 +237,8 @@ writebody();
 				<tr>
 					<td class="content2" style="padding:5px">
 					Total Games: <?php echo $totalgames; ?><br />
+					Total Played: <?php echo $totalplays; ?><br />
+					Plays Today: <?php echo $playstoday; ?><br />
 					Total Users: <?php echo $totalusers; ?><br />
 					Total Categories: <?php echo $totalcats; ?><br />
 					Total Comments: <? echo $totalcomments; ?><br />
