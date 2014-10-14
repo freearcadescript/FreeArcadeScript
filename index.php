@@ -6,6 +6,7 @@ if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandl
 include ('includes/functions.php');
 include ('includes/core.php');
 include('includes/rating_functions.php');
+include('includes/reset.php');
 
 if(isset($suserid)){
 mysql_query("UPDATE fas_users SET status=unix_timestamp() WHERE userid='$suserid'");

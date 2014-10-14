@@ -45,6 +45,7 @@ $set1 = sqlcache('sitesettings', '1', $set2);
 foreach($set1 as $set){
 	$domain = $set['domain'];
 	$directorypath = $set['directorypath'];
+	$tzone = $set['tzone'];
 	$slogan = $set['slogan'];
 	$gamesfolder = $set['gamesfolder'];
 	$thumbsfolder = $set['thumbsfolder'];

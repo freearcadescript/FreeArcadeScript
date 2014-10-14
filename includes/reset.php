@@ -3,9 +3,8 @@
 $getset = mysql_query("SELECT timestamp FROM fas_gamestats");
 $times = mysql_fetch_array($getset);
 
-$timestamp = $times[timestamp];
-date_default_timezone_set('WET');
-$now = date("m:d:Y h:i A", strtotime(set(tzone). "hours"));
+$timestamp = $times['timestamp'];
+$now = date("m:d:Y h:i A", strtotime($tzone. "hours"));
 $newtime2 = date("m:d:Y 12:00",strtotime("+ 1 day"));
 $newtime = $newtime2.' AM'; 
 

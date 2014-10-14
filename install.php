@@ -208,6 +208,7 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_onlineuser` (
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_settings` (
   `domain` varchar(250) NOT NULL,
   `directorypath` varchar(250) NOT NULL,
+  `tzone` varchar(250) NOT NULL,
   `slogan` varchar(250) NOT NULL,
   `template` varchar(250) NOT NULL,
   `gamesfolder` varchar(250) NOT NULL,
