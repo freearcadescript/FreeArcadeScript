@@ -26,7 +26,7 @@ switch($_GET['cmd']){
 	break;
 }
 function cats(){
-global $domain, $thumbsfolder, $gamesfolder;
+global $domain, $thumbsfolder, $gamesfolder, $db;
 $rr = mysql_query(sprintf('SELECT * FROM fas_categories'));
 echo '<div class="heading">
 	<h2>Manage Games</h2>
@@ -66,30 +66,27 @@ echo'</tbody>
 $sql = mysql_query(sprintf('SELECT * FROM fas_games WHERE active=\'0\' ')) or die(mysql_error());
 
 
-while($row = mysql_fetch_row($sql)){
-if($row[9] == 1){
+while($row = $db->fetch_row($sql)){
+if($row['type'] == 1){
 	$type = 'Self Hosted';
+	$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'" width="55" width="55" border="0" />';
+	$dlurl1='<a href=\''.$domain.'/'.$gamesfolder.'/'.$row['file'].'\'><img src="pages/admin/img/download.png" width="24" height="24" alt="download" title="Download" border="0" /></a>';
 }else{
 	$type = 'Enabled Code';
-}
-
-$descriptions = $row[2];
-
-if ($row[9] == '1') {
-	$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row[7].'" width="55" width="55" border="0" />';
-	$dlurl1='<a href=\''.$domain.'/'.$gamesfolder.'/'.$row[3].'\'><img src="pages/admin/img/download.png" width="24" height="24" alt="download" title="Download" border="0" /></a>';
-}else{
-	$thumbs = '<img src="'.$row[10].'" width="55" width="55" border="0" />';
+	$thumbs = '<img src="'.$row['thumburl'].'" width="55" width="55" border="0" />';
 	$dlurl1 = NULL;
 }
+
+$descriptions = $row['file'];
+
 	echo '<tr>
-			<td width = "600px">'.$row[1].'<br>'.$thumbs.'<p>'.$descriptions.'</td>
+			<td width = "600px">'.$row['name'].'<br>'.$thumbs.'<p>'.$descriptions.'</td>
 			<td align=\'center\'>'.$type.'</td>
 			<td align=\'center\'>
-				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$row[0].'&type='.$row[9].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
-				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=delete&ID='.$row[0].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row[1].'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a>
-				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=approve&ID='.$row[0].'\'  ><img src="pages/admin/img/approve.png" width="24" height="24" alt="activate" title="Activate" border="0" /></a>
-				<a href=\''.$domain.'/index.php?action=admin&case=testgame&gameid='.$row[3].'\' target=\'_blank\'><img src="pages/admin/img/test.png" width="24" height="24" alt="test" title="Test" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=edit&ID='.$row['ID'].'&type='.$row['type'].'\'><img src="pages/admin/img/edit.png" width="24" height="24" alt="edit" title="Edit" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=delete&ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the game '.$row['name'].'?\')"><img src="pages/admin/img/delete.png" width="24" height="24" alt="delete" title="Delete" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=managegames&cmd=approve&ID='.$row['ID'].'\'  ><img src="pages/admin/img/approve.png" width="24" height="24" alt="activate" title="Activate" border="0" /></a>
+				<a href=\''.$domain.'/index.php?action=admin&case=testgame&gameid='.$row['file'].'\' target=\'_blank\'><img src="pages/admin/img/test.png" width="24" height="24" alt="test" title="Test" border="0" /></a>
             '.$dlurl1.'
 			</td>
 		</tr>';
@@ -144,10 +141,13 @@ if(!mysql_num_rows($sql)){
 while($row = $db->fetch_row($sql)){
 if($row['type'] == 1){
 	$type = 'Self Hosted';
+	$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'" width="55" height="55" border="0" />';
 }else{
 	$type = 'Enabled Code';
+	$thumbs = '<img src="'.$row['thumburl'].'" width="55" width="55" border="0" />';
 }
-$thumbs = '<img src="'.$domain.'/'.$thumbsfolder.'/'.$row['thumb'].'" width="55" height="55" border="0" />';
+
+
 echo '<tr>
 		<td width="90px">'.$thumbs.'</td>
 		<td width="750px">'.$row['name'].'</td>
