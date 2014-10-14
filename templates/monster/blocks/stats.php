@@ -5,6 +5,8 @@ echo '<div class="header">
 	<div class="content">';
 		include("includes/stats.php");
 		echo'Total Games: '.$totalgames.' <br />
+	        Total Played: '.$totalplays.' <br />
+	        Plays Today: '.$playstoday.' <br />
 		Total Users: '.$totalusers.' <br />
 		Total Categories: '.$totalcats.' <br />
 		Total Comments: '.$totalcomments.' <br />
