@@ -53,14 +53,14 @@ mysql_query("CREATE TABLE IF NOT EXISTS `fas_agffeed` (
 
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_gamestats` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `numbers` int(10) NOT NULL DEFAULT '0',
+  `total_played` int(11) NOT NULL DEFAULT '0',
+  `played_today` int(11) NOT NULL,
+  `timestamp` varchar(600) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3;");
+) ENGINE=MyISAM AUTO_INCREMENT=2;");
 
-mysql_query("INSERT INTO `fas_gamestats` VALUES
-('1', 'totalplays', '0'),
-('2', 'dayplays', '0');");
+mysql_query("INSERT INTO `fas_gamestats` (`id`, `total_played`, `played_today`, `timestamp`) VALUES
+(1, 0, 0, '01:01:2014 12:00 AM');");
 
 mysql_query("CREATE TABLE IF NOT EXISTS `fas_report_game` (
   `ID` int(11) NOT NULL NOT NULL auto_increment,

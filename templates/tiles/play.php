@@ -379,8 +379,7 @@ if ($useridp!='-1') {
 $db->query('UPDATE fas_users SET plays=plays+1 WHERE userid=\''.$useridp.'\'');
  };
 
-$db->query('UPDATE `fas_gamestats` set numbers=numbers +1 WHERE id = \'1\''); // adds a play to the total plays stats
-$db->query('UPDATE `fas_gamestats` set numbers=numbers +1 WHERE id = \'2\''); // adds a play to the daily plays stats
+$db->query('UPDATE fas_gamestats SET total_played = total_played + 1,played_today = played_today + 1'); // adds a play to the total plays and played today stats
 
 };
 
