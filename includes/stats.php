@@ -7,6 +7,14 @@
 	$onlineusers = $db->num_rows($db->query("SELECT userid FROM fas_users WHERE status >= $time"));
 	$year = date('Y');
 
+	$plays = mysql_query(sprintf('SELECT * FROM fas_gamestats'));
+
+	while($rows = mysql_fetch_array($plays)){
+		$totalplays = $rows['total_played'];
+		$playstoday = $rows['played_today'];
+	}
+
+
 	$timeoutseconds 	= 600;	// Timeout Value in Seconds - 300 equals 5 minutes.
 	$timestamp=time();
 	$timeout=$timestamp-$timeoutseconds;
