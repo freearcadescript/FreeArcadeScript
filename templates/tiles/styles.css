@@ -178,7 +178,7 @@ body{
 	color: #000;
 	background: #FFF;
 	width: 976px;
-	height: 300px;
+	height: 308px;
 	margin: 10px 10px 10px 10px;
 	border: 2px ridge #000;
 	border-radius: 10px;
@@ -195,6 +195,7 @@ body{
 #footer_content {
 	float: left;
 	width: 308px;
+	height: 284px;
 	background: #CCC;
 	display: inline;
         margin-left: 10px;
