@@ -18,4 +18,5 @@ RewriteRule ^play/([^/]*)-([^/]*)\.html$ /index.php?action=play&ID=$1&name=$2 [L
 RewriteRule ^pages/([^/]*)-([^/]*)\.html$ /index.php?action=page&entryid=$1&name=$2 [L]
 RewriteRule ^pages\/$ /index.php?action=pages [L]
 RewriteRule ^forgotpassword\/$ /index.php?action=forgotpassword [L]
+RewriteRule ^sitemap.xml sitemap.php [L]
 
