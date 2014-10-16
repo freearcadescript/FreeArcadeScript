@@ -11,7 +11,7 @@ $db->configure(
 	$dbpre
 	);
 $db->connect();
-// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM dd_settings')));
+// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_settings')));
 //ALTER TABLE dd_users ADD template VARCHAR(250) AFTER plays;
 
 
