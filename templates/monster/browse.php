@@ -26,7 +26,7 @@ echo'<div class="content2">There currently are no games in this category.</div>'
 }else{
 echo'<div class="content2">';
 foreach($r1 as $in ){
-	$gamename = preg_replace('#\W#', '', $in['name']);
+	$gamename = preg_replace('#\W#', '-', $in['name']);
 	if($seo_on == 1){
 		$playlink = ''.$domain.'/play/'.$in['ID'].'-'.$gamename.'.html';
 	}else{
