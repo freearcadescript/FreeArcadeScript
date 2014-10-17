@@ -3,16 +3,7 @@
 include ('includes/functions.php');
 include ('includes/core.php');
 
-
-
-
-
-
 header ("Content-type: text/xml");
-
-
-
-
 
 $datas = mysql_query ("SELECT * FROM `fas_games` where active='1' ORDER BY `ID` DESC LIMIT 10");
 $row = mysql_fetch_array($datas);
@@ -23,10 +14,8 @@ print ""."<title>" . $sitename . "</title>\n";
 print ""."<link>" . $domain . "</link>\n";
 
 print ""."<ttl>600</ttl>\n";
-print ""."<description>We love to give you the best in free games.</description>\n";
-print ""."<copyright>2009 " . $sitename . " All rights reserved.</copyright>\n";
-
-
+print ""."<description>" . $slogan . "</description>\n";
+print ""."<copyright>".date("Y")." " . $sitename . " All rights reserved.</copyright>\n";
 
 do
 {
@@ -34,19 +23,25 @@ $name = $row['name'];
 $ID = $row['ID'];
 $description = $row['description'];
 $thumb = $row['thumb'];
-	      	$gamename = preg_replace('[^A-Za-z0-9]', '-', $row['name']);
+	      	$gamename = preg_replace('#\W#', '-', $row['name']);
 	      	if($seo_on == 1){
 	      		$playlink = ''.$domain.'/play/'.$row['ID'].'-'.$gamename.'.html';
 	      	}else{
 	      		$playlink = ''.$domain.'/index.php?action=play&amp;ID='.$row['ID'].'';
 	      	}
+                if($row['type'] == 1){
+	        $type = 'Self Hosted';
+	               $thumburl = ''.$domain.'/'.$thumbsfolder.'/'.$thumb ;
+                }else{
+	        $type = 'Enabled Code';
+	               $thumburl = ''.$row['thumburl'].'';
+                }
 
-$thumburl = ''.$domain.'/'.$thumbsfolder.'/'.$thumb ;
 print ""."<item>\n";
 
 print ""."<title>$ID - $name</title>\n";
 print ""."<link>" . $playlink ."</link>\n";
-print ""."<description><![CDATA[ <img src='$thumburl' > $description ]]></description>\n";
+print ""."<description><![CDATA[ <img src='$thumburl' ><br /> $description ]]></description>\n";
 
 print ""."</item>\n";
 } while($row = mysql_fetch_array($datas)) ;
