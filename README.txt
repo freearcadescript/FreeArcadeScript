@@ -22,14 +22,10 @@ to add the directory path the the begining of the target URL on every line in th
 the "/" from the begining of each target URL, but this may not work for everybody. If 
 you need help with this, ask for it in the support forums.
 
-
 1.) create a new database, and assign a user to the database you created.
 
 2.) open includes/config.php edit it to match your database details and path to cache directory. If 
-you do not set the proper path to the cache folder it will spit out errors! You can use a /cache 
-directory that is under public_html, but one that is not under it, inaccessable to the public, is 
-more secure. Either way, you need to edit in the file includes/configs.php and set proper permissions.
-See below for more info.
+you do not set the proper path to the cache folder it will spit out errors! 
 
 3.) Upload the files to your server.
 
@@ -38,22 +34,10 @@ users. DO NOT RUN MORE THAN ONCE!
 
 5.) delete the install.php file after step 4 is completed.
 
-6.) The following files must be chmod(set permissions) to 777:
- 
-           /games
-           /games/thumbs
-           /cache 
-           /avatars 
-           /includes/hitcounter.txt
-
-If permissions are not set to 777, the script will spit out errors! 
-All other files and folders need to be set to 755.
-
-7) Login using the username admin and password admin and change the password! For security 
+6.) Login using the username admin and password admin and change the password! For security 
 reasons we recomend either deleting the admin account or making it a non admin one.
 
-8.) Go in and set your site settings through the admin panel.
-
+7.) Go in and set your site settings through the admin panel.
 
 PLEASE NOTE!!!! If no categories or games are loaded, the script will spit out some errors on some pages.
 They will also display similar errors if none are activated in the admin panel.
