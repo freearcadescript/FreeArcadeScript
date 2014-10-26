@@ -252,7 +252,7 @@ if(isset($_POST['submit'])){
 	}
 
 	if(isset($_POST['enabledcode'])){
-		$enabledcode = clean($_POST['enabledcode']);
+		$enabledcode = $_POST['enabledcode'];
 	}else{
 		$enabledcode = NULL;
 	}
