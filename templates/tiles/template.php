@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-<title><?php echo $pagetitle; ?></title>
+<title><?php echo $pagetitle; ?> - <?php echo $slogan; ?></title>
 <meta name="keywords" content="<?php echo $metatags; ?>" />
 <meta name="description" content="<?php echo $metadescription ; ?>" />
 <meta name="author" content="freearcadescript.net" />
@@ -73,7 +73,7 @@ writebody();
 <div id="footer_left">
 <?php echo "Copyright ".$sitename." &copy; 2008-".date('Y'); ?> All Rights Reserved<br />
 <! -- Please do not remove the "powered by" link unless, you've purchased the removal. -- >
-Powered By <a href="http://www.freearcadescript.net" target="_blank">Free Arcade Script</a>
+Powered By <a href="http://freearcadescript.net" target="_blank">Free Arcade Script</a>
 </div>
 <div id="footer_right">
 <?php

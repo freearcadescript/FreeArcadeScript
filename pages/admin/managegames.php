@@ -252,7 +252,7 @@ if(isset($_POST['submit'])){
 	}
 
 	if(isset($_POST['enabledcode'])){
-		$enabledcode = $_POST['enabledcode'];
+		$enabledcode = mysql_real_escape_string($_POST['enabledcode']);
 	}else{
 		$enabledcode = NULL;
 	}

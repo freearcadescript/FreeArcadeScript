@@ -2,7 +2,7 @@
 echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
-	<title>'.$pagetitle.'</title>
+	<title>'.$pagetitle.' - '.$slogan.'</title>
 	<meta name="keywords" content="'.$metatags.'" />
 	<meta name="description" content="'.$metadescription.'" />
 	<meta name="author" content="freearcadescript.net" />
