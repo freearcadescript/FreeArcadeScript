@@ -36,7 +36,7 @@ $sqltitle = "userprofile-".$userids ;
 $r1 = sqlcache($sqltitle, $cachelife, $r);
 foreach ($r1 as $r2 ) {
 $username = $r2['username'];
-$plays = $r2['plays'];
+$played = $r2['plays'];
 $aim = $r2['aim'];
 $icq = $r2['icq'];
 $msn = $r2['msn'];
@@ -73,7 +73,7 @@ if ($avatar == "1" ) { $avatarfileurl = '<img src=\''.$domain.'/avatars/'.$avata
 
 
 
-if ( $plays >= $showwebsitelimit ) {$webvar = '
+if ( $played >= $showwebsitelimit ) {$webvar = '
  <tr>
 <td class="content">Website:</th>
 <th class="content"><a href="http://'.$website.'" target="_blank" class="playlink">'.$website.'</a></th>
@@ -96,7 +96,7 @@ echo '
 </tr>
 <tr>
 <td class="content" >Games Played:</th>
-<th class="content">'.$plays.'</th>
+<th class="content">'.$played.'</th>
 </tr>
 <tr>
 <td class="content">Location:</th>

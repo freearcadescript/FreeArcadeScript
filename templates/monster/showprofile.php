@@ -31,7 +31,7 @@ $r1 = sqlcache($sqltitle, $cachelife, $r);
 foreach ($r1 as $r2 ) {
 $username = $r2['username'];
 $joindate = date('M-d-Y', $r2['joindate']);
-$plays = $r2['plays'];
+$played = $r2['plays'];
 $aim = $r2['aim'];
 $icq = $r2['icq'];
 $msn = $r2['msn'];
@@ -68,7 +68,7 @@ if(!isset($suserid)){
 echo '<div class="msg">Please login to View profile.</div>'; }
 else {
 
-if ( $plays >= $showwebsitelimit ) {$webvar = '
+if ( $played >= $showwebsitelimit ) {$webvar = '
  <tr>
 <td class="content">Website:</td>
 <td class="content"><a href="http://'.$website.'" target="_blank">'.$website.'</a></td>
@@ -93,7 +93,7 @@ echo '<table width="100%" align="center">
 	</tr>
 	<tr>
 		<td class="content" >Games Played:</td>
-		<td class="content">'.$plays.'</td>
+		<td class="content">'.$played.'</td>
 	</tr>
 	<tr>
 		<td class="content">Location:</td>
