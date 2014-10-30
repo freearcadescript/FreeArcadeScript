@@ -73,7 +73,7 @@ if ($link5 != '') {$mylinks .= '<a href=\'http://'.$link5.'\' target=\'_blank\'>
 if ($link6 != '') {$mylinks .= '<a href=\'http://'.$link6.'\' target=\'_blank\'>'.$link6.'</a><br>';}else{$mylinks = '';};
 if ($link7 != '') {$mylinks .= '<a href=\'http://'.$link7.'\' target=\'_blank\'>'.$link7.'</a><br>';}else{$mylinks = '';};
 if ($link8 != '') {$mylinks .= '<a href=\'http://'.$link8.'\' target=\'_blank\'>'.$link8.'</a>';};
-$avatarfileurl = get_avatar($userid);
+$avatarfileurl = get_avatar($userids);
 
 if(!isset($suserid)){
 echo'<div id="container">
