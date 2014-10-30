@@ -8,11 +8,18 @@ $res=mysql_query("SELECT * from fas_users WHERE activation_key='$id'") or die(my
 $row=mysql_fetch_assoc($res);
 $key=clean($row['activation_key']);
 if($key == $id){
+echo'<div id="container">
+<div id="content-container">
+<div id="side">';
+include("includes/blocks.php");
+echo'</div>
+<div id="content">
+<div class="content_nav">Activate Account</div>';
 echo "<div class='msg'>Your account has been activated, you may now login</div>";
 }else{
 echo "<div class='error'>The activation key was incorrect, please try again</div>";
 }
-
+echo'</div></div></div>';
 $sql3 ="UPDATE fas_users SET activation_key='0' WHERE activation_key='$id'";
 mysql_query($sql3) or die(mysql_error());
 
