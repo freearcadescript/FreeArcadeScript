@@ -87,7 +87,7 @@ mysql_query("INSERT INTO `fas_categories` (`ID`, `name`, `tags`, `metadescr`, `a
 (5, 'Adventure', '', '', 1),
 (6, 'Strategy', '', '', 1),
 (7, 'Dress Up', '', '', 1),
-(8, 'Adventure', '', '', 1),
+(8, 'Casino', '', '', 1),
 (9, 'Action', '', '', 1),
 (10, 'Other', '', '', 1);");
 
@@ -463,7 +463,7 @@ echo '<form action=\'install.php\' method=\'POST\'>
 		</tr>
 		</tr>
 			<td class=\'content5\'>Directory Path:</td>
-			<td class=\'content5\'><input type=\'text\' name=\'directorypath\' size=\'40\' value=\'/home/hostingaccountname/public_html\'></td>
+			<td class=\'content5\'><input type=\'text\' name=\'directorypath\' size=\'40\' value=\'/home/hostingaccountname/public_html/\'></td>
 		</tr>
 
 		</tr>
