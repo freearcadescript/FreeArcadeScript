@@ -45,47 +45,47 @@ echo '
 			</tr>
 		</thead>
 		<tbody>
-			</tr>
+			<tr>
 				<td>FaceBook:</td>
 				<td><textarea name=\'socialmedia1\' rows=\'1\' cols=\'100\' >'.$set['socialmedia1'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Twitter:</td>
 				<td><textarea name=\'socialmedia2\' rows=\'1\' cols=\'100\' >'.$set['socialmedia2'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Google Plus:</td>
 				<td><textarea name=\'socialmedia3\' rows=\'1\' cols=\'100\' >'.$set['socialmedia3'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>LinkedIn:</td>
 				<td><textarea name=\'socialmedia4\' rows=\'1\' cols=\'100\' >'.$set['socialmedia4'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Pinterest:</td>
 				<td><textarea name=\'socialmedia5\' rows=\'1\' cols=\'100\' >'.$set['socialmedia5'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>You Tube:</td>
 				<td><textarea name=\'socialmedia6\' rows=\'1\' cols=\'100\' >'.$set['socialmedia6'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>MySpace:</td>
 				<td><textarea name=\'socialmedia7\' rows=\'1\' cols=\'100\' >'.$set['socialmedia7'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>StumbleUpon :</td>
 				<td><textarea name=\'socialmedia8\' rows=\'1\' cols=\'100\' >'.$set['socialmedia8'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Digg:</td>
 				<td><textarea name=\'socialmedia9\' rows=\'1\' cols=\'100\' >'.$set['socialmedia9'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Other:</td>
 				<td><textarea name=\'socialmedia10\' rows=\'1\' cols=\'100\' >'.$set['socialmedia10'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Facebook App:</td>
 				<td><textarea name=\'facebookappid\' rows=\'4\' cols=\'100\' >'.$set['facebookappid'].'</textarea></td>
 			</tr>
