@@ -117,7 +117,7 @@
 											while($row = $db->Fetch_row($rci)){
 											$numrws =$db->query(sprintf('SELECT ID FROM fas_games WHERE category=\'%u\'', $row['ID']));
 											$cnumrws = $db->num_rows($numrws);
-											$categoryname = preg_replace('[^A-Za-z0-9]', '', $row['name']);
+											$categoryname = preg_replace('#\W#', '-', $row['name']);
 										      	if($seo_on == 1){
 										      		$categoryurl = ''.$domain.'/browse/'.$row['ID'].'-'.$categoryname.'.html';
 										      	}else{

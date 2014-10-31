@@ -31,10 +31,10 @@
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/mostplayed/\' title=\'Most Played\'>Most Played</a></li>
 				<li><a href=\''.$domain.'/newest/\' title=\'Newest\'>Newest</a></li>
-                                <li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
+                <li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/search/\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/links/\' title=\'Links\'>Links</a></li>
-                                <li><a href=\''.$domain.'/contact/\' title=\'Contact Us\'>Contact Us</a></li>
+                <li><a href=\''.$domain.'/contact/\' title=\'Contact Us\'>Contact Us</a></li>
 				<li><a href=\''.$domain.'/fineprint/\' title=\'Fine Print\'>Fine Print</a></li>
 
 					';
@@ -57,7 +57,7 @@
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/index.php?action=mostplayed\' title=\'Most Played\'>Most Played</a></li>
 				<li><a href=\''.$domain.'/index.php?action=newest\' title=\'Newest\'>Newest</a></li>
-                                <li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
+                <li><a href="'.$domain.'/memberslist/" title="Member List">Member List</a></li>
 				<li><a href=\''.$domain.'/index.php?action=search\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/index.php?action=links\' title=\'Links\'>Links</a></li>
 				<li><a href=\''.$domain.'/index.php?action=contact\' title=\'Contact Us\'>Contact Us</a></li>
@@ -74,13 +74,10 @@
             if ($showpages == 1) { echo '<li ><a href=\''.$domain.'/index.php?action=pages\'>Pages</a></li>'; };
             if ($showblog == 1) { echo '<li ><a href=\''.$domain.'/index.php?action=blog\'>Blog</a></li>'; };
 
-		echo '
-
-			</ul>';
+		echo '</ul>';
 	}
 
-	echo '	</div>';
-
+	   echo '</div>';
 		?>
 			<br />
 			<br />
@@ -174,7 +171,16 @@
 			$totalusers = $db->num_rows($db->query(sprintf('SELECT userid FROM fas_users')));
 			$totalcats = $db->num_rows($db->query(sprintf('SELECT ID FROM fas_categories')));
 			$totalcomments = $db->num_rows($db->query(sprintf('SELECT ID FROM fas_comments')));
+			$time=time()-15*60;
+			$onlineusers = $db->num_rows($db->query("SELECT userid FROM fas_users WHERE status >= $time"));
 			$year = date('Y');
+
+				$plays = mysql_query(sprintf('SELECT * FROM fas_gamestats'));
+
+				while($rows = mysql_fetch_array($plays)){
+					$totalplays = $rows['total_played'];
+					$playstoday = $rows['played_today'];
+					}
 		?>
 			<table width="100%">
 				<tr>
@@ -183,13 +189,15 @@
 				<tr>
 					<td class="content2" style="padding:5px">
 					Total Games: <?php echo $totalgames; ?><br />
+					Total Played: <?php echo $totalplays; ?><br />
+					Plays Today: <?php echo $playstoday; ?><br />
 					Total Users: <?php echo $totalusers; ?><br />
 					Total Categories: <?php echo $totalcats; ?><br />
 					Total Comments: <? echo $totalcomments; ?><br />
-                              Total Hits: <?php include ("$directorypath/includes/counter.php"); ?><br />
-					Users Online: <? echo countusersonline(); ?><p>
-                              <a href="<?php echo $domain; ?>/rss-arcade.php"><img src="<? echo $domain; ?>/templates/default/images/rss.gif"  border="0" ></img> RSS-Games</a><br />
-                              <?php   if ($showblog == 1) { echo '<a href="'.$domain.'/rss-blog.php"><img src="'.$domain.'/templates/default/images/rss.gif" border="0" ></img> RSS-Blog</a><br />' ; };
+                    Total Hits: <?php include ("$directorypath/includes/counter.php"); ?><br />
+					Users Online: <? echo $onlineusers; ?><p><p>
+                              <a href="<?php echo $domain; ?>/rss-arcade.php"><img src="<? echo $domain; ?>/images/rss.gif"  border="0" ></img> RSS-Games</a><br />
+                              <?php   if ($showblog == 1) { echo '<a href="'.$domain.'/rss-blog.php"><img src="'.$domain.'/images/rss.gif" border="0" ></img> RSS-Blog</a><br />' ; };
 
                               ?>
 
