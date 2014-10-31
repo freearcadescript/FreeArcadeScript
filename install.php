@@ -437,7 +437,7 @@ mysql_query("ALTER TABLE `fas_settings` ADD `showpages` TINYINT( 1 ) NOT NULL DE
 mysql_query("UPDATE fas_users SET `userid` = '0' WHERE `username` ='Guest' LIMIT 1 ; ");
 
 mysql_query("ALTER TABLE  `fas_categories` ADD  `visible` tinyint(1) NOT NULL default '1'; ");
-mysql_query("ALTER TABLE  `fas_settings` ADD  `version` varchar(12) NOT NULL DEFAULT '3.0'; ");
+mysql_query("ALTER TABLE  `fas_settings` ADD  `version` varchar(12) NOT NULL DEFAULT '3.0.1'; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `disabled` char(3) NOT NULL DEFAULT 'no'; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `seoheading` text NOT NULL; ");
 mysql_query("ALTER TABLE  `fas_settings` ADD  `seotext` text NOT NULL; ");

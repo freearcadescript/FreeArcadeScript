@@ -24,7 +24,7 @@ print ""."<link>" . $domain . "</link>\n";
 
 print ""."<ttl>600</ttl>\n";
 print ""."<description>We love to give you the best in free games.</description>\n";
-print ""."<copyright>2009 " . $sitename . " All rights reserved.</copyright>\n";	
+print ""."<copyright>2009 " . $sitename . " All rights reserved.</copyright>\n";
 
 
 
@@ -39,8 +39,7 @@ $entrydate = $row['entrydate'];
 if ($seo_on == 1) {
 $rburl = ''.$domain.'/blogentry/entryid/'.$entryid.'/1.html';
 } else {
-$rburl = ''.$domain.'/index.php?action=blogentry&entryid='.$entryid ; };
-
+$rburl = ''.$domain.'/index.php?action=blogentry&amp;entryid='.$entryid ; };
 
 
 if(strlen($body) > $blogcharactersshown) { $body = substr($body, 0, $blogcharactersshown) ; $body .= '...';};

@@ -365,7 +365,7 @@ echo '<div class="heading">
 				<td>Sponsor:</td>
 				<td><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Sponsor Notes:
                                 <br><small>Use this to keep track of when sponsorship expires for now, or other needed notes.</small></td>
 				<td><textarea name=\'sponsornotes\' rows=\'12\' cols=\'50\' >'.$r['sponsornotes'].'</textarea></td>
@@ -374,32 +374,32 @@ echo '<div class="heading">
 				<td>Sponsorship Active:<br><small>0=No sponsor yet<br>1=Sponsor pending<br>2=Sponsor active</small></td>
 				<td><input type=\'text\' name=\'sponsoractive\' value=\''.$r['sponsoractive'].'\'></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Ad One:</td>
 				<td><textarea name=\'ads1\' rows=\'12\' cols=\'50\' >'.$r['ads1'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Ad Two:</td>
 				<td><textarea name=\'ads2\' rows=\'12\' cols=\'50\' >'.$r['ads2'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Ad Three:<br><small>Does not show up anywhere. Extra ad code you may use to place
                   where you want.</small></td>
 				<td><textarea name=\'ads3\' rows=\'12\' cols=\'50\' >'.$r['ads3'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Header Space:<br><small>Turns off automaticaly if left empty.</small></td>
 				<td><textarea name=\'headerspace\' rows=\'12\' cols=\'50\' >'.$r['headerspace'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Footer Space:</td>
 				<td><textarea name=\'footerspace\' rows=\'12\' cols=\'50\' >'.$r['footerspace'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Above Games:</td>
 				<td><textarea name=\'abovegames\' rows=\'12\' cols=\'50\' >'.$r['abovegames'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Below Games:</td>
 				<td><textarea name=\'belowgames\' rows=\'12\' cols=\'50\' >'.$r['belowgames'].'</textarea></td>
 			</tr>
@@ -474,7 +474,7 @@ echo '<div class="heading">
 				<td>Sponsor:</td>
 				<td><textarea name=\'sponsor\' rows=\'12\' cols=\'50\' >'.$r['sponsor'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Sponsor Notes:
                   <br><small>Use this to keep track of when sponsorship expires for now, or other needed notes.</small></td>
 				<td><textarea name=\'sponsornotes\' rows=\'12\' cols=\'50\' >'.$r['sponsornotes'].'</textarea></td>
@@ -483,32 +483,32 @@ echo '<div class="heading">
 				<td>Sponsorship Active:</td>
 				<td><input type=\'text\' name=\'sponsoractive\' value=\''.$r['sponsoractive'].'\'></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Ad One:</td>
 				<td><textarea name=\'ads1\' rows=\'12\' cols=\'50\' >'.$r['ads1'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Ad Two:</td>
 				<td><textarea name=\'ads2\' rows=\'12\' cols=\'50\' >'.$r['ads2'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Ad Three:<br><small>Does not show up anywhere. Extra ad code you may use to place
                   where you want.</small></td>
 				<td><textarea name=\'ads3\' rows=\'12\' cols=\'50\' >'.$r['ads3'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Header Space:<br><small>Turns off automaticaly if left empty.</small></td>
 				<td><textarea name=\'headerspace\' rows=\'12\' cols=\'50\' >'.$r['headerspace'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Footer Space:</td>
 				<td><textarea name=\'footerspace\' rows=\'12\' cols=\'50\' >'.$r['footerspace'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Above Games:</td>
 				<td><textarea name=\'abovegames\' rows=\'12\' cols=\'50\' >'.$r['abovegames'].'</textarea></td>
 			</tr>
-			</tr>
+			<tr>
 				<td>Below Games:</td>
 				<td><textarea name=\'belowgames\' rows=\'12\' cols=\'50\' >'.$r['belowgames'].'</textarea></td>
 			</tr>
