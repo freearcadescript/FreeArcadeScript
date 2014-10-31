@@ -83,7 +83,7 @@ if ( $played >= $showwebsitelimit ) {$webvar = '
 
 echo '
 
-<table width="550" align="center">
+<table width="100%" align="center">
 	<tr>
 		<td colspan=\'2\' class=\'header\'>User Profile: '.$username.'</td>
 	</tr>

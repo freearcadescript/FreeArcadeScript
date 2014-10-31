@@ -24,7 +24,7 @@ print ""."<link>" . $domain . "</link>\n";
 
 print ""."<ttl>600</ttl>\n";
 print ""."<description>We love to give you the best in free games.</description>\n";
-print ""."<copyright>2009 " . $sitename . " All rights reserved.</copyright>\n";
+print ""."<copyright>".date("Y")." " . $sitename . " All rights reserved.</copyright>\n";
 
 
 
