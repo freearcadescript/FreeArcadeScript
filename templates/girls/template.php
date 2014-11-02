@@ -23,7 +23,7 @@
 
 	echo '	<div class=\'menutop\'>';
 	if($seo_on == 1){
-		echo '	<ul>
+		echo '<ul>
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/mostplayed/\' title=\'Most Played\'>Most Played</a></li>
 				<li><a href=\''.$domain.'/newest/\' title=\'Newest\'>Newest</a></li>
@@ -41,19 +41,18 @@
 				if($usrdata['user_level'] == 2){
 				echo ' <li class=\'floatr\'><a href=\''.$domain.'/index.php?action=admin\'>AdminCp</a></li> ';
 				}else{
-			    echo ' <li class=\'floatr\'>Hey '.$usrdata['username'].'</li> ';
+			       echo ' <li class=\'floatr\'>Hey '.$usrdata['username'].'</li> ';
                 }
 				echo ' <li class=\'floatr\'><a href=\''.$domain.'/myaccount/\'>My Account</a></li>
 					   <li class=\'floatr\'><a href=\''.$domain.'/logout/\'>Logout</a></li>';
 				}
             if ($showpages == 1) { echo '<li><a href=\''.$domain.'/pages/\' title=\'pages\'>Pages</a></li>'; };
             if ($showblog == 1) { echo '<li><a href=\''.$domain.'/blog/\' title=\'blog\'>Blog</a></li>'; };
+				echo'<li><a href=\''.$domain.'/submit/\' title=\'Submit Game\'>Submit Game</a></li>';
 
-		echo '
-
-	</ul>';
+		echo '</ul>';
 	}else{
-		echo '	<ul>
+		echo '<ul>
 				<li><a href=\''.$domain.'\' title=\'Home\'>Home</a></li>
 				<li><a href=\''.$domain.'/index.php?action=mostplayed\' title=\'Most Played\'>Most Played</a></li>
 				<li><a href=\''.$domain.'/index.php?action=newest\' title=\'Newest\'>Newest</a></li>
@@ -61,8 +60,7 @@
 				<li><a href=\''.$domain.'/index.php?action=search\' title=\'Search\'>Search</a></li>
 				<li><a href=\''.$domain.'/index.php?action=links\' title=\'Links\'>Links</a></li>
 				<li><a href=\''.$domain.'/index.php?action=contact\' title=\'Contact Us\'>Contact US</a></li>
-				<li><a href=\''.$domain.'/index.php?action=fineprint\' title=\'Fine Print\'>Fine Print</a></li>
-				';
+				<li><a href=\''.$domain.'/index.php?action=fineprint\' title=\'Fine Print\'>Fine Print</a></li>';
 				if(!isset($suserid)){
 				echo '	<li class=\'floatr\'><a href=\''.$domain.'/index.php?action=login\'>Login</a></li>
 					    <li class=\'floatr\'><a href=\''.$domain.'/index.php?action=forgotpassword\'>Forgot password?</a></li>
@@ -74,10 +72,8 @@
 				}
             if ($showpages == 1) { echo '<li ><a href=\''.$domain.'/index.php?action=pages\'>Pages</a></li>'; };
             if ($showblog == 1) { echo '<li ><a href=\''.$domain.'/index.php?action=blog\'>Blog</a></li>'; };
-
-		echo '
-
-			</ul>';
+                              echo'<li><a href="'.$domain.'/index.php?action=submit">Submit Game</a></li>';
+		echo '</ul>';
 	}
 
 

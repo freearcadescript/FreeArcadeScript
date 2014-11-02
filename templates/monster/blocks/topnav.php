@@ -15,6 +15,7 @@ echo '<div class="nav">
 				<li><a href="'.$domain.'/links/">Links</a></li>';
        	    	if ($showpages == 1) { echo '<li><a href="'.$domain.'/pages/">Pages</a></li>'; };
        	    	if ($showblog == 1) { echo '<li><a href="'.$domain.'/blog/">Blog</a></li>'; };
+				echo'<li><a href="'.$domain.'/submit/">Submit Game</a></li>';
 			echo '</ul>';
 		}else{
 			echo '<ul>
@@ -25,6 +26,7 @@ echo '<div class="nav">
 				<li><a href="'.$domain.'/index.php?action=links">Links</a></li>';
     	   	    if ($showpages == 1) { echo '<li><a href="'.$domain.'/index.php?action=pages">Pages</a></li>'; };
     	   	    if ($showblog == 1) { echo '<li><a href="'.$domain.'/index.php?action=blog">Blog</a></li>'; };
+				echo'<li><a href="'.$domain.'/index.php?action=submit">Submit Game</a></li>';
 			echo '</ul>';
 		}
 	echo '</div>
