@@ -2,17 +2,19 @@
 include ('includes/config.php');
 global $_CONFIG;
 include_once ('includes/db.class.php');
+
+$config = new config();
 $db=new database;
 $db->configure(
-	$dbhost,
-	$dbuser,
-	$dbpass,
-	$dbname,
-	$dbpre
+	$config->getHost(),
+	$config->getUser(),
+	$config->getPass(),
+	$config->getName()
 	);
 $db->connect();
-// $set = $db->fetch_row($db->query(sprintf('SELECT * FROM fas_settings')));
-//ALTER TABLE dd_users ADD template VARCHAR(250) AFTER plays;
+
+$cachepath = $config->getCachePath();
+$cachelife = $config->getCacheLife();
 
 
 
