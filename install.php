@@ -1,8 +1,10 @@
 <?php
 include('includes/config.php');
 include_once ('includes/db.class.php');
-mysql_connect("$dbhost", "$dbuser", "$dbpass") or die(mysql_error());
-mysql_select_db("$dbname") or die(mysql_error());
+$config = new config();
+
+mysql_connect($config->getHost(), $config->getUser(), $config->getPass()) or die(mysql_error());
+mysql_select_db($config->getName()) or die(mysql_error());
 
 
 
