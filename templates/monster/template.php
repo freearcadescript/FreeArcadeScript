@@ -18,7 +18,10 @@ echo'</head>
     if (!$facebookappid == "") { echo ''.$facebookappid.''; };
 	echo'<div id="center">';
 	include("templates/$template/blocks/topnav.php");
-		echo'<div id="left">';
+		echo'<div id="right">';
+			writebody();
+		echo'</div>
+		<div id="left">';
 			include("templates/$template/blocks/mymenu.php");
 			//include("templates/$template/blocks/search.php");
 			//include("templates/$template/blocks/bannerleft.php");
@@ -27,16 +30,13 @@ echo'</head>
 			//include("templates/$template/blocks/category.php");
 			//include("templates/$template/blocks/ad1.php");
 			//include("templates/$template/blocks/ad2.php");
-			include("templates/$template/blocks/top.php");
+			include("templates/$template/blocks/topgames.php");
 			include("templates/$template/blocks/latest.php");
-			include("templates/$template/blocks/submenu2.php");
+			include("templates/$template/blocks/topusers.php");
 			include("templates/$template/blocks/links.php");
 			include("templates/$template/blocks/stats.php");
-		echo'</div>
-		<div id="right">';
-			writebody();
-		echo'</div>
-                          </div>';
+		echo'</div>	
+    </div>';
 	if (!$footerspace == "") { echo '<br /><div align="center">'.$footerspace.'</div><br />'; };
 	/* Please do not remove the "powered by" link unless, you've purchased the removal. */
 	include("templates/$template/blocks/powered.php");

@@ -1,9 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $domain, $sitename, $cachelife, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
-
 $r2 = "SELECT * FROM fas_pageentries WHERE visible='1' order by title asc" ;
 $sqltitle="pagesmain" ;
 $r1 = sqlcache($sqltitle, $cachelife, $r2);
@@ -52,7 +48,6 @@ echo '<p></p></td>
 </table>';
 echo '<br /><br />';
 
-};
 
 $pagetitle = $sitename.' pages';
 $metatags = 'pages, arcade articles';

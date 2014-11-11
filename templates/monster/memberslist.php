@@ -1,9 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
-
 $time = time()-15*60;
 
 if(!isset($_GET['orderby'])){
@@ -134,7 +130,6 @@ if ($totalpages != '1'){
 }
 echo'</div>';
 
-};
 
 $pagetitle = 'Members - '.$sitename;
 $metatags = 'members, member list';

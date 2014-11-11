@@ -1,11 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $showpages, $suserid;
-
-
-
 $max = $blogentriesshown;
 if(!isset($_GET['page'])){
 	$show = '1';
@@ -101,7 +95,6 @@ echo '<a href=\''.$urk.'\' class=\'pagenat\'>'.$i.'</a>&nbsp; ';
 }
 echo '</div></div></div><br /><br />';
 
-};
 
 $pagetitle = $sitename.' Blog';
 $metatags = 'blog, arcade blog';

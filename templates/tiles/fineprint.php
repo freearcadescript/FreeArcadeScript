@@ -1,8 +1,5 @@
 <?php
 
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $seoheading, $seotext, $showpages, $suserid;
-
 echo'<div id="container">
 <div id="content-container">
 
@@ -106,7 +103,6 @@ echo'</div>
      </div>
 </div>
 </div></div>';
-};
 
 
 $pagetitle = $sitename.' F.A.Q., Terms of Service, etc.';

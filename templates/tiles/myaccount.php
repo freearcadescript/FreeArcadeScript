@@ -1,12 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $domain, $suserid, $sitename, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $showpages;
-
-
-
-
 if(!isset($suserid)){
 echo'<div id="container">
 <div id="content-container">
@@ -615,5 +608,4 @@ switch($_GET['cmd']){
 
 echo'</div></div>';
 
-};
 ?>

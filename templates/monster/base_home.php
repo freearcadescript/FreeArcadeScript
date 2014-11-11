@@ -2,8 +2,6 @@
 
 $pagetitle = $sitename;
 
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
 
 $count = 0;
 $baser2 = "SELECT * FROM fas_categories where active='1'";
@@ -111,5 +109,5 @@ foreach($baser1 as $row){
 }
 $count++;
 }//end foreach baser1
-};//end writebody()
+//end writebody()
 ?>

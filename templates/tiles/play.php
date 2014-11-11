@@ -36,10 +36,6 @@ if ( $r['tags'] == '' ) { $metatags = $cname; } else { $metatags = $r['tags']; }
 // $gdescription
 // $gviews
 
-function writebody() {
-global $db, $domain, $suserid, $cachelife, $ir, $ir2, $r, $cname, $sponsor, $ads1, $ads2, $ads3, $bannersleft, $headerspace, $footerspace, $ID, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $fbcomments_on, $taf_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $avatar_on, $gender_on, $aimg, $fimg, $mimg, $showpages, $gamename;
-
-
 
 if(!$ID){
 	echo '<div class=\'error\'>No game selected.</div>';
@@ -380,7 +376,5 @@ $db->query('UPDATE fas_users SET plays=plays+1 WHERE userid=\''.$useridp.'\'');
  };
 
 $db->query('UPDATE fas_gamestats SET total_played = total_played + 1,played_today = played_today + 1'); // adds a play to the total plays and played today stats
-
-};
 
 ?>

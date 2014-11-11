@@ -1,12 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $showpages;
-
-
-
-
 $sender = clean($_POST['sender']);
 $recipient = clean($_POST['recipient']);
 $gamei = clean($_POST['gamei']);
@@ -31,7 +24,4 @@ mail($recipient, $subject, $message, $headers);
 echo '<div class="msg">Thank you, message has been sent.</div>' ;
 };
 
-
-
-};
 ?>

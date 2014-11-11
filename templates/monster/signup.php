@@ -1,9 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $email_on;
-
 if(isset($_POST['submit'])){
     $time = time();
 	$user_name = clean($_POST['user_name']);
@@ -117,8 +113,4 @@ echo '<form action=\''.$surl.'\' method=\'post\'>
 	</table>
 </form>';
 
-
-
-
-};
 ?>

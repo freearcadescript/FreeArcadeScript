@@ -1,13 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $suserid, $entryid, $domain, $cachelife, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $template;
-
-
-
-
-
 function show(){
 global $domain, $db, $seo_on, $usrdata, $entryid, $suserid, $template, $cachelife;
 // $r3 = $db->query(sprintf('SELECT * FROM fas_blogentries WHERE entryid=\'%u\'', $entryid));
@@ -266,9 +258,6 @@ switch ($cmd){
 };
  
 
-
-
-};
 if(!isset($_GET['page'])){
 	$show = '1';
 }else{

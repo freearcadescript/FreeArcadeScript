@@ -1,12 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $cachelife, $domain, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $username, $avatar_on, $gender_on, $aimg, $fimg, $mimg;
-
-
-
-
 $max = '70';
 $userids = clean($_GET['profile']);
 
@@ -199,10 +192,6 @@ $sqltitle = "userblogentries-".$userids ;
 
 
 echo '</table>';} };
-
-
-
-};
 
 $pagetitle = $sitename.' - Member profile page ';
 $metatags = 'profile page, member page';

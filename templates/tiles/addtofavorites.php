@@ -1,10 +1,5 @@
 <?php
 
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $con1, $suserid, $userid, $userdata, $usrdata, $showpages;
-
-
-
 if(!isset($suserid)){
 	echo'<div id="container">
         <div id="content-container">
@@ -36,5 +31,4 @@ if(!isset($suserid)){
 
 	$pgname = 'Add to favorites';
 
-};
 ?>

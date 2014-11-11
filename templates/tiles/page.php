@@ -14,9 +14,6 @@ $metatags = $r7['tags'];
 $metadescription = $r7['metadescription'] ;
 };
 
-function writebody() {
-global $db, $suserid, $pagetitle, $cachelife, $metatags, $metatitle, $metadescription,  $entryid, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $showpages;
-
 $entryid = clean($_GET['entryid']);
 
 
@@ -74,14 +71,5 @@ echo '<table width=\'100%\' border=\'0\' align=\'center\'>
 ';
 echo '</table>
 </div></div></div>';
-
-
-
- 
-
-
-
-
-};
 
 ?>

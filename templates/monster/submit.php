@@ -1,8 +1,5 @@
 <?php
 
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $suserid, $log, $sup;
-
 
 if($seo_on == 1){
 	$log = ''.$domain.'/login/';
@@ -128,7 +125,6 @@ if(!isset($suserid)){
 	</form>';
 }
 
-}
 
 $pagetitle = $sitename.' - Submit Games';
 $metatags = 'submit games';

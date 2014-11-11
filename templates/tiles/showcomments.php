@@ -1,12 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $cachelife, $domain, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $bannersleft, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $showpages;
-
-
-
-
 if(!isset($_GET['ID'])){
 	$ID = NULL;
 }else{
@@ -138,5 +131,4 @@ if ($totalpages != '1'){
 }
 echo'</div>
 </div></div></div>';
-};
 ?>

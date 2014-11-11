@@ -6,10 +6,6 @@ if($seo_on == 1){
 		$con1 = ''.$domain.'/index.php?action=contact';
 	};
 
-function writebody() {
-global $db, $domain, $sitename, $con1, $userid, $template;
-
-
 echo '<div class="header2">
 		Fine Print
 	</div>
@@ -106,7 +102,6 @@ echo '<div class="header2">
 	</ol>
 <br />
 </div>';
-};
 
 
 $pagetitle = $sitename.' F.A.Q., Terms of Service, etc.';

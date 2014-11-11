@@ -1,11 +1,6 @@
 <?php
 
 
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
-
-
-
 echo'
 
 	<table align=\'center\' border=\'0\' width=\'100%\'>
@@ -118,7 +113,6 @@ URL: '.$domain.'<br /><br /></b></td>
 		</tr>
 	</table>
 	</form>';
-};
 };
 
 

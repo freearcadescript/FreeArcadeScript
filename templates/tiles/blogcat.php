@@ -1,9 +1,5 @@
 <?php
 
-function writebody() {
-global $db, $domain, $sitename, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $showpages;
-
-
 //$name = clean($_GET['name']);
 //$catname = clean($_GET['catname']);
 $max = $blogentriesshown;
@@ -107,8 +103,6 @@ echo '<a href=\''.$urk.'\' class=\'pagenat\'>'.$i.'</a>&nbsp; ';
 }
 echo '<br /><br />
 </div></div></div>';
-
-};
 
 $show = clean($_GET['page']);
 $show = abs((int) ($show));

@@ -1,12 +1,5 @@
 <?php
 
-
-function writebody() {
-global $db, $domain, $sitename, $con1, $suserid, $userid, $userdata;
-
-
-
-
 if(!isset($suserid)){
 	echo '<div class=\'error\'>Please login first.</div>';
 	return;
@@ -21,5 +14,5 @@ if(!isset($suserid)){
 	echo '<div class=\'msg\'>Game added to your favorites.</div>';
 	$pgname = 'Add to favorites';
 
-};
+
 ?>

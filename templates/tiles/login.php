@@ -2,13 +2,6 @@
 
 $pagetitle = 'Log in';
 
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $ads1, $ads2, $ads3, $bannersleft, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $showpages;
-
-
-
-
-
 if(isset($_POST['submit'])){
 	$username = clean($_POST['username']);
 	$password = clean($_POST['password']);
@@ -129,7 +122,5 @@ echo '<form action=\''.$url.'\' method=\'post\'>
 </form>
 </div></div></div>';
 }
-
-};
 
 ?>

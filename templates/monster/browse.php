@@ -1,6 +1,4 @@
 <?php
-function writebody() {
-global $db, $domain, $sitename, $domain, $cachelife, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid, $show;
 
 $ID = clean($_GET['ID']);
 $ID = abs((int) ($ID));
@@ -119,7 +117,6 @@ if ($totalpages > '1'){
 }
 echo'</div>';
 }
-};
 
 $ID = clean($_GET['ID']);
 $ID = abs((int) ($ID));

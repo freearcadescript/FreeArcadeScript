@@ -2,10 +2,6 @@
 
 $pagetitle = 'Messages - '.$sitename;
 
-function writebody() {
-global $db, $domain, $suserid, $sitename, $domain, $template, $gamesfolder, $thumbsfolder, $limitboxgames, $seo_on, $blogentriesshown, $enabledcode_on, $comments_on, $directorypath, $autoapprovecomments, $gamesonpage, $abovegames, $belowgames, $showwebsitelimit, $supportemail, $showblog, $blogentriesshown, $blogcharactersshown, $blogcommentpermissions, $blogcommentsshown, $blogfollowtags, $blogcharactersrss, $usrdata, $userid;
-
-
 
 
 if(!isset($suserid)){
@@ -298,6 +294,5 @@ case 'deleteall':
 deleteall();
 break;
 }
-};
 ?>
 

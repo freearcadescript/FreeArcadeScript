@@ -1,6 +1,4 @@
 <?php
-function writebody() {
-global $db, $domain, $sitename, $con1, $suserid, $userid, $userdata, $showpages;
 
 	$ID = clean($_GET['cmd']);
 	$ID = abs((int) ($ID));
@@ -10,5 +8,5 @@ global $db, $domain, $sitename, $con1, $suserid, $userid, $userdata, $showpages;
 	mysql_query("INSERT INTO fas_report_game (gameid, userid, gamename) VALUES('$ID', '$suserid', '$name[0]')") or die();
 	
 	echo '<div class=\'msg\'>\''.$name[0].'\' successfully reported.</div>';
-};
+
 ?>
