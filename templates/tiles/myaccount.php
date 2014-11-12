@@ -1,27 +1,22 @@
 <?php
 
-if(!isset($suserid)){
+
 echo'<div id="container">
 <div id="content-container">
 <div id="side">';
 include("includes/blocks.php");
-echo'</div>
+echo'</div>';
 
-<div id="content">';
+if(!isset($suserid)){
+
+echo'<div id="content">';
 echo '<div class=\'error\'>Please login first.</div>';
 echo'</div></div></div>';
 
-return;
-};
+}else{
 
 
-echo'<div id="container">
-<div id="content-container">
-<div id="side">';
-include("includes/blocks.php");
-echo'</div>
-
-<div id="content">';
+echo'<div id="content">';
 
 
 
@@ -60,7 +55,7 @@ $ran3 = $usrdata['userid'];
 $ran4 = $ran.$userid.'.';
 $avatarfile = $ran4.$ext;
 //This assigns the subdirectory you want to save into... make sure it exists!
-$target = $directorypath."avatars/";
+$target = $directorypath."/avatars/";
 //This combines the directory, the userid, and the extension
 $target = $target . $ran4.$ext;
 if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target))
@@ -607,5 +602,6 @@ switch($_GET['cmd']){
 }
 
 echo'</div></div>';
+}
 
 ?>
