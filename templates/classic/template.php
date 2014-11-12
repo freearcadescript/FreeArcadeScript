@@ -230,7 +230,7 @@ writebody();
 					Total Users: <?php echo $totalusers; ?><br />
 					Total Categories: <?php echo $totalcats; ?><br />
 					Total Comments: <? echo $totalcomments; ?><br />
-                              Total Hits: <?php include ("$directorypath/includes/counter.php"); ?><br />
+                              Total Hits: <?php include ($directorypath."includes/counter.php"); ?><br />
 					Users Online: <? echo $onlineusers; ?><p>
                               <a href="<?php echo $domain; ?>/rss-arcade.php"><img src="<? echo $domain; ?>/images/rss.gif"  border="0" ></img> RSS-Games</a><br />
                               <?php   if ($showblog == 1) { echo '<a href="'.$domain.'/rss-blog.php"><img src="'.$domain.'/images/rss.gif" border="0" ></img> RSS-Blog</a><br />' ; };

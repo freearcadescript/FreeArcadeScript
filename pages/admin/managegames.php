@@ -205,7 +205,7 @@ if($row["type"] == "1")
 
 $file = $row["file"];
 
-$myFile = "$directorypath/$gamesfolder/$file";
+$myFile = $directorypath."$gamesfolder/$file";
 unlink($myFile);
 }
 
@@ -214,7 +214,7 @@ if($row["type"] == "1")
 
 $thumb = $row["thumb"];
 
-$myThumb = "$directorypath/$thumbsfolder/$thumb";
+$myThumb = $directorypath."$thumbsfolder/$thumb";
 unlink($myThumb);
 }
 

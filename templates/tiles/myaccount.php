@@ -55,7 +55,7 @@ $ran3 = $usrdata['userid'];
 $ran4 = $ran.$userid.'.';
 $avatarfile = $ran4.$ext;
 //This assigns the subdirectory you want to save into... make sure it exists!
-$target = $directorypath."/avatars/";
+$target = $directorypath."avatars/";
 //This combines the directory, the userid, and the extension
 $target = $target . $ran4.$ext;
 if(move_uploaded_file($_FILES['uploaded']['tmp_name'], $target))
