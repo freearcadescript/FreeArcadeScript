@@ -5,7 +5,7 @@ $pagetitle = $sitename;
 echo'<div id="container">
 <div id="content-container">
 <div id="side">';
-include("templates/$template/blocks/blocks.php");
+include("includes/blocks.php");
 echo'</div>
 
 <div id="content">
