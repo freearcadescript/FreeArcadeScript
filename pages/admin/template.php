@@ -86,7 +86,7 @@ switch($_GET['case']){
 	$e = 'active';
 	break;
 	
-	ase 'managegamefeeds':
+	case 'managegamefeeds':
 	$e = 'active';
 	break;
 
