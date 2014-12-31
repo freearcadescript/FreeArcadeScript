@@ -114,6 +114,14 @@ switch($_GET['case']){
 	case 'socialmedia':
 	include ('socialmedia.php');
 	break;
+	
+	case 'managegamefeeds':
+	include ('managegamefeeds.php');
+	break;
+
+	case 'manageagf':
+	include ('manageagf.php');
+	break;
 
 };
 };
