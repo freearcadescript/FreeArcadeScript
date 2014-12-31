@@ -85,6 +85,10 @@ switch($_GET['case']){
 	case 'managecategories':
 	$e = 'active';
 	break;
+	
+	ase 'managegamefeeds':
+	$e = 'active';
+	break;
 
 	case 'approvecomments':
 	$j = 'active';
@@ -168,6 +172,7 @@ echo'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.
 					<ul>
             			<li><a href="'.$domain.'/index.php?action=admin&case=managegames">Manage Games</a></li>
                         <li><a href="'.$domain.'/index.php?action=admin&case=managecategories">Manage Categories</a></li>
+        		<li><a href="'.$domain.'/index.php?action=admin&case=managegamefeeds">Manage Game Feeds</a></li>	
         			</ul>
 				</li>
                 <li class="'.$f.'"><a href="'.$domain.'/index.php?action=admin&case=managelinks">Links</a></li>
