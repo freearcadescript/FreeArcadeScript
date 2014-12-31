@@ -234,6 +234,31 @@ A:visited {text-decoration: none}
 A:active {text-decoration: none}
 A:hover {text-decoration: none}
 
+.box{
+        float:left;
+	width:890px;
+	height:100px;
+	border: 1px solid #e3e3e3;
+	background-color: #f2f2f2;
+	margin-bottom:10px;
+	margin-left:14px;
+	}
+
+.boximage{
+        float:left;
+	width:150px;
+	height:150px;
+	background:transparent;
+	text-align: center;
+	font-family: Arial;
+	font-size: 12px;
+	margin:10px;
+	padding:2px;
+}
+
+.boximage a {color:#060606;text-decoration: none}
+.boximage a:hover {text-decoration: underline}
+
 
 
 
