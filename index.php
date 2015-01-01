@@ -17,19 +17,22 @@ if(isset($suserid)){
 mysql_query("UPDATE fas_users SET status=unix_timestamp() WHERE userid='$suserid'");
 }
 
-if ($_GET['action'] == 'admin' || $_GET['action'] == 'blogadmin' || $_GET['action'] == 'gameadmin'){
+if ($_GET['action'] == 'admin' || $_GET['action'] == 'blogmanager' || $_GET['action'] == 'gamemanager'){
 	switch($_GET['action']){
 
 		case 'admin':
-		include ('pages/admin/index.php');
+		$action = 'admin';
+		include ('panels/admin/index.php');
 		break;
 
-		case 'blogadmin':
-		include ('pages/blogadmin/index.php');
+		case 'blogmanager':
+		$action = 'blogmanager';
+		include ('panels/blogmanager/index.php');
 		break;
 
-		case 'gameadmin':
-		include ('pages/gameadmin/index.php');
+		case 'gamemanager':
+		$action = 'gamemanager';
+		include ('panels/gamemanager/index.php');
 		break;
 	}
 } else {

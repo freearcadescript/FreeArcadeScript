@@ -106,7 +106,7 @@ include ("js/rating_update.php");
 		                         if($usrdata['user_level'] == 2){echo '<li><a href=\''.$domain.'/index.php?action=admin\'>Admin</a></li>';
 						   
                                        };
-                                     if($usrdata['bloglevel'] >= 2) {echo '<li><a href=\''.$domain.'/index.php?action=blogadmin\'>Blog Admin</a></li>';};
+                                     if($usrdata['bloglevel'] >= 2) {echo '<li><a href=\''.$domain.'/index.php?action=blogmanager\'>Blog Admin</a></li>';};
                                      echo '<p>';
 
 

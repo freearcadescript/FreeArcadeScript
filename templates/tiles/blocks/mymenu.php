@@ -23,8 +23,8 @@ echo'	<div class="side_nav">User Menu</div>
 					}
 				}
 				if($usrdata['user_level'] == 2){echo '<li><a href=\''.$domain.'/index.php?action=admin\'>Admin</a></li>';};
-				if($usrdata['gamelevel'] >= 2) {echo '<li><a href=\''.$domain.'/index.php?action=gameadmin\'>Game Admin</a></li>';};
-				if($usrdata['bloglevel'] >= 2) {echo '<li><a href=\''.$domain.'/index.php?action=blogadmin\'>Blog Admin</a></li>';};
+				if($usrdata['gamelevel'] >= 2) {echo '<li><a href=\''.$domain.'/index.php?action=gamemanager\'>Game Admin</a></li>';};
+				if($usrdata['bloglevel'] >= 2) {echo '<li><a href=\''.$domain.'/index.php?action=blogmanager\'>Blog Admin</a></li>';};
 		echo'</ul>
 	</div>
 <div style="clear:both"></div>';
