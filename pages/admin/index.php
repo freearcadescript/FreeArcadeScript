@@ -15,6 +15,10 @@ switch($_GET['case']){
 	include ('adminhome.php');
 	break;
 
+	case 'fasnews':
+	include ('fasnews.php');
+	break;
+
 	case 'addgame':
 	include ('addgame.php');
 	break;
