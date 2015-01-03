@@ -18,35 +18,35 @@ switch($_GET['case']){
 	break;
 
 	case 'addgame':
-	include ($directorypath.'/panels/sharedfiles/game/addgame.php');
+	include ($directorypath.'/panels/files/game/addgame.php');
 	break;
 
 	case 'managegames':
-	include ($directorypath.'/panels/sharedfiles/game/managegames.php');
+	include ($directorypath.'/panels/files/game/managegames.php');
 	break;
 
 	case 'addcategory':
-	include ($directorypath.'/panels/sharedfiles/game/addcategory.php');
+	include ($directorypath.'/panels/files/game/addcategory.php');
 	break;
 
 	case 'managecategories':
-	include ($directorypath.'/panels/sharedfiles/game/managecategories.php');
+	include ($directorypath.'/panels/files/game/managecategories.php');
 	break;
 
 	case 'approvecomments':
-	include ($directorypath.'/panels/sharedfiles/game/approvecomments.php');
+	include ($directorypath.'/panels/files/game/approvecomments.php');
 	break;
 
 	case 'testgame':
-	include ($directorypath.'/panels/sharedfiles/game/testgame.php');
+	include ($directorypath.'/panels/files/game/testgame.php');
 	break;
 
 	case 'reportedgames':
-	include ($directorypath.'/panels/sharedfiles/game/reportedgames.php');
+	include ($directorypath.'/panels/files/game/reportedgames.php');
 	break;
 
 	case 'managegamecomments':
-	include ($directorypath.'/panels/sharedfiles/game/managegamecomments.php');
+	include ($directorypath.'/panels/files/game/managegamecomments.php');
 	break;
 
 }

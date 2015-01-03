@@ -74,61 +74,61 @@ switch($_GET['case']){
 	//shared game files
 
 	case 'addgame':
-	include ($directorypath.'/panels/sharedfiles/game/addgame.php');
+	include ($directorypath.'/panels/files/game/addgame.php');
 	break;
 
 	case 'managegames':
-	include ($directorypath.'/panels/sharedfiles/game/managegames.php');
+	include ($directorypath.'/panels/files/game/managegames.php');
 	break;
 
 	case 'addcategory':
-	include ($directorypath.'/panels/sharedfiles/game/addcategory.php');
+	include ($directorypath.'/panels/files/game/addcategory.php');
 	break;
 
 	case 'managecategories':
-	include ($directorypath.'/panels/sharedfiles/game/managecategories.php');
+	include ($directorypath.'/panels/files/game/managecategories.php');
 	break;
 
 	case 'approvecomments':
-	include ($directorypath.'/panels/sharedfiles/game/approvecomments.php');
+	include ($directorypath.'/panels/files/game/approvecomments.php');
 	break;
 
 	case 'testgame':
-	include ($directorypath.'/panels/sharedfiles/game/testgame.php');
+	include ($directorypath.'/panels/files/game/testgame.php');
 	break;
 
 	case 'reportedgames':
-	include ($directorypath.'/panels/sharedfiles/game/reportedgames.php');
+	include ($directorypath.'/panels/files/game/reportedgames.php');
 	break;
 
 	case 'managegamecomments':
-	include ($directorypath.'/panels/sharedfiles/game/managegamecomments.php');
+	include ($directorypath.'/panels/files/game/managegamecomments.php');
 	break;
 
 
 	//shared blog files
 	case 'reportedcomments':
-	include ($directorypath.'/panels/sharedfiles/blog/reportedcomments.php');
+	include ($directorypath.'/panels/files/blog/reportedcomments.php');
 	break;
 
 	case 'blogentries':
-	include ($directorypath.'/panels/sharedfiles/blog/blogentries.php');
+	include ($directorypath.'/panels/files/blog/blogentries.php');
 	break;
 
 	case 'addblogcategory':
-	include ($directorypath.'/panels/sharedfiles/blog/addblogcategory.php');
+	include ($directorypath.'/panels/files/blog/addblogcategory.php');
 	break;
 
 	case 'manageblogcategories':
-	include ($directorypath.'/panels/sharedfiles/blog/manageblogcategories.php');
+	include ($directorypath.'/panels/files/blog/manageblogcategories.php');
 	break;
 
 	case 'approveblogcomments':
-	include ($directorypath.'/panels/sharedfiles/blog/approveblogcomments.php');
+	include ($directorypath.'/panels/files/blog/approveblogcomments.php');
 	break;
 
 	case 'manageblogcomments':
-	include ($directorypath.'/panels/sharedfiles/blog/manageblogcomments.php');
+	include ($directorypath.'/panels/files/blog/manageblogcomments.php');
 	break;
 
 };

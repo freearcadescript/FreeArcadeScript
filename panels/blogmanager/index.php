@@ -16,27 +16,27 @@ switch($_GET['case']){
 	break;
 
 	case 'blogentries':
-	include ($directorypath.'/panels/sharedfiles/blog/blogentries.php');
+	include ($directorypath.'/panels/files/blog/blogentries.php');
 	break;
 
 	case 'addblogcategory':
-	include ($directorypath.'/panels/sharedfiles/blog/addblogcategory.php');
+	include ($directorypath.'/panels/files/blog/addblogcategory.php');
 	break;
 
 	case 'manageblogcategories':
-	include ($directorypath.'/panels/sharedfiles/blog/manageblogcategories.php');
+	include ($directorypath.'/panels/files/blog/manageblogcategories.php');
 	break;
 
 	case 'approveblogcomments':
-	include ($directorypath.'/panels/sharedfiles/blog/approveblogcomments.php');
+	include ($directorypath.'/panels/files/blog/approveblogcomments.php');
 	break;
 
 	case 'manageblogcomments':
-	include ($directorypath.'/panels/sharedfiles/blog/manageblogcomments.php');
+	include ($directorypath.'/panels/files/blog/manageblogcomments.php');
 	break;
 
 	case 'reportedcomments':
-	include ($directorypath.'/panels/sharedfiles/blog/reportedcomments.php');
+	include ($directorypath.'/panels/files/blog/reportedcomments.php');
 	break;
 	
 }
