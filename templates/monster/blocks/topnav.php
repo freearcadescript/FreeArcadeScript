@@ -43,16 +43,16 @@ echo '<div class="nav">
 			</form>
 		</div>
         <div class="socialmedia">';
-if (!$socialmedia1 == "") { echo '<a href="'.$socialmedia1.'"><img src="'.$domain.'/images/icons/facebook.png" alt="FaceBook" title="FaceBook" width="16" height="16" /></a> '; };
-if (!$socialmedia2 == "") { echo '<a href="'.$socialmedia2.'"><img src="'.$domain.'/images/icons/twitter.png" alt="Twitter" title="Twitter" width="16" height="16" /></a> '; };
-if (!$socialmedia3 == "") { echo '<a href="'.$socialmedia3.'"><img src="'.$domain.'/images/icons/googleplus.png" alt="Google Plus" title="Google Plus" width="16" height="16" /></a> '; };
-if (!$socialmedia4 == "") { echo '<a href="'.$socialmedia4.'"><img src="'.$domain.'/images/icons/linkedin.png" alt="Linkedin" title="Linkedin" width="16" height="16" /></a> '; };
-if (!$socialmedia5 == "") { echo '<a href="'.$socialmedia5.'"><img src="'.$domain.'/images/icons/pinterest.png" alt="Pinterest" title="Pinterest" width="16" height="16" /></a> '; };
-if (!$socialmedia6 == "") { echo '<a href="'.$socialmedia6.'"><img src="'.$domain.'/images/icons/youtube.png" alt="You Tube" title="You Tube" width="16" height="16" /></a> '; };
-if (!$socialmedia7 == "") { echo '<a href="'.$socialmedia7.'"><img src="'.$domain.'/images/icons/myspace.png" alt="MySpace" title="MySpace" width="16" height="16" /></a> '; };
-if (!$socialmedia8 == "") { echo '<a href="'.$socialmedia8.'"><img src="'.$domain.'/images/icons/stumbleupon.png" alt="StumbleUpon" title="StumbleUpon" width="16" height="16" /></a> '; };
-if (!$socialmedia9 == "") { echo '<a href="'.$socialmedia9.'"><img src="'.$domain.'/images/icons/digg.png" alt="Digg" title="Digg" width="16" height="16" /></a> '; };
-if (!$socialmedia10 == "") { echo '<a href="'.$socialmedia10.'"><img src="'.$domain.'/images/icons/icon4.png" alt="" title="" width="16" height="16" /></a> '; };
+if (!$socialmedia1 == "") { echo '<a href="'.$socialmedia1.'" target="_blank"><img src="'.$domain.'/images/icons/facebook.png" alt="FaceBook" title="FaceBook" width="16" height="16" /></a> '; };
+if (!$socialmedia2 == "") { echo '<a href="'.$socialmedia2.'" target="_blank"><img src="'.$domain.'/images/icons/twitter.png" alt="Twitter" title="Twitter" width="16" height="16" /></a> '; };
+if (!$socialmedia3 == "") { echo '<a href="'.$socialmedia3.'" target="_blank"><img src="'.$domain.'/images/icons/googleplus.png" alt="Google Plus" title="Google Plus" width="16" height="16" /></a> '; };
+if (!$socialmedia4 == "") { echo '<a href="'.$socialmedia4.'" target="_blank"><img src="'.$domain.'/images/icons/linkedin.png" alt="Linkedin" title="Linkedin" width="16" height="16" /></a> '; };
+if (!$socialmedia5 == "") { echo '<a href="'.$socialmedia5.'" target="_blank"><img src="'.$domain.'/images/icons/pinterest.png" alt="Pinterest" title="Pinterest" width="16" height="16" /></a> '; };
+if (!$socialmedia6 == "") { echo '<a href="'.$socialmedia6.'" target="_blank"><img src="'.$domain.'/images/icons/youtube.png" alt="You Tube" title="You Tube" width="16" height="16" /></a> '; };
+if (!$socialmedia7 == "") { echo '<a href="'.$socialmedia7.'" target="_blank"><img src="'.$domain.'/images/icons/myspace.png" alt="MySpace" title="MySpace" width="16" height="16" /></a> '; };
+if (!$socialmedia8 == "") { echo '<a href="'.$socialmedia8.'" target="_blank"><img src="'.$domain.'/images/icons/stumbleupon.png" alt="StumbleUpon" title="StumbleUpon" width="16" height="16" /></a> '; };
+if (!$socialmedia9 == "") { echo '<a href="'.$socialmedia9.'" target="_blank"><img src="'.$domain.'/images/icons/digg.png" alt="Digg" title="Digg" width="16" height="16" /></a> '; };
+if (!$socialmedia10 == "") { echo '<a href="'.$socialmedia10.'" target="_blank"><img src="'.$domain.'/images/icons/icon4.png" alt="" title="" width="16" height="16" /></a> '; };
        echo '</div>
 	</div>
 </div>
