@@ -36,8 +36,8 @@ while($in = $db->fetch_row($r)){
 				<div class="home_desc">'.desclimit($in['description']).'</div>';
 				if($usrdata['user_level'] == 2){
 					echo'<div style="float: right; vertical-align: top; padding-right: 20px;">
-						<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$in['ID'].'&amp;type='.$in['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' title=\'edit game\' alt=\'edit game\' border=\'0\' /></a>
-						<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$in['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' title=\'delete game\' alt=\'delete game\' border=\'0\' /></a>
+						<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$in['ID'].'&amp;type='.$in['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/edit.png\' title=\'edit game\' alt=\'edit game\' border=\'0\' /></a>
+						<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$in['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/delete.png\' title=\'delete game\' alt=\'delete game\' border=\'0\' /></a>
 					</div>';
 				}
 			echo'</div>
@@ -58,8 +58,8 @@ while($in = $db->fetch_row($r)){
 				<div class="home_desc">'.desclimit($in['description']).'</div>';
 					if($usrdata['user_level'] == 2){
 						echo'<div style="float: right; vertical-align: top; padding-right: 20px;">
-							<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$in['ID'].'&amp;type='.$in['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' title=\'edit game\' alt=\'edit game\' border=\'0\' /></a>
-							<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$in['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' title=\'delete game\' alt=\'delete game\' border=\'0\' /></a>
+							<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$in['ID'].'&amp;type='.$in['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/edit.png\' title=\'edit game\' alt=\'edit game\' border=\'0\' /></a>
+							<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$in['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$in['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/delete.png\' title=\'delete game\' alt=\'delete game\' border=\'0\' /></a>
 						</div>';
 					}
 			echo'</div>

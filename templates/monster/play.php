@@ -113,22 +113,22 @@ if(isset($_POST['commentsubmit'])){
 	<tr>
 		<td class=\'header\' colspan=\'2\'>Details';
 	    echo'<div style="float: right; vertical-align: top; padding-right: 20px;">';
-	    echo '<a href=\''.$domain.'/'.$gamesfolder.'/'.$r['file'].'\' /><img src=\''.$domain.'/templates/'.$template.'/images/fullscreen.png\' border=\'0\' alt=\'Full Screen\' title=\'Full Screen\' /></a> ';
+	    echo '<a href=\''.$domain.'/'.$gamesfolder.'/'.$r['file'].'\' /><img src=\''.$domain.'/templates/'.$template.'/style/images/fullscreen.png\' border=\'0\' alt=\'Full Screen\' title=\'Full Screen\' /></a> ';
 	    if ($seo_on == 1){
-		echo '<a href=\''.$domain.'/addtofavorites/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my Favorites\' title=\'Add to My Favorites\' /></a> ';
+		echo '<a href=\''.$domain.'/addtofavorites/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/style/images/favorite.png\' border=\'0\' alt=\'Add to my Favorites\' title=\'Add to My Favorites\' /></a> ';
 		}else{
-		echo '<a href=\''.$domain.'/index.php?action=addtofavorites&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/favorite.png\' border=\'0\' alt=\'Add to my favorites\' title=\'Add to My Favorites\' /></a> ';
+		echo '<a href=\''.$domain.'/index.php?action=addtofavorites&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/style/images/favorite.png\' border=\'0\' alt=\'Add to my favorites\' title=\'Add to My Favorites\' /></a> ';
 		}
 		if($usrdata['user_level'] == 1){
 	    if ($seo_on == 1){
-		echo '<a href=\''.$domain.'/report/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
+		echo '<a href=\''.$domain.'/report/'.$ID.'/\'><img src=\''.$domain.'/templates/'.$template.'/style/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
 		}else{
-		echo '<a href=\''.$domain.'/index.php?action=report&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
+		echo '<a href=\''.$domain.'/index.php?action=report&amp;cmd='.$ID.'\'><img src=\''.$domain.'/templates/'.$template.'/style/images/report.png\' border=\'0\' alt=\'Report Broken Game\' title=\'Report Broken Game\' /></a> ';
 		}
 		}
 	    if($usrdata['user_level'] == 2){
-		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$r['ID'].'&amp;type='.$r['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' title=\'Edit Game\' alt=\'edit game\' border=\'0\' /></a> ';
-		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$r['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' title=\'Delete Game\' alt=\'delete game\' border=\'0\' /></a> ';
+		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=edit&amp;ID='.$r['ID'].'&amp;type='.$r['type'].'\' onclick="return confirm(\'Are you sure you want to edit the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/edit.png\' title=\'Edit Game\' alt=\'edit game\' border=\'0\' /></a> ';
+		echo'<a href=\''.$domain.'/index.php?action=admin&amp;case=managegames&amp;cmd=delete&amp;ID='.$r['ID'].'\' onclick="return confirm(\'Are you sure you want to delete the game '.$r['name'].'?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/delete.png\' title=\'Delete Game\' alt=\'delete game\' border=\'0\' /></a> ';
         }
 
         echo'</div>';
@@ -311,8 +311,8 @@ echo '
 		     <td valign=\'top\' class=\'content\'>'.$row['comment'].'';
        if($usrdata['user_level'] == 2){
 	   echo '<div style="float: right; padding-right: 20px;">
-	        <a href=\''.$domain.'/index.php?action=admin&amp;case=managegamecomments&amp;cmd=edit&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to edit this comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/edit.png\' border=\'0\' alt=\'Edit Comment\' title=\'Edit Comment\' /></a>
-	        <a href=\''.$domain.'/index.php?action=admin&amp;case=managegamecomments&amp;cmd=delete&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete this comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' border=\'0\' alt=\'Delete Comment\' title=\'Delete Comment\' /></a>
+	        <a href=\''.$domain.'/index.php?action=admin&amp;case=managegamecomments&amp;cmd=edit&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to edit this comment?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/edit.png\' border=\'0\' alt=\'Edit Comment\' title=\'Edit Comment\' /></a>
+	        <a href=\''.$domain.'/index.php?action=admin&amp;case=managegamecomments&amp;cmd=delete&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete this comment?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/delete.png\' border=\'0\' alt=\'Delete Comment\' title=\'Delete Comment\' /></a>
 	        </div>';
 		     }
        echo '</td>

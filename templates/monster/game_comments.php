@@ -76,10 +76,10 @@ if($usrdata['user_level'] == 2){
 	echo '
 <div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=admin&amp;case=approvecomments&amp;cmd=delete&amp;ID='.$row['ID'].'\'  onclick="return confirm(\'Are you sure you want to delete the 
 
-comment?\')"><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' border=\'0\' alt=\'\' /></a></div>';
+comment?\')"><img src=\''.$domain.'/templates/'.$template.'/style/images/delete.png\' border=\'0\' alt=\'\' /></a></div>';
 }
 
-echo '<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=admin&amp;case=approvecomments&amp;cmd=delete&amp;ID='.$row['ID'].'\'"><img src=\''.$domain.'/templates/'.$template.'/images/report.png\' border=\'0\' alt=\'\' /></a></div>
+echo '<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=admin&amp;case=approvecomments&amp;cmd=delete&amp;ID='.$row['ID'].'\'"><img src=\''.$domain.'/templates/'.$template.'/style/images/report.png\' border=\'0\' alt=\'\' /></a></div>
 				</td>
 			</tr>
 			<tr>

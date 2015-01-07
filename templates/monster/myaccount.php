@@ -367,7 +367,7 @@ $gamename = preg_replace('#\W#', '', $in['name']);
 	      				</td>
 	      				<td valign=\'top\' class=\'content\'>'.browsedesclimit($in['description']).'';
 						mysql_query('DELETE FROM fas_user_favorites WHERE ID='.$in['ID'].'');
-						echo'<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=myaccount&amp;cmd=deletefavorite&amp;deleteID='.$in['ID'].'\'><img src=\''.$domain.'/templates/'.$template.'/images/delete.png\' border=\'0\' alt="delete" /></a></div>
+						echo'<div style="float: right; padding-right: 20px;"><a href=\''.$domain.'/index.php?action=myaccount&amp;cmd=deletefavorite&amp;deleteID='.$in['ID'].'\'><img src=\''.$domain.'/templates/'.$template.'/style/images/delete.png\' border=\'0\' alt="delete" /></a></div>
 						</td>
 	      			</tr>';
 

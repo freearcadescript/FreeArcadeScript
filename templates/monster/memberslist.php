@@ -46,8 +46,8 @@ $r = $db->query(sprintf("SELECT * FROM fas_users WHERE activation_key='0' AND us
 
 $totalres = mysql_result($db->query('SELECT COUNT(userid) AS total FROM fas_users WHERE userid != "0" '),0);
 $totalpages = ceil($totalres / $max);
-$down = '<img src="'.$domain.'/templates/'.$template.'/images/down.png" width="12" height="12" alt="down" title="Down" />';
-$up = '<img src="'.$domain.'/templates/'.$template.'/images/up.png" width="12" height="12" alt="up" title="Up" />';
+$down = '<img src="'.$domain.'/templates/'.$template.'/style/images/down.png" width="12" height="12" alt="down" title="Down" />';
+$up = '<img src="'.$domain.'/templates/'.$template.'/style/images/up.png" width="12" height="12" alt="up" title="Up" />';
 echo '
 <table width="100%" align="center">
 <tr>

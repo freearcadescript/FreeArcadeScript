@@ -15,7 +15,7 @@ echo '<div class="nav">
 				<li><a href="'.$domain.'/links/">Links</a></li>';
        	    	if ($showpages == 1) { echo '<li><a href="'.$domain.'/pages/">Pages</a></li>'; };
        	    	if ($showblog == 1) { echo '<li><a href="'.$domain.'/blog/">Blog</a></li>'; };
-				echo'<li><a href="'.$domain.'/submit/">Submit Game</a></li>';
+       	    	echo'<li><a href="'.$domain.'/submit/">Submit Game</a></li>';
 			echo '</ul>';
 		}else{
 			echo '<ul>
@@ -26,15 +26,19 @@ echo '<div class="nav">
 				<li><a href="'.$domain.'/index.php?action=links">Links</a></li>';
     	   	    if ($showpages == 1) { echo '<li><a href="'.$domain.'/index.php?action=pages">Pages</a></li>'; };
     	   	    if ($showblog == 1) { echo '<li><a href="'.$domain.'/index.php?action=blog">Blog</a></li>'; };
-				echo'<li><a href="'.$domain.'/index.php?action=submit">Submit Game</a></li>';
+    	   	    echo'<li><a href="'.$domain.'/index.php?action=submit">Submit Game</a></li>';
 			echo '</ul>';
 		}
-	echo '</div>
+echo' <div align="right" style="padding-right:20px;padding-top:10px;">
+Choose Style :
+<a href="'.$_SERVER['PHP_SELF'].'?css=green"><img src="'.$domain.'/images/green.png" alt="green" width="10" height="10"/></a> | <a href="'.$_SERVER['PHP_SELF'].'?css=red"><img src="'.$domain.'/images/red.png" alt="red" width="10" height="10"/></a> | <a href="'.$_SERVER['PHP_SELF'].'?css=grey"><img src="'.$domain.'/images/grey.png" alt="grey" width="10" height="10"/></a> | <a href="'.$_SERVER['PHP_SELF'].'?css=teal"><img src="'.$domain.'/images/teal.png" alt="teal" width="10" height="10"/></a>
+</div>
+</div>
 </div>
 <div class="heading">
 	<div class="center">
 		<div class="logo">
-			<a href="'.$domain.'"><img src="'.$domain.'/templates/'.$template.'/images/logo.png" alt="'.$sitename.'" width="270" height="80"/></a>
+			<a href="'.$domain.'"><img src="'.$domain.'/templates/'.$template.'/style/images/logo.png" alt="'.$sitename.'" width="270" height="80"/></a>
 		</div>
 		<div class="search">
 			<form action="'.$su.'" method="post">
@@ -53,7 +57,8 @@ if (!$socialmedia7 == "") { echo '<a href="'.$socialmedia7.'"><img src="'.$domai
 if (!$socialmedia8 == "") { echo '<a href="'.$socialmedia8.'"><img src="'.$domain.'/images/icons/stumbleupon.png" alt="StumbleUpon" title="StumbleUpon" width="16" height="16" /></a> '; };
 if (!$socialmedia9 == "") { echo '<a href="'.$socialmedia9.'"><img src="'.$domain.'/images/icons/digg.png" alt="Digg" title="Digg" width="16" height="16" /></a> '; };
 if (!$socialmedia10 == "") { echo '<a href="'.$socialmedia10.'"><img src="'.$domain.'/images/icons/icon4.png" alt="" title="" width="16" height="16" /></a> '; };
-       echo '</div>
+
+echo '</div>
 	</div>
 </div>
 <div class="navbottom">

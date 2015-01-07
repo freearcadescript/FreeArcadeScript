@@ -89,18 +89,18 @@ echo '
 <td class=\'middleright\'></td>
 </tr>
 <tr>
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/bl.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/bl.png" alt="" height="18" width="18" /></td>
 <td class=\'bottommiddle\'></td>
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/br.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/br.png" alt="" height="18" width="18" /></td>
 
 </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr>
 
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/tl.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/tl.png" alt="" height="18" width="18" /></td>
 <td class=\'topmiddle\'></td>
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/tr.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/tr.png" alt="" height="18" width="18" /></td>
 </tr>
 <tr>
 <td class=\'middleleft\'></td>
@@ -126,18 +126,18 @@ echo '
 <td class=\'middleright\'></td>
 </tr>
 <tr>
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/bl.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/bl.png" alt="" height="18" width="18" /></td>
 <td class=\'bottommiddle\'></td>
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/br.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/br.png" alt="" height="18" width="18" /></td>
 
 </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
 <tr>
 
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/tl.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/tl.png" alt="" height="18" width="18" /></td>
 <td class=\'topmiddle\'></td>
-<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/images/tr.png" alt="" height="18" width="18" /></td>
+<td height="18" width="18"><img src="'.$domain.'/templates/'.$template.'/style/images/tr.png" alt="" height="18" width="18" /></td>
 </tr>
 <tr>
 <td class=\'middleleft\'></td>

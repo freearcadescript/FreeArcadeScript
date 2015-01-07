@@ -12,6 +12,28 @@ include ('includes/core.php');
 include ('includes/rating_functions.php');
 include ('includes/reset.php');
 
+if(isset($_GET['css'])){
+switch ($_GET['css']) {
+
+case 'green':
+$_SESSION['switchcss']="green.css";
+break;
+
+case 'red':
+$_SESSION['switchcss']="red.css";
+break;
+
+case 'grey':
+$_SESSION['switchcss']="grey.css";
+break;
+
+default:
+$_SESSION['switchcss']="teal.css";
+
+}
+}else{
+	$_SESSION['switchcss']="teal.css";
+}
 
 if(isset($suserid)){
 mysql_query("UPDATE fas_users SET status=unix_timestamp() WHERE userid='$suserid'");
