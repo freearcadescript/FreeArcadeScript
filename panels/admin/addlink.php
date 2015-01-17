@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
                               emailaddress='$emailaddress'; ");
 					
 	echo '<div class=\'msg\'>Link Added. </a><br />
-			<A href="#" onclick="history.go(-1)">Back</a>';		};		
+	<A href="#" onclick="history.go(-1)">Back</a></div>';		};		
 }else{
 	echo'<div class="heading">
 		<h2>Add Link</h2>
