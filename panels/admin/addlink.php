@@ -10,7 +10,8 @@ if(isset($_POST['submit'])){
       $emailaddress= clean($_POST['emailaddress']);
 
 	if(!$title || !$url){
-		echo '<div class=\'error\'>Title or URL was not filled.</div>';
+		echo '<div class=\'error\'>Title or URL was not filled.<br />
+		<A href="#" onclick="history.go(-1)">Back</a></div>';
 		
 		
 	} else {

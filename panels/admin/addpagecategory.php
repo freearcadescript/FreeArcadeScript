@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
 		return;
 	};
 	mysql_query("INSERT INTO fas_pagecategories SET topcategory='$topcategory', categoryname='$categoryname', activate='$activate' ");
-	echo '<div class=\'msg\'>Category added.<br />
+	echo '<div class=\'msg\'>Category Added.<br />
 		<A href="#" onclick="history.go(-1)">Back</a></div>';
 }else{
 

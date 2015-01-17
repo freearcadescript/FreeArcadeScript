@@ -23,7 +23,8 @@ if(isset($_POST['submit'])){
  					abovegames=\''.$abovegames.'\',
  					belowgames=\''.$belowgames.'\',
  					analytics=\''.$analytics.'\'') or die(mysql_error());
-		echo '<div class=\'msg\'>Updated.</div>';
+		echo '<div class=\'msg\'>Ads Updated.<br />
+		<A href="#" onclick="history.go(-1)">Back</a></div>';
 
 		return;
 

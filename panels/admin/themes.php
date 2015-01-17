@@ -100,7 +100,8 @@ global $domain, $db;
 	$ID = clean($_GET['ID']);
 	$ID = abs((int) ($ID));
 	mysql_query("DELETE FROM fas_themes WHERE ID='$ID'");
-	echo'<div class="msg">Theme deleted.</div>';
+	echo'<div class="msg">Theme Deleted.<br />
+	<A href="#" onclick="history.go(-1)">Back</a></div>';
 }
 
 function edit(){
@@ -116,12 +117,14 @@ global $domain, $db;
 		}
 
 		if($default == '1' && $active== '0'){
-			echo '<div class="error">You cannot deactivate the default theme!</div>';
+			echo '<div class="error">You cannot deactivate the default theme!<br />
+			<A href="#" onclick="history.go(-1)">Back</a></div>';
 			return;
 		}
 
 		if(!$name){
-			echo '<div class="error">Not all of the fields where filled!</div>';
+			echo '<div class="error">Not all of the fields where filled!<br />
+			<A href="#" onclick="history.go(-1)">Back</a></div>';
 			return;
 		}
 
@@ -204,7 +207,8 @@ global $domain, $db;
 					name='$name',
 					template='$theme';");
 
-		echo'<div class="msg">Your theme "'.$name.'" has been installed.</div>';
+		echo'<div class="msg">Your theme "'.$name.'" has been installed.<br />
+		<A href="#" onclick="history.go(-1)">Back</a></div>';
 		return;
 	}
 	$name = clean($_GET['name']);

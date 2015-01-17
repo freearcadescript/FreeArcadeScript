@@ -27,7 +27,8 @@ if(isset($_POST['submit'])){
  					socialmedia9=\''.$socialmedia9.'\',
  					socialmedia10=\''.$socialmedia10.'\',
  					facebookappid=\''.$facebookappid.'\'') or die(mysql_error());
-		echo '<div class=\'msg\'>Updated.</div>';
+		echo '<div class=\'msg\'>Social Media Links Updated.<br />
+		<A href="#" onclick="history.go(-1)">Back</a></div>';
 
 		return;
 

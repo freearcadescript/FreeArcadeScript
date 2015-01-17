@@ -93,7 +93,8 @@ if(isset($_POST['submit'])){
 					fimg="'.$sfimg.'",
 					seoheading="'.$sseoheading.'",
 					seotext="'.$sseotext.'" ') or die(mysql_error());
-		echo '<div class="msg">Updated.</div>';
+		echo '<div class="msg">Settings Updated.<br />
+		<A href="#" onclick="history.go(-1)">Back</a></div>';
 		return;
 }
 echo '
