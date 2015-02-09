@@ -1,5 +1,14 @@
 <?php
 
+// Start New functions
+
+function htmlEsc($raw_input) {
+
+	return htmlspecialchars($raw_input, ENT_QUOTES | ENT_HTML401, 'UTF-8');     // important! don't forget to specify ENT_QUOTES and the correct encoding
+}  
+
+// End New functions
+
 function createSalt(){
     $string = md5(uniqid(rand(), true));
     return substr($string, 0, 3);
